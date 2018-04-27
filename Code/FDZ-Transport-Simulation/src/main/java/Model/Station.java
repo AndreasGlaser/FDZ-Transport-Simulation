@@ -8,20 +8,22 @@ import java.util.concurrent.Semaphore;
 public class Station {
 
     private String name;
+    private String shortCut;
     private ArrayList<Station> prevStations;
     private Semaphore sem;
     private boolean isOccupied = false;
     private int sledInside = -1; //no sled inside
 
-    public Station(String name){
+    public Station(String name, String shortCut){
         this.setName(name);
+        this.setShortCut(shortCut);
 
         sem = new Semaphore(1);
         prevStations = new ArrayList<Station>(5);
     }
 
-    public Station(String name, Station prevStation){
-        this(name);
+    public Station(String name, String shortCut, Station prevStation){
+        this(name, shortCut);
         addPrevStation(prevStation);
     }
 
@@ -66,6 +68,9 @@ public class Station {
 
     public void setName(String aName){
         this.name = aName;
+    }
+    public void setShortCut(String aShortCut){
+        this.shortCut = aShortCut;
     }
 
     public void setSledInside(int sledId) {

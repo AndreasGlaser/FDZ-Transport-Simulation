@@ -1,14 +1,17 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Station robot = new Station("robot");
-        Station stock = new Station("stock");
-        Station inOut = new Station("inOut");
-        CommandListener listener = new CommandListener();
+        Station robot = new Station("robot", "RO");
+        Station stock = new Station("stock", "LA");
+        Station inOut = new Station("inOut", "EA");
+        ArrayList<Station> stationList = new ArrayList<Station>(3);
+
+        CommandListener listener = new CommandListener(stationList);
         Scanner sc = new Scanner(System.in);
 
 
@@ -17,9 +20,14 @@ public class Main {
         stock.addPrevStation(inOut);
         inOut.addPrevStation(robot);
 
+        stationList.add(robot);
+        stationList.add(inOut);
+        stationList.add(stock);
+
         /*--CommandLineInterface-----------------------------------------------------*/
 
-        String help =   "+–––––––––––––––––––––––––––––––––+\n" +
+        String help =
+                "+–––––––––––––––––––––––––––––––––+\n" +
                 "| Type in TestCommand:            |\n" +
                 "| -\"q\" to end Programm            |\n" +
                 "| -\"h\" for help                   |\n" +
