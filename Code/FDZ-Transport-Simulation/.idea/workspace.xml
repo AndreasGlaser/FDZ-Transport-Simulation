@@ -4,9 +4,6 @@
     <list default="true" id="4585eb0b-b757-455d-992f-6963c733405b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/../CodePrototypen/Test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../CodePrototypen/Test/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Model/CommandInterpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/CommandInterpreter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/CommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/CommandListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Station.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -86,8 +83,8 @@
       <file leaf-file-name="CommandInterpreter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/CommandInterpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="684">
+              <caret line="56" column="18" lean-forward="true" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -426,8 +423,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/Model/Station.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/CommandListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Model/CommandInterpreter.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Model/CommandInterpreter.java" />
       </list>
     </option>
   </component>
@@ -708,8 +705,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Model/CommandInterpreter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="684">
+          <caret line="56" column="18" lean-forward="true" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
         </state>
       </provider>
     </entry>
