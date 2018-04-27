@@ -1,5 +1,3 @@
-package Model;
-
 import java.util.Scanner;
 
 public class Main {
@@ -17,14 +15,14 @@ public class Main {
         stock.addPrevStation(inOut);
         inOut.addPrevStation(robot);
 
-        /*--CommandLineInterface-----------------------------------------------------*/
+/*--CommandLineInterface-----------------------------------------------------*/
 
         String help =   "+–––––––––––––––––––––––––––––––––+\n" +
-                "| Type in TestCommand:            |\n" +
-                "| -\"q\" to end Programm            |\n" +
-                "| -\"h\" for help                   |\n" +
-                "| -\"FDZ-Command\" to test System   |\n" +
-                "+–––––––––––––––––––––––––––––––––+";
+                        "| Type in TestCommand:            |\n" +
+                        "| -\"q\" to end Programm            |\n" +
+                        "| -\"h\" for help                   |\n" +
+                        "| -\"FDZ-Command\" to test System   |\n" +
+                        "+–––––––––––––––––––––––––––––––––+";
         System.out.println(help);
 
         while (true) {
@@ -39,9 +37,8 @@ public class Main {
                 System.out.println(help);
                 continue;
             }
-            listener.testCommand(input);
+            listener.testCommand("");
         }
         System.out.println("Goodbye");
     }
 }
-
