@@ -62,21 +62,21 @@ public class CommandInterpreter extends Thread {
 /*  STStK001<Message-ID>0002xx  ---------------------------------------------*/
 
     private void requestEmptyCarriage(int newId){
-
+        //TODO Abfangen, ob id -1 ist, dann fehler
     }
 
 /*--RELEASE CARRIAGE--------------------------------------------------------*/
 /*  STStK002<Message-ID>0002xx  --------------------------------------------*/
 
     private void releaseCarriage(int id){
-
+        //TODO Abfangen, ob id -1 ist, dann fehler
     }
 
 /*--REPOSITION CARRIAGE-----------------------------------------------------*/
 /*  STStK003<Message-ID>0002xxyy  ------------------------------------------*/
 
     private void repositionCarriage(int id, String position){
-
+        //TODO Abfangen, ob id -1 ist, dann fehler
     }
 
 /*--SHUTDOWN TRANSPORT SYSTEM-----------------------------------------------*/
