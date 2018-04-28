@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Station robot = new Station("robot", "RO");
-        Station stock = new Station("stock", "LA");
-        Station inOut = new Station("inOut", "EA");
+        Station robot = new Station("robot", "ro");
+        Station stock = new Station("stock", "la");
+        Station inOut = new Station("inOut", "ea");
         ArrayList<Station> stationList = new ArrayList<Station>(3);
 
         CommandListener listener = new CommandListener(stationList);
