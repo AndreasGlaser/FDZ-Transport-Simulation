@@ -86,9 +86,12 @@ public class Station {
     public boolean isOccupied() {
         return isOccupied;
     }
+    public boolean isCongested(){ return false; /*TODO*/}
     public String getName() {
         return name;
     }
+    public String getShortCut(){return shortCut;}
+    public int getSledInside(){return sledInside;}
 
     /*--LIST---------------------------------------------------------------------*/
 

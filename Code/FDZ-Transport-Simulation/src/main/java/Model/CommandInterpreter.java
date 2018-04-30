@@ -24,6 +24,11 @@ class CommandInterpreter extends Thread {
         this.stationList = currentStationList;
         this.parseValues();
         this.validateValues();
+        System.out.println("\t log: \n" +
+                "\t\tcommandNum = " + commandNum + "\n" +
+                "\t\tcarriageID = " + carriageID + "\n" +
+                "\t\tposition   = " + position + "\n" +
+                "\t\tmessageID  = " + messageID);
     }
 
 
@@ -31,16 +36,16 @@ class CommandInterpreter extends Thread {
     public void run() {
         switch(this.commandNum){
             case 1 :    System.out.println("\t log: "+"interpreted case 1");
-                        requestEmptyCarriage( position);
+                        new CommandExecutor(position, stationList);
                         break;
             case 2 :    System.out.println("\t log: "+"interpreted case 2");
-                        releaseCarriage( carriageID);
+                        new CommandExecutor(carriageID, stationList);
                         break;
             case 3 :    System.out.println("\t log: "+"interpreted case 3");
-                        repositionCarriage(carriageID, position);
+                        new CommandExecutor(position, carriageID, stationList);
                         break;
             case 4 :    System.out.println("\t log: "+"interpreted case 4");
-                        shutdownTransport();
+                        new CommandExecutor();
                         break;
             default:
                         System.out.println("\t log: default");
@@ -59,12 +64,6 @@ class CommandInterpreter extends Thread {
             this.position = parsePosition(command);
             this.carriageID = parseCarriageID(command);
             this.messageID = parseMessageID(command);
-
-            System.out.println("\t log: \n" +
-                    "\t\tcommandNum = " + commandNum + "\n" +
-                    "\t\tcarriageID = " + carriageID + "\n" +
-                    "\t\tposition   = " + position + "\n" +
-                    "\t\tmessageID  = " + messageID);
         }else{
             String mes = "\t\t\tCommandInterpreter at: parseValues(); \n" +
                          "\t\t\tvalidateParamCount && validateCommand not true!\n" +
@@ -79,11 +78,17 @@ class CommandInterpreter extends Thread {
         /*STStK00?...*/
         int cntIndex=0;
         char[] chars = command.toCharArray();
-        while(chars[cntIndex] != '0'){
-            cntIndex++;                     //find first set of numbers
-        }
-        while(chars[cntIndex] == '0'){
-            cntIndex++;                     //find commandNum
+        try {
+            while (chars[cntIndex] != '0') {
+                cntIndex++;                     //find first set of numbers
+            }
+            while (chars[cntIndex] == '0') {
+                cntIndex++;                     //find commandNum
+            }
+        }catch(ArrayIndexOutOfBoundsException e){
+            String mes = "\t\t\tCommandInterpreter at: parseCommandNum(); \n" +
+                         "\t\t\tUnable to read Command (empty)";
+            throw new IllegalCommandException(mes);
         }
         try{
             this.beginMesID = cntIndex+1;   //messageID begins
@@ -93,6 +98,10 @@ class CommandInterpreter extends Thread {
                          "\t\t\tNo Number at Position where CommandNum\n" +
                          "\t\t\tis expected";
             throw new IllegalCommandException(mes);      //invalid command
+        }catch(ArrayIndexOutOfBoundsException aEx){
+            String mes = "\t\t\tCommandInterpreter at: parseCommandNum(); \n" +
+                         "\t\t\tUnable to read Command (empty)";
+            throw new IllegalCommandException(mes);
         }
     }
 
@@ -239,11 +248,12 @@ class CommandInterpreter extends Thread {
                          "\t\t\tNumber of Params in Command not as Expected";
             throw new IllegalCommandException(mes);
         }
-        if(carriageID == -1 &&              //carriageID necessary
+        if(carriageID < 0 &&              //carriageID necessary
                 (commandNum == 2 || commandNum == 3)){
             String mes = "\t\t\tCommandInterpreter at: validateValues(); \n" +
                          "\t\t\tcarriageID not set, though needed for\n" +
-                         "\t\t\tprocessing Command";
+                         "\t\t\tprocessing Command, or negative, which is\n" +
+                         "\t\t\tnot allowed";
             throw new IllegalCommandException(mes);
         }
         if(0 > commandNum || commandNum > 4 ){
@@ -276,39 +286,23 @@ class CommandInterpreter extends Thread {
                          "\t\t\tnot set or empty";
             throw new IllegalCommandException(mes);
         }
+        /*--IS POSITION IN LIST OF STATIONS*/
+        if(commandNum == 1 || commandNum == 3){
+            validatePosition();
+        }
     }
 
-/*--COMMAND CONTROL----------------------------------------------------------*/
-/*--REQUEST EMPTY CARRIAGE---------------------------------------------------*/
-/*  STStK001<Message-ID>0002xx  ---------------------------------------------*/
-
-    private void requestEmptyCarriage(String position){
-        System.out.println("\t log: requesting emtpy carriage to "+ position);
-        //TODO position null dann fehler
+    private boolean validatePosition() throws IllegalCommandException{
+        for(int i=0; i<stationList.size(); i++){
+            if(stationList.get(i).getShortCut()
+                    .compareToIgnoreCase(position) == 0){
+                return true;
+            }
+        }
+        String mes = "\t\t\tCommandInterpreter at: validatePosition(); \n" +
+                     "\t\t\tGiven Position not found in List of\n" +
+                     "\t\t\tcurrent Stations (search was not Case-Sensitive)";
+        throw new IllegalCommandException(mes);
     }
-
-/*--RELEASE CARRIAGE--------------------------------------------------------*/
-/*  STStK002<Message-ID>0002xx  --------------------------------------------*/
-
-    private void releaseCarriage(int id){
-        System.out.println("\t log: releasing carriage with id "+ id);
-        //TODO Abfangen, ob id -1 ist, dann fehler
-    }
-
-/*--REPOSITION CARRIAGE-----------------------------------------------------*/
-/*  STStK003<Message-ID>0002xxyy  ------------------------------------------*/
-
-    private void repositionCarriage(int id, String position){
-        System.out.println("\t log: reposition carriage "+id+" to "+position);
-        //TODO Abfangen, ob id -1 ist, dann fehler
-    }
-
-/*--SHUTDOWN TRANSPORT SYSTEM-----------------------------------------------*/
-/*  STStK004<Message-ID>0002  ----------------------------------------------*/
-
-    private void shutdownTransport(){
-        System.out.println("\t log: shutting down");
-    }
-
 }
 
