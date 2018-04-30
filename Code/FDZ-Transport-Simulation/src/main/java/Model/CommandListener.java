@@ -1,5 +1,7 @@
 package Model;
 
+/*--NOAH LEHMANN-------------------------------------------------------------*/
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,7 +24,11 @@ public class CommandListener {
 
 
     private void invokeInterpreter(String command){
-        new CommandInterpreter(command, stationList).run();
+        try{
+            new CommandInterpreter(command, stationList).run();
+        }catch(IllegalCommandException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
 
