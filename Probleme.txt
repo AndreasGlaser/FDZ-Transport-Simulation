@@ -1,0 +1,9 @@
+Dieses Dokument enthält Probleme, die während des Codens auftreten:
+
+
+01.05.18 :	Bei Repositioning kann man klar sagen, von wo nach wo
+		eine Palette befördert wird, um Staus zu identifizieren.
+		Bei requestCarriage nicht, da der Bahnhof nicht als Station 
+		geführt wird.
+
+30.04.18 :	Woher bekommen wir die IDs, die neue Schlitten erhalten?

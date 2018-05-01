@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static int id=0;
+
     public static void main(String[] args) {
         Station robot = new Station("robot", "ro");
         Station stock = new Station("stock", "la");
@@ -80,6 +82,10 @@ public class Main {
                         "\t|->   id     |" + stationList.get(i).getSledInside() + "\n"+
                         "\t|->congested |" + stationList.get(i).isCongested() + "\n");
         }
+    }
+
+    public static int getID(){
+        return id++;
     }
 }
 

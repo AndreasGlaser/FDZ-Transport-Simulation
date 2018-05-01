@@ -92,6 +92,7 @@ public class Station {
     }
     public String getShortCut(){return shortCut;}
     public int getSledInside(){return sledInside;}
+    public ArrayList<Station> getPrevStations(){return prevStations;}
 
     /*--LIST---------------------------------------------------------------------*/
 

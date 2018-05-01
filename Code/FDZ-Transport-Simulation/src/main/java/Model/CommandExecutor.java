@@ -44,7 +44,7 @@ public class CommandExecutor {
     private void requestEmptyCarriage(String position) {
         System.out.println("\t log: requesting emtpy carriage to " + position);
         if (this.findPosInList(position) != -1) {
-            stationList.get(this.findPosInList(position)).driveInSled(0);
+            stationList.get(this.findPosInList(position)).driveInSled(Main.getID());
             /*TODO woher bekommt man die neue ID?*/
         }
     }
@@ -66,8 +66,16 @@ public class CommandExecutor {
 
     private void repositionCarriage(String position, int id) {
         System.out.println("\t log: reposition carriage " + id + " to " + position);
-        stationList.get(findIDinPos(id)).driveOutSled(id);
-        stationList.get(findPosInList(position)).driveInSled(id);
+        if(isWayClear(/*from*/stationList.get(findIDinPos(id)),
+                /*to*/stationList.get(findPosInList(position)))) {
+            stationList.get(findIDinPos(id)).driveOutSled(id);
+            stationList.get(findPosInList(position)).driveInSled(id);
+        }else{
+            /*TODO Stau auf weg zu neuer station*/
+            System.out.println( "\t log: CONGESTION DETECTED\n" +
+                                "\t      could not reposition\n"+
+                                "\t      " + id + " to " + position);
+        }
     }
 
     /*--SHUTDOWN TRANSPORT SYSTEM-----------------------------------------------*/
@@ -98,5 +106,22 @@ public class CommandExecutor {
             if(++idx == stationList.size()){return -1;}
         }
         return idx;
+    }
+
+    private boolean isWayClear(Station from, Station to){
+        /*--SPECIAL CASES--*/
+        if(to.getPrevStations().get(0) == from) return true;
+        if(to == from) return true;
+        if(to.getPrevStations().size() == 0){
+            /*TODO throw EmptyException*/
+        }
+        int i = 0;
+        while(to.getPrevStations().get(i) != from){
+            if(i == stationList.size()) break; //endless loop detection
+            if(to.getPrevStations().get(i++).isOccupied()){
+                return false;
+            }
+        }
+        return true;
     }
 }
