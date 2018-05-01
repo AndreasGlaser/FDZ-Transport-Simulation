@@ -20,9 +20,13 @@ public class Main {
 
 
         robot.addPrevStation(stock);
-        stock.addPrevStation(robot);
         stock.addPrevStation(inOut);
+        stock.addPrevStation(robot);
         inOut.addPrevStation(robot);
+
+        robot.setHopsToNewCarriage(2);
+        stock.setHopsToNewCarriage(1);
+        inOut.setHopsToNewCarriage(1);
 
         stationList.add(robot);
         stationList.add(inOut);
@@ -84,7 +88,7 @@ public class Main {
         }
     }
 
-    public static int getID(){
+    static int getID(){
         return id++;
     }
 }

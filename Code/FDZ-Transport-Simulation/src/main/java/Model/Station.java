@@ -5,7 +5,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
-public class Station {
+class Station {
 
     private String name;
     private String shortCut;
@@ -13,8 +13,9 @@ public class Station {
     private Semaphore sem;
     private boolean isOccupied = false;
     private int sledInside = -1; //no sled inside
+    private int hopsToNewCarriage = 0;
 
-    public Station(String name, String shortCut){
+    Station(String name, String shortCut){
         this.setName(name);
         this.setShortCut(shortCut);
 
@@ -22,14 +23,14 @@ public class Station {
         prevStations = new ArrayList<Station>(5);
     }
 
-    public Station(String name, String shortCut, Station prevStation){
+    Station(String name, String shortCut, Station prevStation){
         this(name, shortCut);
         addPrevStation(prevStation);
     }
 
     /*--LOGIC--------------------------------------------------------------------*/
 
-    public synchronized void driveInSled(int id){
+    synchronized void driveInSled(int id){
         try {
             sem.acquire();
         } catch (InterruptedException e) { e.printStackTrace(); }
@@ -46,7 +47,7 @@ public class Station {
         System.out.println("\t log: "+id+" released "+this.name+"'s Semaphore >>in >>");
     }
 
-    public synchronized void driveOutSled(int id){
+    synchronized void driveOutSled(int id){
         try {
             sem.acquire();
         } catch (InterruptedException e) { e.printStackTrace(); }
@@ -66,40 +67,38 @@ public class Station {
 
     /*--SETTER-------------------------------------------------------------------*/
 
-    public void setName(String aName){
+    void setName(String aName){
         this.name = aName;
     }
-    public void setShortCut(String aShortCut){
-        this.shortCut = aShortCut;
-    }
-
-    public void setSledInside(int sledId) {
+    void setShortCut(String aShortCut){ this.shortCut = aShortCut; }
+    void setSledInside(int sledId) {
         this.sledInside = sledId;
     }
-
+    void setHopsToNewCarriage(int hops){ hopsToNewCarriage = hops;}
     private void setOccupied(boolean occupied){
         isOccupied=occupied;
     }
 
     /*--GETTER-------------------------------------------------------------------*/
 
-    public boolean isOccupied() {
+    boolean isOccupied() {
         return isOccupied;
     }
-    public boolean isCongested(){ return false; /*TODO*/}
-    public String getName() {
+    boolean isCongested(){ return false; /*TODO*/}
+    String getName() {
         return name;
     }
-    public String getShortCut(){return shortCut;}
-    public int getSledInside(){return sledInside;}
-    public ArrayList<Station> getPrevStations(){return prevStations;}
+    String getShortCut(){return shortCut;}
+    int getSledInside(){return sledInside;}
+    ArrayList<Station> getPrevStations(){return prevStations;}
+    int getHopsToNewCarriage(){ return hopsToNewCarriage; }
 
     /*--LIST---------------------------------------------------------------------*/
 
-    public boolean addPrevStation(Station aStation){
+    boolean addPrevStation(Station aStation){
         return prevStations.add(aStation);
     }
-    public boolean removePrevStation(Station aStation){
+    boolean removePrevStation(Station aStation){
         return prevStations.remove(aStation);
     }
 

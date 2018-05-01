@@ -1,9 +1,13 @@
 Dieses Dokument enthält Probleme, die während des Codens auftreten:
 
 
-01.05.18 :	Bei Repositioning kann man klar sagen, von wo nach wo
-		eine Palette befördert wird, um Staus zu identifizieren.
-		Bei requestCarriage nicht, da der Bahnhof nicht als Station 
-		geführt wird.
+01.05.18 :	1.Station, zu der es mehrere Pfade gibt:[prevstation.size()>1] 
+		Rekursiver Aufruf: 
+		muss Backtracken, welcher weg der richtige ist, um zu 
+		prüfen, ob weg für Palette frei ist.
+		2.Stau in Station, id ist zwar in station, aber im Stau,
+		was tun?
+		3. Sichtbarkeit nach MVC trennung überprüfen, package 
+		sichtbarkeit reicht oft aus.
 
 30.04.18 :	Woher bekommen wir die IDs, die neue Schlitten erhalten?
