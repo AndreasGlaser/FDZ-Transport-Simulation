@@ -9,5 +9,7 @@ Dieses Dokument enthält Probleme, die während des Codens auftreten:
 		was tun?
 		3. Sichtbarkeit nach MVC trennung überprüfen, package 
 		sichtbarkeit reicht oft aus.
+		4.Was passiert mit freigegebenen Carriages, überprüfung
+		des weges zum bahnhof erforderlich?
 
 30.04.18 :	Woher bekommen wir die IDs, die neue Schlitten erhalten?
