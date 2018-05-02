@@ -48,7 +48,7 @@ class CommandExecutor {
             if (this.findPosInList(position) != -1) {
                 stationList.get(this.findPosInList(position)).
                         driveInSled(Main.getID());
-                /*TODO woher bekommt man die neue ID?*/
+                /*TODO woher bekommt man die neue ID?*/ //A: Ich dachte -1 ist die ID um einen leeren Schlitten darzustellen
                 System.out.println("\t log: requesting empty carriage to "
                                     + position);
             }

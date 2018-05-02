@@ -5,7 +5,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
-class Station {
+public class Station {
 
     private String name;
     private String shortCut;
@@ -15,7 +15,7 @@ class Station {
     private int sledInside = -1; //no sled inside
     private int hopsToNewCarriage = 0;
 
-    Station(String name, String shortCut){
+    public Station(String name, String shortCut){
         this.setName(name);
         this.setShortCut(shortCut);
 
@@ -81,21 +81,21 @@ class Station {
 
     /*--GETTER-------------------------------------------------------------------*/
 
-    boolean isOccupied() {
+    public boolean isOccupied() {
         return isOccupied;
     }
-    boolean isCongested(){ return false; /*TODO*/}
-    String getName() {
+    public boolean isCongested(){ return false; /*TODO*/}
+    public String getName() {
         return name;
     }
-    String getShortCut(){return shortCut;}
-    int getSledInside(){return sledInside;}
-    ArrayList<Station> getPrevStations(){return prevStations;}
-    int getHopsToNewCarriage(){ return hopsToNewCarriage; }
+    public String getShortCut(){return shortCut;}
+    public int getSledInside(){return sledInside;}
+    public ArrayList<Station> getPrevStations(){return prevStations;}
+    public int getHopsToNewCarriage(){ return hopsToNewCarriage; }
 
     /*--LIST---------------------------------------------------------------------*/
 
-    boolean addPrevStation(Station aStation){
+    public boolean addPrevStation(Station aStation){
         return prevStations.add(aStation);
     }
     boolean removePrevStation(Station aStation){
