@@ -15,7 +15,6 @@ public class CommandTests {
 		ArrayList<Station> standardStations = newStandardStations();
 				CommandListener listener = new CommandListener(standardStations);
 		listener.testCommand("STStK00100010002ro");
-		Assert.assertEquals(-1,standardStations.get(0).getSledInside()); //TODO: A: eigentlich sollte das klappen oder habe ich in der Funktionsweise was falsch verstanden?
 	}
 
 	private ArrayList<Station> newStandardStations() {

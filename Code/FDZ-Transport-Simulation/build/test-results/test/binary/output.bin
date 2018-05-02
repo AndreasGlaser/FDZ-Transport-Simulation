@@ -2,9 +2,9 @@
 		commandNum = 1
 		carriageID = -1
 		position   = ro
-		messageID  = 0001
-	 log: interpreted case 1
--	 log: 0 acquired Robot's Semaphore >>in >>
--	 log: 0 released Robot's Semaphore >>in >>
-(	 log: requesting empty carriage to ro
-'	 log: Command Succesfully Recognized
+		messageID  = 0001
+	 log: interpreted case 1
+-	 log: -1 acquired Robot's Semaphore >>in >>
+-	 log: -1 released Robot's Semaphore >>in >>
+'	 log: requesting empty carriage to ro
+&	 log: Command Succesfully Recognized
