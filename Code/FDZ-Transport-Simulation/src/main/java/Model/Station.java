@@ -12,7 +12,7 @@ public class Station {
     private ArrayList<Station> prevStations;
     private Semaphore sem;
     private boolean isOccupied = false;
-    private int sledInside = -1; //no sled inside
+    private int sledInside = -2; //no sled inside
     private int hopsToNewCarriage = 0;
 
     public Station(String name, String shortCut){
@@ -31,6 +31,7 @@ public class Station {
     /*--LOGIC--------------------------------------------------------------------*/
 
     synchronized void driveInSled(int id){
+        //if id == -1 -> empty sled gets first unknown id
         try {
             sem.acquire();
         } catch (InterruptedException e) { e.printStackTrace(); }
@@ -58,7 +59,7 @@ public class Station {
             /* TODO Nichts freizugeben */
         }else{
             setOccupied(false);
-            setSledInside(-1); //TODO was bei Stau?
+            setSledInside(-2); //no sled in station
         }
 
         sem.release();

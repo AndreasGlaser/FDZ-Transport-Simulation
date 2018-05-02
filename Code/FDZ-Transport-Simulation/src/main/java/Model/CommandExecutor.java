@@ -47,8 +47,8 @@ class CommandExecutor {
         if(blocking == null) {
             if (this.findPosInList(position) != -1) {
                 stationList.get(this.findPosInList(position)).
-                        driveInSled(Main.getID());
-                /*TODO woher bekommt man die neue ID?*/ //A: Ich dachte -1 ist die ID um einen leeren Schlitten darzustellen
+                        driveInSled(-1); //@Andreas leerer Schlitten
+                    /*empty sled gets unknown id when received*/
                 System.out.println("\t log: requesting empty carriage to "
                                     + position);
             }
@@ -66,7 +66,7 @@ class CommandExecutor {
 
     private void releaseCarriage(int id) {
         System.out.println("\t log: releasing carriage with id " + id);
-        if(this.findIDinPos(id) != -1){
+        if(this.findIDinPos(id) != -2){
             stationList.get(findIDinPos(id)).driveOutSled(id);
         } else{
             /*TODO ID ist in keiner Station oder im Stau einer Station*/
@@ -118,10 +118,25 @@ class CommandExecutor {
     }
 
     private int findIDinPos(int id){
+        // returns -2 if id is not found in pos
         int idx=0;
         while(stationList.get(idx).getSledInside() != id){
             //in which station is ID
-            if(++idx == stationList.size()){return -1;}
+            if(++idx == stationList.size()){
+                /*id unknown*/
+                idx = findIDinPos(-1);
+                /*finds first empty carriage, expects only one empty carriage*/
+                if(idx != -2){ //find empty sled
+                    stationList.get(idx).setSledInside(id);
+                    /*empty carriage gets unknown id*/
+                    return idx;
+                    /*empty carriage found, give unknown id to carriage*/
+                }else{
+                    return -2;
+                    /*no empty sled found, return -2*/
+                }
+            }
+            /*TODO merke nicht erkannte id == leerer schlitten*/
         }
         return idx;
     }

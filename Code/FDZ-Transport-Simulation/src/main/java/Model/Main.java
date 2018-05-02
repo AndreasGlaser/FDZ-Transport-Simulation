@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static int id=0;
+    private static int id=-1;
 
     public static void main(String[] args) {
         Station robot = new Station("robot", "ro");
@@ -89,7 +89,8 @@ public class Main {
     }
 
     static int getID(){
-        return id++;
+        return id;
     }
+    static void saveID(int id){Main.id = id;}
 }
 
