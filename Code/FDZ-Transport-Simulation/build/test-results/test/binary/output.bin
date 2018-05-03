@@ -4,61 +4,7 @@
 		position   = ro
 		messageID  = 0001
 	 log: interpreted case 1
-.	 log: -1 acquired Robot's Semaphore >>in >>
-.	 log: -1 released Robot's Semaphore >>in >>
+-	 log: 0 acquired Robot's Semaphore >>in >>
+-	 log: 0 released Robot's Semaphore >>in >>
 (	 log: requesting empty carriage to ro
 '	 log: Command Succesfully Recognized
-	 log: 
-		commandNum = 3
-		carriageID = 1
-		position   = la
-		messageID  = 0002
-	 log: interpreted case 3
--	 log: 1 acquired Robot's Semaphore <<out<<
--	 log: 1 released Robot's Semaphore <<out<<
--	 log: 1 acquired Lager's Semaphore >>in >>
--	 log: 1 released Lager's Semaphore >>in >>
-$	 log: reposition carriage 1 to la
-'	 log: Command Succesfully Recognized
-	 log: 
-		commandNum = 1
-		carriageID = -1
-		position   = ro
-		messageID  = 0001
-	 log: interpreted case 1
-.	 log: -1 acquired Robot's Semaphore >>in >>
-.	 log: -1 released Robot's Semaphore >>in >>
-(	 log: requesting empty carriage to ro
-'	 log: Command Succesfully Recognized
-	 log: 
-		commandNum = 1
-		carriageID = -1
-		position   = ro
-		messageID  = 0001
-	 log: interpreted case 1
-.	 log: -1 acquired Robot's Semaphore >>in >>
-.	 log: -1 released Robot's Semaphore >>in >>
-(	 log: requesting empty carriage to ro
-'	 log: Command Succesfully Recognized
-	 log: 
-		commandNum = 3
-		carriageID = 1
-		position   = la
-		messageID  = 0002
-	 log: interpreted case 3
--	 log: 1 acquired Robot's Semaphore <<out<<
--	 log: 1 released Robot's Semaphore <<out<<
--	 log: 1 acquired Lager's Semaphore >>in >>
--	 log: 1 released Lager's Semaphore >>in >>
-$	 log: reposition carriage 1 to la
-'	 log: Command Succesfully Recognized
-	 log: 
-		commandNum = 2
-		carriageID = 1
-		position   = NO_POS_REQUIRED
-		messageID  = 0003
-	 log: interpreted case 2
-%	 log: releasing carriage with id 1
--	 log: 1 acquired Lager's Semaphore <<out<<
--	 log: 1 released Lager's Semaphore <<out<<
-'	 log: Command Succesfully Recognized
