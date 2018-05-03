@@ -15,7 +15,6 @@ public class CommandTests {
 		ArrayList<Station> standardStations = newStandardStations();
 		CommandListener listener = new CommandListener(standardStations);
 		listener.testCommand("STStK00100010002ro");
-<<<<<<< HEAD
 		Assert.assertEquals(-1,standardStations.get(0).getSledInside());
 	}
 
@@ -47,8 +46,6 @@ public class CommandTests {
 		//Schlitten freigeben
 		listener.testCommand("STStK0020003000201");
 		Assert.assertEquals(-2, standardStations.get(1).getSledInside());
-=======
->>>>>>> origin/master
 	}
 
 	private ArrayList<Station> newStandardStations() {
