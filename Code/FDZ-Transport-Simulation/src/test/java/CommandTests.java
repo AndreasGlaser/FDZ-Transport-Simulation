@@ -2,7 +2,6 @@ import Model.CommandListener;
 import Model.*;
 import org.junit.Assert;
 import org.junit.Test;
-import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 
@@ -49,10 +48,10 @@ public class CommandTests {
 	}
 
 	private ArrayList<Station> newStandardStations() {
-		ArrayList<Station> standardStations = Lists.newArrayList(
-				new Station("Robot", "ro"),
-				new Station("Lager", "la"),
-				new Station("EinAusgabe", "ea"));
+		ArrayList<Station> standardStations = new ArrayList();
+				standardStations.add(new Station("Robot", "ro"));
+				standardStations.add(new Station("Lager", "la"));
+				standardStations.add(new Station("EinAusgabe", "ea"));
 		return standardStations;
 	}
 }
