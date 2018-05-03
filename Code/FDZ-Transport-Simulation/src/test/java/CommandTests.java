@@ -47,6 +47,14 @@ public class CommandTests {
 		Assert.assertEquals(-2, standardStations.get(1).getSledInside());
 	}
 
+	@Test
+	public void shutdownTest(){
+		ArrayList<Station> standardStations = newStandardStations();
+		CommandListener listener = new CommandListener(standardStations);
+		listener.testCommand("STStK00400010000");
+		//TODO: erkennen ob das System heruntergefahren wurde
+	}
+
 	private ArrayList<Station> newStandardStations() {
 		ArrayList<Station> standardStations = new ArrayList();
 				standardStations.add(new Station("Robot", "ro"));
