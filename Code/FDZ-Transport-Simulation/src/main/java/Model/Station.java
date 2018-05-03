@@ -73,7 +73,11 @@ public class Station {
     }
     void setShortCut(String aShortCut){ this.shortCut = aShortCut; }
     void setSledInside(int sledId) {
-        this.sledInside = sledId;
+        try {
+            sem.acquire();
+            this.sledInside = sledId;
+            sem.release();
+        } catch (InterruptedException e) {}
     }
     void setHopsToNewCarriage(int hops){ hopsToNewCarriage = hops;}
     private void setOccupied(boolean occupied){

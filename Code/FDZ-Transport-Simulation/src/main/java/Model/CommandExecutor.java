@@ -9,6 +9,8 @@ class CommandExecutor {
      * validated in the CommandInterpreter class*/
 
     private ArrayList<Station> stationList;
+    private final int NOT_FOUND = -2, EMPTY_CARRIAGE = -1;
+
 
     private CommandExecutor(ArrayList<Station> stationList){
         this.stationList = stationList;
@@ -45,9 +47,9 @@ class CommandExecutor {
         Station temp = stationList.get(this.findPosInList(position));
         Station blocking = firstStationInWay(temp.getHopsToNewCarriage(), temp);
         if(blocking == null) {
-            if (this.findPosInList(position) != -1) {
+            if (this.findPosInList(position) != NOT_FOUND) {
                 stationList.get(this.findPosInList(position)).
-                        driveInSled(-1); //@Andreas leerer Schlitten
+                        driveInSled(EMPTY_CARRIAGE); //@Andreas leerer Schlitten
                     /*empty sled gets unknown id when received*/
                 System.out.println("\t log: requesting empty carriage to "
                                     + position);
@@ -66,7 +68,7 @@ class CommandExecutor {
 
     private void releaseCarriage(int id) {
         System.out.println("\t log: releasing carriage with id " + id);
-        if(this.findIDinPos(id) != -2){
+        if(this.findIDinPos(id) != NOT_FOUND){
             stationList.get(findIDinPos(id)).driveOutSled(id);
         } else{
             /*TODO ID ist in keiner Station oder im Stau einer Station*/
@@ -107,12 +109,12 @@ class CommandExecutor {
 /*--HELPING FUNCTIONS--------------------------------------------------------*/
 
     private int findPosInList(String position) {
-        /*returns -1 if POS not found*/
+        /*returns -2 if POS not found*/
         int idx = 0;
         while (stationList.get(idx).getShortCut().
                 compareToIgnoreCase(position) != 0) {
             //find idx of requested station
-            if(++idx == stationList.size()){return -1;}
+            if(++idx == stationList.size()){return NOT_FOUND;}
         }
         return idx;
     }
@@ -124,19 +126,18 @@ class CommandExecutor {
             //in which station is ID
             if(++idx == stationList.size()){
                 /*id unknown*/
-                idx = findIDinPos(-1);
+                idx = findIDinPos(EMPTY_CARRIAGE);//find empty sled
                 /*finds first empty carriage, expects only one empty carriage*/
-                if(idx != -2){ //find empty sled
+                if(idx != NOT_FOUND){
                     stationList.get(idx).setSledInside(id);
                     /*empty carriage gets unknown id*/
                     return idx;
                     /*empty carriage found, give unknown id to carriage*/
                 }else{
-                    return -2;
+                    return NOT_FOUND;
                     /*no empty sled found, return -2*/
                 }
             }
-            /*TODO merke nicht erkannte id == leerer schlitten*/
         }
         return idx;
     }
@@ -171,7 +172,6 @@ class CommandExecutor {
     private Station firstStationInWay(int hopsBack, Station to){
         /*returns null if no congestion on way or
          *first station, which was congested in way */
-        /*TODO rekursiver aufruf, prüfung erst im Rücklauf wie oben*/
         if(hopsBack == 1 || to.getPrevStations().size() == 0){
             /*END RECURSIVE FUNCTION*/
             if(to.isOccupied()){

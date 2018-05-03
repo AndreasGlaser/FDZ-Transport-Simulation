@@ -186,7 +186,6 @@ class CommandInterpreter extends Thread {
             }
         }
         return null;
-        /*TODO Exception Handling, Fragen was ID beinhaltet*/
     }
 
 /*--VALIDATOR----------------------------------------------------------------*/
