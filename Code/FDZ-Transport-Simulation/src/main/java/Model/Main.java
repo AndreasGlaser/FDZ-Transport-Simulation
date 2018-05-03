@@ -69,7 +69,7 @@ public class Main {
                 if(sc.next().compareToIgnoreCase("y") == 0) {
                     break;
                 }
-                sc.nextLine();
+                if(sc.hasNext()) sc.nextLine();
             }
             listener.testCommand(input);
         }
