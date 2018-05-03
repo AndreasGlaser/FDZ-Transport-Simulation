@@ -1,9 +1,11 @@
 package Model;
 
-/*--NOAH LEHMANN-------------------------------------------------------------*/
 
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
+
+/*--@author nlehmann------------------------------------------------------------*/
+
 
 public class Station {
 

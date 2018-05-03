@@ -1,8 +1,10 @@
 package Model;
 
-/*--NOAH LEHMANN-------------------------------------------------------------*/
 
 import java.util.ArrayList;
+
+/*--@author nlehmann------------------------------------------------------------*/
+
 
 class CommandInterpreter extends Thread {
 

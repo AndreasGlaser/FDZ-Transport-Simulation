@@ -1,13 +1,17 @@
 package Model;
 
-/*--NOAH LEHMANN-------------------------------------------------------------*/
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+/*--@author nlehmann-------------------------------------------------------------*/
+
 
 public class Main {
 
     private static int id=-1;
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
         Station robot = new Station("robot", "ro");
@@ -16,8 +20,6 @@ public class Main {
         ArrayList<Station> stationList = new ArrayList<Station>(3);
 
         CommandListener listener = new CommandListener(stationList);
-        Scanner sc = new Scanner(System.in);
-
 
         robot.addPrevStation(stock);
         stock.addPrevStation(inOut);
@@ -40,6 +42,8 @@ public class Main {
                 "| -\"q\" to end Programm            |\n" +
                 "| -\"h\" for help                   |\n" +
                 "| -\"p\" to print current State     |\n" +
+                "| -\"i\" insert new Station         |\n" +
+                "| -\"d\" delete Station             |\n" +
                 "| -\"FDZ-Command\" to test System   |\n" +
                 "+–––––––––––––––––––––––––––––––––+";
         System.out.println(help);
@@ -58,6 +62,17 @@ public class Main {
             }
             if (input.compareTo("p") == 0) {
                 printState(stationList);
+                continue;
+            }
+            if (input.compareTo("i") == 0){
+                /*TODO insert station*/
+                System.out.println("##not yet tested##");
+                newStation(stationList);
+                continue;
+            }
+            if (input.compareTo("d") == 0){
+                /*TODO delete Station*/
+                System.out.println("##not yet implemented##");
                 continue;
             }
             if (input.contains("STStK004")){
@@ -88,9 +103,46 @@ public class Main {
         }
     }
 
+    private static void newStation(ArrayList<Station> stations){
+        System.out.print("Name of Station (not shortCut!):");
+        String name = sc.nextLine();
+        System.out.print("shortcut for Name:");
+        String shortCut = sc.nextLine();
+        Station temp = new Station(name, shortCut);
+        stations.add(temp);
+        System.out.print("How many directly previous Stations?:");
+        int prevs = sc.nextInt();
+        if(sc.hasNext()) sc.nextLine();
+        for (int i=0; i<prevs; i++){
+            System.out.print("type in shortcut for prevStation:");
+            String sCut = sc.nextLine();
+            temp.addPrevStation(findSCInList(sCut, stations));
+            if(sc.hasNext()) sc.nextLine();
+        }
+        System.out.print("How many Hops back to CarriageSource:");
+        temp.setHopsToNewCarriage(sc.nextInt());
+        if(sc.hasNext()) sc.nextLine();
+    }
+
+    private static void deleteStation(){
+
+    }
+
     static int getID(){
         return id;
     }
     static void saveID(int id){Main.id = id;}
+
+    private static Station findSCInList(String position, ArrayList<Station> stationList) {
+        /*returns null if POS not found*/
+        int idx = 0;
+        while (stationList.get(idx).getShortCut().
+                compareToIgnoreCase(position) != 0) {
+            //find idx of requested station
+            if(++idx == stationList.size()){return null;}
+        }
+        return stationList.get(idx);
+    }
+
 }
 

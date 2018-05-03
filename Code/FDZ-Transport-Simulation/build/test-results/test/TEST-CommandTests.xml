@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CommandTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-05-03T08:10:26" hostname="laptop" time="0.098">
+<testsuite name="CommandTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-05-03T10:58:31" hostname="laptop" time="0.053">
   <properties/>
-  <testcase name="repositionCarriageTest" classname="CommandTests" time="0.046"/>
-  <testcase name="requestEmptyCarriageTest" classname="CommandTests" time="0.011"/>
-  <testcase name="releaseCarriageTest" classname="CommandTests" time="0.036"/>
+  <testcase name="repositionCarriageTest" classname="CommandTests" time="0.025"/>
+  <testcase name="requestEmptyCarriageTest" classname="CommandTests" time="0.008"/>
+  <testcase name="releaseCarriageTest" classname="CommandTests" time="0.018"/>
   <system-out><![CDATA[	 log: 
 		commandNum = 1
 		carriageID = -1
