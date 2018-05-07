@@ -1,0 +1,8 @@
+.root {
+	-fx-font: 20 "Times New Roman";
+}
+
+.button{
+	-fx-border-color: red;
+
+}

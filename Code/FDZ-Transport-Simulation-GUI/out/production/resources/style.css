@@ -1,0 +1,19 @@
+.root {
+	-fx-font: 20 "Times New Roman";
+}
+
+.scrollPane{
+	background-color: red;
+	-fx-border-color: red;
+	border-color: rebeccapurple;
+}
+
+.pane{
+	-fx-border-color: red;
+	-fx-background-color: red;
+}
+
+.button{
+	-fx-border-color: red;
+
+}
