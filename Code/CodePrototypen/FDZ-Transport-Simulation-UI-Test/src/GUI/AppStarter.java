@@ -13,7 +13,9 @@ public class AppStarter extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("FDZ-Transport-Simulation");
-        primaryStage.setScene(new Scene(root, 800, 600));
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add("/GUI/style.css");
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
