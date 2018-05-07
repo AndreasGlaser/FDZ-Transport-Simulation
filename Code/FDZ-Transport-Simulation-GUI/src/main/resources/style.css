@@ -3,6 +3,15 @@
 }
 
 .button{
-	-fx-border-color: red;
 
+
+}
+#optionsButton{
+	-fx-background-image: url("images/optionsCog.png");
+	-fx-background-position: center;
+	-fx-background-size: stretch;
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+	-fx-pref-width: 50;
+	-fx-pref-height: 50;
 }

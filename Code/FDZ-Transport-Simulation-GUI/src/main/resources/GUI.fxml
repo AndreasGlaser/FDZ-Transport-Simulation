@@ -26,7 +26,7 @@
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <Pane fx:id="stationsPane" prefHeight="200.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" onAction="#test" text="Button" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#test" text="" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                </children>
             </AnchorPane>
          </children>
