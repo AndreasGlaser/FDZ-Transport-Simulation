@@ -2,6 +2,7 @@ package GUI;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 
@@ -10,15 +11,25 @@ public class Controller {
 
 	Double dragXTrans;
 	Double dragYTrans;
+	@FXML
+	private Pane optionMenu;
+	@FXML
+	private Pane stationsPane;
 
 	public Pane getPane(){
 		return stationsPane;
 	}
-	@FXML
-	public Pane stationsPane;
+
 
 	@FXML
-	public void test(){
+	public void openCloseOptions(){
+		if(optionMenu.isVisible()) optionMenu.setVisible(false);
+		else optionMenu.setVisible(true);
+
+	}
+
+	@FXML
+	public void addStation(){
 		StationPane station = new StationPane("new Station", stationsPane, stations);
 		stationsPane.getChildren().add(station);
 		station.setOnMousePressed(e ->{
@@ -40,7 +51,6 @@ public class Controller {
 		});
 
 		stations.add(station);
-
 	}
 
 }

@@ -6,7 +6,7 @@
 
 
 }
-#optionsButton{
+.optionButton{
 	-fx-background-image: url("images/optionsCog.png");
 	-fx-background-position: center;
 	-fx-background-size: stretch;
@@ -14,4 +14,9 @@
 	-fx-background-color: transparent;
 	-fx-pref-width: 50;
 	-fx-pref-height: 50;
+}
+
+.optionMenu{
+	-fx-border-color: black;
+	-fx-background-color: #e9e9e9;
 }
