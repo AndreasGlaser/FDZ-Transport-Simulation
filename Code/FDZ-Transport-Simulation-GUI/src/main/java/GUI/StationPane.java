@@ -13,12 +13,17 @@ import java.util.ArrayList;
 
 public class StationPane extends VBox{
 
-	String name;
-	Text stationNameText = new Text(name);
+	private String name = "";
+	private Text stationNameText = new Text(name);
+	private String shortcut = "";
 	private Double xCord = 0.;
 	private Double yCord = 0.;
 	private ArrayList<StationPane> reachableStations = new ArrayList<>();
 	private ArrayList<BeltNode> outgoingBelts = new ArrayList<>();
+	private Double dragXTrans = .0;
+	private Double dragYTrans = .0;
+	private Double sceneX = .0;
+	private Double sceneY = .0;
 
 	public StationPane(String name, Pane parent, ArrayList<StationPane> stations){
 
@@ -74,13 +79,26 @@ public class StationPane extends VBox{
 
 		});
 
+		setOnMousePressed(e ->{
+			sceneX = e.getSceneX();
+			sceneY = e.getSceneY();
+
+			dragXTrans = getTranslateX();
+			dragYTrans = getTranslateY();
+		});
+		setOnMouseDragged(e->{
+			/*System.out.println("xcord: "+getXCord());
+			System.out.println("sceneX: "+ e.getSceneX());
+			System.out.println("scenex - xcord: "+ (e.getSceneX() - getXCord())+ dragXTrans);
+			System.out.println("translateX: "+ getTranslateX());*/
+			setXCord(e.getSceneX()  - sceneX + dragXTrans);
+			setYCord(e.getSceneY() - sceneY + dragYTrans);
+		});
 
 	}
 
 	private void refreshBelts(Pane parent) {
-		for(BeltNode i: outgoingBelts){ //alle Belts löschen damit sie nicht doppelt vorhanden sind
-			parent.getChildren().remove(i);
-		}
+		parent.getChildren().clear();
 		for(StationPane i: reachableStations){
 			BeltNode belt = new BeltNode();
 			belt.setStrokeWidth(3);
@@ -102,17 +120,19 @@ public class StationPane extends VBox{
 	public String getName(){
 		return name;
 	}
-
 	public void setName(String name){
 		this.name = name;
 		stationNameText.setText(this.name);
 	}
-
+	public String getShortcut(){return shortcut;}
+	public void setShortcut(String shortcut){this.shortcut = shortcut;}
 	public void setXCord(Double newX){
 		xCord = newX;
+		setTranslateX(newX);
 	}
 	public void setYCord(Double newY){
 		yCord = newY;
+		setTranslateY(newY);
 	}
 	public Double getXCord(){
 		return xCord;

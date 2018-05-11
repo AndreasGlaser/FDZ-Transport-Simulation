@@ -31,6 +31,8 @@
                      <children>
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#addStation" text="new Station" />
                         <CheckBox mnemonicParsing="false" selected="true" text="Realtime-Simulation" />
+                        <Button mnemonicParsing="false" onAction="#saveConfiguration" text="save Configuration" />
+                        <Button mnemonicParsing="false" onAction="#loadConfiguration" text="load Configuration" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

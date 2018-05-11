@@ -1,0 +1,1 @@
+[{"name":"RO","shortcut":"","xCord":360.0,"yCord":75.0},{"name":"I/O","shortcut":"","xCord":188.0,"yCord":230.0},{"name":"ST","shortcut":"","xCord":58.0,"yCord":50.0}]
