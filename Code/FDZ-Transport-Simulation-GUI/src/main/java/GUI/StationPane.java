@@ -64,12 +64,15 @@ public class StationPane extends VBox{
 			optionsPane.getChildren().add(info);
 
 			for (StationPane i: stations){
+				if(i.equals(this))continue;
 				CheckBox box = new CheckBox(i.getName());
 				optionsPane.getChildren().add(box);
+				if(reachableStations.contains(i))box.setSelected(true);
+				else box.setSelected(false);
 				box.selectedProperty().addListener((observable, oldValue, newValue) -> {
-					if(newValue)reachableStations.add(stations.get(0));//TODO: Arraylist in map umwandeln und richtige station über namen als schlüssel heraussuchen
-					else reachableStations.remove(stations.get(0));//TODO: das selbe wie eine zeile drüber
-					refreshBelts(parent, stations);
+					if(newValue)reachableStations.add(i);//TODO: Arraylist in map umwandeln und richtige station über namen als schlüssel heraussuchen
+					else reachableStations.remove(i);//TODO: das selbe wie eine zeile drüber
+					refreshBelts(parent);
 					
 				});
 
@@ -97,8 +100,8 @@ public class StationPane extends VBox{
 
 	}
 
-	private void refreshBelts(Pane parent, ArrayList<StationPane> stations) {
-		parent.getChildren().retainAll(stations);
+	private void refreshBelts(Pane parent) {
+		parent.getChildren().removeAll(outgoingBelts);
 		for(StationPane i: reachableStations){
 			BeltNode belt = new BeltNode();
 			belt.setStrokeWidth(3);
