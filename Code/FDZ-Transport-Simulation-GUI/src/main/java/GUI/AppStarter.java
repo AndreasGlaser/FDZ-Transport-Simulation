@@ -17,6 +17,9 @@ public class AppStarter extends Application {
         scene.getStylesheets().add("style.css");
         primaryStage.setScene(scene);
         primaryStage.show();
+
+        //load Configuration on Program start
+        ((Controller) loader.getController()).loadConfiguration();
     }
 
 

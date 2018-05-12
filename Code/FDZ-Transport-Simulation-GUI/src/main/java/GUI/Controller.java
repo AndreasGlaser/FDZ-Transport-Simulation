@@ -16,10 +16,6 @@ public class Controller {
 	@FXML
 	private Pane stationsPane;
 
-	public Pane getPane(){
-		return stationsPane;
-	}
-
 
 	@FXML
 	public void openCloseOptions(){

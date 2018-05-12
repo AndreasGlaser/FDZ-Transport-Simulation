@@ -69,7 +69,7 @@ public class StationPane extends VBox{
 				box.selectedProperty().addListener((observable, oldValue, newValue) -> {
 					if(newValue)reachableStations.add(stations.get(0));//TODO: Arraylist in map umwandeln und richtige station über namen als schlüssel heraussuchen
 					else reachableStations.remove(stations.get(0));//TODO: das selbe wie eine zeile drüber
-					refreshBelts(parent);
+					refreshBelts(parent, stations);
 					
 				});
 
@@ -97,8 +97,8 @@ public class StationPane extends VBox{
 
 	}
 
-	private void refreshBelts(Pane parent) {
-		parent.getChildren().clear();
+	private void refreshBelts(Pane parent, ArrayList<StationPane> stations) {
+		parent.getChildren().retainAll(stations);
 		for(StationPane i: reachableStations){
 			BeltNode belt = new BeltNode();
 			belt.setStrokeWidth(3);
