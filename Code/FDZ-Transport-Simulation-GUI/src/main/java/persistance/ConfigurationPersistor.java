@@ -1,14 +1,12 @@
 package persistance;
 
 import GUI.StationPane;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
 import javafx.scene.layout.Pane;
 
 
 import javax.json.*;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ConfigurationPersistor {
 	private static File configurationFile = new File("configuration.txt"); //Todo: test
@@ -16,13 +14,19 @@ public class ConfigurationPersistor {
 	public static void saveConfiguration(ArrayList<StationPane> stations){
 		JsonArrayBuilder configurationObjectBuilder = Json.createArrayBuilder();
 		for(StationPane station: stations){
-			configurationObjectBuilder.add(
-					Json.createObjectBuilder()
-							.add("name", station.getName())
-							.add("shortcut", station.getShortcut())
-							.add("xCord", station.getXCord())
-							.add("yCord", station.getYCord())
-							.build());
+
+			JsonObjectBuilder stationObjectBuilder = Json.createObjectBuilder()
+				.add("name", station.getName())
+				.add("shortcut", station.getShortcut())
+				.add("xCord", station.getXCord())
+				.add("yCord", station.getYCord());
+
+			JsonArrayBuilder reachableStationsArrayBuilder = Json.createArrayBuilder();
+			for(String reachableStation: station.getReachableStationsByName())
+				reachableStationsArrayBuilder.add(reachableStation);
+
+			stationObjectBuilder.add("reachableStations", reachableStationsArrayBuilder.build());
+			configurationObjectBuilder.add(stationObjectBuilder.build());
 		}
 
 		System.out.println(configurationObjectBuilder.build());
@@ -47,12 +51,20 @@ public class ConfigurationPersistor {
 				loadedStationPane.setShortcut(jsonObject.getString("shortcut"));
 				loadedStationPane.setXCord(jsonObject.getJsonNumber("xCord").doubleValue());
 				loadedStationPane.setYCord(jsonObject.getJsonNumber("yCord").doubleValue());
+				for(JsonValue name: jsonObject.getJsonArray("reachableStations")){
+							loadedStationPane.getReachableStationsByName().add(name.toString());
+				}
+
 				stations.add(loadedStationPane);
 				rootPane.getChildren().add(loadedStationPane);
 				loadedStationPane.setXCord(loadedStationPane.getXCord());
 				loadedStationPane.setYCord(loadedStationPane.getYCord());
 
 
+
+			}
+			for(StationPane station: stations){
+				station.refreshBelts(rootPane, stations);
 			}
 			System.out.println("read from file"+jsonArray);
 		} catch (FileNotFoundException e) {

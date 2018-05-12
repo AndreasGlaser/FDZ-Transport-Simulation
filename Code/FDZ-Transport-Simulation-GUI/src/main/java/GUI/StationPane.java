@@ -18,7 +18,7 @@ public class StationPane extends VBox{
 	private String shortcut = "";
 	private Double xCord = 0.;
 	private Double yCord = 0.;
-	private ArrayList<StationPane> reachableStations = new ArrayList<>();
+	private ArrayList<String> reachableStationsByName = new ArrayList<>();
 	private ArrayList<BeltNode> outgoingBelts = new ArrayList<>();
 	private Double dragXTrans = .0;
 	private Double dragYTrans = .0;
@@ -67,12 +67,12 @@ public class StationPane extends VBox{
 				if(i.equals(this))continue;
 				CheckBox box = new CheckBox(i.getName());
 				optionsPane.getChildren().add(box);
-				if(reachableStations.contains(i))box.setSelected(true);
+				if(reachableStationsByName.contains(i.name))box.setSelected(true);
 				else box.setSelected(false);
 				box.selectedProperty().addListener((observable, oldValue, newValue) -> {
-					if(newValue)reachableStations.add(i);//TODO: Arraylist in map umwandeln und richtige station über namen als schlüssel heraussuchen
-					else reachableStations.remove(i);//TODO: das selbe wie eine zeile drüber
-					refreshBelts(parent);
+					if(newValue) reachableStationsByName.add(i.name);
+					else reachableStationsByName.remove(i.name);
+					refreshBelts(parent, stations);
 					
 				});
 
@@ -98,23 +98,28 @@ public class StationPane extends VBox{
 			setYCord(e.getSceneY() - sceneY + dragYTrans);
 		});
 
+
+
 	}
 
-	private void refreshBelts(Pane parent) {
+	/**
+	 * removes all Belts and adds Belts to fit the currant configuration
+	 * @param parent the Pane the Belts will be displayed in
+	 * @param stations the List of stations available in the system
+	 */
+	public void refreshBelts(Pane parent, ArrayList<StationPane> stations) {
 		parent.getChildren().removeAll(outgoingBelts);
-		for(StationPane i: reachableStations){
-			BeltNode belt = new BeltNode();
-			belt.setStrokeWidth(3);
-			outgoingBelts.add(belt);
+		for(StationPane i: stations){
+			if(reachableStationsByName.contains(i.getName())){
+				BeltNode belt = new BeltNode(this, i);
+				outgoingBelts.add(belt);
 
-			System.out.println("layoutProperty"+i.translateXProperty());
-			belt.startXProperty().bind(Bindings.add(50, this.translateXProperty()));
-			belt.startYProperty().bind(Bindings.add(60, this.translateYProperty()));
-			belt.endXProperty().bind(Bindings.add(50, i.translateXProperty()));
-			belt.endYProperty().bind(Bindings.add(60, i.translateYProperty()));
-			System.out.println("Stroke endX:"+i.getXCord());
-			parent.getChildren().add(belt);
-			belt.toBack();
+				System.out.println("layoutProperty"+i.translateXProperty());
+				System.out.println("Stroke endX:"+i.getXCord());
+				parent.getChildren().add(belt);
+				belt.toBack();
+			}
+
 		}
 
 
@@ -143,4 +148,5 @@ public class StationPane extends VBox{
 	public Double getYCord(){
 		return yCord;
 	}
+	public ArrayList<String> getReachableStationsByName(){return reachableStationsByName;}
 }
