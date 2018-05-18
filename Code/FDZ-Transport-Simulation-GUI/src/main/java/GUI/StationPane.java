@@ -103,7 +103,7 @@ public class StationPane extends VBox{
 	}
 
 	/**
-	 * removes all Belts and adds Belts to fit the currant configuration
+	 * removes all Belts and adds Belts to fit the current configuration
 	 * @param parent the Pane the Belts will be displayed in
 	 * @param stations the List of stations available in the system
 	 */
