@@ -1,6 +1,6 @@
 package Model;
 
-/*--NOAH LEHMANN-------------------------------------------------------------*/
+/*@author Noah Lehmann*/
 
 import java.util.ArrayList;
 
@@ -18,6 +18,12 @@ class CommandInterpreter extends Thread {
 
 /*--CONSTRUCTOR--------------------------------------------------------------*/
 
+    /**
+     * Invokes a new InterpreterThread, which parses the received Message
+     * @param command
+     * @param currentStationList
+     * @throws IllegalCommandException
+     */
     public CommandInterpreter(String command, ArrayList<Station> currentStationList)
                                                         throws IllegalCommandException{
         this.command = command;
@@ -30,7 +36,6 @@ class CommandInterpreter extends Thread {
                 "\t\tposition   = " + position + "\n" +
                 "\t\tmessageID  = " + messageID);
     }
-
 
     @Override
     public void run() {
@@ -57,6 +62,11 @@ class CommandInterpreter extends Thread {
 
 /*--PARSER-------------------------------------------------------------------*/
 
+    /**
+     * Starts the Sequence of parsing the Command for its values.
+     * Does not read any Values, only starts other Methods
+     * @throws IllegalCommandException
+     */
     private void parseValues() throws IllegalCommandException{
         this.commandNum = parseCommandNum(command);
         if( validateParamCount(command)                //comNum = expected Params
@@ -73,6 +83,13 @@ class CommandInterpreter extends Thread {
         }
     }
 
+    /**
+     * Parses the Number of the Command. Each Command is identified by a
+     * unique Number in the Message
+     * @param command
+     * @return CommandNumber
+     * @throws IllegalCommandException
+     */
     private int parseCommandNum(String command) throws IllegalCommandException{
         /*throws Exception, if char at commandNum position is NaN*/
         /*STStK00?...*/
@@ -105,6 +122,14 @@ class CommandInterpreter extends Thread {
         }
     }
 
+    /**
+     * Parses the Message for a Position. If non is required, the
+     * returned String will say so. A Position is alway the last parameter
+     * in the Message
+     * @param command
+     * @return StationShortCut
+     * @throws IllegalCommandException
+     */
     private String parsePosition(String command) throws IllegalCommandException{
         /*STStK003....id??*/
         if(commandNum == 1 || commandNum == 3) {
@@ -125,6 +150,13 @@ class CommandInterpreter extends Thread {
         }
     }
 
+    /**
+     * Parses the Message for a CarriageID, if one is required,
+     * else it returns -2
+     * @param command
+     * @return CarriageID
+     * @throws IllegalCommandException
+     */
     private int parseCarriageID(String command) throws IllegalCommandException{
         /*STStK001|2|3...??..*/
         if(commandNum == 2 || commandNum == 3) {
@@ -158,6 +190,12 @@ class CommandInterpreter extends Thread {
         }
     }
 
+    /**
+     * Parses the middle section of a message for an Identifier
+     * made of the time, the message was sent
+     * @param command
+     * @return MessageID
+     */
     private String parseMessageID(String command){
         /*STStK00.<??>..*/
         int end = command.length();
@@ -190,6 +228,12 @@ class CommandInterpreter extends Thread {
 
 /*--VALIDATOR----------------------------------------------------------------*/
 
+    /**
+     * Validates if the message is built correctly
+     * @param command
+     * @return isValid
+     * @throws IllegalCommandException
+     */
     private boolean validateCommand(String command) throws IllegalCommandException{
         /*Special Cases:*/
         if(command == null){
@@ -214,6 +258,12 @@ class CommandInterpreter extends Thread {
         return true;
     }
 
+    /**
+     * Validates wether the found parameter Count equals the expected
+     * parameters for the given Command
+     * @param command
+     * @return isParamCountEqualToCommand
+     */
     private boolean validateParamCount(String command){
         char [] chars = command.toCharArray();
         if(commandNum == 1 & chars[command.length()-3] == POS){
@@ -240,6 +290,11 @@ class CommandInterpreter extends Thread {
         return false;
     }
 
+    /**
+     * Validates the form of the values. Checks wether they are within
+     * their domains
+     * @throws IllegalCommandException
+     */
     private void validateValues() throws IllegalCommandException{
         /*--INT VALUES--------------*/
         if(paramCount < 0){
@@ -291,6 +346,12 @@ class CommandInterpreter extends Thread {
         }
     }
 
+    /**
+     * Checks, wether the ShortCut for the Position is known
+     * to the System
+     * @return isCorrect
+     * @throws IllegalCommandException
+     */
     private boolean validatePosition() throws IllegalCommandException{
         for(int i=0; i<stationList.size(); i++){
             if(stationList.get(i).getShortCut()
