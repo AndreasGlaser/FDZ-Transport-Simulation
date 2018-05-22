@@ -1,6 +1,6 @@
 package Model;
 
-/*--NOAH LEHMANN-------------------------------------------------------------*/
+/*@author Noah Lehmann*/
 
 import java.util.ArrayList;
 
@@ -43,6 +43,10 @@ class CommandExecutor {
 /*--REQUEST EMPTY CARRIAGE---------------------------------------------------*/
 /*  STStK001<Message-ID>0002xx  ---------------------------------------------*/
 
+    /**
+     * The Method, which executes the Command REQUEST_EMPTY_CARRIAGE
+     * @param position
+     */
     private void requestEmptyCarriage(String position) {
         Station temp = stationList.get(this.findPosInList(position));
         Station blocking = firstStationInWay(temp.getHopsToNewCarriage(), temp);
@@ -66,6 +70,10 @@ class CommandExecutor {
 /*--RELEASE CARRIAGE--------------------------------------------------------*/
 /*  STStK002<Message-ID>0002xx  --------------------------------------------*/
 
+    /**
+     * The Method, which executes the Command RELEASE_CARRIAGE
+     * @param id
+     */
     private void releaseCarriage(int id) {
         System.out.println("\t log: releasing carriage with id " + id);
         if(this.findIDinPos(id) != NOT_FOUND){
@@ -78,6 +86,11 @@ class CommandExecutor {
 /*--REPOSITION CARRIAGE-----------------------------------------------------*/
 /*  STStK003<Message-ID>0002xxyy  ------------------------------------------*/
 
+    /**
+     * The Method, which executes the Command REPOSITION_CARRIAGE
+     * @param position
+     * @param id
+     */
     private void repositionCarriage(String position, int id) {
         Station blocking = firstStationInWay(
                 /*from*/stationList.get(findIDinPos(id)),
@@ -101,6 +114,9 @@ class CommandExecutor {
 /*--SHUTDOWN TRANSPORT SYSTEM-----------------------------------------------*/
 /*  STStK004<Message-ID>0002  ----------------------------------------------*/
 
+    /**
+     * The Method, which executes the Command SHUTDOWN_TRANSPORT
+     */
     private void shutdownTransport() {
         System.out.println("\t log: shutting down");
         /*TODO*/
@@ -108,6 +124,12 @@ class CommandExecutor {
 
 /*--HELPING FUNCTIONS--------------------------------------------------------*/
 
+    /**
+     * Finds a Positions shortcut in the list of known Stations and
+     * returns the Index, if not found -2
+     * @param position
+     * @return positionIndex
+     */
     private int findPosInList(String position) {
         /*returns -2 if POS not found*/
         int idx = 0;
@@ -119,6 +141,14 @@ class CommandExecutor {
         return idx;
     }
 
+    /**
+     * Finds an Sled-ID in the Stations known to the System.
+     * returns te index if found, else it searches for an empty sled.
+     * sets the sleds id to the unknown id or only returns -2 if no empty
+     * sled is found.
+     * @param id
+     * @return positionIndex
+     */
     private int findIDinPos(int id){
         // returns -2 if id is not found in pos
         int idx=0;
@@ -142,6 +172,14 @@ class CommandExecutor {
         return idx;
     }
 
+    /**
+     * searches the path between two stations. Returns the first station
+     * closest to "from", where a congestion is detected. If no Station
+     * blocks, it returns null
+     * @param from
+     * @param to
+     * @return blockingStation
+     */
     private Station firstStationInWay(Station from, Station to){
         /*returns null if no Stations on Way are congested
          *or first station, which is congested on way */
@@ -169,6 +207,15 @@ class CommandExecutor {
         }
     }
 
+    /**
+     * Searches for a blocking station on path from hops back=0
+     * to Station. Recursive lookback until hopsBack is 0. Returns
+     * first blocking station with the smallest hopsBack, or returns
+     * null if no station is blocking
+     * @param hopsBack
+     * @param to
+     * @return blockingStation
+     */
     private Station firstStationInWay(int hopsBack, Station to){
         /*returns null if no congestion on way or
          *first station, which was congested in way */
