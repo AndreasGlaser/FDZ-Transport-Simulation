@@ -1,6 +1,6 @@
 package Model;
 
-/*--NOAH LEHMANN-------------------------------------------------------------*/
+/*@author Noah Lehmann-------------------------------------------------------------*/
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -59,6 +59,9 @@ public class Main {
             if (input.compareTo("p") == 0) {
                 printState(stationList);
                 continue;
+            }
+            if (input.compareTo("d") == 0) {
+                //delete Station
             }
             if (input.contains("STStK004")){
                 System.out.print(
