@@ -8,28 +8,35 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import persistance.StationData;
 
 import java.util.ArrayList;
 
 public class StationPane extends VBox{
 
-	private String name = "";
-	private Text stationNameText = new Text(name);
+	/*private String name = "";
 	private String shortcut = "";
 	private Double xCord = 0.;
 	private Double yCord = 0.;
-	private ArrayList<String> reachableStationsByName = new ArrayList<>();
+	private ArrayList<String> reachableStationsByName = new ArrayList<>();*/
+	private StationData data = new StationData("");
+
+	//helper Variables
+	private Text stationNameText = new Text(data.getName());
 	private ArrayList<BeltNode> outgoingBelts = new ArrayList<>();
 	private Double dragXTrans = .0;
 	private Double dragYTrans = .0;
 	private Double sceneX = .0;
 	private Double sceneY = .0;
 
-	public StationPane(String name, Pane parent, ArrayList<StationPane> stations){
-
+	public StationPane(StationData data, Pane parent, ArrayList<StationPane> stations){
+		setData(data);
+		parent.getChildren().add(this);
+		stations.add(this);
+		refreshBelts(parent, stations);
 		setStyle("-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 2; -fx-border-radius: 3; -fx-background-color: aqua; -fx-min-width: 100; -fx-min-height: 120");
 
-		setName(name);
+		setName(data.getName());
 		getChildren().add(stationNameText);
 
 		ChoiceBox congestionBox = new ChoiceBox();
@@ -67,11 +74,11 @@ public class StationPane extends VBox{
 				if(i.equals(this))continue;
 				CheckBox box = new CheckBox(i.getName());
 				optionsPane.getChildren().add(box);
-				if(reachableStationsByName.contains(i.name))box.setSelected(true);
+				if(data.getReachableStationsByName().contains(i.getData().getName()))box.setSelected(true);
 				else box.setSelected(false);
 				box.selectedProperty().addListener((observable, oldValue, newValue) -> {
-					if(newValue) reachableStationsByName.add(i.name);
-					else reachableStationsByName.remove(i.name);
+					if(newValue) data.getReachableStationsByName().add(i.getData().getName());
+					else data.getReachableStationsByName().remove(i.getData().getName());
 					refreshBelts(parent, stations);
 					
 				});
@@ -110,12 +117,9 @@ public class StationPane extends VBox{
 	public void refreshBelts(Pane parent, ArrayList<StationPane> stations) {
 		parent.getChildren().removeAll(outgoingBelts);
 		for(StationPane i: stations){
-			if(reachableStationsByName.contains(i.getName())){
+			if(data.getReachableStationsByName().contains(i.getName())){
 				BeltNode belt = new BeltNode(this, i);
 				outgoingBelts.add(belt);
-
-				System.out.println("layoutProperty"+i.translateXProperty());
-				System.out.println("Stroke endX:"+i.getXCord());
 				parent.getChildren().add(belt);
 				belt.toBack();
 			}
@@ -126,27 +130,33 @@ public class StationPane extends VBox{
 	}
 
 	public String getName(){
-		return name;
+		return data.getName();
 	}
 	public void setName(String name){
-		this.name = name;
-		stationNameText.setText(this.name);
+		data.setName(name);
+		stationNameText.setText(data.getName());
 	}
-	public String getShortcut(){return shortcut;}
-	public void setShortcut(String shortcut){this.shortcut = shortcut;}
+	public String getShortcut(){return data.getShortcut();}
+	public void setShortcut(String shortcut){data.setShortcut(shortcut);}
 	public void setXCord(Double newX){
-		xCord = newX;
+		data.setXCord(newX);
 		setTranslateX(newX);
 	}
 	public void setYCord(Double newY){
-		yCord = newY;
+		data.setYCord(newY);
 		setTranslateY(newY);
 	}
 	public Double getXCord(){
-		return xCord;
+		return data.getXCord();
 	}
 	public Double getYCord(){
-		return yCord;
+		return data.getYCord();
 	}
-	public ArrayList<String> getReachableStationsByName(){return reachableStationsByName;}
+	public ArrayList<String> getReachableStationsByName(){return data.getReachableStationsByName();}
+	public StationData getData(){return data;}
+	public void setData(StationData data){
+		this.data = data;
+		setTranslateX(data.getXCord());
+		setTranslateY(data.getYCord());
+	}
 }
