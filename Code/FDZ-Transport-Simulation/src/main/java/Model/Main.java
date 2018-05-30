@@ -37,7 +37,7 @@ public class Main {
         String help =
                 "+–––––––––––––––––––––––––––––––––+\n" +
                 "| Type in TestCommand:            |\n" +
-                "| -\"q\" to end Programm            |\n" +
+                "| -\"q\" to end program             |\n" +
                 "| -\"h\" for help                   |\n" +
                 "| -\"p\" to print current State     |\n" +
                 "| -\"FDZ-Command\" to test System   |\n" +
