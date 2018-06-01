@@ -1,6 +1,6 @@
 package Model;
 
-/*@author Noah Lehmann ------------------------------------------------------*/
+/**@author Noah Lehmann*/
 
 import java.util.ArrayList;
 
@@ -11,25 +11,19 @@ import java.util.ArrayList;
 public class StationHandler {
 
     private ArrayList<Station> stationList;
-    private static StationHandler handler;
+    private static StationHandler handler = new StationHandler();
 
     private StationHandler(){
         stationList = new ArrayList<>();
     }
 
     public static StationHandler getStationHandler(){
-        if(handler != null){
-            return handler;
-        }
-        else{
-            handler = new StationHandler();
-            return handler;
-        }
+        return handler;
     }
 
 /* GETTER -------------------------------------------------------------------*/
 
-    public ArrayList<Station> getCurrentStationList(){
+    public ArrayList<Station> getStationList(){
         return stationList;
     }
 
@@ -45,28 +39,65 @@ public class StationHandler {
 
 /* MANIPULATE LIST-----------------------------------------------------------*/
 
+    /**
+     * adds a Station to the stationList, station will not have any
+     * connections until the user configures them
+     * @param name
+     * @param shortCut
+     */
     public void addStation(String name, String shortCut){
+        /*TODO if connection is closed*/
         stationList.add(new Station(name, shortCut));
     }
 
-    public void deleteStation(String name){
-        int i = 0;
-        while(stationList.get(i++).getName().compareTo(name) == 0);
-        if(i != stationList.size()){
-            stationList.remove(i);
-            for (int j=0; j<stationList.size(); j++){
-                for(int k=0;
-                    k<stationList.get(j).getPrevStations().size();
-                    k++){
-                    if(stationList.get(j).getPrevStations().get(k) ==
-                            stationList.get(i)){
-                        stationList.get(j).getPrevStations()
-                                .remove(stationList.get(i));
-                    }
+    /**
+     * deletes the Station with the specified name or throws a
+     * nullpointer Exception if Station does not exist
+     * @param name
+     * @throws NullPointerException
+     */
+    public void deleteStation(String name) throws NullPointerException {
+        /*TODO if connection is closed*/
+        Station station = findNameInStations(name);
+        if(station != null) {
+            stationList.remove(station);
+            removeFromPrevList(station);
+        }else{
+            throw new NullPointerException("Name of Station not in stationList");
+        }
+    }
+
+/* HELPER FUNCTIONS ---------------------------------------------------------*/
+
+    /**
+     * removes specified Station from all Stations prevList in stationList
+     * @param station
+     */
+    private void removeFromPrevList(Station station){
+        for (int j=0; j<stationList.size(); j++){
+            for(int k=0;k<stationList.get(j).getPrevStations().size();k++){
+                if(stationList.get(j).getPrevStations().get(k) == station){
+                    System.out.println(
+                            "removing station: "+
+                                    stationList.get(j).getPrevStations().remove(station));
                 }
             }
         }
-        //TODO Hilfsfunktionen
+    }
+
+    /**
+     * Finds index of Station when only name is known, returns the index
+     * or -1, if Station could not be found
+     * @param name
+     * @return idx
+     */
+    private Station findNameInStations(String name){
+        for(int i=0; i<stationList.size();++i){
+            if(stationList.get(i).getName().compareTo(name) == 0){
+                return stationList.get(i);
+            }
+        }
+        return null;
     }
 
 }
