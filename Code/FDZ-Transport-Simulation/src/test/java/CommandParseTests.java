@@ -1,6 +1,5 @@
-import Model.CommandListener;
+import Model.CommandHandler;
 
-import Model.IllegalCommandException;
 import Model.Station;
 import org.junit.Assert;
 import org.junit.Test;
@@ -12,7 +11,7 @@ public class CommandParseTests {
     @Test
     public void requestEmptyCarMissingTargetTest(){
         ArrayList<Station> standardStations = newStandardStations();
-        CommandListener listener = new CommandListener(standardStations);
+        CommandHandler listener = new CommandHandler(standardStations);
         listener.testCommand("STStK00100010002");
         //TODO: ausgehende Netzwerknachrichten abfangen
     }
@@ -21,7 +20,7 @@ public class CommandParseTests {
     public void repositionCarMissingTargetTest(){
         //leeren Schlitten zum Roboter
         ArrayList<Station> standardStations = newStandardStations();
-        CommandListener listener = new CommandListener(standardStations);
+        CommandHandler listener = new CommandHandler(standardStations);
         listener.testCommand("STStK00100010002ro");
         Assert.assertEquals(-1,standardStations.get(0).getSledInside());
 
@@ -33,7 +32,7 @@ public class CommandParseTests {
     public void repositionCarMissingIDTest(){
         //leeren Schlitten zum Roboter
         ArrayList<Station> standardStations = newStandardStations();
-        CommandListener listener = new CommandListener(standardStations);
+        CommandHandler listener = new CommandHandler(standardStations);
         listener.testCommand("STStK00100010002ro");
         Assert.assertEquals(-1,standardStations.get(0).getSledInside());
 

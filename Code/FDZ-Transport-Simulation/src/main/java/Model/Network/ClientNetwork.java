@@ -1,8 +1,10 @@
-package Model;
+package Model.Network;
 
+/**
+ * @author Dzianis Brysiuk
+ */
 
 import java.net.InetAddress;
-import java.util.regex.Matcher;
 
 public class ClientNetwork {
 

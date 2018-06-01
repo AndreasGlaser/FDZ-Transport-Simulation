@@ -1,6 +1,7 @@
-package Model;
+package Model.Network;
 
-import java.net.InetAddress;
+import Model.Station;
+
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;

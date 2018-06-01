@@ -1,4 +1,4 @@
-package Model;
+package Model.Network;
 
 /**
  * @author Dzianis Brysiuk

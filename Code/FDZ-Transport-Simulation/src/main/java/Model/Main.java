@@ -2,6 +2,8 @@ package Model;
 
 /*--NOAH LEHMANN-------------------------------------------------------------*/
 
+import Model.Network.NetworkController;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,7 +17,7 @@ public class Main {
         Station inOut = new Station("inOut", "ea");
         ArrayList<Station> stationList = new ArrayList<Station>(3);
 
-        CommandListener listener = new CommandListener(stationList);
+        NetworkController listener = new NetworkController(stationList);
         Scanner sc = new Scanner(System.in);
 
 

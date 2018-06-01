@@ -1,8 +1,12 @@
-package Model;
+package Model.Network;
 
 /**
  * @author Dzianis Brysiuk
  */
+
+//import Model.CommandInterpreter;
+import Model.IllegalCommandException;
+import Model.Station;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -64,11 +68,13 @@ public class NetworkController {
 
 
     private void invokeInterpreter(String command){
+        /*
         try{
             new CommandInterpreter(command, stationList).run();
         }catch(IllegalCommandException e){
             System.out.println(e.getMessage());
         }
+        */
     }
 }
 
