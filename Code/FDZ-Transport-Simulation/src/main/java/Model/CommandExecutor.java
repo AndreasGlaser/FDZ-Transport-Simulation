@@ -1,6 +1,6 @@
 package Model;
 
-/*@author Noah Lehmann*/
+/**@author Noah Lehmann*/
 
 import java.util.ArrayList;
 

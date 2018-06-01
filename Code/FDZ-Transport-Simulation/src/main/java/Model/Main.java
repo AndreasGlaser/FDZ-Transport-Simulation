@@ -1,11 +1,12 @@
 package Model;
 
-/*@author Noah Lehmann-------------------------------------------------------------*/
 
 import Model.Network.NetworkController;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+/**@author Noah Lehmann*/
 
 public class Main {
 

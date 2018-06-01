@@ -1,6 +1,6 @@
 package Model;
 
-/*@author Noah Lehmann*/
+/**@author Noah Lehmann*/
 
 import java.util.ArrayList;
 
@@ -21,13 +21,12 @@ class CommandInterpreter extends Thread {
     /**
      * Invokes a new InterpreterThread, which parses the received Message
      * @param command
-     * @param currentStationList
      * @throws IllegalCommandException
      */
-    public CommandInterpreter(String command, ArrayList<Station> currentStationList)
+    public CommandInterpreter(String command)
                                                         throws IllegalCommandException{
         this.command = command;
-        this.stationList = currentStationList;
+        this.stationList = StationHandler.getInstance().getStationList();
         this.parseValues();
         this.validateValues();
         System.out.println("\t log: \n" +
@@ -39,6 +38,12 @@ class CommandInterpreter extends Thread {
 
     @Override
     public void run() {
+        /*TODO parse in run()*/
+
+        /*TODO sendAcknowledge1(msgID)*/
+        /*
+        if(ack1(msgID))
+         */
         switch(this.commandNum){
             case 1 :    System.out.println("\t log: "+"interpreted case 1");
                         new CommandExecutor(position, stationList);

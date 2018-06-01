@@ -17,7 +17,7 @@ public class StationHandler {
         stationList = new ArrayList<>();
     }
 
-    public static StationHandler getStationHandler(){
+    public static StationHandler getInstance(){
         return handler;
     }
 
