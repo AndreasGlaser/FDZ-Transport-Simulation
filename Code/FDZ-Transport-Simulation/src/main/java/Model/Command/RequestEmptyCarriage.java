@@ -2,11 +2,11 @@ package Model.Command;
 
 public class RequestEmptyCarriage extends Command {
 
-    private String position, msgID;
+    private String position;
 
     public RequestEmptyCarriage(String position, String msgID){
         this.position = position;
-        this.msgID = msgID;
+        .msgID = msgID;
     }
 
     //@Override
