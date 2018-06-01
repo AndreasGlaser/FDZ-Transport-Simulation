@@ -31,24 +31,27 @@
 }
 
 .stationPane{
-	-fx-background-color: lightgray;
-	-fx-border-color: black;
+	-fx-background-color: #A9C3DD;
+	-fx-border-color: #909090;
 	-fx-border-radius: 10;
+	-fx-border-width: 2;
+	-fx-background-radius: 10;
 }
 
 .stationOptions{
-	-fx-background-color: lightgray;
-	-fx-border-color: black;
+	-fx-background-color: #EBEBEB;
+	-fx-border-color: #A9C3DD;
+	-fx-border-width: 2;
 }
 
 .red{
-	-fx-background-color: red;
+	-fx-background-color: #FF2929;
 }
 
 .yellow{
-	-fx-background-color: yellow;
+	-fx-background-color: #D5E700;
 }
 
 .green{
-	-fx-background-color: lawngreen;
+	-fx-background-color: #29FF59;
 }
