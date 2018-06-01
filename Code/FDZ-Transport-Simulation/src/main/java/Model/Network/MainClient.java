@@ -8,13 +8,13 @@ import java.util.Scanner;
 
 public class MainClient {
 
-    public static void main(String[] args) throws UnknownHostException, FDZNetworkException {
+    /*public static void main(String[] args) throws UnknownHostException, FDZNetworkException {
         Station robot = new Station("robot", "ro");
         Station stock = new Station("stock", "la");
         Station inOut = new Station("inOut", "ea");
         ArrayList<Station> stationList = new ArrayList<Station>(3);
 
-        NetworkController ch = new NetworkController(stationList);
+        NetworkController ch = NetworkController.getInstance();
         byte[] ipAddr = new byte[]{127, 0, 0, 1};
         ch.connect(ipAddr, 47331);
         Scanner sc = new Scanner(System.in);
@@ -41,6 +41,6 @@ public class MainClient {
         }
 
         ch.disconnect();
-    }
+    }*/
 
 }

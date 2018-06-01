@@ -2,14 +2,12 @@ package Model;
 
 /**@author Noah Lehmann*/
 
-import Model.Command.ReleaseCarriage;
-import Model.Command.RepositionCarriage;
-import Model.Command.RequestEmptyCarriage;
-import Model.Command.ShutdownTransport;
+import Model.Command.*;
+import Model.Network.NetworkController;
 
 import java.util.ArrayList;
 
-class CommandInterpreter extends Thread {
+public class CommandInterpreter extends Thread {
 
 /*--MEMBERVARIABLES----------------------------------------------------------*/
 
@@ -28,8 +26,7 @@ class CommandInterpreter extends Thread {
      * @param command
      * @throws IllegalCommandException
      */
-    public CommandInterpreter(String command)
-                                                        throws IllegalCommandException{
+    public CommandInterpreter(String command) {
         this.command = command;
         this.stationList = StationHandler.getInstance().getStationList();
     }
@@ -40,6 +37,7 @@ class CommandInterpreter extends Thread {
             this.parseValues();
             this.validateValues();
         }catch(IllegalCommandException e){
+            NetworkController.getInstance().commandNotUnterstood(messageID);
             /*TODO ERROR in Network*/
         }
 
@@ -50,33 +48,40 @@ class CommandInterpreter extends Thread {
                 "\t\tmessageID  = " + messageID);
 
         /*TODO sendAcknowledge1(msgID)*/
-        if(true) {
-            switch (this.commandNum) {
-                case 1:
-                    System.out.println("\t log: " + "interpreted case 1");
-                    /*new RequestEmptyCarriage(position, messageID);
-                    TODO add to list*/
-                    break;
-                case 2:
-                    System.out.println("\t log: " + "interpreted case 2");
-                    /*new ReleaseCarriage(carriageID, messageID);
-                    TODO add to List*/
-                case 3:
-                    System.out.println("\t log: " + "interpreted case 3");
-                    /*new RepositionCarriage(carriageID, position, messageID);
-                    TODO add to List*/
-                    break;
-                case 4:
-                    System.out.println("\t log: " + "interpreted case 4");
-                    /*new ShutdownTransport(messageID);
-                    TODO add to List*/
-                    break;
-                default:
-                    System.out.println("\t log: default");
-                    /* TODO Command not recognized Network ERROR*/
-            }
+        switch (this.commandNum) {
+            case 1:
+                System.out.println("\t log: " + "interpreted case 1");
+                CommandQueue.getInstance().add(new RequestEmptyCarriage(position, messageID));
+                acknowledge(messageID);
+                break;
+            case 2:
+                System.out.println("\t log: " + "interpreted case 2");
+                CommandQueue.getInstance().add(
+                        new ReleaseCarriage(carriageID, messageID));
+                acknowledge(messageID);
+            case 3:
+                System.out.println("\t log: " + "interpreted case 3");
+                CommandQueue.getInstance().add(
+                        new RepositionCarriage(carriageID, position, messageID));
+                acknowledge(messageID);
+                break;
+            case 4:
+                System.out.println("\t log: " + "interpreted case 4");
+                CommandQueue.getInstance().add(new ShutdownTransport(messageID));
+                acknowledge(messageID);
+                break;
+            default:
+                System.out.println("\t log: default");
+                /* TODO Command not recognized Network ERROR*/
+                NetworkController.getInstance().commandNotUnterstood(messageID);
         }
         System.out.println("\t log: Command successfully Recognized");
+    }
+
+    private void acknowledge(String messageID){
+        if(NetworkController.getInstance().acknowledge1(messageID)) {
+            CommandQueue.getInstance().activate(messageID);
+        }
     }
 
 /*--PARSER-------------------------------------------------------------------*/

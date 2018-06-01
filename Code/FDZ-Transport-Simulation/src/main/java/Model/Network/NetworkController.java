@@ -5,6 +5,7 @@ package Model.Network;
  */
 
 //import Model.CommandInterpreter;
+import Model.CommandInterpreter;
 import Model.IllegalCommandException;
 import Model.Station;
 
@@ -62,8 +63,8 @@ public class NetworkController {
      * to adapter
      */
     public boolean acknowledge1 (String msgID){
-        String message = ACK1_HEAD+msgID+ACK1_CNU_CNE_CE_END;
-        clientNetwork.sendMessage(message);
+//        String message = ACK1_HEAD+msgID+ACK1_CNU_CNE_CE_END;
+//        clientNetwork.sendMessage(message);
         return true;
     }
 
@@ -74,8 +75,8 @@ public class NetworkController {
      * @return true send sending Error to Adapter finished
      */
     public boolean commandNotUnterstood (String msgID){
-        String message = CNU_HEAD+msgID+ACK1_CNU_CNE_CE_END;
-        clientNetwork.sendMessage(message);
+//        String message = CNU_HEAD+msgID+ACK1_CNU_CNE_CE_END;
+//        clientNetwork.sendMessage(message);
         return true;
     }
 
@@ -144,13 +145,7 @@ public class NetworkController {
 
 
     private void invokeInterpreter(String command){
-        /*
-        try{
-            new CommandInterpreter(command, stationList).run();
-        }catch(IllegalCommandException e){
-            System.out.println(e.getMessage());
-        }
-        */
+        new CommandInterpreter(command).run();
     }
 }
 

@@ -1,5 +1,6 @@
 package Model.Command;
 
+import Model.Network.NetworkController;
 import Model.Station;
 import Model.StationHandler;
 
@@ -17,7 +18,12 @@ public class RequestEmptyCarriage extends Command {
         super.msgID = msgID;
     }
 
-    //@Override
+    /*Overrides super class method*/
+    private void commandUnderstood(){
+        NetworkController.getInstance().acknowledge2(msgID, true);
+    }
+
+    @Override
     public void execute(){
         ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
         Station temp = stationList.get(this.findPosInList(position));

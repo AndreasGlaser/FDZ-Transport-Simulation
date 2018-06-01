@@ -23,11 +23,6 @@ public class Station {
         prevStations = new ArrayList<Station>(5);
     }
 
-    Station(String name, String shortCut, Station prevStation){
-        this(name, shortCut);
-        addPrevStation(prevStation);
-    }
-
     /*--LOGIC--------------------------------------------------------------------*/
 
     public synchronized void driveInSled(int id){
@@ -98,6 +93,11 @@ public class Station {
     /*--LIST---------------------------------------------------------------------*/
 
     public boolean addPrevStation(Station aStation){
+        for (int i = 0; i < prevStations.size(); i++) {
+            if(prevStations.get(i).getName().compareTo(aStation.getName()) == 0){
+                return false;
+            }
+        }
         return prevStations.add(aStation);
     }
     boolean removePrevStation(Station aStation){

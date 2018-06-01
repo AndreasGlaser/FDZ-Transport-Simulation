@@ -13,7 +13,8 @@ public class ReleaseCarriage extends Command {
     private final int NOT_FOUND=-2, EMPTY_CARRIAGE=-1;
 
     public ReleaseCarriage(int id, String msgID){
-
+        this.id = id;
+        super.msgID = msgID;
     }
 
     /**

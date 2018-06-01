@@ -5,7 +5,7 @@ package Model.Command;
 public class ShutdownTransport extends Command {
 
     public ShutdownTransport(String msgID){
-
+        super.msgID = msgID;
     }
 
     /**

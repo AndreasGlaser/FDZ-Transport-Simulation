@@ -22,22 +22,31 @@ public class RepositionCarriage extends Command {
     //@Override
     public void execute(){
         ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
-        Station blocking = firstStationInWay(
-                /*from*/stationList.get(findIDinPos(id)),
-                /*to*/stationList.get(findPosInList(position)));
-        if(blocking == null) {
-            /*No Congestion from source to destination*/
-            stationList.get(findIDinPos(id)).driveOutSled(id);
-            stationList.get(findPosInList(position)).driveInSled(id);
-            System.out.println("\t log: reposition carriage " + id + " to "
-                    + position);
+        int idx = findIDinPos(id);
+        if(idx != NOT_FOUND) {
+            Station blocking = firstStationInWay(
+                    /*from*/stationList.get(idx),
+                    /*to*/stationList.get(findPosInList(position)));
+
+            if (blocking == null) {
+                /*No Congestion from source to destination*/
+                stationList.get(findIDinPos(id)).driveOutSled(id);
+                stationList.get(findPosInList(position)).driveInSled(id);
+                System.out.println("\t log: reposition carriage " + id + " to "
+                        + position);
+            } else {
+                System.out.println(blocking.getName() + " is blocking");
+                /*Congestion from source to destination, carriage must wait*/
+                /*first blocked station -> blocking*/
+                /*TODO Stau auf weg zu neuer station*/
+                System.out.println("\t log: CONGESTION DETECTED\n" +
+                        "\t      COULD NOT REPOSITION\n" +
+                        "\t      [" + id + "] TO [" + position + "]");
+            }
         }else{
-            /*Congestion from source to destination, carriage must wait*/
-            /*first blocked station -> blocking*/
-            /*TODO Stau auf weg zu neuer station*/
-            System.out.println( "\t log: CONGESTION DETECTED\n" +
-                    "\t      COULD NOT REPOSITION\n["+
-                    "\t      " + id + "] TO [" + position +"]");
+            System.out.println("\t log: ID not found\n" +
+                    "\t      COULD NOT REPOSITION\n" +
+                    "\t      [" + id + "] TO [" + position + "]");
         }
     }
 
@@ -71,7 +80,7 @@ public class RepositionCarriage extends Command {
         int idx=0;
         while(stationList.get(idx).getSledInside() != id){
             //in which station is ID
-            if(++idx == stationList.size()){
+            if(idx+1 == stationList.size() && id != EMPTY_CARRIAGE){
                 /*id unknown*/
                 idx = findIDinPos(EMPTY_CARRIAGE);//find empty sled
                 /*finds first empty carriage, expects only one empty carriage*/
@@ -84,7 +93,10 @@ public class RepositionCarriage extends Command {
                     return NOT_FOUND;
                     /*no empty sled found, return -2*/
                 }
+            }else if(idx+1 == stationList.size() && id == EMPTY_CARRIAGE){
+                return NOT_FOUND;
             }
+            ++idx;
         }
         return idx;
     }
