@@ -108,7 +108,7 @@ public class ConfigurationPersistor {
 				}
 
 				stations.add(loadedStationPane);
-				rootPane.getChildren().add(loadedStationPane);
+				rootPane.getChildren().add(loadedStationPane.getViewPane());
 				loadedStationPane.setXCord(loadedStationPane.getXCord());
 				loadedStationPane.setYCord(loadedStationPane.getYCord());
 

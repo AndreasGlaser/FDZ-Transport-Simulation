@@ -11,25 +11,29 @@ import javafx.scene.transform.Rotate;
 public class BeltNode extends Pane {
 
 	public BeltNode(StationPane fromStation, StationPane toStation){
+		Double fromXOffset = 120.;
+		Double fromYOffset = 70.;
+		Double toXOffset = 120.;
+		Double toYOffset = 70.;
 
-		drawBelt(new Point2D(fromStation.getXCord()+40, fromStation.getYCord()+50), new Point2D(toStation.getXCord()+60, toStation.getYCord()+70));
-		fromStation.translateXProperty().addListener((event, oldX, newX)->{
+		drawBelt(new Point2D(fromStation.getXCord()+fromXOffset, fromStation.getYCord()+fromYOffset), new Point2D(toStation.getXCord()+toXOffset, toStation.getYCord()+toYOffset));
+		fromStation.getTranslateXProperty().addListener((event, oldX, newX)->{
 			getChildren().retainAll();
-			drawBelt(new Point2D(fromStation.getXCord()+40, fromStation.getYCord()+50), new Point2D(toStation.getXCord()+60, toStation.getYCord()+70));
+			drawBelt(new Point2D(fromStation.getXCord()+fromXOffset, fromStation.getYCord()+fromYOffset), new Point2D(toStation.getXCord()+toXOffset, toStation.getYCord()+toYOffset));
 		});
-		fromStation.translateYProperty().addListener((event, oldX, newX)->{
+		fromStation.getTranslateYProperty().addListener((event, oldX, newX)->{
 			getChildren().retainAll();
-			drawBelt(new Point2D(fromStation.getXCord()+40, fromStation.getYCord()+50), new Point2D(toStation.getXCord()+60, toStation.getYCord()+70));
+			drawBelt(new Point2D(fromStation.getXCord()+fromXOffset, fromStation.getYCord()+fromYOffset), new Point2D(toStation.getXCord()+toXOffset, toStation.getYCord()+toYOffset));
 		});
 
 
-		toStation.translateXProperty().addListener((event, oldX, newX)->{
+		toStation.getTranslateXProperty().addListener((event, oldX, newX)->{
 			getChildren().retainAll();
-			drawBelt(new Point2D(fromStation.getXCord()+40, fromStation.getYCord()+50), new Point2D(toStation.getXCord()+60, toStation.getYCord()+70));
+			drawBelt(new Point2D(fromStation.getXCord()+fromXOffset, fromStation.getYCord()+fromYOffset), new Point2D(toStation.getXCord()+toXOffset, toStation.getYCord()+toYOffset));
 		});
-		toStation.translateYProperty().addListener((event, oldX, newX)->{
+		toStation.getTranslateYProperty().addListener((event, oldX, newX)->{
 			getChildren().retainAll();
-			drawBelt(new Point2D(fromStation.getXCord()+40, fromStation.getYCord()+50), new Point2D(toStation.getXCord()+60, toStation.getYCord()+70));
+			drawBelt(new Point2D(fromStation.getXCord()+fromXOffset, fromStation.getYCord()+fromYOffset), new Point2D(toStation.getXCord()+toXOffset, toStation.getYCord()+toYOffset));
 		});
 
 	}
