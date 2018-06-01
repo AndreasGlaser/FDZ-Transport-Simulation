@@ -14,7 +14,7 @@ public class StationHandler {
     private static StationHandler handler = new StationHandler();
 
     private StationHandler(){
-        stationList = new ArrayList<>();
+        stationList = new ArrayList<>(3);
     }
 
     public static StationHandler getInstance(){
@@ -25,6 +25,27 @@ public class StationHandler {
 
     public ArrayList<Station> getStationList(){
         return stationList;
+    }
+
+    public Station getStationByShortCut(String shortCut){
+        ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
+        int idx = 0;
+        while (stationList.get(idx).getShortCut().
+                compareToIgnoreCase(shortCut) != 0) {
+            //find idx of requested station
+            if(++idx == stationList.size()){return null;}
+        }
+        return stationList.get(idx);
+    }
+    public Station getStationByName(String name){
+        ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
+        int idx = 0;
+        while (stationList.get(idx).getName().
+                compareToIgnoreCase(name) != 0) {
+            //find idx of requested station
+            if(++idx == stationList.size()){return null;}
+        }
+        return stationList.get(idx);
     }
 
 /* SAVING/LOADING DATA ------------------------------------------------------*/
@@ -60,8 +81,8 @@ public class StationHandler {
         /*TODO if connection is closed*/
         Station station = findNameInStations(name);
         if(station != null) {
-            stationList.remove(station);
-            removeFromPrevList(station);
+            while(stationList.remove(station))
+                removeFromPrevList(station);
         }else{
             throw new NullPointerException("Name of Station not in stationList");
         }
@@ -80,6 +101,10 @@ public class StationHandler {
                     System.out.println(
                             "removing station: "+
                                     stationList.get(j).getPrevStations().remove(station));
+                    removeFromPrevList(station);
+                    /*second last element deleted would increment k, size() decremented,
+                    * last element would be skipped if it is also (for which reason ever)
+                    * the station to be deleted*/
                 }
             }
         }

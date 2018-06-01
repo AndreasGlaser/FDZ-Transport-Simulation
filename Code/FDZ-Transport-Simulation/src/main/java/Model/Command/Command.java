@@ -1,6 +1,12 @@
 package Model.Command;
 
+/**
+ * @author Dzinais Brysiuk
+ * @author Noah Lehmann
+ */
 public abstract class Command {
+
+    protected String msgID;
 
     public abstract void execute();
 
@@ -8,6 +14,6 @@ public abstract class Command {
 
     }
     private void error(){
-        
+
     }
 }

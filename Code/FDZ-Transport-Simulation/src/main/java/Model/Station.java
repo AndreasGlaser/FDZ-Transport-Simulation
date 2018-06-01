@@ -30,7 +30,7 @@ public class Station {
 
     /*--LOGIC--------------------------------------------------------------------*/
 
-    synchronized void driveInSled(int id){
+    public synchronized void driveInSled(int id){
         //if id == -1 -> empty sled gets first unknown id
         try {
             sem.acquire();
@@ -48,7 +48,7 @@ public class Station {
         System.out.println("\t log: "+id+" released "+this.name+"'s Semaphore >>in >>");
     }
 
-    synchronized void driveOutSled(int id){
+    public synchronized void driveOutSled(int id){
         try {
             sem.acquire();
         } catch (InterruptedException e) { e.printStackTrace(); }
@@ -72,11 +72,11 @@ public class Station {
         this.name = aName;
     }
     void setShortCut(String aShortCut){ this.shortCut = aShortCut; }
-    void setSledInside(int sledId) {
+    public void setSledInside(int sledId) {
         /*TODO Threadsafe*/
         this.sledInside = sledId;
     }
-    void setHopsToNewCarriage(int hops){ hopsToNewCarriage = hops;}
+    public void setHopsToNewCarriage(int hops){ hopsToNewCarriage = hops;}
     private void setOccupied(boolean occupied){
         isOccupied=occupied;
     }

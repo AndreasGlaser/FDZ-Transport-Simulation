@@ -2,6 +2,11 @@ package Model;
 
 /**@author Noah Lehmann*/
 
+import Model.Command.ReleaseCarriage;
+import Model.Command.RepositionCarriage;
+import Model.Command.RequestEmptyCarriage;
+import Model.Command.ShutdownTransport;
+
 import java.util.ArrayList;
 
 class CommandInterpreter extends Thread {
@@ -27,42 +32,51 @@ class CommandInterpreter extends Thread {
                                                         throws IllegalCommandException{
         this.command = command;
         this.stationList = StationHandler.getInstance().getStationList();
-        this.parseValues();
-        this.validateValues();
+    }
+
+    @Override
+    public void run() {
+        try{
+            this.parseValues();
+            this.validateValues();
+        }catch(IllegalCommandException e){
+            /*TODO ERROR in Network*/
+        }
+
         System.out.println("\t log: \n" +
                 "\t\tcommandNum = " + commandNum + "\n" +
                 "\t\tcarriageID = " + carriageID + "\n" +
                 "\t\tposition   = " + position + "\n" +
                 "\t\tmessageID  = " + messageID);
-    }
-
-    @Override
-    public void run() {
-        /*TODO parse in run()*/
 
         /*TODO sendAcknowledge1(msgID)*/
-        /*
-        if(ack1(msgID))
-         */
-        switch(this.commandNum){
-            case 1 :    System.out.println("\t log: "+"interpreted case 1");
-                        new CommandExecutor(position, stationList);
-                        break;
-            case 2 :    System.out.println("\t log: "+"interpreted case 2");
-                        new CommandExecutor(carriageID, stationList);
-                        break;
-            case 3 :    System.out.println("\t log: "+"interpreted case 3");
-                        new CommandExecutor(position, carriageID, stationList);
-                        break;
-            case 4 :    System.out.println("\t log: "+"interpreted case 4");
-                        new CommandExecutor();
-                        break;
-            default:
-                        System.out.println("\t log: default");
-                        /* TODO Command not recognized*/
+        if(true) {
+            switch (this.commandNum) {
+                case 1:
+                    System.out.println("\t log: " + "interpreted case 1");
+                    /*new RequestEmptyCarriage(position, messageID);
+                    TODO add to list*/
+                    break;
+                case 2:
+                    System.out.println("\t log: " + "interpreted case 2");
+                    /*new ReleaseCarriage(carriageID, messageID);
+                    TODO add to List*/
+                case 3:
+                    System.out.println("\t log: " + "interpreted case 3");
+                    /*new RepositionCarriage(carriageID, position, messageID);
+                    TODO add to List*/
+                    break;
+                case 4:
+                    System.out.println("\t log: " + "interpreted case 4");
+                    /*new ShutdownTransport(messageID);
+                    TODO add to List*/
+                    break;
+                default:
+                    System.out.println("\t log: default");
+                    /* TODO Command not recognized Network ERROR*/
+            }
         }
-        System.out.println("\t log: Command Succesfully Recognized");
-        /*TODO Reply command recognized*/
+        System.out.println("\t log: Command successfully Recognized");
     }
 
 /*--PARSER-------------------------------------------------------------------*/
