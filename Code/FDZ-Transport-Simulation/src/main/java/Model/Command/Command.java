@@ -1,5 +1,9 @@
 package Model.Command;
 
+/**
+ * @author Dzinais Brysiuk
+ * @author Noah Lehmann
+ */
 public abstract class Command {
 
     protected String msgID;
