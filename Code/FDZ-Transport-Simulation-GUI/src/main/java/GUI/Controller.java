@@ -3,6 +3,7 @@ package GUI;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import persistance.ConfigurationPersistor;
+import persistance.StationData;
 
 
 import java.util.ArrayList;
@@ -26,13 +27,7 @@ public class Controller {
 
 	@FXML
 	public void addStation(){
-		StationPane station = new StationPane("new Station", stationsPane, stations);
-		stationsPane.getChildren().add(station);
-
-
-		stations.add(station);
-
-
+		new StationPane(new StationData("new Station"), stationsPane, stations);
 	}
 
 	@FXML

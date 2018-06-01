@@ -1,17 +1,43 @@
 package persistance;
 
 import GUI.StationPane;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.scene.layout.Pane;
 
 
 import javax.json.*;
 import java.io.*;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class ConfigurationPersistor {
-	private static File configurationFile = new File("configuration.txt"); //Todo: test
+	private static File configurationFile = new File("configuration.txt"); //TODO: Veraltert wird nur für die alte Variante benötigt
+	private static Path path = Paths.get("configuration.txt");
 
 	public static void saveConfiguration(ArrayList<StationPane> stations){
+		Gson gson = new Gson();
+		ArrayList<StationData> stationsData = new ArrayList<>();
+		for(StationPane stationPane : stations){
+			stationsData.add(stationPane.getData());
+		}
+
+		String json = gson.toJson(stationsData);
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+				new FileOutputStream(configurationFile), "utf-8"))) {
+			writer.write(json);
+		} catch (IOException e) {
+			e.printStackTrace();//TODO: Exceptionhandling
+		}
+		System.out.println(json);
+	}
+	public static void saveConfigurationOld(ArrayList<StationPane> stations){
 		JsonArrayBuilder configurationObjectBuilder = Json.createArrayBuilder();
 		for(StationPane station: stations){
 
@@ -25,7 +51,7 @@ public class ConfigurationPersistor {
 			for(String reachableStation: station.getReachableStationsByName())
 				reachableStationsArrayBuilder.add(reachableStation);
 
-			stationObjectBuilder.add("reachableStations", reachableStationsArrayBuilder.build());
+			stationObjectBuilder.add("reachableStationsByName", reachableStationsArrayBuilder.build());
 			configurationObjectBuilder.add(stationObjectBuilder.build());
 		}
 
@@ -38,7 +64,33 @@ public class ConfigurationPersistor {
 		}
 	}
 
-	public static void loadConfiguration(Pane rootPane, ArrayList<StationPane> stations){
+	public static void loadConfiguration(Pane rootPane, ArrayList<StationPane> stations) {
+		rootPane.getChildren().clear();
+		stations.clear();
+		StringBuilder json = new StringBuilder();
+		try  {
+			Files.readAllLines(path, StandardCharsets.UTF_8).forEach(line -> json.append(line));
+			System.out.println(json.toString());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		Gson gson = new Gson();
+		Type collectionType = new TypeToken<Collection<StationData>>(){}.getType();
+		ArrayList<StationData> stationsFromJson = gson.fromJson(json.toString(), collectionType);
+
+		for(StationData stationData: stationsFromJson){
+			new StationPane(stationData, rootPane, stations);
+		}
+
+
+
+
+	}
+
+	public static void loadConfigurationOld(Pane rootPane, ArrayList<StationPane> stations){
 		rootPane.getChildren().clear();
 		stations.clear();
 		try (JsonReader jsonReader = Json.createReader(new FileReader("configuration.txt")))
@@ -47,11 +99,11 @@ public class ConfigurationPersistor {
 			jsonReader.close();
 			for(int i = 0; i<jsonArray.size(); ++i){
 				JsonObject jsonObject = jsonArray.getJsonObject(i);
-				StationPane loadedStationPane = new StationPane(jsonObject.getString("name"), rootPane, stations);
+				StationPane loadedStationPane = new StationPane(new StationData(jsonObject.getString("name")), rootPane, stations);
 				loadedStationPane.setShortcut(jsonObject.getString("shortcut"));
 				loadedStationPane.setXCord(jsonObject.getJsonNumber("xCord").doubleValue());
 				loadedStationPane.setYCord(jsonObject.getJsonNumber("yCord").doubleValue());
-				for(JsonValue name: jsonObject.getJsonArray("reachableStations")){
+				for(JsonValue name: jsonObject.getJsonArray("reachableStationsByName")){
 							loadedStationPane.getReachableStationsByName().add(name.toString());
 				}
 

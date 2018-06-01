@@ -1,6 +1,6 @@
 package Model;
 
-/*--NOAH LEHMANN-------------------------------------------------------------*/
+/*@author Noah Lehmann-------------------------------------------------------------*/
 
 import Model.Network.NetworkController;
 
@@ -39,7 +39,7 @@ public class Main {
         String help =
                 "+–––––––––––––––––––––––––––––––––+\n" +
                 "| Type in TestCommand:            |\n" +
-                "| -\"q\" to end Programm            |\n" +
+                "| -\"q\" to end program             |\n" +
                 "| -\"h\" for help                   |\n" +
                 "| -\"p\" to print current State     |\n" +
                 "| -\"FDZ-Command\" to test System   |\n" +
@@ -61,6 +61,9 @@ public class Main {
             if (input.compareTo("p") == 0) {
                 printState(stationList);
                 continue;
+            }
+            if (input.compareTo("d") == 0) {
+                //delete Station
             }
             if (input.contains("STStK004")){
                 System.out.print(
