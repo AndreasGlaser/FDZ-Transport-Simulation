@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 
 
@@ -25,12 +27,16 @@ public class StationController {
 
     @FXML
     private Pane previousStationsPane;
+    @FXML
+    private Polygon controllerConnectionArrow;
 
     public void init(){
         stationNameTextField.setOnKeyReleased(event -> {
             setName(stationNameTextField.getText());
         });
         sledText.getStyleClass().add("yellow");
+
+
     }
 
     @FXML
