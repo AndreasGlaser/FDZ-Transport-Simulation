@@ -1,7 +1,7 @@
 package persistance;
 
 import GUI.CrossingPane;
-import GUI.StationLike;
+import GUI.AbstractStation;
 import GUI.StationPane;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -22,11 +22,11 @@ public class ConfigurationPersistor {
 	private static File configurationFile = new File("configuration.txt"); //TODO: Veraltert wird nur für die alte Variante benötigt
 	private static Path path = Paths.get("configuration.txt");
 
-	public static void saveConfiguration(ArrayList<StationLike> stations){
+	public static void saveConfiguration(ArrayList<AbstractStation> stations){
 		Gson gson = new Gson();
 		ArrayList<StationData> stationsData = new ArrayList<>();
-		for(StationLike stationLike : stations){
-			stationsData.add(stationLike.getData());
+		for(AbstractStation abstractStation : stations){
+			stationsData.add(abstractStation.getData());
 		}
 
 		String json = gson.toJson(stationsData);
@@ -66,7 +66,7 @@ public class ConfigurationPersistor {
 		}
 	}
 
-	public static void loadConfiguration(Pane rootPane, ArrayList<StationLike> stations) {
+	public static void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations) {
 		rootPane.getChildren().clear();
 		stations.clear();
 		StringBuilder json = new StringBuilder();
@@ -98,7 +98,7 @@ public class ConfigurationPersistor {
 
 	}
 
-	public static void loadConfigurationOld(Pane rootPane, ArrayList<StationLike> stations){
+	public static void loadConfigurationOld(Pane rootPane, ArrayList<AbstractStation> stations){
 		rootPane.getChildren().clear();
 		stations.clear();
 		try (JsonReader jsonReader = Json.createReader(new FileReader("configuration.txt")))
@@ -123,8 +123,8 @@ public class ConfigurationPersistor {
 
 
 			}
-			for(StationLike stationLike: stations){
-				stationLike.refreshBelts(rootPane, stations);
+			for(AbstractStation abstractStation : stations){
+				abstractStation.refreshBelts(rootPane, stations);
 			}
 			System.out.println("read from file"+jsonArray);
 		} catch (FileNotFoundException e) {

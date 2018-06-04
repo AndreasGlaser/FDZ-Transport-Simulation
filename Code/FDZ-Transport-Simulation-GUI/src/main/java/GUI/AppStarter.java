@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class AppStarter extends Application {
@@ -19,6 +20,7 @@ public class AppStarter extends Application {
         primaryStage.show();
         primaryStage.setMinWidth(900);
         primaryStage.setMinHeight(700);
+        primaryStage.getIcons().add(new Image("/images/FDZLogo.png"));
 
         //load Configuration on Program start
         Controller controller = ((Controller) loader.getController());

@@ -1,6 +1,5 @@
 package GUI;
 
-import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -11,10 +10,9 @@ import persistance.StationData;
 import persistance.StationType;
 
 import java.util.ArrayList;
-import java.util.Queue;
 
 public class Controller {
-	ArrayList<StationLike> stations = new ArrayList<>();
+	ArrayList<AbstractStation> stations = new ArrayList<>();
 
 
 	@FXML
