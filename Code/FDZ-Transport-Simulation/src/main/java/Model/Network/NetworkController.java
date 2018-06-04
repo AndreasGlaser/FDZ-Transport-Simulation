@@ -114,8 +114,8 @@ public class NetworkController {
      * @param msgID messageID from received Command
      */
     public void acknowledge2 (String msgID){
-        String message = ACK2_HEAD+msgID+ACK2_CNRD_END;
-        clientNetwork.sendMessage(message);
+        //String message = ACK2_HEAD+msgID+ACK2_CNRD_END;
+        //clientNetwork.sendMessage(message);
     }
 
     /**
@@ -125,8 +125,8 @@ public class NetworkController {
      * @param emptyCarriage Carriage ID number
      */
     public void acknowledge2 (String msgID, boolean emptyCarriage){
-        String message = ACK2_HEAD+msgID+ACK2_CNRD_END+EMPTY_ID;
-        clientNetwork.sendMessage(message);
+        //String message = ACK2_HEAD+msgID+ACK2_CNRD_END+EMPTY_ID;
+        //clientNetwork.sendMessage(message);
     }
 
     /**

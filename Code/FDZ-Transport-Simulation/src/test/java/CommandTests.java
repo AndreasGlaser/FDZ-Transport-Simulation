@@ -1,5 +1,5 @@
-import Model.CommandHandler;
 import Model.*;
+import Model.Network.NetworkController;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class CommandTests {
 	@Test
 	public void requestEmptyCarriageTest(){
 		ArrayList<Station> standardStations = newStandardStations();
-		CommandHandler listener = new CommandHandler(standardStations);
+		NetworkController listener = NetworkController.getInstance();
 		listener.testCommand("STStK00100010002ro");
 		Assert.assertEquals(-1,standardStations.get(0).getSledInside());
 	}
@@ -21,7 +21,7 @@ public class CommandTests {
 	public void repositionCarriageTest(){
 		//leeren Schlitten zum Roboter
 		ArrayList<Station> standardStations = newStandardStations();
-		CommandHandler listener = new CommandHandler(standardStations);
+		NetworkController listener =NetworkController.getInstance();
 		listener.testCommand("STStK00100010002ro");
 		Assert.assertEquals(-1,standardStations.get(0).getSledInside());
 
@@ -34,7 +34,7 @@ public class CommandTests {
 	public void releaseCarriageTest(){
 		//leeren Schlitten zum Roboter
 		ArrayList<Station> standardStations = newStandardStations();
-		CommandHandler listener = new CommandHandler(standardStations);
+		NetworkController listener = NetworkController.getInstance();
 		listener.testCommand("STStK00100010002ro");
 		Assert.assertEquals(-1,standardStations.get(0).getSledInside());
 
@@ -50,7 +50,7 @@ public class CommandTests {
 	@Test
 	public void shutdownTest(){
 		ArrayList<Station> standardStations = newStandardStations();
-		CommandHandler listener = new CommandHandler(standardStations);
+		NetworkController listener = NetworkController.getInstance();
 		listener.testCommand("STStK00400010000");
 		//TODO: erkennen ob das System heruntergefahren wurde
 	}

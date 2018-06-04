@@ -69,7 +69,8 @@ public class CommandLineInterface extends Thread{
                             "\t|––––––––––––––––––––––––\n" +
                             "\t|->shortCut  |" + stationList.get(i).getShortCut() + "\n"+
                             "\t|->   id     |" + stationList.get(i).getSledInside() + "\n"+
-                            "\t|->congested |" + stationList.get(i).isCongested());
+                            "\t|->congested |" + stationList.get(i).isCongested()+"\n"+
+                            "\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
             ArrayList<Station> prev = stationList.get(i).getPrevStations();
             for (int j = 0; j < prev.size(); j++) {
                 System.out.print(

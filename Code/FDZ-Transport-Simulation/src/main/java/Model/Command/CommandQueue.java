@@ -1,5 +1,8 @@
 package Model.Command;
 
+import Model.IllegalSetupException;
+
+import java.sql.SQLOutput;
 import java.util.LinkedList;
 
 /**
@@ -24,7 +27,11 @@ public class CommandQueue {
     }
 
     private void dequeue (){
-        commandQueue.pollFirst().execute();
+        try{
+            commandQueue.pollFirst().execute();
+        }catch(IllegalSetupException e){
+            System.err.println("WRONG SETUP!!!\n"+e.getMessage());
+        }
         if (!activatedList.isEmpty()){
             for (int i=0; i<=activatedList.size();i++){
                 if (activatedList.get(i).compareTo(commandQueue.peekFirst().msgID)==0){
@@ -79,12 +86,17 @@ public class CommandQueue {
     }
 
     public void activate (String mesID){
-        if (!commandQueue.isEmpty()){
-            if (top().compareTo(mesID)==0){
-                dequeue();
-            }else {
-                findPos(mesID);
+        try {
+            if (!commandQueue.isEmpty()) {
+                if (top().compareTo(mesID) == 0) {
+                    dequeue();
+                } else {
+                    findPos(mesID);
+                }
             }
+        }catch (NullPointerException e){
+            System.err.println("INFO :: SKIPPED ACTIVATION WALK THROUGH");
+            System.err.println("INFO :: PRE ACTIVATED COMMANDS WAS NULL");
         }
 
     }

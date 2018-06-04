@@ -1,6 +1,8 @@
 package Model.Command;
 
-import Model.Network.NetworkController;
+import Model.IllegalSetupException;
+
+import static Model.Network.NetworkController.getInstance;
 
 /**
  * @author Dzinais Brysiuk
@@ -10,12 +12,12 @@ public abstract class Command {
 
     protected String msgID;
 
-    public abstract void execute();
+    public abstract void execute() throws IllegalSetupException;
 
-    private void commandUnderstood(){
-        NetworkController.getInstance().acknowledge2(msgID);
+    protected void commandExecuted(){
+        getInstance().acknowledge2(msgID);
     }
-    private void error(){
-        NetworkController.getInstance().commandNotExecuted(msgID);
+    protected void error(){
+        getInstance().commandNotExecuted(msgID);
     }
 }

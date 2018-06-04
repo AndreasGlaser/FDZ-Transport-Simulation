@@ -1,5 +1,6 @@
 package Model.Command;
 
+import Model.IllegalSetupException;
 import Model.Station;
 import Model.StationHandler;
 
@@ -20,14 +21,19 @@ public class ReleaseCarriage extends Command {
     /**
      * The Method, which executes the Command RELEASE_CARRIAGE
      */
-    //@Override
-    public void execute(){
-        ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
-        System.out.println("\t log: releasing carriage with id " + id);
-        if(this.findIDinPos(id) != NOT_FOUND){
-            stationList.get(findIDinPos(id)).driveOutSled(id);
-        } else{
-            /*TODO ID ist in keiner Station oder im Stau einer Station*/
+    @Override
+    public void execute() throws IllegalSetupException {
+        try {
+            ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
+            System.out.println("\t log: releasing carriage with id " + id);
+            if (this.findIDinPos(id) != NOT_FOUND) {
+                stationList.get(findIDinPos(id)).driveOutSled(id);
+            } else {
+                /*TODO ID ist in keiner Station oder im Stau einer Station*/
+            }
+            super.commandExecuted();
+        }catch(IndexOutOfBoundsException e){
+            throw new IllegalSetupException("No Stations in Setup");
         }
     }
 
