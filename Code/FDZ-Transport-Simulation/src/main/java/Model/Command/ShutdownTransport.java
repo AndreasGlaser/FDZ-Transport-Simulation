@@ -11,9 +11,10 @@ public class ShutdownTransport extends Command {
     /**
      * The Method, which executes the Command SHUTDOWN_TRANSPORT
      */
-    //@Override
+    @Override
     public void execute(){
         System.out.println("\t log: shutting down");
         /*TODO*/
+        super.commandExecuted();
     }
 }

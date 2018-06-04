@@ -1,5 +1,7 @@
 package Model.Command;
 
+import Model.CongestionException;
+import Model.IllegalSetupException;
 import Model.Station;
 import Model.StationHandler;
 
@@ -20,34 +22,36 @@ public class RepositionCarriage extends Command {
     }
 
     //@Override
-    public void execute(){
+    public void execute() throws IllegalSetupException {
         ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
         int idx = findIDinPos(id);
         if(idx != NOT_FOUND) {
-            Station blocking = firstStationInWay(
-                    /*from*/stationList.get(idx),
-                    /*to*/stationList.get(findPosInList(position)));
-
-            if (blocking == null) {
+            try {
+                Station from = stationList.get(findIDinPos(id));
+                Station to = stationList.get(findPosInList(position));
+                new PathFinder(from, to);
                 /*No Congestion from source to destination*/
-                stationList.get(findIDinPos(id)).driveOutSled(id);
-                stationList.get(findPosInList(position)).driveInSled(id);
+                from.driveOutSled(id);
+                to.driveInSled(id);
                 System.out.println("\t log: reposition carriage " + id + " to "
                         + position);
-            } else {
-                System.out.println(blocking.getName() + " is blocking");
+            }catch(CongestionException e) {
+                System.out.println(e.getBlockingStation().getName() + " is blocking");
                 /*Congestion from source to destination, carriage must wait*/
                 /*first blocked station -> blocking*/
                 /*TODO Stau auf weg zu neuer station*/
                 System.out.println("\t log: CONGESTION DETECTED\n" +
                         "\t      COULD NOT REPOSITION\n" +
                         "\t      [" + id + "] TO [" + position + "]");
+            }catch (IndexOutOfBoundsException e){
+                throw new IllegalSetupException("No Stations in Setup");
             }
         }else{
             System.out.println("\t log: ID not found\n" +
                     "\t      COULD NOT REPOSITION\n" +
                     "\t      [" + id + "] TO [" + position + "]");
         }
+        super.commandExecuted();
     }
 
     /**
@@ -100,38 +104,4 @@ public class RepositionCarriage extends Command {
         }
         return idx;
     }
-
-    /**
-     * searches the path between two stations. Returns the first station
-     * closest to "from", where a congestion is detected. If no Station
-     * blocks, it returns null
-     * @param from
-     * @param to
-     * @return blockingStation
-     */
-    private Station firstStationInWay(Station from, Station to){
-        /*--END RECURSIVE FUNCTION--*/
-        if(to == from || to.getPrevStations().size() == 0) {
-            return null;
-        }
-        /*RECURSIVE CALL*/
-        Station prev = firstStationInWay(from, to.getPrevStations().get(0));
-        /*TODO BACKTRACKING THE RIGHT way from-to if multiple prev-stations*/
-        /*WAS PREV-STATION OCCUPIED?*/
-        if(prev == null){ /*NO*/
-            if(to.isOccupied()) {
-                /*AM I OCCUPIED?*/
-                return to; //yes return me
-            }else{
-                return null;//no, no prev Station or me is occupied
-            }
-        }else{           /*YES, PREV-STATION isOccupied*/
-            return prev;
-            /*
-             *i don't care if i am occupied, prev station is
-             *causing trouble already, return prev-station
-             */
-        }
-    }
-
 }
