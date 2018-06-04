@@ -1,5 +1,7 @@
 package persistance;
 
+import GUI.CrossingPane;
+import GUI.StationLike;
 import GUI.StationPane;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -20,11 +22,11 @@ public class ConfigurationPersistor {
 	private static File configurationFile = new File("configuration.txt"); //TODO: Veraltert wird nur für die alte Variante benötigt
 	private static Path path = Paths.get("configuration.txt");
 
-	public static void saveConfiguration(ArrayList<StationPane> stations){
+	public static void saveConfiguration(ArrayList<StationLike> stations){
 		Gson gson = new Gson();
 		ArrayList<StationData> stationsData = new ArrayList<>();
-		for(StationPane stationPane : stations){
-			stationsData.add(stationPane.getData());
+		for(StationLike stationLike : stations){
+			stationsData.add(stationLike.getData());
 		}
 
 		String json = gson.toJson(stationsData);
@@ -48,7 +50,7 @@ public class ConfigurationPersistor {
 				.add("yCord", station.getYCord());
 
 			JsonArrayBuilder reachableStationsArrayBuilder = Json.createArrayBuilder();
-			for(String reachableStation: station.getReachableStationsByName())
+			for(String reachableStation: station.getPreviousStationsByName())
 				reachableStationsArrayBuilder.add(reachableStation);
 
 			stationObjectBuilder.add("reachableStationsByName", reachableStationsArrayBuilder.build());
@@ -64,7 +66,7 @@ public class ConfigurationPersistor {
 		}
 	}
 
-	public static void loadConfiguration(Pane rootPane, ArrayList<StationPane> stations) {
+	public static void loadConfiguration(Pane rootPane, ArrayList<StationLike> stations) {
 		rootPane.getChildren().clear();
 		stations.clear();
 		StringBuilder json = new StringBuilder();
@@ -73,8 +75,10 @@ public class ConfigurationPersistor {
 			System.out.println(json.toString());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+			return;
 		} catch (IOException e) {
 			e.printStackTrace();
+			return;
 		}
 
 		Gson gson = new Gson();
@@ -82,7 +86,11 @@ public class ConfigurationPersistor {
 		ArrayList<StationData> stationsFromJson = gson.fromJson(json.toString(), collectionType);
 
 		for(StationData stationData: stationsFromJson){
-			new StationPane(stationData, rootPane, stations);
+			if(stationData.getstationType().equals(StationType.STATION)){
+				new StationPane(stationData, rootPane, stations);
+			}else if(stationData.getstationType().equals(StationType.CROSSING)){
+				new CrossingPane(stationData, rootPane,stations);
+			}
 		}
 
 
@@ -90,7 +98,7 @@ public class ConfigurationPersistor {
 
 	}
 
-	public static void loadConfigurationOld(Pane rootPane, ArrayList<StationPane> stations){
+	public static void loadConfigurationOld(Pane rootPane, ArrayList<StationLike> stations){
 		rootPane.getChildren().clear();
 		stations.clear();
 		try (JsonReader jsonReader = Json.createReader(new FileReader("configuration.txt")))
@@ -99,12 +107,12 @@ public class ConfigurationPersistor {
 			jsonReader.close();
 			for(int i = 0; i<jsonArray.size(); ++i){
 				JsonObject jsonObject = jsonArray.getJsonObject(i);
-				StationPane loadedStationPane = new StationPane(new StationData(jsonObject.getString("name")), rootPane, stations);
+				StationPane loadedStationPane = new StationPane(new StationData(jsonObject.getString("name"), StationType.STATION), rootPane, stations);
 				loadedStationPane.setShortcut(jsonObject.getString("shortcut"));
 				loadedStationPane.setXCord(jsonObject.getJsonNumber("xCord").doubleValue());
 				loadedStationPane.setYCord(jsonObject.getJsonNumber("yCord").doubleValue());
 				for(JsonValue name: jsonObject.getJsonArray("reachableStationsByName")){
-							loadedStationPane.getReachableStationsByName().add(name.toString());
+							loadedStationPane.getPreviousStationsByName().add(name.toString());
 				}
 
 				stations.add(loadedStationPane);
@@ -115,8 +123,8 @@ public class ConfigurationPersistor {
 
 
 			}
-			for(StationPane station: stations){
-				station.refreshBelts(rootPane, stations);
+			for(StationLike stationLike: stations){
+				stationLike.refreshBelts(rootPane, stations);
 			}
 			System.out.println("read from file"+jsonArray);
 		} catch (FileNotFoundException e) {

@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+import persistance.StationData;
 
 
 public class StationController {
@@ -31,15 +32,12 @@ public class StationController {
     private Polygon controllerConnectionArrow;
 
 
-    public void init(){
+    public void init(StationData data){
         stationNameTextField.setOnKeyReleased(event -> {
             setName(stationNameTextField.getText());
+            data.setName(stationNameTextField.getText());
         });
         sledText.getStyleClass().add("yellow");
-
-
-
-
     }
 
     @FXML

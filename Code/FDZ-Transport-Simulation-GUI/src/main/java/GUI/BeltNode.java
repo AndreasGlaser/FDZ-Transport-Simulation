@@ -10,7 +10,7 @@ import javafx.scene.transform.Rotate;
 
 public class BeltNode extends Pane {
 
-	public BeltNode(StationPane fromStation, StationPane toStation){
+	public BeltNode(StationLike fromStation, StationLike toStation){
 		Double fromXOffset = 120.;
 		Double fromYOffset = 70.;
 		Double toXOffset = 120.;

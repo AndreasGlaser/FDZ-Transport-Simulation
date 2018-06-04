@@ -5,8 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="104.0" prefWidth="257.0" styleClass="stationPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CrossingController">
    <children>
       <GridPane prefHeight="106.0" prefWidth="257.0">
         <columnConstraints>
@@ -21,7 +20,7 @@
          <children>
             <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="133.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                  <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Crossing">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -30,21 +29,24 @@
             </VBox>
          </children>
       </GridPane>
-      <Button fx:id="stationOptionsButton" mnemonicParsing="false" onAction="#openStationOptions" text="Options" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0" />
-      <VBox layoutX="43.0" layoutY="-56.0" prefHeight="323.0" prefWidth="172.0">
+      <Button fx:id="stationOptionsButton" mnemonicParsing="false" onAction="#openCloseOptions" styleClass="optionButton" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0" />
+      <VBox fx:id="crossingOptions" layoutX="43.0" layoutY="-56.0" prefHeight="323.0" prefWidth="172.0" styleClass="stationOptions" visible="false">
          <children>
             <AnchorPane prefHeight="37.0" prefWidth="172.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Button mnemonicParsing="false" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button mnemonicParsing="false" onAction="#closeOptions" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Crossing Name:" />
-            <TextField fx:id="stationNameTextfield" />
+            <TextField fx:id="crossingNameTextField" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Previous Stations:" />
-            <ScrollPane fx:id="previousStationsPane" prefHeight="200.0" prefWidth="200.0">
+            <ScrollPane prefHeight="200.0" prefWidth="200.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <VBox fx:id="previousStationsPane" prefHeight="200.0" prefWidth="100.0" />
+                     </children></AnchorPane>
               </content>
             </ScrollPane>
          </children>

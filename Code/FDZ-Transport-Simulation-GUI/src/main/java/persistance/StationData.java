@@ -1,5 +1,6 @@
 package persistance;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class StationData {
@@ -8,9 +9,11 @@ public class StationData {
 	private Double xCord = 0.;
 	private Double yCord = 0.;
 	private ArrayList<String> reachableStationsByName = new ArrayList<>();
+	private StationType stationType;
 
-	public StationData(String name){
-		this.name = name;
+	public StationData(String name, StationType type){
+		setName(name);
+		setstationType(type);
 	}
 
 	public String getName(){
@@ -33,5 +36,8 @@ public class StationData {
 	public Double getYCord(){
 		return yCord;
 	}
-	public ArrayList<String> getReachableStationsByName(){return reachableStationsByName;}
+	public ArrayList<String> getPreviousStationsByName(){return reachableStationsByName;}
+
+	public void setstationType(StationType type){ this.stationType = type;}
+	public StationType getstationType(){return stationType;}
 }

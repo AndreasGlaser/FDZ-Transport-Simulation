@@ -1,5 +1,6 @@
 package GUI;
 
+import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -7,10 +8,13 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import persistance.ConfigurationPersistor;
 import persistance.StationData;
+import persistance.StationType;
+
 import java.util.ArrayList;
+import java.util.Queue;
 
 public class Controller {
-	ArrayList<StationPane> stations = new ArrayList<>();
+	ArrayList<StationLike> stations = new ArrayList<>();
 
 
 	@FXML
@@ -75,7 +79,21 @@ public class Controller {
 
 	@FXML
 	public void addStation(){
-		new StationPane(new StationData("new Station"), stationsPane, stations);
+		new StationPane(new StationData("new Station", StationType.STATION), stationsPane, stations);
+	}
+
+	@FXML
+	public void deleteStaion(){
+		//TODO: implement
+	}
+
+	@FXML
+	public void addCrossing(){
+		new CrossingPane(new StationData("Crossing",StationType.CROSSING), stationsPane, stations);
+	}
+	@FXML
+	public void deleteCrossing(){
+		//TODO: implement
 	}
 
 	@FXML

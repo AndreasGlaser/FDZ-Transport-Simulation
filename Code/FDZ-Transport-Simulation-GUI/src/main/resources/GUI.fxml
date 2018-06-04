@@ -129,6 +129,7 @@
                   <VBox fx:id="optionMenu" layoutX="398.0" spacing="10.0" styleClass="optionMenu" visible="false" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="65.0">
                      <children>
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#addStation" text="new Station" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#addCrossing" text="new Crossing" />
                         <CheckBox mnemonicParsing="false" selected="true" text="Realtime-Simulation" />
                         <Button mnemonicParsing="false" onAction="#saveConfiguration" text="save Configuration" />
                         <Button mnemonicParsing="false" onAction="#loadConfiguration" text="load Configuration" />
