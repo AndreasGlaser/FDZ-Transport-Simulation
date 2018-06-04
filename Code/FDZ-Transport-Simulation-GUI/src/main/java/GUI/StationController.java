@@ -30,11 +30,14 @@ public class StationController {
     @FXML
     private Polygon controllerConnectionArrow;
 
+
     public void init(){
         stationNameTextField.setOnKeyReleased(event -> {
             setName(stationNameTextField.getText());
         });
         sledText.getStyleClass().add("yellow");
+
+
 
 
     }
