@@ -48,6 +48,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Station Name:" />
             <TextField fx:id="stationNameTextField" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Previous Station:" />
+            <Button mnemonicParsing="false" onAction="#deleteStation" text="Delete" />
             <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">

@@ -36,6 +36,10 @@ public class CrossingController {
 			crossingNameTextField.setText(nameText.getText());
 		}
 	}
+	@FXML
+	public void deleteCrossing(){
+		//TODO: implement
+	}
 
 	@FXML
 	private void closeOptions(){

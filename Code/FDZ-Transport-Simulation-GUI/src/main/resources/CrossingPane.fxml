@@ -40,6 +40,7 @@
             </AnchorPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Crossing Name:" />
             <TextField fx:id="crossingNameTextField" />
+            <Button mnemonicParsing="false" onAction="#deleteCrossing" text="Delete" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Previous Stations:" />
             <ScrollPane prefHeight="200.0" prefWidth="200.0">
               <content>

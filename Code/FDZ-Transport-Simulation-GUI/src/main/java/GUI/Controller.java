@@ -81,19 +81,13 @@ public class Controller {
 		new StationPane(new StationData("new Station", StationType.STATION), stationsPane, stations);
 	}
 
-	@FXML
-	public void deleteStaion(){
-		//TODO: implement
-	}
+
 
 	@FXML
 	public void addCrossing(){
 		new CrossingPane(new StationData("Crossing",StationType.CROSSING), stationsPane, stations);
 	}
-	@FXML
-	public void deleteCrossing(){
-		//TODO: implement
-	}
+
 
 	@FXML
 	public void saveConfiguration(){

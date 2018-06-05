@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 import persistance.StationData;
 
 
-public class StationController {
+public class StationController{
 
 
 
@@ -31,6 +31,9 @@ public class StationController {
     @FXML
     private Polygon controllerConnectionArrow;
 
+    public StationController(){
+        System.out.println("test");
+    }
 
     public void init(StationData data){
         stationNameTextField.setOnKeyReleased(event -> {
@@ -47,6 +50,11 @@ public class StationController {
             stationOptionsPane.setVisible(true);
             stationNameTextField.setText(nameText.getText());
         }
+    }
+
+    @FXML
+    public void deleteStation(){
+        //TODO: implement
     }
 
     @FXML
