@@ -1,5 +1,6 @@
-package GUI;
+package Controller;
 
+import View.AbstractStation;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
@@ -7,12 +8,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
-import persistance.StationData;
+import Persistance.StationData;
 
 import java.util.ArrayList;
 
 
-public class StationController extends AbstractStation{
+public class StationController extends AbstractStation {
 
     private Pane parent;
     private ArrayList<AbstractStation> stations;

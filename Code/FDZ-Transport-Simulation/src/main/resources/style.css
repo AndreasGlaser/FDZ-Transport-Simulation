@@ -1,0 +1,69 @@
+.root {
+	-fx-font: 20 "Times New Roman";
+}
+
+.button{
+
+
+}
+.optionButton{
+	-fx-background-image: url("images/optionsCog.png");
+	-fx-background-position: center;
+	-fx-background-size: stretch;
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+	-fx-pref-width: 50;
+	-fx-pref-height: 50;
+}
+
+.optionMenu{
+	-fx-border-color: black;
+	-fx-background-color: #e9e9e9;
+}
+
+.stationOptionButton{
+	-fx-background-image: url("images/optionsCog.png");
+	-fx-background-position: center;
+	-fx-background-size: 30px, 30px;
+	-fx-background-repeat: no-repeat;
+	-fx-background-color: transparent;
+
+}
+
+.stationPane{
+	-fx-background-color: #A9C3DD;
+	-fx-border-color: #909090;
+	-fx-border-radius: 10;
+	-fx-border-width: 2;
+	-fx-background-radius: 10;
+}
+
+.stationOptions{
+	-fx-background-color: #EBEBEB;
+	-fx-border-color: #A9C3DD;
+	-fx-border-width: 2;
+}
+
+.red{
+	-fx-background-color: #FF2929;
+}
+
+.yellow{
+	-fx-background-color: #D5E700;
+}
+
+.green{
+	-fx-background-color: #29FF59;
+}
+
+.connectionPane{
+	-fx-background-color: #EBEBEB;
+	-fx-border-color: #A9C3DD;
+	-fx-border-width: 2;
+}
+
+.loggingPane{
+	-fx-background-color: #EBEBEB;
+	-fx-border-color: #A9C3DD;
+	-fx-border-width: 2;
+}

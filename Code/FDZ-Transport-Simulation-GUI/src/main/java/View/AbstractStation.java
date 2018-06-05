@@ -1,8 +1,8 @@
-package GUI;
+package View;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.layout.Pane;
-import persistance.StationData;
+import Persistance.StationData;
 
 import java.util.ArrayList;
 

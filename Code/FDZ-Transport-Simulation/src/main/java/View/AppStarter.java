@@ -1,5 +1,6 @@
-package GUI;
+package View;
 
+import Controller.Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -26,6 +27,7 @@ public class AppStarter extends Application {
         Controller controller = ((Controller) loader.getController());
         controller.loadConfiguration();
         controller.init();
+
     }
 
 

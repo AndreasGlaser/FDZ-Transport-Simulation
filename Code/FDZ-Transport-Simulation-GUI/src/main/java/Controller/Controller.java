@@ -1,5 +1,6 @@
-package GUI;
+package Controller;
 
+import View.AbstractStation;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,9 +8,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import persistance.ConfigurationPersistor;
-import persistance.StationData;
-import persistance.StationType;
+import Persistance.ConfigurationPersistor;
+import Persistance.StationData;
+import Persistance.StationType;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -113,7 +114,8 @@ public class Controller {
 		ConfigurationPersistor.saveConfiguration(stations);
 	}
 
-	@FXML void loadConfiguration(){
+	@FXML
+	public void loadConfiguration(){
 		ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
 		configurationPersistor.loadConfiguration(stationsPane, stations);
 	}

@@ -1,15 +1,16 @@
-package GUI;
+package Controller;
 
+import View.AbstractStation;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
-import persistance.StationData;
+import Persistance.StationData;
 
 import java.util.ArrayList;
 
-public class CrossingController extends AbstractStation{
+public class CrossingController extends AbstractStation {
 
 	private Pane parent;
 	private ArrayList<AbstractStation> stations;

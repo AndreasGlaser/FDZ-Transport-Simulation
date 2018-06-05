@@ -1,4 +1,4 @@
-package GUI;
+package View;
 
 import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
