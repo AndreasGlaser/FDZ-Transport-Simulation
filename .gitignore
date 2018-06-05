@@ -27,3 +27,7 @@ Code/FDZ-Transport-Simulation-GUI/out/
 Code/FDZ-Transport-Simulation-GUI/.gradle/
 Code/FDZ-Transport-Simulation-GUI/build/
 Dokumente/.~lock.Pflichtenheft2.0.odt#
+
+Code/network/out/
+Code/network/.idea
+Code/network/network.iml
