@@ -5,7 +5,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="257.0" styleClass="stationPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StationController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="146.0" prefWidth="257.0" styleClass="stationPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StationController">
    <children>
       <GridPane prefHeight="106.0" prefWidth="257.0">
         <columnConstraints>
@@ -26,10 +26,10 @@
                      </font>
                   </Text>
                   <Text fx:id="sledText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="yellow" text="Empty" />
-                  <MenuButton fx:id="congestionMenu" mnemonicParsing="false" text="MenuButton">
+                  <MenuButton fx:id="congestionMenu" mnemonicParsing="false" text="Congestion">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                        <MenuItem mnemonicParsing="false" text="Sled 23" />
+                        <MenuItem mnemonicParsing="false" text="Sled 25" />
                      </items>
                   </MenuButton>
                </children>
@@ -48,6 +48,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Station Name:" />
             <TextField fx:id="stationNameTextField" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Previous Station:" />
+            <Button mnemonicParsing="false" onAction="#deleteStation" text="Delete" />
             <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">

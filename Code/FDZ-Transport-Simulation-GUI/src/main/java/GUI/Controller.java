@@ -1,6 +1,8 @@
 package GUI;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -9,6 +11,7 @@ import persistance.ConfigurationPersistor;
 import persistance.StationData;
 import persistance.StationType;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Controller {
@@ -32,9 +35,9 @@ public class Controller {
 	private Pane statusPane;
 
 	public void init(){
-		controllerImageView.fitWidthProperty().bind(controllerGridPane.widthProperty());
+		controllerImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		controllerImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
-		simulatorImageView.fitWidthProperty().bind(controllerGridPane.widthProperty());
+		simulatorImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		simulatorImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
 
 		String mesID1 = "0000000001";
@@ -77,22 +80,33 @@ public class Controller {
 
 	@FXML
 	public void addStation(){
-		new StationPane(new StationData("new Station", StationType.STATION), stationsPane, stations);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/StationPane.fxml"));
+		try {
+			loader.setControllerFactory(c ->{
+				return new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations);
+			});
+			loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();//TODO: exceptionhandling
+		}
+
 	}
 
-	@FXML
-	public void deleteStaion(){
-		//TODO: implement
-	}
+
 
 	@FXML
 	public void addCrossing(){
-		new CrossingPane(new StationData("Crossing",StationType.CROSSING), stationsPane, stations);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
+		try {
+			loader.setControllerFactory(c ->{
+				return new CrossingController(new StationData("new Station", StationType.CROSSING),stationsPane,stations);
+			});
+			loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();//TODO: exceptionhandling
+		}
 	}
-	@FXML
-	public void deleteCrossing(){
-		//TODO: implement
-	}
+
 
 	@FXML
 	public void saveConfiguration(){
@@ -100,7 +114,8 @@ public class Controller {
 	}
 
 	@FXML void loadConfiguration(){
-		ConfigurationPersistor.loadConfiguration(stationsPane, stations);
+		ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
+		configurationPersistor.loadConfiguration(stationsPane, stations);
 	}
 
 }

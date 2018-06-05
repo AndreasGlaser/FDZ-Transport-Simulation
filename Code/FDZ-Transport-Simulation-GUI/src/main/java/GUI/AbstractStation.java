@@ -11,12 +11,11 @@ public abstract class AbstractStation {
 	protected Pane viewPane;
 
 	//helper Variables
-	protected ArrayList<BeltNode> outgoingBelts = new ArrayList<>();
+	protected ArrayList<BeltNode> incomingBelts = new ArrayList<>();
 	protected Double dragXTrans = .0;
 	protected Double dragYTrans = .0;
 	protected Double sceneX = .0;
 	protected Double sceneY = .0;
-
 
 
 	/**
@@ -25,12 +24,12 @@ public abstract class AbstractStation {
 	 * @param stations the List of stations available in the system
 	 */
 	public void refreshBelts(Pane parent, ArrayList<AbstractStation> stations) {
-		parent.getChildren().removeAll(outgoingBelts);
-		outgoingBelts.clear();
+		parent.getChildren().removeAll(incomingBelts);
+		incomingBelts.clear();
 		for(AbstractStation i: stations){
 			if(data.getPreviousStationsByName().contains(i.getName())){
-				BeltNode belt = new BeltNode(this, i);
-				outgoingBelts.add(belt);
+				BeltNode belt = new BeltNode(i, this);
+				incomingBelts.add(belt);
 				parent.getChildren().add(belt);
 				belt.toBack();
 			}
