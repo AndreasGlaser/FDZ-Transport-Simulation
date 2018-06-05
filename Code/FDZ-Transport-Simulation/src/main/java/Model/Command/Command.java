@@ -1,6 +1,6 @@
 package Model.Command;
 
-import Model.IllegalSetupException;
+import Model.Exception.IllegalSetupException;
 
 import static Model.Network.NetworkController.getInstance;
 

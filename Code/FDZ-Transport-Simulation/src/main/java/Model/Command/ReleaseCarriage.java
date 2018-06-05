@@ -1,8 +1,8 @@
 package Model.Command;
 
-import Model.IllegalSetupException;
-import Model.Station;
-import Model.StationHandler;
+import Model.Exception.IllegalSetupException;
+import Model.Station.Station;
+import Model.Station.StationHandler;
 
 import java.util.ArrayList;
 

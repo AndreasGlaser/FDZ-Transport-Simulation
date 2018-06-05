@@ -1,4 +1,6 @@
-package Model;
+package Model.Exception;
+
+import Model.Station.Station;
 
 public class CongestionException extends Exception {
 

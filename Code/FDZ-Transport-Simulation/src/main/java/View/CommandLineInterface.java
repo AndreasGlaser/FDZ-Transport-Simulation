@@ -1,7 +1,7 @@
 package View;
 
 import Controller.CLIController;
-import Model.Station;
+import Model.Station.Station;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,8 +1,7 @@
 package Model.Command;
 
-import Model.IllegalSetupException;
+import Model.Exception.IllegalSetupException;
 
-import java.sql.SQLOutput;
 import java.util.LinkedList;
 
 /**

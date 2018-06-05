@@ -1,8 +1,8 @@
 package Model.Command;
 
-import Model.CongestionException;
-import Model.IllegalSetupException;
-import Model.Station;
+import Model.Exception.CongestionException;
+import Model.Exception.IllegalSetupException;
+import Model.Station.Station;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -1,4 +1,4 @@
-package Model;
+package Model.Exception;
 
 public class IllegalCommandException extends Exception{
 

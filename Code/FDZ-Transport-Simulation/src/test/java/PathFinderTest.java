@@ -1,9 +1,9 @@
 import Model.Command.PathFinder;
-import Model.CongestionException;
-import Model.IllegalSetupException;
+import Model.Exception.CongestionException;
+import Model.Exception.IllegalSetupException;
 import Model.Network.NetworkController;
-import Model.Station;
-import Model.StationHandler;
+import Model.Station.Station;
+import Model.Station.StationHandler;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

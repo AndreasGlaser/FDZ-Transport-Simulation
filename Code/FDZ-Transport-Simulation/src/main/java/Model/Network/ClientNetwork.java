@@ -4,7 +4,7 @@ package Model.Network;
  * @author Dzianis Brysiuk
  */
 
-import Model.CommandInterpreter;
+import Model.Command.CommandInterpreter;
 
 import java.net.InetAddress;
 

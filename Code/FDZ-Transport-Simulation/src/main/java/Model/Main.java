@@ -1,12 +1,12 @@
 package Model;
 
 
-import Model.Network.MainClient;
 import Model.Network.NetworkController;
+import Model.Station.Station;
+import Model.Station.StationHandler;
 import View.CommandLineInterface;
 
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**@author Noah Lehmann*/

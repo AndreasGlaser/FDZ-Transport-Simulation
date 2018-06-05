@@ -1,9 +1,12 @@
-package Model;
+package Model.Command;
 
 /**@author Noah Lehmann*/
 
 import Model.Command.*;
+import Model.Exception.IllegalCommandException;
 import Model.Network.NetworkController;
+import Model.Station.Station;
+import Model.Station.StationHandler;
 
 import java.util.ArrayList;
 

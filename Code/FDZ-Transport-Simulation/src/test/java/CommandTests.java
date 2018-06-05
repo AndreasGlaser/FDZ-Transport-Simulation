@@ -1,5 +1,5 @@
-import Model.*;
 import Model.Network.NetworkController;
+import Model.Station.Station;
 import org.junit.Assert;
 import org.junit.Test;
 

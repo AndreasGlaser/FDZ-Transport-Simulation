@@ -1,6 +1,6 @@
 package Model.Network;
 
-import Model.Station;
+import Model.Station.Station;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;

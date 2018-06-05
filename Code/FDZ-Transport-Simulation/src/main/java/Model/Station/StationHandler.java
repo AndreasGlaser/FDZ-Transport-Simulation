@@ -1,4 +1,4 @@
-package Model;
+package Model.Station;
 
 /**@author Noah Lehmann*/
 

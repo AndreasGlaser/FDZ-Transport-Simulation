@@ -4,14 +4,10 @@ package Model.Network;
  * @author Dzianis Brysiuk
  */
 
-import Model.CommandInterpreter;
-import Model.CommandInterpreter;
-import Model.IllegalCommandException;
-import Model.Station;
+import Model.Command.CommandInterpreter;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 
 
 public class NetworkController {
