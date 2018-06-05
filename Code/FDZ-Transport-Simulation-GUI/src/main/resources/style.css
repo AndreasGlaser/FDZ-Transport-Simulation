@@ -55,3 +55,15 @@
 .green{
 	-fx-background-color: #29FF59;
 }
+
+.connectionPane{
+	-fx-background-color: #EBEBEB;
+	-fx-border-color: #A9C3DD;
+	-fx-border-width: 2;
+}
+
+.loggingPane{
+	-fx-background-color: #EBEBEB;
+	-fx-border-color: #A9C3DD;
+	-fx-border-width: 2;
+}

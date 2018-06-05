@@ -1,5 +1,6 @@
 package GUI;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -32,9 +33,9 @@ public class Controller {
 	private Pane statusPane;
 
 	public void init(){
-		controllerImageView.fitWidthProperty().bind(controllerGridPane.widthProperty());
+		controllerImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		controllerImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
-		simulatorImageView.fitWidthProperty().bind(controllerGridPane.widthProperty());
+		simulatorImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		simulatorImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
 
 		String mesID1 = "0000000001";
