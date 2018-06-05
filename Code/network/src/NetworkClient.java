@@ -12,7 +12,7 @@ import javax.swing.event.ChangeListener;
 
 public class NetworkClient implements Runnable, Applicationconstants{
 
-   // private FSMessageParser mParser; // current instance of class "FSMessageParser"
+    // private FSMessageParser mParser; // current instance of class "FSMessageParser"
 
     private FDZClientSocket client; // current instance of class "FDZClientSocket"
 
@@ -112,7 +112,7 @@ public class NetworkClient implements Runnable, Applicationconstants{
 
             try {
 
-               // this.mParser.sendToHistory(OUT_TRY);
+                // this.mParser.sendToHistory(OUT_TRY);
 
                 this.client.openConnection();
 
@@ -138,7 +138,7 @@ public class NetworkClient implements Runnable, Applicationconstants{
                 incomming = this.client.receive();
                 System.out.println(incomming);
 
-               // this.mParser.messageRecieved(incomming);
+                // this.mParser.messageRecieved(incomming);
 
             } catch (FDZNetworkException e) {
 
@@ -182,6 +182,5 @@ public class NetworkClient implements Runnable, Applicationconstants{
  * <dt>Title:</dt><dd>StateTracer</dd> <dt>Description:</dt> <dd>The class checks if the connection state has been changed.</dd>
 
  */
-
 
 

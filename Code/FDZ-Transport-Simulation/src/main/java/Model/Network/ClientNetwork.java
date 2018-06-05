@@ -20,8 +20,6 @@ public class ClientNetwork {
     private boolean isRunning = false;
     private String messageOutgoing;
 
-    private CommandInterpreter commandInterpreter;
-
     /**
      * Thread is waiting for Command from connected Adapter and send receiving message to CommandInterpreter
      */
@@ -60,6 +58,11 @@ public class ClientNetwork {
                 this.client.openConnection();
             }catch (FDZNetworkException e){
                 e.printStackTrace();
+                try {
+                    this.client.closeSocket();
+                } catch (FDZNetworkException e1) {
+                    e1.printStackTrace();
+                }
             }
 
         }while (!client.isConnected() && isRunning);
@@ -75,7 +78,7 @@ public class ClientNetwork {
                      try {
                          System.out.println("1");
                          messageIncomming = client.receiveMessage();
-                         commandInterpreter = new CommandInterpreter(messageIncomming);
+                         new CommandInterpreter(messageIncomming).run();
 
                          System.out.println("3");
                      } catch (FDZNetworkException e) {

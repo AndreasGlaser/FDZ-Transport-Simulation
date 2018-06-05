@@ -127,7 +127,7 @@ public class CommandQueue {
                 }
             }
         }catch (NullPointerException e){
-            System.err.println("INFO :: SKIPPED ACTIVATION WALK THROUGH");
+            System.err.println("COMMAND NOT IN QUEUE, NULLPOINTER");
             System.err.println("INFO :: PRE ACTIVATED COMMANDS WAS NULL");
         }
 
