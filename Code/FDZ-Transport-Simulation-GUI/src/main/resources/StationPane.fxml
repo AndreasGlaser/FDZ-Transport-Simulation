@@ -26,10 +26,10 @@
                      </font>
                   </Text>
                   <Text fx:id="sledText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="yellow" text="Empty" />
-                  <MenuButton fx:id="congestionMenu" mnemonicParsing="false" text="MenuButton">
+                  <MenuButton fx:id="congestionMenu" mnemonicParsing="false" text="Congestion">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                        <MenuItem mnemonicParsing="false" text="Sled 23" />
+                        <MenuItem mnemonicParsing="false" text="Sled 25" />
                      </items>
                   </MenuButton>
                </children>

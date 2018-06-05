@@ -1,17 +1,13 @@
 package GUI;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import persistance.StationData;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -99,6 +95,9 @@ public class StationController extends AbstractStation{
     @FXML
     public void deleteStation(){
         //TODO: implement
+        parent.getChildren().remove(viewPane);
+        stations.remove(this);
+        parent.getChildren().removeAll(incomingBelts);
     }
 
     @FXML

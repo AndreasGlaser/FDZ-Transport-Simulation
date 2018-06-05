@@ -85,6 +85,10 @@ public class ConfigurationPersistor {
 			}
 		}
 
+		for (AbstractStation station: stations) {
+			station.refreshBelts(rootPane, stations);
+		}
+
 
 
 
