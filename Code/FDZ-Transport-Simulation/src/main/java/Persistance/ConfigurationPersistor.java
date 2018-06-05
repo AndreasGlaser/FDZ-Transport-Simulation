@@ -18,27 +18,39 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class ConfigurationPersistor {
-	private static File configurationFile = new File("configuration.txt"); //TODO: Veraltert wird nur für die alte Variante benötigt
-	private static Path path = Paths.get("configuration.txt");
+	private static Path stationsFile = Paths.get("configuration/stations.txt");
+	private static Path ipFile = Paths.get("configuration/ip.txt");
 
-	public static void saveConfiguration(ArrayList<AbstractStation> stations){
+	public static void saveConfiguration(ArrayList<AbstractStation> stations, IPAddress ipAddress){
 		String json = toJSON(stations);
+		String ipJson = toJSON(ipAddress);
 
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-				new FileOutputStream(configurationFile), "utf-8"))) {
+				new FileOutputStream(stationsFile.toFile()), "utf-8"))) {
 			writer.write(json);
 		} catch (IOException e) {
 			e.printStackTrace();//TODO: Exceptionhandling
 		}
 		System.out.println(json);
+
+		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+				new FileOutputStream(ipFile.toFile()), "utf-8"))) {
+			writer.write(ipJson);
+		} catch (IOException e) {
+			e.printStackTrace();//TODO: Exceptionhandling
+		}
+		System.out.println(ipJson);
 	}
 
-	public void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations) {
+	private static String toJSON(IPAddress ipAddress) {
+		Gson gson = new Gson();
+		return gson.toJson(ipAddress);
+	}
+
+	public void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress) {
 		rootPane.getChildren().clear();
 		stations.clear();
-		String json = readJSONFromFile();
-
-
+		String json = readJSONFromFile(stationsFile);
 		Gson gson = new Gson();
 		Type collectionType = new TypeToken<Collection<StationData>>(){}.getType();
 		ArrayList<StationData> stationsFromJson = gson.fromJson(json, collectionType);
@@ -73,15 +85,16 @@ public class ConfigurationPersistor {
 			station.refreshBelts(rootPane, stations);
 		}
 
-
-
+		//load IPAddress
+		String ipJson = readJSONFromFile(ipFile);
+		ipAddress = gson.fromJson(ipJson, IPAddress.class);
 
 	}
 
-	private static String readJSONFromFile() {
+	private static String readJSONFromFile(Path file) {
 		StringBuilder json = new StringBuilder();
 		try  {
-			Files.readAllLines(path, StandardCharsets.UTF_8).forEach(line -> json.append(line));
+			Files.readAllLines(file, StandardCharsets.UTF_8).forEach(line -> json.append(line));
 			System.out.println(json.toString());
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -102,8 +115,9 @@ public class ConfigurationPersistor {
 
 		 return gson.toJson(stationsData);
 	}
-	public static Boolean isConfigurationSaved(ArrayList<AbstractStation> stations){
-		if(readJSONFromFile().equals(toJSON(stations)))return true;
+	public static Boolean isConfigurationSaved(ArrayList<AbstractStation> stations, IPAddress ipAddress){
+		if(readJSONFromFile(stationsFile).equals(toJSON(stations)) &&
+				readJSONFromFile(ipFile).equals(toJSON(ipAddress)))return true;
 		else return false;
 	}
 }

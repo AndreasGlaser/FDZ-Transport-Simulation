@@ -39,36 +39,36 @@
                   </ImageView>
                   <GridPane hgap="1.0" minHeight="120.0" vgap="2.0">
                      <children>
-                        <TextField styleClass="ipField" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                        <TextField fx:id="portField" styleClass="ipField" GridPane.columnIndex="8" GridPane.rowIndex="1">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Port" GridPane.columnIndex="8" />
-                        <TextField styleClass="ipField" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                        <TextField fx:id="ipField4" styleClass="ipField" GridPane.columnIndex="6" GridPane.rowIndex="1">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </TextField>
-                        <TextField styleClass="ipField" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <TextField fx:id="ipField3" styleClass="ipField" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/" GridPane.columnIndex="7" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IP" GridPane.columnIndex="4" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="5" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="5" GridPane.rowIndex="1" />
-                        <TextField styleClass="ipField" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <TextField fx:id="ipField2" styleClass="ipField" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </TextField>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField styleClass="ipField" GridPane.rowIndex="1">
+                        <TextField fx:id="ipField1" styleClass="ipField" GridPane.rowIndex="1">
                            <font>
-                              <Font size="12.0" />
+                              <Font size="11.0" />
                            </font>
                         </TextField>
                         <Button mnemonicParsing="false" onAction="#connect" text="Connect" GridPane.columnSpan="4" GridPane.rowIndex="2">

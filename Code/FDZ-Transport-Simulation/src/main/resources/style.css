@@ -1,5 +1,6 @@
 .root {
 	-fx-font: 20 "Times New Roman";
+
 }
 
 .button{
@@ -72,4 +73,9 @@
 	-fx-background-color: #EBEBEB;
 	-fx-border-color: #A9C3DD;
 	-fx-border-width: 2;
+}
+
+.ipField{
+	-fx-font-family: "Arial";
+	-fx-font-size: 10;
 }

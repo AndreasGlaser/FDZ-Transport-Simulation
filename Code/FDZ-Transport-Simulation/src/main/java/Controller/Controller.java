@@ -3,12 +3,14 @@ package Controller;
 import Model.Facade;
 import Model.Network.NetworkController;
 import Persistance.ConfigurationPersistor;
+import Persistance.IPAddress;
 import Persistance.StationData;
 import Persistance.StationType;
 import View.AbstractStation;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -21,8 +23,8 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class Controller {
-	ArrayList<AbstractStation> stations = new ArrayList<>();
-
+	private ArrayList<AbstractStation> stations = new ArrayList<>();
+	private IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
 
 	@FXML
 	private Pane optionMenu;
@@ -41,6 +43,16 @@ public class Controller {
 	private Pane statusPane;
 	@FXML
 	private BorderPane messagePane;
+	@FXML
+	private TextField portField;
+	@FXML
+	private TextField ipField4;
+	@FXML
+	private TextField ipField3;
+	@FXML
+	private TextField ipField2;
+	@FXML
+	private TextField ipField1;
 
 	public void init(){
 		controllerImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
@@ -48,6 +60,17 @@ public class Controller {
 		simulatorImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		simulatorImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
 
+		byte[] address = ipAddress.getAdress();
+		ipField1.setOnKeyReleased(event -> {
+			if(ipField1.getText().length()>3){
+				ipField1.setText(ipField1.getText(0,3));
+				ipField1.positionCaret(3);
+			}
+			address[0] = Byte.valueOf(ipField1.getText());
+			System.out.println(Byte.valueOf(ipField1.getText()));
+		});
+
+		//nur zur Demonstration
 		String mesID1 = "0000000001";
 		String mesID2 = "0000000002";
 		String mesID3 = "0000000003";
@@ -77,7 +100,6 @@ public class Controller {
 		statusPane.getChildren().add(new Text("Reposition the carriage with id 23 to position IO"));
 
 	}
-
 
 	@FXML
 	public void openCloseOptions(){
@@ -109,8 +131,6 @@ public class Controller {
 
 	}
 
-
-
 	@FXML
 	public void addCrossing(){
 		Boolean newCrossingUnnamed = false;
@@ -130,23 +150,21 @@ public class Controller {
 		}
 	}
 
-
 	@FXML
 	public void saveConfiguration(){
-		ConfigurationPersistor.saveConfiguration(stations);
+		ConfigurationPersistor.saveConfiguration(stations, ipAddress);
 	}
 
 	@FXML
 	public void loadConfiguration(){
 		ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
-		configurationPersistor.loadConfiguration(stationsPane, stations);
+		configurationPersistor.loadConfiguration(stationsPane, stations, ipAddress);
+		showIPAddress();
 	}
 
 	@FXML
 	private void connect(){
-
-		new Facade().connect(new byte[]{127,0,0,1}, 47331);
-
+		new Facade().connect(ipAddress.getAdress(), ipAddress.getPort());
 	}
 
 	@FXML
@@ -176,6 +194,15 @@ public class Controller {
 	}
 
 	public Boolean isConfigurationSaved(){
-		return ConfigurationPersistor.isConfigurationSaved(stations);
+		return ConfigurationPersistor.isConfigurationSaved(stations,ipAddress);
+	}
+
+	private void showIPAddress(){
+		byte[] address = ipAddress.getAdress();
+		ipField1.setText(Integer.toString(Byte.toUnsignedInt(address[0])));
+		ipField2.setText(Integer.toString(Byte.toUnsignedInt(address[1])));
+		ipField3.setText(Integer.toString(Byte.toUnsignedInt(address[2])));
+		ipField4.setText(Integer.toString(Byte.toUnsignedInt(address[3])));
+		portField.setText(ipAddress.getPort().toString());
 	}
 }
