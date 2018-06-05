@@ -1,1 +1,1 @@
-[{"name":"new Station","shortcut":"","xCord":156.0,"yCord":243.0,"reachableStationsByName":["new Station"],"stationType":"STATION","hopsBack":0},{"name":"new Station","shortcut":"","xCord":629.0,"yCord":150.0,"reachableStationsByName":[],"stationType":"CROSSING","hopsBack":0}]
+[{"name":"asdf","shortcut":"asdf","xCord":156.0,"yCord":243.0,"reachableStationsByName":["new Station","new Crossing"],"stationType":"STATION","hopsBack":0},{"name":"new Crossing","shortcut":"NS","xCord":676.0,"yCord":170.0,"reachableStationsByName":[],"stationType":"CROSSING","hopsBack":0}]

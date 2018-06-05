@@ -20,7 +20,9 @@ public class CLIController {
 
     public boolean connect(byte[] ip, int port){
         if(port>=0 && ip.length == 4){
-            return facade.connect(ip, port);
+            facade.connect(ip, port);
+            return true;
+            /*TODO boolean unused*/
         }else{
             return false;
         }

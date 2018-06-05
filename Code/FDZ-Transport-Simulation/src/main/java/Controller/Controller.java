@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Facade;
+import Model.Network.NetworkController;
 import Persistance.ConfigurationPersistor;
 import Persistance.StationData;
 import Persistance.StationType;
@@ -13,6 +15,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class Controller {
@@ -81,15 +84,22 @@ public class Controller {
 
 	@FXML
 	public void addStation(){
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/StationPane.fxml"));
-		try {
-			loader.setControllerFactory(c ->{
-				return new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations);
-			});
-			loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();//TODO: exceptionhandling
+		Boolean newStationUnnamed = false;
+		for(AbstractStation station: stations){
+			if(station.getName().equals("new Station")|station.getShortcut().equals("NS"))newStationUnnamed= true;
 		}
+		if(!newStationUnnamed){
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/StationPane.fxml"));
+			try {
+				loader.setControllerFactory(c ->{
+					return new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations);
+				});
+				loader.load();
+			} catch (IOException e) {
+				e.printStackTrace();//TODO: exceptionhandling
+			}
+		}
+
 
 	}
 
@@ -97,14 +107,20 @@ public class Controller {
 
 	@FXML
 	public void addCrossing(){
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
-		try {
-			loader.setControllerFactory(c ->{
-				return new CrossingController(new StationData("new Station", StationType.CROSSING),stationsPane,stations);
-			});
-			loader.load();
-		} catch (IOException e) {
-			e.printStackTrace();//TODO: exceptionhandling
+		Boolean newCrossingUnnamed = false;
+		for(AbstractStation station: stations){
+			if(station.getName().equals("new Crossing"))newCrossingUnnamed= true;
+		}
+		if(!newCrossingUnnamed) {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
+			try {
+				loader.setControllerFactory(c -> {
+					return new CrossingController(new StationData("new Crossing", StationType.CROSSING), stationsPane, stations);
+				});
+				loader.load();
+			} catch (IOException e) {
+				e.printStackTrace();//TODO: exceptionhandling
+			}
 		}
 	}
 
@@ -118,6 +134,18 @@ public class Controller {
 	public void loadConfiguration(){
 		ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
 		configurationPersistor.loadConfiguration(stationsPane, stations);
+	}
+
+	@FXML
+	private void connect(){
+
+		new Facade().connect(new byte[]{127,0,0,1}, 47331);
+
+	}
+
+	@FXML
+	private void disconnect(){
+		new Facade().disconnect();
 	}
 
 }

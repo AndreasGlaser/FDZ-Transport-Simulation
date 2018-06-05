@@ -1,5 +1,7 @@
 package Persistance;
 
+import View.AbstractStation;
+
 import java.util.ArrayList;
 
 public class StationData {
@@ -11,9 +13,12 @@ public class StationData {
 	private StationType stationType;
 	private Integer hopsBack = 0;
 
+
 	public StationData(String name, StationType type){
 		setName(name);
 		setstationType(type);
+		if(type.equals(StationType.STATION))setShortcut("NS");
+		else setShortcut("");
 	}
 
 	public String getName(){

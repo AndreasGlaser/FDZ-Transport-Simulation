@@ -11,6 +11,7 @@ public class Facade {
 
     private NetworkController networkController;
     private StationHandler stationHandler;
+    private Thread connectionThread;
 
     public Facade(){
         networkController = NetworkController.getInstance();
@@ -23,13 +24,25 @@ public class Facade {
         networkController.testCommand(command);
     }
 
-    public boolean connect(byte[] ip, int port){
-        try{
-            networkController.connect(ip, port);
-            return true;
-        }catch(UnknownHostException e){
-            return false;
+    public synchronized void connect(byte[] ip, int port){
+        if(connectionThread == null){
+            connectionThread = new Thread(){
+                @Override
+                public void run (){
+                    try{
+                        NetworkController.getInstance().connect(ip, port);
+                    }catch(UnknownHostException e){
+                    /*TODO Log exception*/
+                    }
+                }
+            };
+            connectionThread.start();
+        }else{
+            connectionThread.interrupt();
+            connectionThread = null;
+            connect(ip, port);
         }
+
     }
 
     public void disconnect(){

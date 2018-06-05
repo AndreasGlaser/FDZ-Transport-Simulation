@@ -52,6 +52,9 @@ public class StationController extends AbstractStation {
             setName(stationNameTextField.getText());
             data.setName(stationNameTextField.getText());
         });
+        abbreviationField.setOnKeyReleased(event ->{
+            data.setShortcut(abbreviationField.getText());
+        });
         sledText.getStyleClass().add("yellow");
         refreshBelts(parent, stations);
 

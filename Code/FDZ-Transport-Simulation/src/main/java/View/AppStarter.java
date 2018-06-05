@@ -1,12 +1,15 @@
 package View;
 
 import Controller.Controller;
+import Model.Network.NetworkController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.net.UnknownHostException;
 
 public class AppStarter extends Application {
 
@@ -28,6 +31,17 @@ public class AppStarter extends Application {
         controller.loadConfiguration();
         controller.init();
 
+
+
+        /*CommandLineInterface cli = new CommandLineInterface();
+        cli.run();
+        while(cli.isAlive()) {
+            try {
+                cli.join();
+            } catch (InterruptedException e) {
+                continue;
+            }
+        }*/
     }
 
 
