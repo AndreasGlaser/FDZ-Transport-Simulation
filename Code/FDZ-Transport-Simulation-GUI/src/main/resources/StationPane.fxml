@@ -37,7 +37,7 @@
          </children>
       </GridPane>
       <Button fx:id="stationOptionsButton" mnemonicParsing="false" onAction="#openCloseStationOptions" styleClass="stationOptionButton" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0" />
-      <VBox fx:id="stationOptionsPane" layoutX="43.0" layoutY="-56.0" prefHeight="410.0" prefWidth="177.0" styleClass="stationOptions">
+      <VBox fx:id="stationOptionsPane" layoutX="43.0" layoutY="-56.0" prefHeight="410.0" prefWidth="177.0" styleClass="stationOptions" visible="false">
          <children>
             <AnchorPane prefHeight="37.0" prefWidth="172.0">
                <children>
