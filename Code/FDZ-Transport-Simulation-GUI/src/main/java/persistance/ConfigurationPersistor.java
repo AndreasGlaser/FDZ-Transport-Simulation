@@ -1,14 +1,14 @@
 package persistance;
 
-import GUI.CrossingPane;
+import GUI.CrossingController;
 import GUI.AbstractStation;
-import GUI.StationPane;
+import GUI.StationController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
 
 
-import javax.json.*;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
@@ -39,34 +39,8 @@ public class ConfigurationPersistor {
 		}
 		System.out.println(json);
 	}
-	public static void saveConfigurationOld(ArrayList<StationPane> stations){
-		JsonArrayBuilder configurationObjectBuilder = Json.createArrayBuilder();
-		for(StationPane station: stations){
 
-			JsonObjectBuilder stationObjectBuilder = Json.createObjectBuilder()
-				.add("name", station.getName())
-				.add("shortcut", station.getShortcut())
-				.add("xCord", station.getXCord())
-				.add("yCord", station.getYCord());
-
-			JsonArrayBuilder reachableStationsArrayBuilder = Json.createArrayBuilder();
-			for(String reachableStation: station.getPreviousStationsByName())
-				reachableStationsArrayBuilder.add(reachableStation);
-
-			stationObjectBuilder.add("reachableStationsByName", reachableStationsArrayBuilder.build());
-			configurationObjectBuilder.add(stationObjectBuilder.build());
-		}
-
-		System.out.println(configurationObjectBuilder.build());
-		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-				new FileOutputStream(configurationFile), "utf-8"))) {
-			writer.write(configurationObjectBuilder.build().toString());
-		} catch (IOException e) {
-			e.printStackTrace();//TODO: Exceptionhandling
-		}
-	}
-
-	public static void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations) {
+	public void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations) {
 		rootPane.getChildren().clear();
 		stations.clear();
 		StringBuilder json = new StringBuilder();
@@ -87,49 +61,34 @@ public class ConfigurationPersistor {
 
 		for(StationData stationData: stationsFromJson){
 			if(stationData.getstationType().equals(StationType.STATION)){
-				new StationPane(stationData, rootPane, stations);
-			}else if(stationData.getstationType().equals(StationType.CROSSING)){
-				new CrossingPane(stationData, rootPane,stations);
-			}
-		}
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/StationPane.fxml"));
+				try {
+					loader.setControllerFactory(c ->{
+						return new StationController(stationData,rootPane,stations);
+					});
+					loader.load();
 
-
-
-
-	}
-
-	public static void loadConfigurationOld(Pane rootPane, ArrayList<AbstractStation> stations){
-		rootPane.getChildren().clear();
-		stations.clear();
-		try (JsonReader jsonReader = Json.createReader(new FileReader("configuration.txt")))
-		{
-			JsonArray jsonArray = jsonReader.readArray();
-			jsonReader.close();
-			for(int i = 0; i<jsonArray.size(); ++i){
-				JsonObject jsonObject = jsonArray.getJsonObject(i);
-				StationPane loadedStationPane = new StationPane(new StationData(jsonObject.getString("name"), StationType.STATION), rootPane, stations);
-				loadedStationPane.setShortcut(jsonObject.getString("shortcut"));
-				loadedStationPane.setXCord(jsonObject.getJsonNumber("xCord").doubleValue());
-				loadedStationPane.setYCord(jsonObject.getJsonNumber("yCord").doubleValue());
-				for(JsonValue name: jsonObject.getJsonArray("reachableStationsByName")){
-							loadedStationPane.getPreviousStationsByName().add(name.toString());
+				} catch (IOException e) {
+					e.printStackTrace();//TODO: exceptionhandling
 				}
+			}else if(stationData.getstationType().equals(StationType.CROSSING)){
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
+				try {
+					loader.setControllerFactory(c ->{
+						return new CrossingController(stationData,rootPane,stations);
+					});
+					loader.load();
 
-				stations.add(loadedStationPane);
-				rootPane.getChildren().add(loadedStationPane.getViewPane());
-				loadedStationPane.setXCord(loadedStationPane.getXCord());
-				loadedStationPane.setYCord(loadedStationPane.getYCord());
-
-
-
+				} catch (IOException e) {
+					e.printStackTrace();//TODO: exceptionhandling
+				}
 			}
-			for(AbstractStation abstractStation : stations){
-				abstractStation.refreshBelts(rootPane, stations);
-			}
-			System.out.println("read from file"+jsonArray);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
+
+
+
 
 	}
 }
+
+
