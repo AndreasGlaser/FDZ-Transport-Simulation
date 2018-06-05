@@ -2,6 +2,7 @@ package GUI;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
@@ -30,6 +31,8 @@ public class StationController extends AbstractStation{
     private Pane previousStationsPane;
     @FXML
     private Polygon controllerConnectionArrow;
+    @FXML
+    private ChoiceBox<Integer> hopsBackBox;
 
     public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations){
         this.data = data;
@@ -66,6 +69,13 @@ public class StationController extends AbstractStation{
             setYCord(e.getSceneY() - sceneY + dragYTrans);
         });
 
+        hopsBackBox.getItems().addAll(0,1,2,3,4,5,6,7,8,9);
+        hopsBackBox.getSelectionModel().select(data.getHopsBack());
+
+        hopsBackBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            data.setHopsBack(hopsBackBox.getItems().get((Integer)newValue));
+            System.out.println(data.getHopsBack());
+        });
     }
 
     @FXML
@@ -87,14 +97,14 @@ public class StationController extends AbstractStation{
                     refreshBelts(parent, stations);
 
                 });
-
             }
+
+
         }
     }
 
     @FXML
     public void deleteStation(){
-        //TODO: implement
         parent.getChildren().remove(viewPane);
         stations.remove(this);
         parent.getChildren().removeAll(incomingBelts);

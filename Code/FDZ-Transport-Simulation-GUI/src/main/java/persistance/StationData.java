@@ -10,6 +10,7 @@ public class StationData {
 	private Double yCord = 0.;
 	private ArrayList<String> reachableStationsByName = new ArrayList<>();
 	private StationType stationType;
+	private Integer hopsBack = 0;
 
 	public StationData(String name, StationType type){
 		setName(name);
@@ -40,4 +41,10 @@ public class StationData {
 
 	public void setstationType(StationType type){ this.stationType = type;}
 	public StationType getstationType(){return stationType;}
+	public void setHopsBack(Integer hops){
+		hopsBack= hops;
+	}
+	public Integer getHopsBack(){
+		return hopsBack;
+	}
 }
