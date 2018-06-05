@@ -10,9 +10,11 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -37,6 +39,8 @@ public class Controller {
 	private Pane logPane;
 	@FXML
 	private Pane statusPane;
+	@FXML
+	private BorderPane messagePane;
 
 	public void init(){
 		controllerImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
@@ -100,6 +104,8 @@ public class Controller {
 			}
 		}
 
+		//TODO: Facade.addStation();
+
 
 	}
 
@@ -148,4 +154,28 @@ public class Controller {
 		new Facade().disconnect();
 	}
 
+	public void askForSaving(Stage primaryStage){
+		messagePane.setMouseTransparent(false);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MessagePane.fxml"));
+		try {
+			loader.setControllerFactory(c -> {
+				return new MessageController("Save configuration?",
+						"The configuration has not been saved, do you want to save it now?",
+						this,
+						primaryStage,
+						messagePane);
+			});
+			Pane message = loader.load();
+			messagePane.setCenter(message);
+
+
+		} catch (IOException e) {
+			e.printStackTrace();//TODO: exceptionhandling
+		}
+
+	}
+
+	public Boolean isConfigurationSaved(){
+		return ConfigurationPersistor.isConfigurationSaved(stations);
+	}
 }

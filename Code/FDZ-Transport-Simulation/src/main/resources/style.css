@@ -67,3 +67,9 @@
 	-fx-border-color: #A9C3DD;
 	-fx-border-width: 2;
 }
+
+.messagePane{
+	-fx-background-color: #EBEBEB;
+	-fx-border-color: #A9C3DD;
+	-fx-border-width: 2;
+}

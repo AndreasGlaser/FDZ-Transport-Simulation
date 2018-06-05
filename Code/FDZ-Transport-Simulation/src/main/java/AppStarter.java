@@ -1,4 +1,4 @@
-package View;
+
 
 import Controller.Controller;
 import Model.Network.NetworkController;
@@ -30,6 +30,13 @@ public class AppStarter extends Application {
         Controller controller = ((Controller) loader.getController());
         controller.loadConfiguration();
         controller.init();
+
+        primaryStage.setOnCloseRequest(event -> {
+            if(!controller.isConfigurationSaved()){
+                controller.askForSaving(primaryStage);
+                event.consume();
+            }
+        });
 
 
 

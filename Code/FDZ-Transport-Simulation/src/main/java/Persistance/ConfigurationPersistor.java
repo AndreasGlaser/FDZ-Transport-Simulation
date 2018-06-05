@@ -22,13 +22,7 @@ public class ConfigurationPersistor {
 	private static Path path = Paths.get("configuration.txt");
 
 	public static void saveConfiguration(ArrayList<AbstractStation> stations){
-		Gson gson = new Gson();
-		ArrayList<StationData> stationsData = new ArrayList<>();
-		for(AbstractStation abstractStation : stations){
-			stationsData.add(abstractStation.getData());
-		}
-
-		String json = gson.toJson(stationsData);
+		String json = toJSON(stations);
 
 		try (Writer writer = new BufferedWriter(new OutputStreamWriter(
 				new FileOutputStream(configurationFile), "utf-8"))) {
@@ -42,21 +36,12 @@ public class ConfigurationPersistor {
 	public void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations) {
 		rootPane.getChildren().clear();
 		stations.clear();
-		StringBuilder json = new StringBuilder();
-		try  {
-			Files.readAllLines(path, StandardCharsets.UTF_8).forEach(line -> json.append(line));
-			System.out.println(json.toString());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return;
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		}
+		String json = readJSONFromFile();
+
 
 		Gson gson = new Gson();
 		Type collectionType = new TypeToken<Collection<StationData>>(){}.getType();
-		ArrayList<StationData> stationsFromJson = gson.fromJson(json.toString(), collectionType);
+		ArrayList<StationData> stationsFromJson = gson.fromJson(json, collectionType);
 
 		for(StationData stationData: stationsFromJson){
 			if(stationData.getstationType().equals(StationType.STATION)){
@@ -91,6 +76,35 @@ public class ConfigurationPersistor {
 
 
 
+	}
+
+	private static String readJSONFromFile() {
+		StringBuilder json = new StringBuilder();
+		try  {
+			Files.readAllLines(path, StandardCharsets.UTF_8).forEach(line -> json.append(line));
+			System.out.println(json.toString());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			return "";
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "";
+		}
+		return json.toString();
+	}
+
+	private static String toJSON(ArrayList<AbstractStation> stations){
+		Gson gson = new Gson();
+		ArrayList<StationData> stationsData = new ArrayList<>();
+		for(AbstractStation abstractStation : stations){
+			stationsData.add(abstractStation.getData());
+		}
+
+		 return gson.toJson(stationsData);
+	}
+	public static Boolean isConfigurationSaved(ArrayList<AbstractStation> stations){
+		if(readJSONFromFile().equals(toJSON(stations)))return true;
+		else return false;
 	}
 }
 
