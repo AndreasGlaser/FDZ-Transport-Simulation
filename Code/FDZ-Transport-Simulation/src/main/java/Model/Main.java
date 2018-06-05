@@ -1,9 +1,11 @@
 package Model;
 
 
+import Model.Network.MainClient;
 import Model.Network.NetworkController;
 import View.CommandLineInterface;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,6 +34,15 @@ public class Main {
         robot.setHopsToNewCarriage(2);
         stock.setHopsToNewCarriage(1);
         inOut.setHopsToNewCarriage(1);
+
+        NetworkController ch = NetworkController.getInstance();
+        //byte[] ipAddr = new byte[]{(byte)Integer.parseInt("127"),(byte)Integer.parseInt("0"), (byte)Integer.parseInt("0"), (byte)Integer.parseInt("1")};
+        byte [] ipAddr = new byte[]{127,0,0,1};
+        try{
+            ch.connect(ipAddr, 47331);
+        }catch(UnknownHostException e){
+            System.err.println("Unknown Host");
+        }
 
         CommandLineInterface cli = new CommandLineInterface();
         cli.run();
