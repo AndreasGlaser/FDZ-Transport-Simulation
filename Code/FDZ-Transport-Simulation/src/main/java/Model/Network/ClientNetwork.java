@@ -60,6 +60,11 @@ public class ClientNetwork {
                 this.client.openConnection();
             }catch (FDZNetworkException e){
                 e.printStackTrace();
+                try {
+                    this.client.closeSocket();
+                } catch (FDZNetworkException e1) {
+                    e1.printStackTrace();
+                }
             }
 
         }while (!client.isConnected() && isRunning);

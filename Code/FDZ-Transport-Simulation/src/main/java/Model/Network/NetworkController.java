@@ -36,7 +36,7 @@ public class NetworkController {
 
     /*--NETWORK------------------------------------------------------------------*/
     public void connect (byte[] ip, int port) throws UnknownHostException {
-        InetAddress ipAddr = InetAddress.getByName("192.168.178.35");
+        InetAddress ipAddr = InetAddress.getByAddress(ip);
 
         if (clientNetwork!=null){
             clientNetwork.setIpAddr(ipAddr);
