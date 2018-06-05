@@ -33,6 +33,8 @@ public class StationController extends AbstractStation{
     private Polygon controllerConnectionArrow;
     @FXML
     private ChoiceBox<Integer> hopsBackBox;
+    @FXML
+    private TextField abbreviationField;
 
     public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations){
         this.data = data;

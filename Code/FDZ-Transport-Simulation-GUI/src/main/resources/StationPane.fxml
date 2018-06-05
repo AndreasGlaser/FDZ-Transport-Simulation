@@ -37,7 +37,7 @@
          </children>
       </GridPane>
       <Button fx:id="stationOptionsButton" mnemonicParsing="false" onAction="#openCloseStationOptions" styleClass="stationOptionButton" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0" />
-      <VBox fx:id="stationOptionsPane" layoutX="43.0" layoutY="-56.0" prefHeight="323.0" prefWidth="172.0" styleClass="stationOptions" visible="false">
+      <VBox fx:id="stationOptionsPane" layoutX="43.0" layoutY="-56.0" prefHeight="410.0" prefWidth="177.0" styleClass="stationOptions">
          <children>
             <AnchorPane prefHeight="37.0" prefWidth="172.0">
                <children>
@@ -47,6 +47,8 @@
             </AnchorPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Station Name:" />
             <TextField fx:id="stationNameTextField" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Abbreviation" wrappingWidth="172.77099609375" />
+            <TextField fx:id="abbreviationField" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Previous Station:" />
             <Button mnemonicParsing="false" onAction="#deleteStation" text="Delete" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Stations back to SledStorage:" wrappingWidth="176.927734375" />
