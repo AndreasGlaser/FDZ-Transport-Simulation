@@ -94,7 +94,9 @@ public class CrossingController extends AbstractStation{
 	}
 	@FXML
 	public void deleteCrossing(){
-		//TODO: implement
+		parent.getChildren().remove(viewPane);
+		stations.remove(this);
+		parent.getChildren().removeAll(incomingBelts);
 	}
 
 	@FXML
