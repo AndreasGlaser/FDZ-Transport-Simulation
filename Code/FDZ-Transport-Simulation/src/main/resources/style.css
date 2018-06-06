@@ -1,4 +1,4 @@
-.root {
+#root {
 	-fx-font: 20 "Times New Roman";
 
 }
@@ -73,9 +73,18 @@
 	-fx-background-color: #EBEBEB;
 	-fx-border-color: #A9C3DD;
 	-fx-border-width: 2;
+
+}
+
+.detailsLabel{
+	-fx-font-size: 25;
+	-fx-font-weight: bold;
+}
+.messageLabel{
+	-fx-font-size: 18;
 }
 
 .ipField{
-	-fx-font-family: "Arial";
+
 	-fx-font-size: 10;
 }

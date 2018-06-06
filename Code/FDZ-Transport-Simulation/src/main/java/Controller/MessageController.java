@@ -36,6 +36,8 @@ public class MessageController {
 	private void initialize(){
 		detailsLabel.setText(details);
 		messageLabel.setText(message);
+		detailsLabel.getStyleClass().add("detailsLabel");
+		messageLabel.getStyleClass().add("messageLabel");
 	}
 
 	@FXML
