@@ -47,14 +47,17 @@
 
 .red{
 	-fx-background-color: #FF2929;
+	-fx-fill: #FF2929;
 }
 
 .yellow{
 	-fx-background-color: #D5E700;
+	-fx-fill: #D5E700;
 }
 
 .green{
 	-fx-background-color: #29FF59;
+	-fx-fill: #29FF59;
 }
 
 .connectionPane{

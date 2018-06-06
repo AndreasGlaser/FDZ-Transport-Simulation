@@ -5,6 +5,7 @@ import View.AbstractStation;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
@@ -27,15 +28,17 @@ public class StationController extends AbstractStation {
     @FXML
     private Text sledText;
     @FXML
+    private Pane sledPane;
+    @FXML
     private TextField stationNameTextField;
     @FXML
     private Pane previousStationsPane;
     @FXML
-    private Polygon controllerConnectionArrow;
-    @FXML
     private ChoiceBox<Integer> hopsBackBox;
     @FXML
     private TextField abbreviationField;
+    @FXML
+    private MenuButton congestionMenu;
 
     public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations){
         this.data = data;
@@ -55,7 +58,13 @@ public class StationController extends AbstractStation {
         abbreviationField.setOnKeyReleased(event ->{
             data.setShortcut(abbreviationField.getText());
         });
-        sledText.getStyleClass().add("yellow");
+
+        sledPane.getStyleClass().clear();
+        sledPane.getStyleClass().add("yellow"); //TODO auf Property lauschen
+
+        congestionMenu.getStyleClass().clear();
+        congestionMenu.getStyleClass().add("red"); //TODO auf Property lauschen
+
         refreshBelts(parent, stations);
 
         setData(data);
@@ -104,6 +113,10 @@ public class StationController extends AbstractStation {
 
                 });
             }
+            abbreviationField.setText(data.getShortcut());
+            abbreviationField.textProperty().addListener((observable, oldValue, newValue) -> {
+                data.setShortcut(newValue);
+            });
 
 
         }
@@ -114,6 +127,9 @@ public class StationController extends AbstractStation {
         parent.getChildren().remove(viewPane);
         stations.remove(this);
         parent.getChildren().removeAll(incomingBelts);
+        for(AbstractStation station: stations){
+            station.refreshBelts(parent, stations);
+        }
     }
 
     @FXML

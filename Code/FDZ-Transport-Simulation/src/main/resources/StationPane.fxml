@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -25,7 +26,17 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Text fx:id="sledText" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="yellow" text="Empty" />
+                  <BorderPane fx:id="sledPane">
+                     <center>
+                        <Text fx:id="sledText" strokeType="OUTSIDE" strokeWidth="0.0" text="Empty" BorderPane.alignment="CENTER" />
+                     </center>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </BorderPane>
                   <MenuButton fx:id="congestionMenu" mnemonicParsing="false" text="Congestion">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Sled 23" />

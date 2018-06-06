@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Facade;
-import Model.Network.NetworkController;
 import Persistance.ConfigurationPersistor;
 import Persistance.IPAddress;
 import Persistance.StationData;
@@ -15,8 +14,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -53,6 +54,8 @@ public class Controller {
 	private TextField ipField2;
 	@FXML
 	private TextField ipField1;
+	@FXML
+	private Polygon controllerConnectionArrow;
 
 	@FXML
 	public void initialize(){
@@ -128,6 +131,9 @@ public class Controller {
 			}
 		});
 
+		controllerConnectionArrow.getStyleClass().clear();
+		controllerConnectionArrow.getStyleClass().add("red");//TODO auf property lauschen
+
 		//nur zur Demonstration
 		String mesID1 = "0000000001";
 		String mesID2 = "0000000002";
@@ -172,6 +178,7 @@ public class Controller {
 		for(AbstractStation station: stations){
 			if(station.getName().equals("new Station")|station.getShortcut().equals("NS"))newStationUnnamed= true;
 		}
+
 		if(!newStationUnnamed){
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/StationPane.fxml"));
 			try {

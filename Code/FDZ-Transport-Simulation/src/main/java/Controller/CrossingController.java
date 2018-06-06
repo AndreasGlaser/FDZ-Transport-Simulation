@@ -98,6 +98,9 @@ public class CrossingController extends AbstractStation {
 		parent.getChildren().remove(viewPane);
 		stations.remove(this);
 		parent.getChildren().removeAll(incomingBelts);
+		for(AbstractStation station: stations){
+			station.refreshBelts(parent, stations);
+		}
 	}
 
 	@FXML
