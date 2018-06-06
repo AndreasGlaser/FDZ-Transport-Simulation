@@ -54,7 +54,8 @@ public class Controller {
 	@FXML
 	private TextField ipField1;
 
-	public void init(){
+	@FXML
+	public void initialize(){
 		controllerImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		controllerImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
 		simulatorImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
@@ -66,8 +67,65 @@ public class Controller {
 				ipField1.setText(ipField1.getText(0,3));
 				ipField1.positionCaret(3);
 			}
-			address[0] = Byte.valueOf(ipField1.getText());
-			System.out.println(Byte.valueOf(ipField1.getText()));
+			try{
+				address[0] = ((byte)Integer.parseInt(ipField1.getText()));
+			}catch(NumberFormatException e){
+				ipField1.setText("0");
+				address[0] = (byte)0;
+			}
+		});
+		ipField2.setOnKeyReleased(event -> {
+			if(ipField2.getText().length()>3){
+				ipField2.setText(ipField2.getText(0,3));
+				ipField2.positionCaret(3);
+			}
+			try{
+				address[1] = ((byte)Integer.parseInt(ipField2.getText()));
+			}catch(NumberFormatException e){
+				ipField2.setText("0");
+				address[1] = (byte)0;
+			}
+		});
+		ipField3.setOnKeyReleased(event -> {
+			if(ipField3.getText().length()>3){
+				ipField3.setText(ipField3.getText(0,3));
+				ipField3.positionCaret(3);
+			}
+			try{
+				address[2] = ((byte)Integer.parseInt(ipField3.getText()));
+			}catch(NumberFormatException e){
+				ipField3.setText("0");
+				address[2] = (byte)0;
+			}
+		});
+		ipField4.setOnKeyReleased(event -> {
+			if(ipField4.getText().length()>3){
+				ipField4.setText(ipField4.getText(0,3));
+				ipField4.positionCaret(3);
+			}
+			try{
+				address[3] = ((byte)Integer.parseInt(ipField4.getText()));
+			}catch(NumberFormatException e){
+				ipField4.setText("0");
+				address[3] = (byte)0;
+			}
+		});
+		portField.setOnKeyReleased(event -> {
+			if(portField.getText().length()>5){
+				portField.setText(portField.getText(0,5));
+				portField.positionCaret(5);
+			}
+
+			try{
+				if(Integer.parseInt(portField.getText())<0){
+					portField.setText("0");
+					ipAddress.setPort(0);
+				}
+				ipAddress.setPort(Integer.parseInt(portField.getText()));
+			}catch(NumberFormatException e){
+				portField.setText("0");
+				ipAddress.setPort(0);
+			}
 		});
 
 		//nur zur Demonstration

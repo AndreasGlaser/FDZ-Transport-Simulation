@@ -29,7 +29,6 @@ public class AppStarter extends Application {
         //load Configuration on Program start
         Controller controller = ((Controller) loader.getController());
         controller.loadConfiguration();
-        controller.init();
 
         primaryStage.setOnCloseRequest(event -> {
             if(!controller.isConfigurationSaved()){
