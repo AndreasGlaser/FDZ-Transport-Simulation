@@ -30,7 +30,7 @@ public class CommandLineInterface extends Thread{
     }
 
     @Override
-    public void run(){
+    public void run(){/*
         while (true) {
             System.out.print(">");
 
@@ -44,7 +44,7 @@ public class CommandLineInterface extends Thread{
                 switch (input.charAt(0)) {
                     case 'q': break;
                     case 'h': System.out.println(help); continue;
-                    case 'p': printState(controller.getStationList()); continue;
+                  //  case 'p': printState(controller.getStationList()); continue;
                     case 'd': delete(); continue;
                     case 'a': add(); continue;
                     case 'm': manipulate(); continue;
@@ -54,9 +54,9 @@ public class CommandLineInterface extends Thread{
             }
         }
         System.out.println("Goodbye");
-    }
+    }*/
 
-    private void printStatus(){
+   /* private void printStatus(){
         /*TODO*/
         System.out.println("To be implemented");
     }
@@ -90,14 +90,14 @@ public class CommandLineInterface extends Thread{
         System.out.print("Type in ShortCut:");
         shortCut = sc.nextLine();
 
-        if(controller.addStation(name,shortCut)){
+        /*if(controller.addStation(name,shortCut)){
             System.out.println("Station "+name+" successfully added");
         }else{
             System.out.println("Could not add Station"+name);
-        }
+        }*/
     }
 
-    private void delete(){
+   /* private void delete(){
         String name;
         System.out.print("Name of Station to delete:");
         name = sc.nextLine();
@@ -174,6 +174,6 @@ public class CommandLineInterface extends Thread{
         }
         if(sc.hasNext()) sc.nextLine();
         return false;
-    }
+    }*/
 
 }
