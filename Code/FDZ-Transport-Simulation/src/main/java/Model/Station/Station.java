@@ -14,6 +14,7 @@ public class Station {
     private boolean isOccupied = false;
     private int sledInside = -2; //no sled inside
     private int hopsToNewCarriage = 0;
+    private StationProperty property;
 
     public Station(String name, String shortCut){
         this.setName(name);
@@ -63,10 +64,10 @@ public class Station {
 
     /*--SETTER-------------------------------------------------------------------*/
 
-    void setName(String aName){
+    public void setName(String aName){
         this.name = aName;
     }
-    void setShortCut(String aShortCut){ this.shortCut = aShortCut; }
+    public void setShortCut(String aShortCut){ this.shortCut = aShortCut; }
     public void setSledInside(int sledId) {
         /*TODO Threadsafe*/
         this.sledInside = sledId;
@@ -89,19 +90,19 @@ public class Station {
     public int getSledInside(){return sledInside;}
     public ArrayList<Station> getPrevStations(){return prevStations;}
     public int getHopsToNewCarriage(){ return hopsToNewCarriage; }
+    public StationProperty getStationProperty(){ return property; }
 
     /*--LIST---------------------------------------------------------------------*/
 
-    public boolean addPrevStation(Station aStation){
+    public void addPrevStation(Station aStation) {
         for (int i = 0; i < prevStations.size(); i++) {
             if(prevStations.get(i).getName().compareTo(aStation.getName()) == 0){
-                return false;
+                return;
             }
         }
-        return prevStations.add(aStation);
+        prevStations.add(aStation);
     }
-    boolean removePrevStation(Station aStation){
-        return prevStations.remove(aStation);
+    public void deletePrevStation(Station aStation) throws NullPointerException {prevStations.remove(aStation);
     }
 
 }

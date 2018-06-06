@@ -1,8 +1,10 @@
 package Model;
 
+import Model.Exception.IllegalSetupException;
 import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
+import javafx.beans.property.SimpleBooleanProperty;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -49,51 +51,68 @@ public class Facade {
         networkController.disconnect();
     }
 
-    public boolean isConnected(){
+    public SimpleBooleanProperty connectedProperty(){
+        return new SimpleBooleanProperty(true);
         /*TODO*/
-        return false;
     }
 
     /* STATIONS -----------------------------------------------------------------*/
 
-    public void addStation(String name, String shortCut){
-        stationHandler.addStation(name, shortCut);
-    }
-
-    public boolean deleteStation(String name){
-        try{
-            stationHandler.deleteStation(name);
-            return true;
-        }catch(NullPointerException e){
-            return false;
+    public void addStation(String name, String shortCut) throws IllegalSetupException{
+        if(name != null && name.length() != 0 && shortCut.length() == 2){
+            stationHandler.addStation(name, shortCut);
+        }else{
+            throw new IllegalSetupException("Name or ShortCut not valid");
         }
     }
 
-    public boolean addPrevStation(String toName, String prevName){
+    public void deleteStation(String name) throws NullPointerException{
+        stationHandler.deleteStation(name);
+    }
+
+    public void addPrevStation(String toName, String prevName) throws NullPointerException{
         Station to = stationHandler.getStationByName(toName);
         Station prev = stationHandler.getStationByName(prevName);
-        try{
-            return to.addPrevStation(prev);
-        }catch(NullPointerException e){
-            return false;
-        }
+        to.addPrevStation(prev);
     }
 
-    public boolean setHopsToNewCarriage(String stationName, int hops){
+    public void deletePrevStation(String nameOf, String prevName) throws NullPointerException{
+        Station to = stationHandler.getStationByName(nameOf);
+        Station prev = stationHandler.getStationByName(prevName);
+        to.deletePrevStation(prev);
+    }
+
+    public void setHopsToNewCarriage(String stationName, int hops) throws IllegalSetupException, NullPointerException {
         Station station = stationHandler.getStationByName(stationName);
-        try {
-            if (hops < stationHandler.getStationList().size()){
-                station.setHopsToNewCarriage(hops);
-                return true;
-            }else{
-                return false;
-            }
-        }catch(NullPointerException e){
-            return false;
+        if (hops < stationHandler.getStationList().size() && hops >= 1){
+            station.setHopsToNewCarriage(hops);
+        }else{
+            throw new IllegalSetupException("hops is either smaller than 1 or too big");
         }
     }
 
-    public ArrayList<Station> getStationList(){
-        return stationHandler.getStationList();
+    public void setStationName(String oldName, String newName) throws NullPointerException, IllegalSetupException{
+        if(newName.length() != 0 || newName != null) {
+            Station station = stationHandler.getStationByName(newName);
+            station.setName(newName);
+        }else{
+            throw new IllegalSetupException("Input Name is invalid");
+        }
+    }
+    public void setStationShortCut(String oldShortCut, String newShortCut) throws NullPointerException, IllegalSetupException{
+        if(newShortCut.length() == 2){
+            Station station = stationHandler.getStationByShortCut(oldShortCut);
+            station.setShortCut(newShortCut);
+        }else{
+            throw new IllegalSetupException("Input ShortCutis invalid");
+        }
+    }
+
+    public ArrayList<Integer> getSledsInStation(String name) throws NullPointerException{
+        return new ArrayList<Integer>(0);
+    }
+
+    public SimpleBooleanProperty getStationChangedProperty(String name) throws NullPointerException{
+        return stationHandler.getStationByName(name).getStationProperty().getChangedProperty();
     }
 }
