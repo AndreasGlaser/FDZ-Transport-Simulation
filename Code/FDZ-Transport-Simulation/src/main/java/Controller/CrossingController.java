@@ -60,6 +60,7 @@ public class CrossingController extends AbstractStation {
 			setYCord(e.getSceneY() - sceneY + dragYTrans);
 		});
 
+
 		crossingNameTextField.setOnKeyReleased(event -> {
 			setName(crossingNameTextField.getText());
 			data.setName(crossingNameTextField.getText());

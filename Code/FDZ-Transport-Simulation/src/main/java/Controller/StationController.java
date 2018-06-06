@@ -115,7 +115,10 @@ public class StationController extends AbstractStation {
             }
             abbreviationField.setText(data.getShortcut());
             abbreviationField.textProperty().addListener((observable, oldValue, newValue) -> {
-                data.setShortcut(newValue);
+                if(newValue.length()>2){
+                    abbreviationField.setText(oldValue);
+                    data.setShortcut(oldValue);
+                }else data.setShortcut(newValue);
             });
 
 
