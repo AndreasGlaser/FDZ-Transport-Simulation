@@ -1,6 +1,8 @@
 package Controller;
 
+import Model.Facade;
 import Persistance.StationData;
+import Persistance.StationType;
 import View.AbstractStation;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -107,8 +109,20 @@ public class StationController extends AbstractStation {
                 if(data.getPreviousStationsByName().contains(i.getData().getName()))box.setSelected(true);
                 else box.setSelected(false);
                 box.selectedProperty().addListener((observable2, oldValue, newValue) -> {
-                    if(newValue) data.getPreviousStationsByName().add(i.getData().getName());
-                    else data.getPreviousStationsByName().remove(i.getData().getName());
+                    if(newValue){
+                        data.getPreviousStationsByName().add(i.getData().getName());
+                        if(i.getData().getstationType().equals(StationType.STATION)){
+                            new Facade().addPrevStation(data.getName(), i.getName());
+                        }
+
+                    }
+                    else {
+                        data.getPreviousStationsByName().remove(i.getData().getName());
+                        if(i.getData().getstationType().equals(StationType.STATION)){
+                            new Facade().deletePrevStation(data.getName(), i.getName());
+                        }
+
+                    }
                     refreshBelts(parent, stations);
 
                 });

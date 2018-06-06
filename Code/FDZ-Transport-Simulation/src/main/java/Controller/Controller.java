@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Exception.IllegalSetupException;
 import Model.Facade;
 import Persistance.ConfigurationPersistor;
 import Persistance.IPAddress;
@@ -186,12 +187,16 @@ public class Controller {
 					return new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations);
 				});
 				loader.load();
+				StationController controller = loader.getController();
+				new Facade().addStation(controller.getName(), controller.getShortcut());
 			} catch (IOException e) {
 				e.printStackTrace();//TODO: exceptionhandling
+			} catch (IllegalSetupException e) {
+				e.printStackTrace();//TODO Fehlermeldung
 			}
 		}
 
-		//TODO: Facade.addStation();
+
 
 
 	}

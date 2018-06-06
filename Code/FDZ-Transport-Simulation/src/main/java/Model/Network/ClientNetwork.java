@@ -79,6 +79,7 @@ public class ClientNetwork {
                          System.out.println("1");
                          messageIncomming = client.receiveMessage();
                          new CommandInterpreter(messageIncomming).start();
+                         System.out.println(messageIncomming);
 
                          System.out.println("3");
                      } catch (FDZNetworkException e) {

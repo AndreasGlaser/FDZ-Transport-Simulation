@@ -2,6 +2,8 @@ package Persistance;
 
 import Controller.CrossingController;
 import Controller.StationController;
+import Model.Exception.IllegalSetupException;
+import Model.Facade;
 import View.AbstractStation;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -63,9 +65,13 @@ public class ConfigurationPersistor {
 						return new StationController(stationData,rootPane,stations);
 					});
 					loader.load();
+					StationController controller = loader.getController();
+					new Facade().addStation(controller.getName(), controller.getShortcut());
 
 				} catch (IOException e) {
 					e.printStackTrace();//TODO: exceptionhandling
+				} catch (IllegalSetupException e) {
+					e.printStackTrace();
 				}
 			}else if(stationData.getstationType().equals(StationType.CROSSING)){
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
