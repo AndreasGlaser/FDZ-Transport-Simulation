@@ -65,17 +65,17 @@ public class Controller {
 		simulatorImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		simulatorImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
 
-		byte[] address = ipAddress.getAdress();
+		
 		ipField1.setOnKeyReleased(event -> {
 			if(ipField1.getText().length()>3){
 				ipField1.setText(ipField1.getText(0,3));
 				ipField1.positionCaret(3);
 			}
 			try{
-				address[0] = ((byte)Integer.parseInt(ipField1.getText()));
+				ipAddress.getAdress()[0] = ((byte)Integer.parseInt(ipField1.getText()));
 			}catch(NumberFormatException e){
 				ipField1.setText("0");
-				address[0] = (byte)0;
+				ipAddress.getAdress()[0] = (byte)0;
 			}
 		});
 		ipField2.setOnKeyReleased(event -> {
@@ -84,10 +84,10 @@ public class Controller {
 				ipField2.positionCaret(3);
 			}
 			try{
-				address[1] = ((byte)Integer.parseInt(ipField2.getText()));
+				ipAddress.getAdress()[1] = ((byte)Integer.parseInt(ipField2.getText()));
 			}catch(NumberFormatException e){
 				ipField2.setText("0");
-				address[1] = (byte)0;
+				ipAddress.getAdress()[1] = (byte)0;
 			}
 		});
 		ipField3.setOnKeyReleased(event -> {
@@ -96,10 +96,10 @@ public class Controller {
 				ipField3.positionCaret(3);
 			}
 			try{
-				address[2] = ((byte)Integer.parseInt(ipField3.getText()));
+				ipAddress.getAdress()[2] = ((byte)Integer.parseInt(ipField3.getText()));
 			}catch(NumberFormatException e){
 				ipField3.setText("0");
-				address[2] = (byte)0;
+				ipAddress.getAdress()[2] = (byte)0;
 			}
 		});
 		ipField4.setOnKeyReleased(event -> {
@@ -108,10 +108,10 @@ public class Controller {
 				ipField4.positionCaret(3);
 			}
 			try{
-				address[3] = ((byte)Integer.parseInt(ipField4.getText()));
+				ipAddress.getAdress()[3] = ((byte)Integer.parseInt(ipField4.getText()));
 			}catch(NumberFormatException e){
 				ipField4.setText("0");
-				address[3] = (byte)0;
+				ipAddress.getAdress()[3] = (byte)0;
 			}
 		});
 		portField.setOnKeyReleased(event -> {

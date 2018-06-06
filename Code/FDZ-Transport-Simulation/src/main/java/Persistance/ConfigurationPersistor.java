@@ -93,7 +93,10 @@ public class ConfigurationPersistor {
 
 		//load IPAddress
 		String ipJson = readJSONFromFile(ipFile);
-		ipAddress = gson.fromJson(ipJson, IPAddress.class);
+		IPAddress jsonIpAddress = gson.fromJson(ipJson, IPAddress.class);
+		ipAddress.setAdress(jsonIpAddress.getAdress());
+		ipAddress.setPort(jsonIpAddress.getPort());
+
 
 	}
 
