@@ -88,9 +88,16 @@ public class StationController extends AbstractStation {
                     for(Integer sledId: sleds){
                         congestionMenu.getItems().add(new MenuItem(sledId.toString()));
                     }
-                    sledText.setText("Sled with Pallet "+ sleds.get(0));
+
                     sledPane.getStyleClass().clear();
-                    sledPane.getStyleClass().add("green");
+                    if(sleds.get(0).equals(-1)){
+                        sledText.setText("Empty Sled");
+                        sledPane.getStyleClass().add("blue");
+                    }else{
+                        sledText.setText("Sled with Pallet "+ sleds.get(0));
+                        sledPane.getStyleClass().add("green");
+                    }
+
                     congestionMenu.getStyleClass().clear();
                     if(sleds.size()>1){
                         congestionMenu.getStyleClass().add("red");

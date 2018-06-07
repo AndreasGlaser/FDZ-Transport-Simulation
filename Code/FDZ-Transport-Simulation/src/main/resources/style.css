@@ -60,6 +60,11 @@
 	-fx-fill: #29FF59;
 }
 
+.blue{
+	-fx-background-color: blue;
+	-fx-fill: blue;
+}
+
 .connectionPane{
 	-fx-background-color: #EBEBEB;
 	-fx-border-color: #A9C3DD;
