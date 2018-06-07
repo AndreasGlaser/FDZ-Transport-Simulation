@@ -1,16 +1,17 @@
 package Model.Station;
 
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 public class StationProperty {
 
-    private SimpleBooleanProperty changedProperty;
+    private SimpleIntegerProperty changedProperty;
 
     public StationProperty(){
-        changedProperty = new SimpleBooleanProperty(true);
+        changedProperty = new SimpleIntegerProperty(0);
     }
 
-    public SimpleBooleanProperty getChangedProperty(){
+    public SimpleIntegerProperty getChangedProperty(){
         return changedProperty;
     }
 }

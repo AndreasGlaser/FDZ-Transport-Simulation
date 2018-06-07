@@ -5,6 +5,7 @@ import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -109,10 +110,10 @@ public class Facade {
     }
 
     public ArrayList<Integer> getSledsInStation(String name) throws NullPointerException{
-        return new ArrayList<Integer>(0);
+        return stationHandler.getStationByName(name).getIdsInStation();
     }
 
-    public SimpleBooleanProperty getStationChangedProperty(String name) throws NullPointerException{
+    public SimpleIntegerProperty getStationChangedProperty(String name) throws NullPointerException{
         return stationHandler.getStationByName(name).getStationProperty().getChangedProperty();
     }
 }

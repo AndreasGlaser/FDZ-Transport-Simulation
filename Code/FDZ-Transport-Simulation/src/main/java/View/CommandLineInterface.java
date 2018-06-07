@@ -1,7 +1,11 @@
 package View;
 
 import Controller.CLIController;
+import Model.Exception.IllegalSetupException;
+import Model.Facade;
+import Model.Network.NetworkController;
 import Model.Station.Station;
+import Model.Station.StationHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +15,7 @@ public class CommandLineInterface extends Thread{
 
     private Scanner sc;
     private CLIController controller;
+    private Facade facade;
     private final String help =
                     "+–––––––––––––––––––––––––––––––––+\n" +
                     "| Type in TestCommand:            |\n" +
@@ -27,10 +32,11 @@ public class CommandLineInterface extends Thread{
         sc = new Scanner(System.in);
         controller = new CLIController();
         System.out.println(help);
+        facade = new Facade();
     }
 
     @Override
-    public void run(){/*
+    public void run(){
         while (true) {
             System.out.print(">");
 
@@ -49,28 +55,35 @@ public class CommandLineInterface extends Thread{
                     case 'a': add(); continue;
                     case 'm': manipulate(); continue;
                     case 's': printStatus(); continue;
+                    case 'p': printState(); continue;
                 }
                 if(input.charAt(0)=='q'){break;}
             }
         }
         System.out.println("Goodbye");
-    }*/
+    }
 
-   /* private void printStatus(){
+    private void printStatus(){
         /*TODO*/
         System.out.println("To be implemented");
     }
 
-    private void printState(List<Station> stationList){
+    private void printState(){
+        List<Station> stationList = StationHandler.getInstance().getStationList();/*TODO falscher Zugriff*/
         for(int i=0; i<stationList.size(); i++){
             /*foreach station*/
-            System.out.println(
+            System.out.print(
                     "\t|"+stationList.get(i).getName()+"\n"+
-                            "\t|––––––––––––––––––––––––\n" +
-                            "\t|->shortCut  |" + stationList.get(i).getShortCut() + "\n"+
-                            "\t|->   id     |" + stationList.get(i).getSledInside() + "\n"+
-                            "\t|->congested |" + stationList.get(i).isCongested()+"\n"+
-                            "\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
+                             "\t|––––––––––––––––––––––––\n" +
+                             "\t|->shortCut  |" + stationList.get(i).getShortCut() + "\n"+
+                             "\t|->   id     |");
+            try {
+                System.out.print(stationList.get(i).getIdsInStation().get(0) + "\n");
+            }catch(Exception e){
+                System.out.print("-2\n");
+            }
+            System.out.print("\t|->congested |" + stationList.get(i).isCongested()+"\n"+
+                             "\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
             ArrayList<Station> prev = stationList.get(i).getPrevStations();
             for (int j = 0; j < prev.size(); j++) {
                 System.out.print(
@@ -90,20 +103,22 @@ public class CommandLineInterface extends Thread{
         System.out.print("Type in ShortCut:");
         shortCut = sc.nextLine();
 
-        /*if(controller.addStation(name,shortCut)){
+        try{
+            facade.addStation(name,shortCut);
             System.out.println("Station "+name+" successfully added");
-        }else{
+        }catch(IllegalSetupException e){
             System.out.println("Could not add Station"+name);
-        }*/
+        }
     }
 
-   /* private void delete(){
+    private void delete(){
         String name;
         System.out.print("Name of Station to delete:");
         name = sc.nextLine();
-        if(controller.deleteStation(name)){
+        try{
+            facade.deleteStation(name);
             System.out.println("Station "+name+" successfully deleted");
-        }else{
+        }catch(NullPointerException e){
             System.out.println("No such Station");
         }
     }
@@ -123,11 +138,8 @@ public class CommandLineInterface extends Thread{
             case 1:
                 System.out.print("Hops back to new Carriage:");
                 try{
-                    if(controller.setHopsToNewCarriage(name, sc.nextInt())){
-                        System.out.println("Set Hops of "+name+" successfully");
-                    }else{
-                        System.out.println(name+" not known or hops<0 || hops>|stations|");
-                    }
+                    facade.setHopsToNewCarriage(name, sc.nextInt());
+                    System.out.println("Set Hops of "+name+" successfully");
                 }catch(Exception e){
                     System.out.println("Wrong Input, try again!");
                 }
@@ -151,16 +163,17 @@ public class CommandLineInterface extends Thread{
         String prev = s.nextLine();
         System.out.println(prev);
 
-        if(controller.addPrevStation(station, prev)){
+        try{
+            facade.addPrevStation(station, prev);
             System.out.println("PrevStation "+prev+" added successfully to "+station);
-        }else{
+        }catch(NullPointerException e){
             System.out.println("Could not add "+prev+" to "+station);
         }
         s.reset();
     }
 
     private void testCommand(String input){
-        controller.testCommand(input);
+        NetworkController.getInstance().testCommand(input);
     }
 
     private boolean quit(){
@@ -174,6 +187,6 @@ public class CommandLineInterface extends Thread{
         }
         if(sc.hasNext()) sc.nextLine();
         return false;
-    }*/
+    }
 
 }

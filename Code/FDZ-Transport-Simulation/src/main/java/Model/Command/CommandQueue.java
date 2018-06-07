@@ -77,14 +77,20 @@ public class CommandQueue {
         if (commandQueue.isEmpty()){
             enqueue(command);
         }else {
-
-                switch (commandQueue.peekLast().msgID.compareTo(command.msgID)){
-                    case 1:     findPos(command);
-                                break;
-                    case -1:    enqueue(command);
-                                break;
-                    default:    break;
+            try {
+                switch (commandQueue.peekLast().msgID.compareTo(command.msgID)) {
+                    case 1:
+                        findPos(command);
+                        break;
+                    case -1:
+                        enqueue(command);
+                        break;
+                    default:
+                        break;
                 }
+            }catch(NullPointerException e){
+
+            }
         }
     }
 

@@ -48,16 +48,6 @@ public class StationHandler {
         return stationList.get(idx);
     }
 
-/* SAVING/LOADING DATA ------------------------------------------------------*/
-
-    public boolean saveStations(){
-        return true;
-    }
-
-    public boolean loadStations(){
-        return true;
-    }
-
 /* MANIPULATE LIST-----------------------------------------------------------*/
 
     /**

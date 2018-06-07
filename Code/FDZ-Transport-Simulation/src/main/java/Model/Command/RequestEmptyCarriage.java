@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class RequestEmptyCarriage extends Command {
 
     private String position;
-    private final int EMPTY_CARRIAGE=-1, NOT_FOUND=-2;
+    private final int EMPTY_CARRIAGE=-1;
 
     public RequestEmptyCarriage(String position, String msgID){
         this.position = position;
@@ -28,25 +28,29 @@ public class RequestEmptyCarriage extends Command {
     @Override
     public void execute() throws IllegalSetupException{
         ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
+        Station temp;
         try{
-            Station temp = stationList.get(this.findPosInList(position));
+            temp = stationList.get(this.findPosInList(position));
             new PathFinder(temp, temp.getHopsToNewCarriage());
-            if (this.findPosInList(position) != NOT_FOUND) {
-                stationList.get(this.findPosInList(position)).
-                        driveInSled(EMPTY_CARRIAGE);
-                /*empty sled gets unknown id when received*/
-                System.out.println("\t log: requesting empty carriage to "
+            temp.driveInSled(EMPTY_CARRIAGE);
+            /*empty sled gets unknown id when received*/
+            System.out.println("\t log: requesting empty carriage to "
                         + position);
-            }
+            this.commandExecuted();
         }catch(CongestionException e){
-            /*TODO Congestion detected*/
+            Station blocking = e.getBlockingStation();
+            blocking.driveInSled(EMPTY_CARRIAGE);
             System.out.println( "\t log: CONGESTION DETECTED\n" +
                     "\t      COULD NOT REQUEST\n"+
-                    "\t      CARRIAGE TO [" + position + "]");
+                    "\t      CARRIAGE TO [" + position + "]"+
+                    "\t      Carriage blocked in "+blocking.getName());
+            this.commandExecuted();
         }catch(IndexOutOfBoundsException e){
+            super.error();
             throw new IllegalSetupException("No Stations in Setup");
+        }catch(NullPointerException e){
+            super.error();
         }
-        this.commandExecuted();
     }
 
     /**
@@ -55,13 +59,13 @@ public class RequestEmptyCarriage extends Command {
      * @param position
      * @return positionIndex
      */
-    private int findPosInList(String position) {
+    private int findPosInList(String position) throws NullPointerException{
         ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
         int idx = 0;
         while (stationList.size() > 0 && stationList.get(idx).getShortCut().
                 compareToIgnoreCase(position) != 0) {
             //find idx of requested station
-            if(++idx == stationList.size()){return NOT_FOUND;}
+            if(++idx == stationList.size()){throw new NullPointerException("Station Name not in List");}
         }
         return idx;
     }
