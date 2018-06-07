@@ -55,7 +55,7 @@
                               <Font size="11.0" />
                            </font>
                         </TextField>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="7" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IP" GridPane.columnIndex="4" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="5" GridPane.rowIndex="1" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="5" GridPane.rowIndex="1" />
