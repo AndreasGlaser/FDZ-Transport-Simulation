@@ -19,9 +19,10 @@ public class Station {
     public Station(String name, String shortCut){
         this.setName(name);
         this.setShortCut(shortCut);
+        this.property = new StationProperty();
 
         sem = new Semaphore(1);
-        prevStations = new ArrayList<Station>(5);
+        prevStations = new ArrayList<>(5);
     }
 
     /*--LOGIC--------------------------------------------------------------------*/
