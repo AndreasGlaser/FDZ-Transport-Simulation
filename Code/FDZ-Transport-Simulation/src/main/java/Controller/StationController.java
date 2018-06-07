@@ -1,14 +1,12 @@
 package Controller;
 
+import Model.Exception.IllegalSetupException;
 import Model.Facade;
 import Persistance.StationData;
 import Persistance.StationType;
 import View.AbstractStation;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
@@ -47,6 +45,11 @@ public class StationController extends AbstractStation {
         this.parent = parent;
         this.stations = stations;
         stations.add(this);
+        try {
+            new Facade().addStation(data.getName(), data.getShortcut());
+        } catch (IllegalSetupException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -61,11 +64,33 @@ public class StationController extends AbstractStation {
             data.setShortcut(abbreviationField.getText());
         });
 
-        sledPane.getStyleClass().clear();
-        sledPane.getStyleClass().add("yellow"); //TODO auf Property lauschen
+        /*new Facade().getStationChangedProperty(data.getName()).addListener((observable, oldValue, newValue) -> {
+            if(newValue){
+                ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
+                if (sleds.size() == 0){
+                    sledPane.getStyleClass().clear();
+                    sledPane.getStyleClass().add("yellow");
+                    sledText.setText("Empty");
+                }else{
+                    for(Integer sledId: sleds){
+                        congestionMenu.getItems().add(new MenuItem(sledId.toString()));
+                    }
+                    sledText.setText("Sled with Pallet "+ sleds.get(0));
+                    sledPane.getStyleClass().clear();
+                    sledPane.getStyleClass().add("green");
+                    congestionMenu.getStyleClass().clear();
+                    if(sleds.size()>1){
+                        congestionMenu.getStyleClass().add("red");
+                        congestionMenu.setText("Congestion");
+                    }else {
+                        congestionMenu.getStyleClass().add("green");
+                        congestionMenu.setText("no Congestion");
+                    }
+                }
+            }
+        });*/
 
-        congestionMenu.getStyleClass().clear();
-        congestionMenu.getStyleClass().add("red"); //TODO auf Property lauschen
+         //TODO auf Property lauschen
 
         refreshBelts(parent, stations);
 

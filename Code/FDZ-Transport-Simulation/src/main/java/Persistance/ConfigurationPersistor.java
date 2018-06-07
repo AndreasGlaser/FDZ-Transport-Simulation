@@ -65,14 +65,12 @@ public class ConfigurationPersistor {
 						return new StationController(stationData,rootPane,stations);
 					});
 					loader.load();
-					StationController controller = loader.getController();
-					new Facade().addStation(controller.getName(), controller.getShortcut());
 
 				} catch (IOException e) {
 					e.printStackTrace();//TODO: exceptionhandling
-				} catch (IllegalSetupException e) {
-					e.printStackTrace();
-				}
+				} //catch (IllegalSetupException e) {
+					//e.printStackTrace();
+			//	}
 			}else if(stationData.getstationType().equals(StationType.CROSSING)){
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
 				try {
@@ -93,7 +91,10 @@ public class ConfigurationPersistor {
 
 		//load IPAddress
 		String ipJson = readJSONFromFile(ipFile);
-		ipAddress = gson.fromJson(ipJson, IPAddress.class);
+		IPAddress jsonIpAddress = gson.fromJson(ipJson, IPAddress.class);
+		ipAddress.setAdress(jsonIpAddress.getAdress());
+		ipAddress.setPort(jsonIpAddress.getPort());
+
 
 	}
 
