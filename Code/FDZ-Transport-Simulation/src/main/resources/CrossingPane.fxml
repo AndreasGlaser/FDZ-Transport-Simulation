@@ -36,7 +36,7 @@
             </VBox>
          </children>
       </GridPane>
-      <Button fx:id="stationOptionsButton" mnemonicParsing="false" onAction="#openCloseOptions" styleClass="stationOptionButton" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0" />
+      <Button fx:id="stationOptionsButton" mnemonicParsing="false" onAction="#openCloseOptions" styleClass="stationOptionButton" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
       <VBox fx:id="crossingOptions" layoutX="43.0" layoutY="-56.0" prefHeight="323.0" prefWidth="172.0" styleClass="stationOptions" visible="false">
          <children>
             <AnchorPane prefHeight="37.0" prefWidth="172.0">
