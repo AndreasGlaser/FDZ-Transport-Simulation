@@ -125,12 +125,23 @@ public class StationController extends AbstractStation {
             setYCord(e.getSceneY() - sceneY + dragYTrans);
         });
 
-        hopsBackBox.getItems().addAll(0,1,2,3,4,5,6,7,8,9);
+        hopsBackBox.getItems().addAll(1,2,3,4,5,6,7,8,9);
         hopsBackBox.getSelectionModel().select(data.getHopsBack());
+        try {
+            new Facade().setHopsToNewCarriage(data.getName(), data.getHopsBack());
+        } catch (IllegalSetupException e) {
+            System.out.println(e.getMessage());//TODO: Log
+        }
 
         hopsBackBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            data.setHopsBack(hopsBackBox.getItems().get((Integer)newValue));
-            System.out.println(data.getHopsBack());
+            int newHopsBack = hopsBackBox.getItems().get((int)newValue);
+            try {
+                new Facade().setHopsToNewCarriage(data.getName(), newHopsBack);
+                data.setHopsBack(newHopsBack);
+                System.out.println("new hopsBack: "+ newHopsBack);
+            } catch (IllegalSetupException e) {
+                System.out.println(e.getMessage());//TODO: Log
+            }
         });
     }
 

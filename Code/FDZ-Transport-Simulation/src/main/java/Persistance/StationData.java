@@ -11,7 +11,7 @@ public class StationData {
 	private Double yCord = 0.;
 	private ArrayList<String> reachableStationsByName = new ArrayList<>();
 	private StationType stationType;
-	private Integer hopsBack = 0;
+	private Integer hopsBack = 1;
 
 
 	public StationData(String name, StationType type){
