@@ -1,5 +1,7 @@
 package Model.Station;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
 
@@ -37,7 +39,7 @@ public class Station {
         System.out.println("\t log: "+id+" acquired "+this.name+"'s Semaphore >>in >>");
 
         this.congestionList.add(id);
-        this.property.getChangedProperty().add(1);
+        this.property.setChanged();
 
         try{
             setSledInside(congestionList.get(0));
@@ -61,7 +63,7 @@ public class Station {
             System.out.println("Cannot drive out Sled "+id+" because its stuck in congestion at "+this.getName());
         }else if(congestionList.get(0) == id){
             congestionList.remove(0);
-            this.property.getChangedProperty().add(1);
+            this.property.setChanged();
         }
         try{
             setSledInside(congestionList.get(0));
@@ -77,10 +79,12 @@ public class Station {
 
     public void setName(String aName){
         this.name = aName;
-        this.property.getChangedProperty().add(1);
+        this.property.setChanged();
     }
-    public void setShortCut(String aShortCut){ this.shortCut = aShortCut;
-        this.property.getChangedProperty().add(1);}
+    public void setShortCut(String aShortCut){
+        this.shortCut = aShortCut;
+        this.property.setChanged();
+    }
     public void setSledInside(int sledId) {
         /*TODO Threadsafe*/
         try{
@@ -89,10 +93,10 @@ public class Station {
         }catch(IndexOutOfBoundsException e){
             this.congestionList.add(sledId);
         }
-        this.property.getChangedProperty().add(1);
+        this.property.setChanged();
     }
     public void setHopsToNewCarriage(int hops){
-        this.property.getChangedProperty().add(1);
+        this.property.setChanged();
     }
     private void setOccupied(boolean occupied){
         isOccupied=occupied;
@@ -111,7 +115,7 @@ public class Station {
     public int getSledInside(){return sledInside;}
     public ArrayList<Station> getPrevStations(){return prevStations;}
     public int getHopsToNewCarriage(){ return hopsToNewCarriage; }
-    public StationProperty getStationProperty(){ return property; }
+    public SimpleIntegerProperty getStationProperty(){ return property.changedProperty(); }
     public ArrayList<Integer> getIdsInStation(){ return congestionList;}
 
     /*--LIST---------------------------------------------------------------------*/
@@ -123,11 +127,11 @@ public class Station {
             }
         }
         prevStations.add(aStation);
-        this.property.getChangedProperty().add(1);
+        this.property.setChanged();
     }
     public void deletePrevStation(Station aStation) throws NullPointerException {
         prevStations.remove(aStation);
-        this.property.getChangedProperty().add(1);
+        this.property.setChanged();
     }
 
 }

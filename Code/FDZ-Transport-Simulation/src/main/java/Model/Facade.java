@@ -105,7 +105,7 @@ public class Facade {
             Station station = stationHandler.getStationByShortCut(oldShortCut);
             station.setShortCut(newShortCut);
         }else{
-            throw new IllegalSetupException("Input ShortCutis invalid");
+            throw new IllegalSetupException("Input ShortCut is invalid");
         }
     }
 
@@ -114,6 +114,6 @@ public class Facade {
     }
 
     public SimpleIntegerProperty getStationChangedProperty(String name) throws NullPointerException{
-        return stationHandler.getStationByName(name).getStationProperty().getChangedProperty();
+        return stationHandler.getStationByName(name).getStationProperty();
     }
 }
