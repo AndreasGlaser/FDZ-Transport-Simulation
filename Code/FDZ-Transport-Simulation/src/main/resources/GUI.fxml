@@ -125,7 +125,7 @@
                   </Pane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                      <center>
-                        <Polygon fx:id="controllerConnectionArrow" fill="#1fff35" stroke="BLACK" strokeType="INSIDE" BorderPane.alignment="CENTER">
+                        <Polygon fx:id="controllerConnectionArrow" fill="#bec3be" stroke="BLACK" strokeType="INSIDE" styleClass="red" BorderPane.alignment="CENTER">
                            <points>
                               <Double fx:value="-10.0" />
                               <Double fx:value="0.0" />

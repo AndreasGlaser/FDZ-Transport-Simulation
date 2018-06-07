@@ -132,8 +132,15 @@ public class Controller {
 			}
 		});
 
-		controllerConnectionArrow.getStyleClass().clear();
-		controllerConnectionArrow.getStyleClass().add("red");//TODO auf property lauschen
+		new Facade().connectedProperty().addListener((observable, oldValue, newValue) -> {
+			controllerConnectionArrow.getStyleClass().clear();
+			if(newValue){
+				controllerConnectionArrow.getStyleClass().add("green");
+			}else {
+				controllerConnectionArrow.getStyleClass().add("red");
+			}
+		});
+		
 
 		//nur zur Demonstration
 		String mesID1 = "0000000001";

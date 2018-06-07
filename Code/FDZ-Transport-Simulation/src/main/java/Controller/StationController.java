@@ -47,6 +47,7 @@ public class StationController extends AbstractStation {
         stations.add(this);
         try {
             new Facade().addStation(data.getName(), data.getShortcut());
+            System.out.println("station added named: "+data.getName());
         } catch (IllegalSetupException e) {
             e.printStackTrace();
         }
@@ -64,13 +65,25 @@ public class StationController extends AbstractStation {
             data.setShortcut(abbreviationField.getText());
         });
 
-        /*new Facade().getStationChangedProperty(data.getName()).addListener((observable, oldValue, newValue) -> {
+        sledPane.getStyleClass().clear();
+        sledPane.getStyleClass().add("yellow");
+        sledText.setText("Empty");
+        congestionMenu.getStyleClass().clear();
+        congestionMenu.getStyleClass().add("green");
+        congestionMenu.setText("no Congestion");
+
+        try{
+            new Facade().getStationChangedProperty(data.getName()).addListener((observable, oldValue, newValue) -> {
             if(newValue){
                 ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
+                congestionMenu.getItems().clear();
                 if (sleds.size() == 0){
                     sledPane.getStyleClass().clear();
                     sledPane.getStyleClass().add("yellow");
                     sledText.setText("Empty");
+                    congestionMenu.getStyleClass().clear();
+                    congestionMenu.getStyleClass().add("green");
+                    congestionMenu.setText("no Congestion");
                 }else{
                     for(Integer sledId: sleds){
                         congestionMenu.getItems().add(new MenuItem(sledId.toString()));
@@ -88,9 +101,10 @@ public class StationController extends AbstractStation {
                     }
                 }
             }
-        });*/
-
-         //TODO auf Property lauschen
+            });
+        }catch (NullPointerException e){
+            System.out.println("Null pointer Exception coud not get Property of Station "+data.getName());//TODO Log
+        }
 
         refreshBelts(parent, stations);
 
