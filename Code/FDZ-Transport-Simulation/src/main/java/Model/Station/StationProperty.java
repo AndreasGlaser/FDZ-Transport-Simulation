@@ -7,7 +7,7 @@ public class StationProperty {
     private SimpleBooleanProperty changedProperty;
 
     public StationProperty(){
-        changedProperty.set(false);
+        changedProperty = new SimpleBooleanProperty(true);
     }
 
     public SimpleBooleanProperty getChangedProperty(){
