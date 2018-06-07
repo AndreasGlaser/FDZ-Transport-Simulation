@@ -68,9 +68,7 @@ public class ConfigurationPersistor {
 
 				} catch (IOException e) {
 					e.printStackTrace();//TODO: exceptionhandling
-				} //catch (IllegalSetupException e) {
-					//e.printStackTrace();
-			//	}
+				}
 			}else if(stationData.getstationType().equals(StationType.CROSSING)){
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
 				try {

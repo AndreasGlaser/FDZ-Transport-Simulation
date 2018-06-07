@@ -8,7 +8,6 @@ import View.AbstractStation;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -168,17 +167,11 @@ public class StationController extends AbstractStation {
                 box.selectedProperty().addListener((observable2, oldValue, newValue) -> {
                     if(newValue){
                         data.getPreviousStationsByName().add(i.getData().getName());
-                        if(i.getData().getstationType().equals(StationType.STATION)){
-                            new Facade().addPrevStation(data.getName(), i.getName());
-                        }
-
+                        addPrevStationInModel(i);
                     }
                     else {
                         data.getPreviousStationsByName().remove(i.getData().getName());
-                        if(i.getData().getstationType().equals(StationType.STATION)){
-                            new Facade().deletePrevStation(data.getName(), i.getName());
-                        }
-
+                        removePrevStationInModel(i);
                     }
                     refreshBelts(parent, stations);
 
@@ -193,6 +186,43 @@ public class StationController extends AbstractStation {
             });
 
 
+        }
+    }
+
+    private void removePrevStationInModel(AbstractStation station) {
+
+        if(station.getData().getstationType().equals(StationType.STATION)){
+            new Facade().deletePrevStation(data.getName(), station.getName());
+        }else{
+            for(String stationName: station.getPreviousStationsByName()){
+                for(AbstractStation station2: stations){
+                    if(station2.getName().equals(stationName)){
+                        if(!data.getName().equals(stationName)){
+                            removePrevStationInModel(station2);
+                            System.out.println("removed " +station2.getName());
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    private void addPrevStationInModel(AbstractStation station) {
+
+        if(station.getData().getstationType().equals(StationType.STATION)){
+            new Facade().addPrevStation(data.getName(), station.getName());
+        }else{
+            for(String stationName: station.getPreviousStationsByName()){
+                for(AbstractStation station2: stations){
+                    if(station2.getName().equals(stationName)){
+                        if(!data.getName().equals(stationName)){
+                            addPrevStationInModel(station2);
+                        }
+
+                    }
+                }
+            }
         }
     }
 
