@@ -35,11 +35,10 @@ public class CommandLineInterface extends Thread{
         sc = new Scanner(System.in);
         System.out.println(HELP);
         facade = new Facade();
-        for(int i=0; i< StationHandler.getInstance().getStationList().size(); ++i){
-            facade.getStationChangedProperty(StationHandler.getInstance().getStationList().get(i).getName()).addListener((observable, oldValue, newValue) ->{
-                System.err.println("CHANGED");
-                printState();
-            } );
+        for(int i=0; i< StationHandler.getInstance().getAmountOfStations(); ++i){
+            // TODO: 07.06.18 add observer to stations
+            System.err.println("CHANGED");
+            printState();
         }
     }
 

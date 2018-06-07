@@ -49,7 +49,7 @@ public class PathFinder {
          *first station, which was congested in way */
         if(hops == 1 || to.getPrevStations().size() == 0){
             /*END RECURSIVE FUNCTION*/
-            if(to.isOccupied()){
+            if(to.isCongested()){
                 /*am i congested? 1 more hop to go*/
                 path.addLast(to);
                 return to;
@@ -70,8 +70,7 @@ public class PathFinder {
     private Station findRightNextHopFor(Station station)throws IllegalSetupException {
         ArrayList<Station> list = station.getPrevStations();
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getHopsToNewCarriage() ==
-                    station.getHopsToNewCarriage()-1) return list.get(i);
+            if(list.get(i).getHopsToNewCarriage() == station.getHopsToNewCarriage()-1) return list.get(i);
         }
         throw new IllegalSetupException("Station "+station.getName()+"has no Prev Station with"+
                                         "Hops-1 == "+(station.getHopsToNewCarriage()-1));
@@ -82,7 +81,7 @@ public class PathFinder {
             path.addFirst(to);
             return;
         }
-        if(from == to && to == init && to.getPrevStations().isEmpty()){
+        if(to == init && to.getPrevStations().isEmpty()){
             return; /*Loop detected*/
         }
         for(int i=0; i<to.getPrevStations().size();++i){
@@ -97,7 +96,7 @@ public class PathFinder {
 
     private Station isOccupied(Station ifYes, Station ifNo){
         if(ifYes == null){ /*NO*/
-            if(ifNo.isOccupied()) {
+            if(ifNo.isCongested()) {
                 /*AM I OCCUPIED?*/
                 return ifNo; //yes return me
             }else{

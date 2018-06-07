@@ -2,20 +2,16 @@ package Model.Command;
 
 /**@author Noah Lehmann*/
 
-import Model.Command.*;
 import Model.Exception.IllegalCommandException;
 import Model.Network.NetworkController;
-import Model.Station.Station;
 import Model.Station.StationHandler;
 
-import java.util.ArrayList;
 
 public class CommandInterpreter extends Thread {
 
 /*--MEMBERVARIABLES----------------------------------------------------------*/
 
     private final String command;
-    private final ArrayList<Station> stationList;
     private String position, messageID;
     private int commandNum = -1, carriageID = -1, paramCount = -1,
                 beginMesID = -1;
@@ -31,7 +27,6 @@ public class CommandInterpreter extends Thread {
      */
     public CommandInterpreter(String command) {
         this.command = command;
-        this.stationList = StationHandler.getInstance().getStationList();
     }
 
     @Override
@@ -361,7 +356,7 @@ public class CommandInterpreter extends Thread {
             throw new IllegalCommandException(mes);
         }
         /*--OBJECT VALUES-----------------------*/
-        if(stationList == null || stationList.size() == 0){
+        if(StationHandler.getInstance().getAmountOfStations() == 0){
             String mes = "\t\t\tCommandInterpreter at: validateValues(); \n" +
                          "\t\t\tList of currently used Station is either\n" +
                          "\t\t\tnot set or empty";
@@ -374,22 +369,21 @@ public class CommandInterpreter extends Thread {
     }
 
     /**
-     * Checks, wether the ShortCut for the Position is known
+     * Checks, whether the ShortCut for the Position is known
      * to the System
      * @return isCorrect
      * @throws IllegalCommandException
      */
     private boolean validatePosition() throws IllegalCommandException{
-        for(int i=0; i<stationList.size(); i++){
-            if(stationList.get(i).getShortCut()
-                    .compareToIgnoreCase(position) == 0){
-                return true;
-            }
+        try{
+            return StationHandler.getInstance().getStationByShortCut(position) != null;
+        }catch(NullPointerException e){
+            String mes =
+                    "\t\t\tCommandInterpreter at: validatePosition(); \n" +
+                    "\t\t\tGiven Position not found in List of\n" +
+                    "\t\t\tcurrent Stations (search was not Case-Sensitive)";
+            throw new IllegalCommandException(mes);
         }
-        String mes = "\t\t\tCommandInterpreter at: validatePosition(); \n" +
-                     "\t\t\tGiven Position not found in List of\n" +
-                     "\t\t\tcurrent Stations (search was not Case-Sensitive)";
-        throw new IllegalCommandException(mes);
     }
 }
 
