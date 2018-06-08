@@ -1,9 +1,7 @@
 package View;
 
-import Controller.CLIController;
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
-import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 
@@ -14,10 +12,9 @@ import java.util.Scanner;
 public class CommandLineInterface extends Thread{
 
     private Scanner sc;
-    private CLIController controller;
     private Facade facade;
-    private final String help =
-                    "+–––––––––––––––––––––––––––––––––+\n" +
+    private final String HELP =
+            "+–––––––––––––––––––––––––––––––––+\n" +
                     "| Type in TestCommand:            |\n" +
                     "| -\"q\" to end program             |\n" +
                     "| -\"h\" for help                   |\n" +
@@ -27,17 +24,28 @@ public class CommandLineInterface extends Thread{
                     "| -\"m\" to manipulate Station      |\n" +
                     "| -\"FDZ-Command\" to test System   |\n" +
                     "+–––––––––––––––––––––––––––––––––+";
+    private final String QUIT =
+            "+––––––––––––––––––––––––––+\n"+
+                    "|Detected Shutdown, do you |\n" +
+                    "|want to quit as well?[y|*]|\n" +
+                    "+––––––––––––––––––––––––––+\n#";
+
 
     public CommandLineInterface() {
-        sc = new Scanner(System.in);
-        controller = new CLIController();
-        System.out.println(help);
+        this.sc = new Scanner(System.in);
+        System.out.println(HELP);
         facade = new Facade();
+        for(int i=0; i< StationHandler.getInstance().getAmountOfStations(); ++i){
+            // TODO: 07.06.18 add observer to stations
+            System.err.println("CHANGED");
+            printState();
+        }
     }
 
     @Override
     public void run(){
         while (true) {
+
             System.out.print(">");
 
             String input = sc.nextLine();
@@ -49,8 +57,7 @@ public class CommandLineInterface extends Thread{
             }else if(input.length()==1) {
                 switch (input.charAt(0)) {
                     case 'q': break;
-                    case 'h': System.out.println(help); continue;
-                  //  case 'p': printState(controller.getStationList()); continue;
+                    case 'h': System.out.println(HELP); continue;
                     case 'd': delete(); continue;
                     case 'a': add(); continue;
                     case 'm': manipulate(); continue;
@@ -74,22 +81,24 @@ public class CommandLineInterface extends Thread{
             /*foreach station*/
             System.out.print(
                     "\t|"+stationList.get(i).getName()+"\n"+
-                             "\t|––––––––––––––––––––––––\n" +
-                             "\t|->shortCut  |" + stationList.get(i).getShortCut() + "\n"+
-                             "\t|->   id     |");
+                            "\t|––––––––––––––––––––––––\n" +
+                            "\t|->shortCut  |" + stationList.get(i).getShortCut() + "\n"+
+                            "\t|->   id     |");
             try {
-                System.out.print(stationList.get(i).getIdsInStation().get(0) + "\n");
+                System.out.print(facade.getSledsInStation(stationList.get(i).getName()).get(0) + "\n");
             }catch(Exception e){
                 System.out.print("-2\n");
             }
-            System.out.print("\t|->congested |" + stationList.get(i).isCongested()+"\n"+
-                             "\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
+            System.out.println("\t|->congested |" + stationList.get(i).isCongested()+"\n"+
+                    "\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
             ArrayList<Station> prev = stationList.get(i).getPrevStations();
+            System.out.println(
+                    "\t"+stationList.get(i).getPrevStations().size()+" prevs");
             for (int j = 0; j < prev.size(); j++) {
                 System.out.print(
                         "\t| prev"+j+" = "+ prev.get(j).getName() +"\n");
             }
-            System.out.println();
+            System.out.println("\n----END-----\n");
         }
     }
 
@@ -131,9 +140,9 @@ public class CommandLineInterface extends Thread{
         name = sc.nextLine();
         System.out.print(
                 "Which Attribute:\n"+
-                "\t(1) hopsBackToNewCarriage\n"+
-                "\t(2) prevStation List\n"+
-                "#");
+                        "\t(1) hopsBackToNewCarriage\n"+
+                        "\t(2) prevStation List\n"+
+                        "#");
         switch (sc.nextInt()){
             case 1:
                 System.out.print("Hops back to new Carriage:");
@@ -173,15 +182,11 @@ public class CommandLineInterface extends Thread{
     }
 
     private void testCommand(String input){
-        NetworkController.getInstance().testCommand(input);
+        facade.testCommand(input);
     }
 
     private boolean quit(){
-        System.out.print(
-                "+––––––––––––––––––––––––––+\n" +
-                        "|Detected Shutdown, do you |\n" +
-                        "|want to quit as well?[y|*]|\n" +
-                        "+––––––––––––––––––––––––––+\n#");
+        System.out.print(QUIT);
         if(sc.next().compareToIgnoreCase("y") == 0) {
             return true;
         }

@@ -21,7 +21,7 @@ public class Facade {
         stationHandler = StationHandler.getInstance();
     }
 
-/* NETWORK ------------------------------------------------------------------*/
+    /* NETWORK ------------------------------------------------------------------*/
 
     public void testCommand(String command){
         networkController.testCommand(command);
@@ -35,7 +35,7 @@ public class Facade {
                     try{
                         NetworkController.getInstance().connect(ip, port);
                     }catch(UnknownHostException e){
-                    /*TODO Log exception*/
+                        /*TODO Log exception*/
                     }
                 }
             };
@@ -61,14 +61,15 @@ public class Facade {
 
     public void addStation(String name, String shortCut) throws IllegalSetupException{
         if(name != null && name.length() != 0 && shortCut.length() == 2){
-            stationHandler.addStation(name, shortCut);
+            stationHandler.addStation(new Station(name, shortCut));
         }else{
             throw new IllegalSetupException("Name or ShortCut not valid");
         }
     }
 
     public void deleteStation(String name) throws NullPointerException{
-        stationHandler.deleteStation(name);
+        Station station = stationHandler.getStationByName(name);
+        stationHandler.deleteStation(station);
     }
 
     public void addPrevStation(String toName, String prevName) throws NullPointerException{
@@ -85,7 +86,7 @@ public class Facade {
 
     public void setHopsToNewCarriage(String stationName, int hops) throws IllegalSetupException, NullPointerException {
         Station station = stationHandler.getStationByName(stationName);
-        if (hops < stationHandler.getStationList().size() && hops >= 1){
+        if (hops < stationHandler.getAmountOfStations() && hops >= 1){
             station.setHopsToNewCarriage(hops);
         }else{
             throw new IllegalSetupException("hops is either smaller than 1 or too big");
@@ -105,15 +106,17 @@ public class Facade {
             Station station = stationHandler.getStationByShortCut(oldShortCut);
             station.setShortCut(newShortCut);
         }else{
-            throw new IllegalSetupException("Input ShortCutis invalid");
+            throw new IllegalSetupException("Input ShortCut is invalid");
         }
     }
 
     public ArrayList<Integer> getSledsInStation(String name) throws NullPointerException{
-        return stationHandler.getStationByName(name).getIdsInStation();
+        return stationHandler.getStationByName(name).getSledsInStation();
     }
 
     public SimpleIntegerProperty getStationChangedProperty(String name) throws NullPointerException{
-        return stationHandler.getStationByName(name).getStationProperty().getChangedProperty();
+        stationHandler.getStationByName(name).addObserver();
+        // TODO: 07.06.18 change Interface
+        return new SimpleIntegerProperty(1);
     }
 }

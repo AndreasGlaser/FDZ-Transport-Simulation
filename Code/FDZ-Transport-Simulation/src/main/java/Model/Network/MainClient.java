@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class MainClient {
 
     public static void main(String[] args) throws UnknownHostException, FDZNetworkException {
-        Station robot = new Station("robot", "ro");
+        /*Station robot = new Station("robot", "ro");
         Station stock = new Station("stock", "la");
         Station inOut = new Station("inOut", "ea");
         ArrayList<Station> stationList = new ArrayList<Station>(3);
@@ -43,7 +43,7 @@ public class MainClient {
             }
         }
 
-        ch.disconnect();
+        ch.disconnect();*/
     }
 
 }

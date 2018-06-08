@@ -36,7 +36,7 @@ public class PathFinder {
         findRightPathFor(to, from, to);
         for (int i = 0; i < path.size(); i++) {
             Station station =  path.get(i);
-            if (station.isCongested()){
+            if (station != from && station.isCongested()){
                 return station;
             }
         }
@@ -49,7 +49,7 @@ public class PathFinder {
          *first station, which was congested in way */
         if(hops == 1 || to.getPrevStations().size() == 0){
             /*END RECURSIVE FUNCTION*/
-            if(to.isOccupied()){
+            if(to.isCongested()){
                 /*am i congested? 1 more hop to go*/
                 path.addLast(to);
                 return to;
@@ -65,16 +65,15 @@ public class PathFinder {
         return isOccupied(prev, to);
     }
 
-/* HELPING FUNCTIONS --------------------------------------------------------*/
+    /* HELPING FUNCTIONS --------------------------------------------------------*/
 
     private Station findRightNextHopFor(Station station)throws IllegalSetupException {
         ArrayList<Station> list = station.getPrevStations();
         for (int i = 0; i < list.size(); i++) {
-            if(list.get(i).getHopsToNewCarriage() ==
-                    station.getHopsToNewCarriage()-1) return list.get(i);
+            if(list.get(i).getHopsToNewCarriage() == station.getHopsToNewCarriage()-1) return list.get(i);
         }
         throw new IllegalSetupException("Station "+station.getName()+"has no Prev Station with"+
-                                        "Hops-1 == "+(station.getHopsToNewCarriage()-1));
+                "Hops-1 == "+(station.getHopsToNewCarriage()-1));
     }
 
     private void findRightPathFor(Station init, Station from, Station to){
@@ -97,7 +96,7 @@ public class PathFinder {
 
     private Station isOccupied(Station ifYes, Station ifNo){
         if(ifYes == null){ /*NO*/
-            if(ifNo.isOccupied()) {
+            if(ifNo.isCongested()) {
                 /*AM I OCCUPIED?*/
                 return ifNo; //yes return me
             }else{

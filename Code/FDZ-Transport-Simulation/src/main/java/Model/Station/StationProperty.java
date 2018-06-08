@@ -1,6 +1,5 @@
 package Model.Station;
 
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class StationProperty {
@@ -11,7 +10,12 @@ public class StationProperty {
         changedProperty = new SimpleIntegerProperty(0);
     }
 
-    public SimpleIntegerProperty getChangedProperty(){
+    public SimpleIntegerProperty changedProperty(){
         return changedProperty;
+    }
+
+    public void setChanged(){
+        System.err.println("changed value");
+        changedProperty.set(changedProperty.getValue()+1);
     }
 }
