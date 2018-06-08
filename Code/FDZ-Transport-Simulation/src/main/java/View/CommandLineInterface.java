@@ -32,7 +32,7 @@ public class CommandLineInterface extends Thread{
 
 
     public CommandLineInterface() {
-        sc = new Scanner(System.in);
+        this.sc = new Scanner(System.in);
         System.out.println(HELP);
         facade = new Facade();
         for(int i=0; i< StationHandler.getInstance().getAmountOfStations(); ++i){
@@ -89,14 +89,16 @@ public class CommandLineInterface extends Thread{
             }catch(Exception e){
                 System.out.print("-2\n");
             }
-            System.out.print("\t|->congested |" + stationList.get(i).isCongested()+"\n"+
+            System.out.println("\t|->congested |" + stationList.get(i).isCongested()+"\n"+
                              "\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
             ArrayList<Station> prev = stationList.get(i).getPrevStations();
+            System.out.println(
+                        "\t"+stationList.get(i).getPrevStations().size()+" prevs");
             for (int j = 0; j < prev.size(); j++) {
                 System.out.print(
                         "\t| prev"+j+" = "+ prev.get(j).getName() +"\n");
             }
-            System.out.println();
+            System.out.println("\n----END-----\n");
         }
     }
 

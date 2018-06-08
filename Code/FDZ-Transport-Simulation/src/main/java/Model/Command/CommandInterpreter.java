@@ -1,10 +1,9 @@
 package Model.Command;
 
-/**@author Noah Lehmann*/
+/**@author nlehmann*/
 
 import Model.Exception.IllegalCommandException;
 import Model.Network.NetworkController;
-import Model.Station.StationHandler;
 
 
 public class CommandInterpreter extends Thread {
@@ -13,17 +12,15 @@ public class CommandInterpreter extends Thread {
 
     private final String command;
     private String position, messageID;
-    private int commandNum = -1, carriageID = -1, paramCount = -1,
-                beginMesID = -1;
-    private final char POS = '2', ID = '2', POS_ID = '4', NO = '0';
+    private int commandNum = -1, beginMesID = -1;
+    private Integer carriageID = null, paramCount = null;
     private final int NO_ID_REQUIRED = -1;
 
 /*--CONSTRUCTOR--------------------------------------------------------------*/
 
     /**
      * Invokes a new InterpreterThread, which parses the received Message
-     * @param command
-     * @throws IllegalCommandException
+     * @param command the full String received by the NetworkController
      */
     public CommandInterpreter(String command) {
         this.command = command;
@@ -33,9 +30,9 @@ public class CommandInterpreter extends Thread {
     public void run() {
         try{
             this.parseValues();
-            this.validateValues();
+            new CommandValidator(command, messageID, position, commandNum, paramCount, carriageID);
         }catch(IllegalCommandException e){
-            NetworkController.getInstance().commandNotUnterstood(messageID);
+            error(messageID);
             /*TODO ERROR in Network*/
         }
 
@@ -54,13 +51,12 @@ public class CommandInterpreter extends Thread {
                 break;
             case 2:
                 System.out.println("\t log: " + "interpreted case 2");
-                CommandQueue.getInstance().add(
-                        new ReleaseCarriage(carriageID, messageID));
+                CommandQueue.getInstance().add(new ReleaseCarriage(carriageID, messageID));
                 acknowledge(messageID);
+                break;
             case 3:
                 System.out.println("\t log: " + "interpreted case 3");
-                CommandQueue.getInstance().add(
-                        new RepositionCarriage(carriageID, position, messageID));
+                CommandQueue.getInstance().add(new RepositionCarriage(carriageID, position, messageID));
                 acknowledge(messageID);
                 break;
             case 4:
@@ -71,15 +67,27 @@ public class CommandInterpreter extends Thread {
             default:
                 System.out.println("\t log: default");
                 /* TODO Command not recognized Network ERROR*/
-                NetworkController.getInstance().commandNotUnterstood(messageID);
+                error(messageID);
         }
-        System.out.println("\t log: Command successfully Recognized");
     }
 
+    /**
+     * Acknowledges the Command for NetworkController to send acknowledge1, waits for response of NetworkController
+     * @param messageID Message ID of the Command
+     */
     private void acknowledge(String messageID){
         if(NetworkController.getInstance().acknowledge1(messageID)) {
             CommandQueue.getInstance().activate(messageID);
+            System.out.println("done ack");
         }
+    }
+
+    /**
+     * sends an Error 'Command not understood' to the NetworkController, will not wait for response
+     * @param messageID Message ID of the Command
+     */
+    private void error(String messageID){
+        NetworkController.getInstance().commandNotUnterstood(messageID);
     }
 
 /*--PARSER-------------------------------------------------------------------*/
@@ -87,32 +95,23 @@ public class CommandInterpreter extends Thread {
     /**
      * Starts the Sequence of parsing the Command for its values.
      * Does not read any Values, only starts other Methods
-     * @throws IllegalCommandException
+     * @throws IllegalCommandException thrown if the Command cannot be parsed due to invalid construction
      */
     private void parseValues() throws IllegalCommandException{
-        this.commandNum = parseCommandNum(command);
-        if( validateParamCount(command)                //comNum = expected Params
-                & validateCommand(command)) {       //other input mistakes
-            this.position = parsePosition(command);
-            this.carriageID = parseCarriageID(command);
-            this.messageID = parseMessageID(command);
-        }else{
-            String mes = "\t\t\tCommandInterpreter at: parseValues(); \n" +
-                         "\t\t\tvalidateParamCount && validateCommand not true!\n" +
-                         "\t\t\tprobably commandNum and paramCount Values\n" +
-                         "\t\t\tdon't match";
-            throw new IllegalCommandException(mes);      //invalid command
-        }
+        this.commandNum = parseCommandNum();
+        this.paramCount = parseParamCount();
+        this.position = parsePosition();
+        this.carriageID = parseCarriageID();
+        this.messageID = parseMessageID();
     }
 
     /**
      * Parses the Number of the Command. Each Command is identified by a
      * unique Number in the Message
-     * @param command
      * @return CommandNumber
-     * @throws IllegalCommandException
+     * @throws IllegalCommandException thrown if the CommandNumber cannot be parsed due to invalid construction of the command
      */
-    private int parseCommandNum(String command) throws IllegalCommandException{
+    private int parseCommandNum() throws IllegalCommandException{
         /*throws Exception, if char at commandNum position is NaN*/
         /*STStK00?...*/
         int cntIndex=0;
@@ -145,14 +144,25 @@ public class CommandInterpreter extends Thread {
     }
 
     /**
+     * Parses the PayloadSize at position 24 of the command String
+     * @return payload size
+     */
+    private Integer parseParamCount(){
+        try{
+            return Integer.parseInt(command.substring(24,25));
+        }catch (NumberFormatException e){
+            return null;
+        }
+    }
+
+    /**
      * Parses the Message for a Position. If non is required, the
      * returned String will say so. A Position is alway the last parameter
      * in the Message
-     * @param command
      * @return StationShortCut
-     * @throws IllegalCommandException
+     * @throws IllegalCommandException thrown if the position cannot be parsed due to invalid construction of the command
      */
-    private String parsePosition(String command) throws IllegalCommandException{
+    private String parsePosition() throws IllegalCommandException{
         /*STStK003....id??*/
         if(commandNum == 1 || commandNum == 3) {
             /*reposition or request carriage*/
@@ -175,16 +185,15 @@ public class CommandInterpreter extends Thread {
     /**
      * Parses the Message for a CarriageID, if one is required,
      * else it returns -2
-     * @param command
      * @return CarriageID
-     * @throws IllegalCommandException
+     * @throws IllegalCommandException thrown if the carriageID cannot be parsed due to invalid construction of the command
      */
-    private int parseCarriageID(String command) throws IllegalCommandException{
+    private int parseCarriageID() throws IllegalCommandException{
         /*STStK001|2|3...??..*/
         if(commandNum == 2 || commandNum == 3) {
             /*reposition or release Carriage*/
             int end = command.length() - 1;
-            if (paramCount == 2 && commandNum == 2) {     //release Carriage
+            if (paramCount != null && paramCount == 2 && commandNum == 2) {     //release Carriage
                 String sub = command.substring(end - 1, end + 1);
                 try {
                     return Integer.parseInt(sub);   //number expected
@@ -215,10 +224,9 @@ public class CommandInterpreter extends Thread {
     /**
      * Parses the middle section of a message for an Identifier
      * made of the time, the message was sent
-     * @param command
      * @return MessageID
      */
-    private String parseMessageID(String command){
+    private String parseMessageID(){
         /*STStK00.<??>..*/
         int end = command.length();
         if(commandNum == 1 || commandNum == 2){
@@ -248,142 +256,5 @@ public class CommandInterpreter extends Thread {
         return null;
     }
 
-/*--VALIDATOR----------------------------------------------------------------*/
-
-    /**
-     * Validates if the message is built correctly
-     * @param command
-     * @return isValid
-     * @throws IllegalCommandException
-     */
-    private boolean validateCommand(String command) throws IllegalCommandException{
-        /*Special Cases:*/
-        if(command == null){
-            String mes = "\t\t\tCommandInterpreter at: validateCommand(); \n" +
-                         "\t\t\tEither no command was given to Interpreter\n" +
-                         "\t\t\tor NULL was referenced to Command\n";
-            throw new IllegalCommandException(mes);
-        }
-        if(command.length() < 12){          //More chars expected
-            String mes = "\t\t\tCommandInterpreter at: validateCommand(); \n" +
-                         "\t\t\tCommand referenced to Interpreter does\n" +
-                         "\t\t\tnot match the expected length\n";
-            throw new IllegalCommandException(mes);
-        }
-        if (command.substring(0,7).compareTo("STStK00") != 0){
-            String mes = "\t\t\tCommandInterpreter at: validateCommand();\n" +
-                         "\t\t\tCommand given to Interpreter can not be\n" +
-                         "\t\t\trecognized;\n" +
-                         "\t\t\tDoes not start with \"STStK00\"";
-            throw new IllegalCommandException(mes);
-        }
-        return true;
-    }
-
-    /**
-     * Validates wether the found parameter Count equals the expected
-     * parameters for the given Command
-     * @param command
-     * @return isParamCountEqualToCommand
-     */
-    private boolean validateParamCount(String command){
-        char [] chars = command.toCharArray();
-        if(commandNum == 1 & chars[command.length()-3] == POS){
-            //requestEmptyCarriage
-            this.paramCount = 2;
-            return true;
-        }
-        if(commandNum == 2 & chars[command.length()-3] == ID){
-            //releaseCarriage
-            this.paramCount = 2;
-            return true;
-        }
-        if(commandNum == 3 & chars[command.length()-5] == POS_ID){
-            //repositionCarriage
-            this.paramCount = 4;
-            return true;
-        }
-        if(commandNum == 4 & chars[command.length()-1] == NO){
-            //shutdownTransport
-            this.paramCount = 0;
-            return true;
-        }
-        this.paramCount = -1;
-        return false;
-    }
-
-    /**
-     * Validates the form of the values. Checks wether they are within
-     * their domains
-     * @throws IllegalCommandException
-     */
-    private void validateValues() throws IllegalCommandException{
-        /*--INT VALUES--------------*/
-        if(paramCount < 0){
-            String mes = "\t\t\tCommandInterpreter at: validateValues(); \n" +
-                         "\t\t\tNumber of Params in Command not as Expected";
-            throw new IllegalCommandException(mes);
-        }
-        if(carriageID < 0 &&              //carriageID necessary
-                (commandNum == 2 || commandNum == 3)){
-            String mes = "\t\t\tCommandInterpreter at: validateValues(); \n" +
-                         "\t\t\tcarriageID not set, though needed for\n" +
-                         "\t\t\tprocessing Command, or negative, which is\n" +
-                         "\t\t\tnot allowed";
-            throw new IllegalCommandException(mes);
-        }
-        if(0 > commandNum || commandNum > 4 ){
-            String mes = "\t\t\tCommandInterpreter at: validateValues(); \n" +
-                         "\t\t\tNumber identifying Command not listed in known\n" +
-                         "\t\t\tcommands";
-            throw new IllegalCommandException(mes);
-        }
-        if(beginMesID == -1){
-            String mes = "\t\t\tCommandInterpreter at: validateValues(); \n" +
-                         "\t\t\tMessageID could not be located in Command";
-            throw new IllegalCommandException(mes);
-        }
-        /*--STRING VALUES-----------------------*/
-        if(position == null){
-            String mes = "\t\t\tCommandInterpreter at: validateValues(); \n" +
-                         "\t\t\tNo Position for carriage found, but\n" +
-                         "\t\t\tneeded to process Command";
-            throw new IllegalCommandException(mes);
-        }
-        if(messageID == null){
-            String mes = "\t\t\tCommandInterpreter at: validateValues(); \n" +
-                         "\t\t\tNo Message ID set";
-            throw new IllegalCommandException(mes);
-        }
-        /*--OBJECT VALUES-----------------------*/
-        if(StationHandler.getInstance().getAmountOfStations() == 0){
-            String mes = "\t\t\tCommandInterpreter at: validateValues(); \n" +
-                         "\t\t\tList of currently used Station is either\n" +
-                         "\t\t\tnot set or empty";
-            throw new IllegalCommandException(mes);
-        }
-        /*--IS POSITION IN LIST OF STATIONS*/
-        if(commandNum == 1 || commandNum == 3){
-            validatePosition();
-        }
-    }
-
-    /**
-     * Checks, whether the ShortCut for the Position is known
-     * to the System
-     * @return isCorrect
-     * @throws IllegalCommandException
-     */
-    private boolean validatePosition() throws IllegalCommandException{
-        try{
-            return StationHandler.getInstance().getStationByShortCut(position) != null;
-        }catch(NullPointerException e){
-            String mes =
-                    "\t\t\tCommandInterpreter at: validatePosition(); \n" +
-                    "\t\t\tGiven Position not found in List of\n" +
-                    "\t\t\tcurrent Stations (search was not Case-Sensitive)";
-            throw new IllegalCommandException(mes);
-        }
-    }
 }
 

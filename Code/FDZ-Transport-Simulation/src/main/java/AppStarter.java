@@ -1,6 +1,7 @@
 
 
 import Controller.Controller;
+import Model.Facade;
 import Model.Network.NetworkController;
 import View.CommandLineInterface;
 import javafx.application.Application;
@@ -38,19 +39,11 @@ public class AppStarter extends Application {
             }
         });
 
-
-
-        /*CommandLineInterface cli = new CommandLineInterface();
-        cli.run();
-        while(cli.isAlive()) {
-            try {
-                cli.join();
-            } catch (InterruptedException e) {
-                continue;
-            }
-        }*/
+        new Facade().addPrevStation("Robot", "Storage");
+        new Facade().addPrevStation("Storage", "I/O");
+        new Facade().addPrevStation("Storage", "Robot");
+        new Facade().addPrevStation("I/O", "Storage");
     }
-
 
     public static void main(String[] args) {
         new CommandLineInterface().start();

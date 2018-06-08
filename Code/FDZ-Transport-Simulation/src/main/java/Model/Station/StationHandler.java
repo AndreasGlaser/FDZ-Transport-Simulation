@@ -89,6 +89,10 @@ public class StationHandler{
             if(sledInside != null && sledInside == id){
                 return stations.get(i);
             }
+            if(sledInside != null && sledInside == -1 ){
+                stations.get(i).idFound(id);
+                return stations.get(i);
+            }
         }
         throw new NullPointerException("Id in none of the Stations");
     }
@@ -103,7 +107,7 @@ public class StationHandler{
     public void addStation(Station station) throws IllegalSetupException {
         if(station == null){
             System.err.println("Null will not be added to stationList");
-        }else if(listContains(station)){
+        }else if(stations.contains(station)){
             /*TODO debug*/
             throw new IllegalSetupException("Station already in stationList");
         }else{
@@ -119,7 +123,7 @@ public class StationHandler{
     public void deleteStation(Station station) throws NullPointerException{
         if(station == null){
             System.err.println("Null will not be removed from stationList");
-        }else if(listContains(station)){
+        }else if(stations.contains(station)){
             stations.remove(station);
         }else{
             throw new NullPointerException("Station not in stationList");
@@ -128,14 +132,7 @@ public class StationHandler{
 
 
     /*Helpers*/
-    private boolean listContains(Station station){
-        for (int i=0; i<stations.size(); ++i){
-            if(stations.get(i).equals(station)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     // TODO: 07.06.18 entfernen!!
     public ArrayList<Station> getStationList(){

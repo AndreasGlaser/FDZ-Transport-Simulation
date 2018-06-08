@@ -209,7 +209,6 @@ public class StationController extends AbstractStation {
     }
 
     private void addPrevStationInModel(AbstractStation station) {
-
         if(station.getData().getstationType().equals(StationType.STATION)){
             new Facade().addPrevStation(data.getName(), station.getName());
         }else{

@@ -34,10 +34,12 @@ public class RepositionCarriage extends Command {
         try {
             Station from = StationHandler.getInstance().getStationBySledID(id);
             Station to = StationHandler.getInstance().getStationByShortCut(position);
+            System.err.println("trying path");
             new PathFinder(from, to);
+            System.err.println("path found");
             /*No Congestion from source to destination*/
             from.driveOutSled();
-
+            System.err.println("drove out");
             // TODO: 07.06.18 test if blocked command is stuck here
             to.driveInSled(id);
             System.out.println("\t log: reposition carriage " + id + " to " + position);
@@ -51,6 +53,7 @@ public class RepositionCarriage extends Command {
             throw new IllegalSetupException("No Stations in Setup");
         }catch(NullPointerException e){
             super.error();
+            e.printStackTrace();
             // TODO: 07.06.18 stations not found
         }
 

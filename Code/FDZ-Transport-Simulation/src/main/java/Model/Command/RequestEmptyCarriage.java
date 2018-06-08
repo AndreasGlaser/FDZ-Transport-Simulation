@@ -23,6 +23,9 @@ public class RequestEmptyCarriage extends Command {
         super.msgID = msgID;
     }
 
+    /**
+     * Special acknowledgment 1 for the requestEmptyCarriage Command
+     */
     @Override
     protected void commandExecuted(){
         NetworkController.getInstance().acknowledge2(msgID, true);
@@ -33,7 +36,9 @@ public class RequestEmptyCarriage extends Command {
         Station temp;
         try{
             temp = StationHandler.getInstance().getStationByShortCut(position);
+            System.err.println("found");
             new PathFinder(temp, temp.getHopsToNewCarriage());
+            System.err.println("path found");
             temp.driveInSled(EMPTY_CARRIAGE);
             /*empty sled gets unknown id when received*/
             System.out.println("\t log: requesting empty carriage to "+ position);

@@ -49,12 +49,15 @@ public class Station{
      * @param id id of the sled
      */
     public void driveInSled(int id){
-        while(semaphore.tryAcquire()) {
+        boolean flag = true;
+        while(flag) {
             try {
                 semaphore.acquire();
+                flag = false;
                 System.err.println("acquired sem "+getName());
             } catch (InterruptedException e) {
                 System.err.println("Station "+getName()+"s semaphore has been interrupted");
+                flag = true;
             }
         }/*acquired successfully*/
         this.setSledInside(id);
@@ -134,6 +137,12 @@ public class Station{
     
     public void addObserver(){
         // TODO: 07.06.18 implement Observer 
+    }
+
+    public void idFound(int id){
+        if(sledInside != null && sledInside == -1){
+            setSledInside(id);
+        }
     }
 
     /*Setter PrevStations*/

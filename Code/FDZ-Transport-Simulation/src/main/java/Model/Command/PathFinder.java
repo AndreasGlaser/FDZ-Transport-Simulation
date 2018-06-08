@@ -36,7 +36,7 @@ public class PathFinder {
         findRightPathFor(to, from, to);
         for (int i = 0; i < path.size(); i++) {
             Station station =  path.get(i);
-            if (station.isCongested()){
+            if (station != from && station.isCongested()){
                 return station;
             }
         }
@@ -81,7 +81,7 @@ public class PathFinder {
             path.addFirst(to);
             return;
         }
-        if(to == init && to.getPrevStations().isEmpty()){
+        if(from == to && to == init && to.getPrevStations().isEmpty()){
             return; /*Loop detected*/
         }
         for(int i=0; i<to.getPrevStations().size();++i){

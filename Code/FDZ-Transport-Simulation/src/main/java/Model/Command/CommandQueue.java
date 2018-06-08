@@ -89,7 +89,7 @@ public class CommandQueue {
                         break;
                 }
             }catch(NullPointerException e){
-
+                System.err.println(e.getStackTrace());
             }
         }
     }
