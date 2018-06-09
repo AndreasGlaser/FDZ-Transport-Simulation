@@ -3,8 +3,9 @@ package Model.Station;
 import Model.Exception.IllegalSetupException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 
 /**@author nlehmann*/
 
@@ -19,6 +20,7 @@ public class Station{
     private ArrayList<Station> prevStations;
     private Integer sledInside;
     private int hopsBackToNewCarriage;
+    private Set<StationObserver> observers;
 
     /**
      * Basic Constructor for an instance of Station.
@@ -30,6 +32,7 @@ public class Station{
      * @param aShortCut String that has the length of 2
      */
     public Station(String aName, String aShortCut) throws IllegalSetupException {
+        this.observers = new HashSet<>(2);
         this.setName(aName);
         this.setShortCut(aShortCut);
         this.hopsBackToNewCarriage = 1;
@@ -63,6 +66,7 @@ public class Station{
             }
         }/*acquired successfully*/
         this.setSledInside(id);
+
     }
 
     /**
@@ -79,11 +83,6 @@ public class Station{
     /*Setter*/
 
     /**
-     * Sets the Stations state to changed, so that potential observers notice
-     */
-    private void setStationChanged(){}
-
-    /**
      * Sets the stations name with the specified parameter
      * @param aName a String with length greater than 0
      * @throws IllegalSetupException throws Exception if parameter does not meet requirements
@@ -93,7 +92,7 @@ public class Station{
             throw new IllegalSetupException("New StationName is invalid");
         }else{
             this.name = aName;
-            this.setStationChanged();
+            this.setChanged();
         }
     }
 
@@ -105,7 +104,7 @@ public class Station{
     public void setShortCut(String aShortCut) throws IllegalSetupException{
         if(aShortCut.length() == 2){
             this.shortCut = aShortCut;
-            this.setStationChanged();
+            this.setChanged();
         }else{
             throw new IllegalSetupException("New StationShortCut is invalid");
         }
@@ -124,7 +123,7 @@ public class Station{
             throw new IllegalSetupException("Given HopsBack is too big");
         }
         this.hopsBackToNewCarriage = hopsBack;
-        this.setStationChanged();
+        this.setChanged();
     }
 
     /**
@@ -133,12 +132,9 @@ public class Station{
      */
     private void setSledInside(Integer id){
         this.sledInside = id;
-        this.setStationChanged();
+        this.setChanged();
     }
 
-    public void addObserver(){
-        // TODO: 07.06.18 implement Observer
-    }
 
     public void idFound(int id){
         if(sledInside != null && sledInside == -1){
@@ -155,7 +151,7 @@ public class Station{
     public void addPrevStation(Station station){
         if(!this.prevStations.contains(station)) {
             prevStations.add(station);
-            this.setStationChanged();
+            this.setChanged();
         }else if(station == null){
             /* TODO DEBUG not changed */
             System.err.println("NullPointer will not be added to PrevList");
@@ -173,7 +169,7 @@ public class Station{
     public void deletePrevStation(Station station) throws NullPointerException{
         if(this.prevStations.contains(station)){
             prevStations.remove(station);
-            this.setStationChanged();
+            this.setChanged();
         }else{
             throw new NullPointerException("Station not in used PrevList");
         }
@@ -226,11 +222,23 @@ public class Station{
         return (idsInCongestion.size() != 0);
     }
 
+    /*Observing*/
+
     /**
-     * Checks whether the station is occupied or not
-     * @return true if occupied, false if not
+     * Notifies all StationObservers for changes
      */
-    public boolean isOccupied(){
-        return (sledInside != null);
+    private void setChanged(){
+        if(!observers.isEmpty()){
+            observers.stream().forEach(observer -> observer.update(this));
+        }
+    }
+
+    /**
+     * adds a new StationObserver to the list
+     * @param o a class implementing StationObserver
+     */
+    public void addObserver(StationObserver o) {
+        observers.add(o);
+        o.update(this);
     }
 }

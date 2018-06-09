@@ -4,6 +4,7 @@ import Model.Exception.IllegalSetupException;
 import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
+import Model.Station.StationObserver;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -115,8 +116,19 @@ public class Facade {
     }
 
     public SimpleIntegerProperty getStationChangedProperty(String name) throws NullPointerException{
-        stationHandler.getStationByName(name).addObserver();
+        //stationHandler.getStationByName(name).addObserver();
         // TODO: 07.06.18 change Interface
         return new SimpleIntegerProperty(1);
     }
+
+    // TODO: 09.06.18 @andreas
+    // du muss das Interface StationObserver implementieren und dich mit
+    // dieser methode einschreiben. Die Methode getStationChangedProperty
+    // kannst du danach löschen, sie ist nur noch hier, damit du das Programm
+    // vorher testen kannst
+
+    public void addToStationObservable(String name, StationObserver observer) throws NullPointerException{
+        stationHandler.getStationByName(name).addObserver(observer);
+    }
+
 }

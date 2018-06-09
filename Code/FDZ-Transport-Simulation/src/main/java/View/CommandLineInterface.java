@@ -4,12 +4,11 @@ import Model.Exception.IllegalSetupException;
 import Model.Facade;
 import Model.Station.Station;
 import Model.Station.StationHandler;
+import Model.Station.StationObserver;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
-public class CommandLineInterface extends Thread{
+public class CommandLineInterface extends Thread implements StationObserver {
 
     private Scanner sc;
     private Facade facade;
@@ -35,11 +34,12 @@ public class CommandLineInterface extends Thread{
         this.sc = new Scanner(System.in);
         System.out.println(HELP);
         facade = new Facade();
-        for(int i=0; i< StationHandler.getInstance().getAmountOfStations(); ++i){
-            // TODO: 07.06.18 add observer to stations
-            System.err.println("CHANGED");
-            printState();
-        }
+    }
+
+    @Override
+    public void update(Station station)
+    {
+        System.err.println(station.getName()+" changed");
     }
 
     @Override
@@ -63,11 +63,18 @@ public class CommandLineInterface extends Thread{
                     case 'm': manipulate(); continue;
                     case 's': printStatus(); continue;
                     case 'p': printState(); continue;
+                    case 'o': addObserver(); continue;
                 }
                 if(input.charAt(0)=='q'){break;}
             }
         }
         System.out.println("Goodbye");
+    }
+
+    private void addObserver(){
+        StationHandler.getInstance().getStationList().stream().forEach(station -> {
+            facade.addToStationObservable(station.getName(), this);
+        });
     }
 
     private void printStatus(){

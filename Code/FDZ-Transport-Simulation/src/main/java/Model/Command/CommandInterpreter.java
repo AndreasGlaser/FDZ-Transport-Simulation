@@ -144,12 +144,15 @@ public class CommandInterpreter extends Thread {
     /**
      * Parses the PayloadSize at position 24 of the command String
      * @return payload size
+     * @throws IllegalCommandException if paramCount cannot be parsed
      */
-    private Integer parseParamCount(){
+    private Integer parseParamCount() throws IllegalCommandException{
         try{
             return Integer.parseInt(command.substring(24,25));
         }catch (NumberFormatException e){
-            return null;
+            throw new IllegalCommandException("Parameter Count is null");
+        }catch(IndexOutOfBoundsException e){
+            throw new IllegalCommandException("Parameter Count is null");
         }
     }
 
