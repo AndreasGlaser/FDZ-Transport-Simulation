@@ -1,6 +1,8 @@
 package Model.Command;
 
-/**@author nlehmann*/
+/**
+ * @author nlehmann
+ */
 
 import Model.Exception.IllegalCommandException;
 import Model.Network.NetworkController;
@@ -33,7 +35,6 @@ public class CommandInterpreter extends Thread {
             new CommandValidator(command, messageID, position, commandNum, paramCount, carriageID);
         }catch(IllegalCommandException e){
             error(messageID);
-            /*TODO ERROR in Network*/
         }
 
         System.out.println("\t log: \n" +
@@ -42,7 +43,6 @@ public class CommandInterpreter extends Thread {
                 "\t\tposition   = " + position + "\n" +
                 "\t\tmessageID  = " + messageID);
 
-        /*TODO sendAcknowledge1(msgID)*/
         switch (this.commandNum) {
             case 1:
                 System.out.println("\t log: " + "interpreted case 1");
@@ -66,7 +66,6 @@ public class CommandInterpreter extends Thread {
                 break;
             default:
                 System.out.println("\t log: default");
-                /* TODO Command not recognized Network ERROR*/
                 error(messageID);
         }
     }

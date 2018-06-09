@@ -5,6 +5,10 @@ import Model.Exception.IllegalSetupException;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 
+import java.util.LinkedList;
+
+import static java.lang.Thread.sleep;
+
 /**@author nlehmann*/
 
 public class RepositionCarriage extends Command {
@@ -29,6 +33,7 @@ public class RepositionCarriage extends Command {
 
     }
 
+/*
     //@Override
     public void execute() throws IllegalSetupException {
         try {
@@ -37,7 +42,7 @@ public class RepositionCarriage extends Command {
             System.err.println("trying path");
             new PathFinder(from, to);
             System.err.println("path found");
-            /*No Congestion from source to destination*/
+            //No Congestion from source to destination
             from.driveOutSled();
             System.err.println("drove out");
             // TODO: 07.06.18 test if blocked command is stuck here
@@ -56,6 +61,54 @@ public class RepositionCarriage extends Command {
             e.printStackTrace();
             // TODO: 07.06.18 stations not found
         }
+
+    }
+*/
+
+    @Override
+    public void execute() throws IllegalSetupException{
+        Thread t1 = new Thread(()->{
+            while(true){
+                try{
+                    sleep(5000);
+                }catch (Exception e){
+                    break;
+                }
+                System.err.println("t1 running");
+            }
+        });
+        t1.start();
+
+        new Thread(() ->{
+            Station from = null, to = null;
+            try {
+                from = StationHandler.getInstance().getStationBySledID(id);
+                to = StationHandler.getInstance().getStationByShortCut(position);
+            }catch(NullPointerException e){
+                super.error();
+                e.printStackTrace();
+                // TODO: 07.06.18 stations not found
+            }catch(IndexOutOfBoundsException e){
+                super.error();
+            }
+            try{
+                LinkedList<Station> path = new PathFinder(from, to).getPath();
+                path.getFirst().driveOutSled();
+                path.stream().filter(s -> (s!=path.getFirst() && s!=path.getLast())).forEachOrdered(station -> {
+                    station.driveInSled(id);
+                    station.driveOutSled();
+                });
+                path.getLast().driveInSled(id);
+            }catch(CongestionException e){
+            }catch(NullPointerException e){
+                super.error();
+            }catch(IllegalSetupException e){
+                super.error();
+            }
+        }).start();
+
+        t1.interrupt();
+        System.err.println("end repo");
 
     }
 }

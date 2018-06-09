@@ -1,7 +1,9 @@
 
 
 import Controller.Controller;
+import Model.Facade;
 import Model.Network.NetworkController;
+import Model.Station.StationHandler;
 import View.CommandLineInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -38,17 +40,18 @@ public class AppStarter extends Application {
             }
         });
 
-
-
-        /*CommandLineInterface cli = new CommandLineInterface();
-        cli.run();
-        while(cli.isAlive()) {
+        if (StationHandler.getInstance().getStationByName("Storage").getPrevStations().size() == 0){
+            new Facade().addPrevStation("Storage", "Robot");
+            new Facade().addPrevStation("Storage", "I/O");
+            new Facade().addPrevStation("Robot", "Storage");
+            new Facade().addPrevStation("I/O", "Robot");
             try {
-                cli.join();
-            } catch (InterruptedException e) {
-                continue;
-            }
-        }*/
+                new Facade().setHopsToNewCarriage("Robot", 2);
+                new Facade().setHopsToNewCarriage("Storage", 1);
+                new Facade().setHopsToNewCarriage("I/O", 1);
+            }catch(Exception e){}
+        }
+
     }
 
 

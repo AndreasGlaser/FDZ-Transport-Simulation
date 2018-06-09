@@ -6,6 +6,10 @@ import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 
+import java.util.LinkedList;
+
+import static java.lang.Thread.sleep;
+
 /**@author Noah Lehmann*/
 
 public class RequestEmptyCarriage extends Command {
@@ -31,6 +35,7 @@ public class RequestEmptyCarriage extends Command {
         NetworkController.getInstance().acknowledge2(msgID, true);
     }
 
+    /*
     @Override
     public void execute() throws IllegalSetupException{
         Station temp;
@@ -38,7 +43,7 @@ public class RequestEmptyCarriage extends Command {
             temp = StationHandler.getInstance().getStationByShortCut(position);
             new PathFinder(temp, temp.getHopsToNewCarriage());
             temp.driveInSled(EMPTY_CARRIAGE);
-            /*empty sled gets unknown id when received*/
+            //empty sled gets unknown id when received
             System.out.println("\t log: requesting empty carriage to "+ position);
 
             this.commandExecuted();
@@ -54,5 +59,42 @@ public class RequestEmptyCarriage extends Command {
             System.err.println("request nullpointer");
             super.error();
         }
+    }
+*/
+
+    @Override
+    public void execute() throws IllegalSetupException{
+        Thread t1 = new Thread(()->{
+            while(true){
+                try{
+                    sleep(5000);
+                }catch (Exception e){
+                    break;
+                }
+                System.err.println("t1 running");
+            }
+        });
+        t1.start();
+
+        new Thread(() ->{
+            Station temp;
+            try {
+                temp = StationHandler.getInstance().getStationByShortCut(position);
+                LinkedList<Station> path = new PathFinder(temp, temp.getHopsToNewCarriage()).getPath();
+                path.stream().filter(station -> station != path.getLast()).forEachOrdered(station-> {
+                    station.driveInSled(-1);
+                    station.driveOutSled();
+                });
+                path.getLast().driveInSled(-1);
+                commandExecuted();
+            }catch(CongestionException e){
+                System.err.println(e.getMessage());
+            }catch(IllegalSetupException e){
+                System.err.println(e.getMessage());
+                error();
+            }}).start();
+
+        t1.interrupt();
+        System.err.println("end requ");
     }
 }

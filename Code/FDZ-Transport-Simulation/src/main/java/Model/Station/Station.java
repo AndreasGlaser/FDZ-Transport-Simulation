@@ -4,6 +4,7 @@ import Model.Exception.IllegalSetupException;
 
 import java.util.ArrayList;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 /**@author nlehmann*/
 
@@ -48,15 +49,17 @@ public class Station{
      * </p>
      * @param id id of the sled
      */
-    public void driveInSled(int id){
-        boolean flag = true;
-        while(flag) {
+    public void driveInSled(Integer id){
+        while(true) {
             try {
+                if(!idsInCongestion.contains(id)){
+                    idsInCongestion.add(id);
+                }// id in congestion until it acquires semaphore
                 semaphore.acquire();
-                flag = false;
+                idsInCongestion.remove(id);
+                break;
             } catch (InterruptedException e) {
                 System.err.println("Station "+getName()+"s semaphore has been interrupted");
-                flag = true;
             }
         }/*acquired successfully*/
         this.setSledInside(id);
@@ -220,9 +223,14 @@ public class Station{
      * @return true if congested, false if not
      */
     public boolean isCongested(){
-        if(sledInside == null && idsInCongestion.size() == 0){
-            return false;
-        }
-        return true;
+        return (idsInCongestion.size() != 0);
+    }
+
+    /**
+     * Checks whether the station is occupied or not
+     * @return true if occupied, false if not
+     */
+    public boolean isOccupied(){
+        return (sledInside != null);
     }
 }

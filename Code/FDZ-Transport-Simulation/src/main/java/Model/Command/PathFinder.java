@@ -15,24 +15,29 @@ public class PathFinder {
     private LinkedList<Station> path = new LinkedList<>();
 
 
-    public PathFinder(Station from, Station to) throws CongestionException {
+    public PathFinder(Station from, Station to) throws CongestionException, IllegalSetupException, NullPointerException {
         blocking = checkPath(from, to);
-        if(blocking != null) {
+        if(blocking != null && false) { // TODO: 09.06.18 entferne false
             throw new CongestionException("Found congestion at " + blocking.getName(), blocking);
         }
+        printPath();
     }
-    public PathFinder(Station station, int hops) throws CongestionException, IllegalSetupException{
+    public PathFinder(Station station, int hops) throws CongestionException, IllegalSetupException, NullPointerException{
         blocking = checkPath(hops, station);
-        if(blocking != null) {
+        if(blocking != null && false) { // TODO: 09.06.18 entferne false
             throw new CongestionException("Found congestion at " + blocking.getName(), blocking);
         }
+        printPath();
     }
 
     public LinkedList<Station> getPath(){
         return path;
     }
 
-    private Station checkPath(Station from, Station to) {
+    private Station checkPath(Station from, Station to) throws IllegalSetupException {
+        if(from == null || to == null){
+            throw new NullPointerException("Station is null");
+        }
         findRightPathFor(to, from, to);
         for (int i = 0; i < path.size(); i++) {
             Station station =  path.get(i);
@@ -47,6 +52,9 @@ public class PathFinder {
     private Station checkPath(int hops, Station to) throws IllegalSetupException {
         /*returns null if no congestion on way or
          *first station, which was congested in way */
+        if(to == null){
+            throw new NullPointerException("Station is null");
+        }
         if(hops == 1 || to.getPrevStations().size() == 0){
             /*END RECURSIVE FUNCTION*/
             if(to.isCongested()){
@@ -62,6 +70,7 @@ public class PathFinder {
         /*RECURSIVE CALL*/
         Station prev = checkPath(hops-1, findRightNextHopFor(to));
         /*WAS PREV-STATION OCCUPIED?*/
+        path.addLast(to);
         return isOccupied(prev, to);
     }
 
@@ -76,7 +85,7 @@ public class PathFinder {
                 "Hops-1 == "+(station.getHopsToNewCarriage()-1));
     }
 
-    private void findRightPathFor(Station init, Station from, Station to){
+    private void findRightPathFor(Station init, Station from, Station to) throws IllegalSetupException{
         if(to == from) {
             path.addFirst(to);
             return;
@@ -91,6 +100,8 @@ public class PathFinder {
         }
         if(!path.isEmpty()){
             path.addLast(to);
+        }else if(from == to && to.getPrevStations().isEmpty()){
+            throw new IllegalSetupException("No possible path");
         }
     }
 
@@ -109,6 +120,11 @@ public class PathFinder {
              *causing trouble already, return prev-station
              */
         }
+    }
+
+    // TODO: 09.06.18 entferne printpath
+    private void printPath(){
+        path.stream().forEachOrdered(s-> System.out.println("[path] "+s.getName()));
     }
 
 }
