@@ -96,8 +96,13 @@ public class CommandLineInterface extends Thread implements StationObserver {
             }catch(Exception e){
                 System.out.print("-2\n");
             }
-            System.out.println("\t|->congested |" + stationList.get(i).isCongested()+"\n"+
-                    "\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
+            System.out.println("\t|->congested |" + stationList.get(i).isCongested());
+            if(stationList.get(i).isCongested()){
+                stationList.get(i).getSledsInStation().forEach(id -> {
+                    System.out.print("\t\twith "+id+"\n");
+                });
+            }
+            System.out.println("\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
             ArrayList<Station> prev = stationList.get(i).getPrevStations();
             System.out.println(
                     "\t"+stationList.get(i).getPrevStations().size()+" prevs");

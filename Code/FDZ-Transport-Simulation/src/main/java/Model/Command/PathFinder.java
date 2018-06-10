@@ -17,16 +17,10 @@ public class PathFinder {
 
     public PathFinder(Station from, Station to) throws CongestionException, IllegalSetupException, NullPointerException {
         blocking = checkPath(from, to);
-        if(blocking != null && false) { // TODO: 09.06.18 entferne false
-            throw new CongestionException("Found congestion at " + blocking.getName(), blocking);
-        }
         printPath();
     }
     public PathFinder(Station station, int hops) throws CongestionException, IllegalSetupException, NullPointerException{
         blocking = checkPath(hops, station);
-        if(blocking != null && false) { // TODO: 09.06.18 entferne false
-            throw new CongestionException("Found congestion at " + blocking.getName(), blocking);
-        }
         printPath();
     }
 
