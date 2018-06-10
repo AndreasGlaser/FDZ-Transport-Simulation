@@ -19,6 +19,7 @@ public class StationController extends AbstractStation implements StationObserve
 
     private Pane parent;
     private ArrayList<AbstractStation> stations;
+    private Facade facade = new Facade();
 
     @FXML
     private Pane rootPane;
@@ -47,7 +48,18 @@ public class StationController extends AbstractStation implements StationObserve
         this.stations = stations;
         stations.add(this);
         try {
-            new Facade().addStation(data.getName(), data.getShortcut());
+            facade.addStation(data.getName(), data.getShortcut());
+            facade.setHopsToNewCarriage(data.getName(), data.getHopsBack());
+            for(String stationName: data.getPreviousStationsByName()){
+                for(AbstractStation station: stations){
+                    if(station.getName().equals(stationName)){
+                        if(!data.getName().equals(stationName)){
+                            addPrevStationInModel(station);
+                        }
+
+                    }
+                }
+            }
             System.out.println("station added named: "+data.getName());
         } catch (IllegalSetupException e) {
             e.printStackTrace();
@@ -110,6 +122,8 @@ public class StationController extends AbstractStation implements StationObserve
                 System.out.println(e.getMessage());//TODO: Log
             }
         });
+
+
 
         new Facade().addToStationObservable(data.getName(), this);
     }
