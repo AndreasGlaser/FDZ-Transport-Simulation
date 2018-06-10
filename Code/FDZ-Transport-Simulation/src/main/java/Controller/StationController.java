@@ -2,6 +2,8 @@ package Controller;
 
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
+import Model.Station.Station;
+import Model.Station.StationObserver;
 import Persistance.StationData;
 import Persistance.StationType;
 import View.AbstractStation;
@@ -13,7 +15,7 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 
 
-public class StationController extends AbstractStation {
+public class StationController extends AbstractStation implements StationObserver{
 
     private Pane parent;
     private ArrayList<AbstractStation> stations;
@@ -71,47 +73,6 @@ public class StationController extends AbstractStation {
         congestionMenu.getStyleClass().add("green");
         congestionMenu.setText("no Congestion");
 
-        try{
-            new Facade().getStationChangedProperty(data.getName()).addListener((observable, oldValue, newValue) -> {
-
-            ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
-            congestionMenu.getItems().clear();
-            if (sleds.size() == 0){
-                sledPane.getStyleClass().clear();
-                sledPane.getStyleClass().add("yellow");
-                sledText.setText("Empty");
-                congestionMenu.getStyleClass().clear();
-                congestionMenu.getStyleClass().add("green");
-                congestionMenu.setText("no Congestion");
-            }else{
-                for(Integer sledId: sleds){
-                    congestionMenu.getItems().add(new MenuItem(sledId.toString()));
-                }
-
-                sledPane.getStyleClass().clear();
-                if(sleds.get(0).equals(-1)){
-                    sledText.setText("Empty Sled");
-                    sledPane.getStyleClass().add("blue");
-                }else{
-                    sledText.setText("Sled with Pallet "+ sleds.get(0));
-                    sledPane.getStyleClass().add("green");
-                }
-
-                congestionMenu.getStyleClass().clear();
-                if(sleds.size()>1){
-                    congestionMenu.getStyleClass().add("red");
-                    congestionMenu.setText("Congestion");
-                }else {
-                    congestionMenu.getStyleClass().add("green");
-                    congestionMenu.setText("no Congestion");
-                }
-            }
-
-            });
-        }catch (NullPointerException e){
-            System.out.println("Null pointer Exception coud not get Property of Station "+data.getName());//TODO Log
-        }
-
         refreshBelts(parent, stations);
 
         setData(data);
@@ -149,6 +110,8 @@ public class StationController extends AbstractStation {
                 System.out.println(e.getMessage());//TODO: Log
             }
         });
+
+        new Facade().addToStationObservable(data.getName(), this);
     }
 
     @FXML
@@ -256,5 +219,53 @@ public class StationController extends AbstractStation {
 
     public Pane getstationOptionsPane(){
         return stationOptionsPane;
+    }
+
+    @Override
+    public void update(Station station) {
+        System.out.println("change occurred to station " + station.getName());
+
+        data.setName(station.getName());
+        data.setShortcut(station.getShortCut());
+
+        ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
+        System.out.println(sleds);
+        congestionMenu.getItems().clear();
+        if (sleds.size() == 0){
+            sledPane.getStyleClass().clear();
+            sledPane.getStyleClass().add("yellow");
+            sledText.setText("Empty");
+            congestionMenu.getStyleClass().clear();
+            congestionMenu.getStyleClass().add("green");
+            congestionMenu.setText("no Congestion");
+        }else if(sleds.size() > 0){
+            for(Integer sledId: sleds){
+                if(sledId == null)continue;
+                congestionMenu.getItems().add(new MenuItem(sledId.toString()));
+            }
+
+            sledPane.getStyleClass().clear();
+            if(sleds.get(0) != null){
+                if(sleds.get(0).equals(-1)){
+                    sledText.setText("Empty Sled");
+                    sledPane.getStyleClass().add("blue");
+                }else{
+                    sledText.setText("Sled with Pallet "+ sleds.get(0));
+                    sledPane.getStyleClass().add("green");
+                }
+            }
+
+
+            congestionMenu.getStyleClass().clear();
+            if(sleds.size()>1){
+                congestionMenu.getStyleClass().add("red");
+                congestionMenu.setText("Congestion");
+            }else {
+                congestionMenu.getStyleClass().add("green");
+                congestionMenu.setText("no Congestion");
+            }
+        }
+
+
     }
 }
