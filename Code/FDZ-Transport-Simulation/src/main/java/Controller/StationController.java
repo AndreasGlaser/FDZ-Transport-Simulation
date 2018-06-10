@@ -106,8 +106,15 @@ public class StationController extends AbstractStation implements StationObserve
             }
         });
 
-
-
+        abbreviationField.setText(data.getShortcut());
+        abbreviationField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue.length()>2){
+                abbreviationField.setText(oldValue);
+                data.setShortcut(oldValue);
+            }else {
+                data.setShortcut(newValue);
+            }
+        });
 
     }
 
@@ -156,13 +163,7 @@ public class StationController extends AbstractStation implements StationObserve
 
                 });
             }
-            abbreviationField.setText(data.getShortcut());
-            abbreviationField.textProperty().addListener((observable, oldValue, newValue) -> {
-                if(newValue.length()>2){
-                    abbreviationField.setText(oldValue);
-                    data.setShortcut(oldValue);
-                }else data.setShortcut(newValue);
-            });
+
 
 
         }
@@ -237,12 +238,19 @@ public class StationController extends AbstractStation implements StationObserve
         return stationOptionsPane;
     }
 
+    public void setHopsBack(int hopsBack) {
+        data.setHopsBack(hopsBack);
+    }
+
     @Override
     public void update(Station station) {
         System.out.println("change occurred to station " + station.getName());
 
-        data.setName(station.getName());
-        data.setShortcut(station.getShortCut());
+        setName(station.getName());
+        setShortcut(station.getShortCut());
+        setHopsBack(station.getHopsToNewCarriage());
+        //TODO übernehmen der Änderungen an den prevstations die in der cli gemacht wurden
+
 
         ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
         System.out.println(sleds);
@@ -284,4 +292,6 @@ public class StationController extends AbstractStation implements StationObserve
 
 
     }
+
+
 }
