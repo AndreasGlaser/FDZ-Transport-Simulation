@@ -3,9 +3,14 @@ package Model.Command;
 import Model.Exception.IllegalCommandException;
 import Model.Station.StationHandler;
 
+/**
+ * @author nlehmann
+ *
+ * Validates the Command interpreted and parsed by CommandInterpreter
+ */
 public class CommandValidator {
 
-    private Integer commandNum;
+    private final Integer commandNum;
 
     /**
      * Validates the Command and runs without Exceptions, if the Command is valid
@@ -91,7 +96,7 @@ public class CommandValidator {
         if(position == null && !(commandNum == 4 || commandNum == 2)){
             throw new IllegalCommandException("Position required but not found");
         }
-        if(position.length() != 2){
+        if(position != null && position.length() != 2){
             throw new IllegalCommandException("Length of position not 2");
         }
         if(StationHandler.getInstance().getStationByShortCut(position) == null){
@@ -110,7 +115,7 @@ public class CommandValidator {
             case 2: if(-1 <= id && id <= 99){break;}
             case 3: if(-1 <= id && id <= 99){break;}
             case 4: if(id == null){break;}
-                dafault: throw new IllegalCommandException("ID does not meet requirements");
+            default: throw new IllegalCommandException("ID does not meet requirements");
         }
     }
 

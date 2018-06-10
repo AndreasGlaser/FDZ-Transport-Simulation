@@ -4,16 +4,15 @@ import Model.Exception.IllegalSetupException;
 
 import java.util.ArrayList;
 
-/**@author nlehmann*/
-
 /**
+ * @author nlehmann
+ *
  * Singleton Class initialized at system start, because of threadsafe implementation
  */
 public class StationHandler{
 
-    private ArrayList<Station> stations;
-    private final int EMPTY_CARRIAGE = -1;
-    private static StationHandler stationHandler = new StationHandler();
+    private final ArrayList<Station> stations;
+    private static final StationHandler stationHandler = new StationHandler();
 
     /**
      * private Constructor
@@ -46,9 +45,8 @@ public class StationHandler{
         if(name == null){
             throw new NullPointerException("specified name is null");
         }
-        for (int i = 0; i < stations.size(); i++) {
-            Station station =  stations.get(i);
-            if(station.getName().compareTo(name) == 0){
+        for (Station station : stations) {
+            if (station.getName().compareTo(name) == 0) {
                 return station;
             }
         }
@@ -65,9 +63,8 @@ public class StationHandler{
         if(shortCut == null){
             throw new NullPointerException("specified shortCut is null");
         }
-        for (int i = 0; i < stations.size(); i++) {
-            Station station =  stations.get(i);
-            if(station.getShortCut().compareTo(shortCut) == 0){
+        for (Station station : stations) {
+            if (station.getShortCut().compareTo(shortCut) == 0) {
                 return station;
             }
         }
@@ -81,17 +78,18 @@ public class StationHandler{
      * @throws NullPointerException thrown if the sledInside is null or no Station has specified sledInside
      */
     public Station getStationBySledID(int id) throws NullPointerException{
-        if (id<EMPTY_CARRIAGE){
+        final int EMPTY_CARRIAGE = -1;
+        if (id< EMPTY_CARRIAGE){
             throw new NullPointerException("Invalid SledID queried");
         }
-        for (int i = 0; i < stations.size(); i++) {
-            Integer sledInside =  stations.get(i).getSledsInStation().get(0);
-            if(sledInside != null && sledInside == id){
-                return stations.get(i);
+        for (Station station : stations) {
+            Integer sledInside = station.getSledsInStation().get(0);
+            if (sledInside != null && sledInside == id) {
+                return station;
             }
-            if(sledInside != null && sledInside == -1 ){
-                stations.get(i).idFound(id);
-                return stations.get(i);
+            if (sledInside != null && sledInside == EMPTY_CARRIAGE) {
+                station.idFound(id);
+                return station;
             }
         }
         throw new NullPointerException("Id in none of the Stations");

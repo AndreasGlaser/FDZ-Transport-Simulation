@@ -1,22 +1,21 @@
 package Model.Command;
 
-/**
- * @author nlehmann
- */
-
 import Model.Exception.IllegalCommandException;
 import Model.Network.NetworkController;
 
-
+/**
+ * @author nlehmann
+ *
+ * ThisClass interpretes the Command received by the NetworkController
+ */
 public class CommandInterpreter extends Thread {
 
-    /*--MEMBERVARIABLES----------------------------------------------------------*/
+    /*--MEMBER VARIABLES----------------------------------------------------------*/
 
     private final String command;
     private String position, messageID;
     private int commandNum = -1, beginMesID = -1;
     private Integer carriageID = null, paramCount = null;
-    private final int NO_ID_REQUIRED = -1;
 
     /*--CONSTRUCTOR--------------------------------------------------------------*/
 
@@ -149,16 +148,14 @@ public class CommandInterpreter extends Thread {
     private Integer parseParamCount() throws IllegalCommandException{
         try{
             return Integer.parseInt(command.substring(24,25));
-        }catch (NumberFormatException e){
-            throw new IllegalCommandException("Parameter Count is null");
-        }catch(IndexOutOfBoundsException e){
+        }catch (NumberFormatException | IndexOutOfBoundsException e){
             throw new IllegalCommandException("Parameter Count is null");
         }
     }
 
     /**
      * Parses the Message for a Position. If non is required, the
-     * returned String will say so. A Position is alway the last parameter
+     * returned String will say so. A Position is always the last parameter
      * in the Message
      * @return StationShortCut
      * @throws IllegalCommandException thrown if the position cannot be parsed due to invalid construction of the command
@@ -203,7 +200,7 @@ public class CommandInterpreter extends Thread {
                             "\t\t\tNo ID found, where expected [at last 2]";
                     throw new IllegalCommandException(mes);    //no id found
                 }
-            } else if (paramCount == 4 && commandNum == 3) {
+            } else if (paramCount != null && paramCount == 4 && commandNum == 3) {
                 String sub = command.substring(end - 3, end - 1);
                 try {
                     return Integer.parseInt(sub);   //number expected
@@ -218,7 +215,7 @@ public class CommandInterpreter extends Thread {
                     "\t\t\tNo ID found, where expected";
             throw new IllegalCommandException(mes);    //no id found
         }else{
-            return NO_ID_REQUIRED;
+            return -1;
         }
     }
 

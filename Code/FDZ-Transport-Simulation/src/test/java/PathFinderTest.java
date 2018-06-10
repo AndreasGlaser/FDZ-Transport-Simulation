@@ -18,22 +18,29 @@ import static org.junit.Assert.fail;
 public class PathFinderTest {
 
     private ArrayList<Station> stations = StationHandler.getInstance().getStationList();
-    private Station robot = new Station("robot", "ro");
-    private Station stock = new Station("stock", "la");
-    private Station inOut = new Station("InOut", "ea");
+    private Station robot;
+    private Station stock;
+    private Station inOut;
 
     @Before
     public void initiate(){
-        stations.add(robot);
-        stations.add(stock);
-        stations.add(inOut);
-        robot.addPrevStation(stock);
-        stock.addPrevStation(inOut);
-        stock.addPrevStation(robot);
-        inOut.addPrevStation(robot);
-        robot.setHopsToNewCarriage(2);
-        stock.setHopsToNewCarriage(1);
-        inOut.setHopsToNewCarriage(1);
+        try {
+            robot = new Station("robot", "ro");
+            stock = new Station("stock", "la");
+            inOut = new Station("InOut", "ea");
+            stations.add(robot);
+            stations.add(stock);
+            stations.add(inOut);
+            robot.addPrevStation(stock);
+            stock.addPrevStation(inOut);
+            stock.addPrevStation(robot);
+            inOut.addPrevStation(robot);
+            robot.setHopsToNewCarriage(2);
+            stock.setHopsToNewCarriage(1);
+            inOut.setHopsToNewCarriage(1);
+        }catch(IllegalSetupException e){
+            fail();
+        }
     }
 
     @Test
@@ -43,7 +50,7 @@ public class PathFinderTest {
             new PathFinder(inOut,robot);
         }catch (CongestionException e){
             Assert.assertEquals(e.getBlockingStation(), stock);
-        }
+        }catch (IllegalSetupException e){}
     }
     @Test
     public void newCarriageToRobotBlocked(){
@@ -70,18 +77,21 @@ public class PathFinderTest {
     }
 
     private void twoExtraStations(){
-        Station station1 = new Station("one", "1");
-        Station station2 = new Station("two", "2");
-        station1.setHopsToNewCarriage(2);
-        station2.setHopsToNewCarriage(1);
-        station2.addPrevStation(robot);
-        station1.addPrevStation(station2);
-        station1.addPrevStation(inOut);
-        stock.getPrevStations().remove(0);
-        stock.addPrevStation(station1);
-        stock.addPrevStation(inOut);
-
-        station1.driveInSled(12);
+        try {
+            Station station1 = new Station("one", "1");
+            Station station2 = new Station("two", "2");
+            station1.setHopsToNewCarriage(2);
+            station2.setHopsToNewCarriage(1);
+            station2.addPrevStation(robot);
+            station1.addPrevStation(station2);
+            station1.addPrevStation(inOut);
+            stock.getPrevStations().remove(0);
+            stock.addPrevStation(station1);
+            stock.addPrevStation(inOut);
+            station1.driveInSled(12);
+        }catch(IllegalSetupException e) {
+            fail();
+        }
     }
 
 

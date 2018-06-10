@@ -4,13 +4,12 @@ import Model.Exception.IllegalSetupException;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.Semaphore;
-
-/**@author nlehmann*/
 
 /**
  * A Station as specified in the Documentation of the FDZ
+ *
+ * @author nlehmann
  */
 public class Station{
 
@@ -20,7 +19,7 @@ public class Station{
     private ArrayList<Station> prevStations;
     private Integer sledInside;
     private int hopsBackToNewCarriage;
-    private Set<StationObserver> observers;
+    private final HashSet<StationObserver> observers;
 
     /**
      * Basic Constructor for an instance of Station.
@@ -102,7 +101,7 @@ public class Station{
      * @throws IllegalSetupException throws Exception if parameter does not meet requirements
      */
     public void setShortCut(String aShortCut) throws IllegalSetupException{
-        if(aShortCut.length() == 2){
+        if(aShortCut != null && aShortCut.length() == 2){
             this.shortCut = aShortCut;
             this.setChanged();
         }else{
@@ -229,7 +228,7 @@ public class Station{
      */
     private void setChanged(){
         if(!observers.isEmpty()){
-            observers.stream().forEach(observer -> observer.update(this));
+            observers.forEach(observer -> observer.update(this));
         }
     }
 
