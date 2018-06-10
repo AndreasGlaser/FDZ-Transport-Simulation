@@ -245,7 +245,7 @@ public class StationController extends AbstractStation implements StationObserve
         ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
         System.out.println(sleds);
         congestionMenu.getItems().clear();
-        if (sleds.size() == 0){
+        if (sleds.size() == 0 || sleds.get(0) == null){
             sledPane.getStyleClass().clear();
             sledPane.getStyleClass().add("yellow");
             sledText.setText("Empty");
