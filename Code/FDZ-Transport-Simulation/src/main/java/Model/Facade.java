@@ -114,18 +114,7 @@ public class Facade {
     public ArrayList<Integer> getSledsInStation(String name) throws NullPointerException{
         return stationHandler.getStationByName(name).getSledsInStation();
     }
-
-    public SimpleIntegerProperty getStationChangedProperty(String name) throws NullPointerException{
-        //stationHandler.getStationByName(name).addObserver();
-        // TODO: 07.06.18 change Interface
-        return new SimpleIntegerProperty(1);
-    }
-
-    // TODO: 09.06.18 @andreas
-    // du muss das Interface StationObserver implementieren und dich mit
-    // dieser methode einschreiben. Die Methode getStationChangedProperty
-    // kannst du danach löschen, sie ist nur noch hier, damit du das Programm
-    // vorher testen kannst
+    
 
     public void addToStationObservable(String name, StationObserver observer) throws NullPointerException{
         stationHandler.getStationByName(name).addObserver(observer);
