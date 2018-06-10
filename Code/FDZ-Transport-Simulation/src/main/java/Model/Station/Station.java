@@ -56,9 +56,11 @@ public class Station{
             try {
                 if(!idsInCongestion.contains(id)){
                     idsInCongestion.add(id);
+                    setChanged();
                 }// id in congestion until it acquires semaphore
                 semaphore.acquire();
                 idsInCongestion.remove(id);
+                setChanged();
                 break;
             } catch (InterruptedException e) {
                 System.err.println("Station "+getName()+"s semaphore has been interrupted");
@@ -136,7 +138,7 @@ public class Station{
 
 
     public void idFound(int id){
-        if(sledInside != null && sledInside == -1){
+        if( sledInside != null && sledInside == -1){
             setSledInside(id);
         }
     }

@@ -1,6 +1,7 @@
 package Model;
 
 import Model.Exception.IllegalSetupException;
+import Model.Network.ConnectionObserver;
 import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
@@ -118,6 +119,11 @@ public class Facade {
 
     public void addToStationObservable(String name, StationObserver observer) throws NullPointerException{
         stationHandler.getStationByName(name).addObserver(observer);
+    }
+
+    public void addToConnectionObservable(ConnectionObserver observer){
+        // TODO: 10.06.18 dennis füge klasse ein, die aufgerufen werden muss
+        // [connectionObservable Klasse].addObserver(observer);
     }
 
 }
