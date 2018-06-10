@@ -49,18 +49,6 @@ public class StationController extends AbstractStation implements StationObserve
         stations.add(this);
         try {
             facade.addStation(data.getName(), data.getShortcut());
-            facade.setHopsToNewCarriage(data.getName(), data.getHopsBack());
-            for(String stationName: data.getPreviousStationsByName()){
-                for(AbstractStation station: stations){
-                    if(station.getName().equals(stationName)){
-                        if(!data.getName().equals(stationName)){
-                            addPrevStationInModel(station);
-                        }
-
-                    }
-                }
-            }
-            System.out.println("station added named: "+data.getName());
         } catch (IllegalSetupException e) {
             e.printStackTrace();
         }
@@ -106,11 +94,6 @@ public class StationController extends AbstractStation implements StationObserve
 
         hopsBackBox.getItems().addAll(1,2,3,4,5,6,7,8,9);
         hopsBackBox.getSelectionModel().select(data.getHopsBack());
-        try {
-            new Facade().setHopsToNewCarriage(data.getName(), data.getHopsBack());
-        } catch (IllegalSetupException e) {
-            System.out.println(e.getMessage());//TODO: Log
-        }
 
         hopsBackBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             int newHopsBack = hopsBackBox.getItems().get((int)newValue);
@@ -125,7 +108,26 @@ public class StationController extends AbstractStation implements StationObserve
 
 
 
-        new Facade().addToStationObservable(data.getName(), this);
+
+    }
+
+    public void initAfterAllStationLoaded(){
+        try {
+            facade.setHopsToNewCarriage(data.getName(), data.getHopsBack());
+            for(String stationName: data.getPreviousStationsByName()){
+                for(AbstractStation station: stations){
+                    if(station.getName().equals(stationName)){
+                        if(!data.getName().equals(stationName)){
+                            addPrevStationInModel(station);
+                        }
+
+                    }
+                }
+            }
+            new Facade().addToStationObservable(data.getName(), this);
+        } catch (IllegalSetupException e) {
+            e.printStackTrace();//TODO log
+        }
     }
 
     @FXML

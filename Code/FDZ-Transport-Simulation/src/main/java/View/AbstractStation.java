@@ -35,6 +35,7 @@ public abstract class AbstractStation {
 			}
 		}
 	}
+	public abstract void initAfterAllStationLoaded();
 	public String getName(){
 		return data.getName();
 	}

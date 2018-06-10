@@ -67,6 +67,11 @@ public class CrossingController extends AbstractStation {
 		});
 	}
 
+	@Override
+	public void initAfterAllStationLoaded() {
+
+	}
+
 	public void setName(String name){
 		nameText.setText(name);
 	}
