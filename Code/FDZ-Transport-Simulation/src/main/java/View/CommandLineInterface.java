@@ -2,16 +2,19 @@ package View;
 
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
+import Model.Network.ConnectionObserver;
+import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 import Model.Station.StationObserver;
 
 import java.util.*;
 
-public class CommandLineInterface extends Thread implements StationObserver {
+public class CommandLineInterface extends Thread implements StationObserver, ConnectionObserver {
 
     private Scanner sc;
     private Facade facade;
+    private boolean connection;
     private final String HELP =
             "+–––––––––––––––––––––––––––––––––+\n" +
                     "| Type in TestCommand:            |\n" +
@@ -34,12 +37,16 @@ public class CommandLineInterface extends Thread implements StationObserver {
         this.sc = new Scanner(System.in);
         System.out.println(HELP);
         facade = new Facade();
+        connection = false;
     }
 
     @Override
     public void update(Station station)
     {
         System.err.println(station.getName()+" changed");
+    }
+    @Override
+    public void update(){ // TODO: 10.06.18  connection = NetworkController.getInstance().isConnected();
     }
 
     @Override
@@ -75,11 +82,11 @@ public class CommandLineInterface extends Thread implements StationObserver {
         StationHandler.getInstance().getStationList().stream().forEach(station -> {
             facade.addToStationObservable(station.getName(), this);
         });
+        facade.addToConnectionObservable(this);
     }
 
     private void printStatus(){
-        /*TODO*/
-        System.out.println("To be implemented");
+        System.out.println("Connected: "+connection);
     }
 
     private void printState(){
