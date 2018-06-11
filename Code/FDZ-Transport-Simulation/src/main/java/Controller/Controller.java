@@ -63,7 +63,9 @@ public class Controller {
 	@FXML
 	private TextArea textArea;
 
-	public void init(){
+	@FXML
+	public void initialize(){
+		TextArea textArea = new TextArea();//TODO: entfernen, nur bis es in der view eingebaut ist
 		OutputStream outputStream = new TextAreaOutputStream(textArea);
 		OwnOutputStreamAppender.setStaticOutputStream(outputStream);
 		textArea.setText("sdaf");
