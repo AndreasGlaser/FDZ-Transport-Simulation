@@ -283,5 +283,12 @@ public class Controller implements ConnectionObserver{
 	@Override
 	public void update() {
 		//TODO: change GUI depending on connection state
+		controllerConnectionArrow.getStyleClass().clear();
+		System.out.println("isConnencted() returns "+facade.isConnected());
+		if(facade.isConnected()){
+			controllerConnectionArrow.getStyleClass().add("green");
+		}else {
+			controllerConnectionArrow.getStyleClass().add("red");
+		}
 	}
 }
