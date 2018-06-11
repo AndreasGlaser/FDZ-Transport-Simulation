@@ -98,7 +98,7 @@ public class ClientNetwork extends ConnectionObservable{
                          try {
                              client.closeSocket();
                          } catch (FDZNetworkException e1) {
-                             e1.printStackTrace();
+   //todo                          e1.printStackTrace();
                          }
                          //Reconnect if connection lost to Adapter
                          setConnection(false);
@@ -107,7 +107,7 @@ public class ClientNetwork extends ConnectionObservable{
                                  client.closeSocket();
                                  client.openConnection();
                              } catch (FDZNetworkException e1) {
-                                 e1.printStackTrace();
+     //todo                            e1.printStackTrace();
 
                              }
                          }

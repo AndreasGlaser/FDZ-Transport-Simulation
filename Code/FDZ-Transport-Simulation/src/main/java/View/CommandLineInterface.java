@@ -86,7 +86,7 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
     }
 
     private void printStatus(){
-        System.out.println("Connected: "+connection);
+        System.out.println("Connected: "+NetworkController.getInstance().isConnected());
     }
 
     private void printState(){

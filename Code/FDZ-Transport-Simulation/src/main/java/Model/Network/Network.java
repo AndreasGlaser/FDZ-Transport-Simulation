@@ -69,8 +69,8 @@ public class Network implements Socket {
     }
 
     private synchronized void connect() throws FDZNetworkException {
-        System.out.println("connect");
-        System.out.println(socketAddr);
+//todo        System.out.println("connect");
+//todo        System.out.println(socketAddr);
         try {
             //Connect to a Server with the given IP and Port
             clientSocket = SocketChannel.open();
