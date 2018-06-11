@@ -46,7 +46,7 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
         System.err.println(station.getName()+" changed");
     }
     @Override
-    public void update(){ // TODO: 10.06.18  connection = NetworkController.getInstance().isConnected();
+    public void update(){ connection = NetworkController.getInstance().isConnected();
     }
 
     @Override

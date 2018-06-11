@@ -122,8 +122,7 @@ public class Facade {
     }
 
     public void addToConnectionObservable(ConnectionObserver observer){
-        // TODO: 10.06.18 dennis füge klasse ein, die aufgerufen werden muss
-        // [connectionObservable Klasse].addObserver(observer);
+        networkController.addObserver(observer);
     }
 
 }

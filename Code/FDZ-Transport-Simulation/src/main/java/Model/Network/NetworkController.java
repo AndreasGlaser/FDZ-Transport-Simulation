@@ -10,7 +10,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 
-public class NetworkController {
+public class NetworkController extends ConnectionObservable implements ConnectionObserver{
 
     private static NetworkController ourInstance = new NetworkController();
 
@@ -25,8 +25,10 @@ public class NetworkController {
     final private String CNRD_HEAD = "StSTF002";
     final private String CNRD_END = "0003";
     final private String CE_HEAD = "StSTF999";
+    private boolean isConnected;
 
     private NetworkController(){
+        isConnected = false;
     }
 
     /*--NETWORK------------------------------------------------------------------*/
@@ -40,7 +42,9 @@ public class NetworkController {
         }else {
             clientNetwork = new ClientNetwork(ipAddr, port);
             clientNetwork.connect();
+            clientNetwork.addObserver(this);
         }
+
     }
 
     public void disconnect (){
@@ -141,6 +145,16 @@ public class NetworkController {
 
     private void invokeInterpreter(String command){
         new CommandInterpreter(command).run();
+    }
+
+    @Override
+    public void update() {
+        isConnected = clientNetwork.connectionToAdapter();
+        setChanged();
+    }
+
+    public boolean isConnected(){
+        return isConnected;
     }
 }
 

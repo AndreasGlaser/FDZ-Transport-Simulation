@@ -19,7 +19,7 @@ public abstract class ConnectionObservable {
         }
     }
 
-    protected void addObserver(ConnectionObserver observer){
+    public void addObserver(ConnectionObserver observer){
         observers.add(observer);
         observer.update();
     }
