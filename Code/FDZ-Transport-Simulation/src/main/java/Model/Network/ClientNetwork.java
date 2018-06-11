@@ -101,6 +101,7 @@ public class ClientNetwork extends ConnectionObservable{
                              e1.printStackTrace();
                          }
                          //Reconnect if connection lost to Adapter
+                         setConnection(false);
                          while (!client.isConnected()&&isRunning) {
                              try {
                                  client.closeSocket();
@@ -110,6 +111,7 @@ public class ClientNetwork extends ConnectionObservable{
 
                              }
                          }
+                         setConnection(true);
                      }
                      System.out.println("4");
                  }
@@ -143,7 +145,7 @@ public class ClientNetwork extends ConnectionObservable{
                     } catch (FDZNetworkException e1) {
                         e1.printStackTrace();
                     }
-
+                    setConnection(false);
                     //Reconnect if connection lost to Adapter
                     while (!client.isConnected()&&isRunning) {
                         try {
@@ -155,6 +157,7 @@ public class ClientNetwork extends ConnectionObservable{
 
                         }
                     }
+                    setConnection(true);
                 }
             }
         };
@@ -164,6 +167,10 @@ public class ClientNetwork extends ConnectionObservable{
     private void setConnection (boolean connection){
         this.connection=connection;
         setChanged();
+    }
+
+    public boolean connectionToAdapter (){
+        return connection;
     }
 
 
