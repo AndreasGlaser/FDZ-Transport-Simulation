@@ -1,12 +1,8 @@
 package Controller;
 
-<<<<<<< HEAD
-import Model.Exception.IllegalSetupException;
 import Model.Facade;
-=======
 import Model.Logger.OwnOutputStreamAppender;
 import Model.Logger.TextAreaOutputStream;
->>>>>>> logBastelstunde
 import Persistance.ConfigurationPersistor;
 import Persistance.IPAddress;
 import Persistance.StationData;
@@ -15,11 +11,8 @@ import View.AbstractStation;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-<<<<<<< HEAD
 import javafx.scene.control.TextField;
-=======
 import javafx.scene.control.TextArea;
->>>>>>> logBastelstunde
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -30,11 +23,7 @@ import javafx.stage.Stage;
 
 
 import java.io.IOException;
-<<<<<<< HEAD
-import java.net.UnknownHostException;
-=======
 import java.io.OutputStream;
->>>>>>> logBastelstunde
 import java.util.ArrayList;
 
 public class Controller {
@@ -71,20 +60,22 @@ public class Controller {
 	@FXML
 	private Polygon controllerConnectionArrow;
 
-<<<<<<< HEAD
 	@FXML
-	public void initialize(){
-=======
 	private TextArea textArea;
 
 	public void init(){
->>>>>>> logBastelstunde
+		OutputStream outputStream = new TextAreaOutputStream(textArea);
+		OwnOutputStreamAppender.setStaticOutputStream(outputStream);
+		textArea.setText("sdaf");
+		logPane.getChildren().add(textArea);
+
+
+
+
 		controllerImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		controllerImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
 		simulatorImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		simulatorImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
-
-<<<<<<< HEAD
 		
 		ipField1.setOnKeyReleased(event -> {
 			if(ipField1.getText().length()>3){
@@ -163,16 +154,12 @@ public class Controller {
 		
 
 		//nur zur Demonstration
-=======
-		OutputStream outputStream = new TextAreaOutputStream(textArea);
-		OwnOutputStreamAppender.setStaticOutputStream(outputStream);
 
->>>>>>> logBastelstunde
+
+
 		String mesID1 = "0000000001";
 		String mesID2 = "0000000002";
 		String mesID3 = "0000000003";
-		logPane.getChildren().add(textArea);
-
 
 		statusPane.getChildren().add(new Text("Connect to 172.68.92.1"));
 		statusPane.getChildren().add(new Text("Empty sled ordered to RO"));

@@ -9,7 +9,7 @@ import Model.Logger.LoggerInstance;
 
 import java.net.InetAddress;
 
-public class ClientNetwork {
+public class ClientNetwork extends ConnectionObservable{
 
     //instance of class Network
     private Network client;
@@ -20,6 +20,7 @@ public class ClientNetwork {
     //flag to stop Thread
     private boolean isRunning = false;
     private String messageOutgoing;
+    private boolean connection=false;
 
     /**
      * Thread is waiting for Command from connected Adapter and send receiving message to CommandInterpreter
@@ -73,6 +74,7 @@ public class ClientNetwork {
                 }
             }
         }while (!client.isConnected() && isRunning);
+        setConnection(true);
 
          LoggerInstance.log.info("connected");
 
@@ -159,6 +161,10 @@ public class ClientNetwork {
         sendMsg.start();
     }
 
+    private void setConnection (boolean connection){
+        this.connection=connection;
+        setChanged();
+    }
 
 
     /*------------------------------SETTER/GETTER------------------------------*/

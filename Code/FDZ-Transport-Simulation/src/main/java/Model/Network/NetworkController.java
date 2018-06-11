@@ -26,7 +26,6 @@ public class NetworkController {
     final private String CNRD_END = "0003";
     final private String CE_HEAD = "StSTF999";
 
-
     private NetworkController(){
     }
 
@@ -42,7 +41,6 @@ public class NetworkController {
             clientNetwork = new ClientNetwork(ipAddr, port);
             clientNetwork.connect();
         }
-
     }
 
     public void disconnect (){

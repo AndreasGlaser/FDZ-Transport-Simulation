@@ -13,13 +13,13 @@ public abstract class ConnectionObservable {
         observers = new HashSet<>(2);
     }
 
-    private void setChanged(){
+    protected void setChanged(){
         if(!observers.isEmpty()){
             observers.forEach(observer -> observer.update());
         }
     }
 
-    public void addObserver(ConnectionObserver observer){
+    protected void addObserver(ConnectionObserver observer){
         observers.add(observer);
         observer.update();
     }
