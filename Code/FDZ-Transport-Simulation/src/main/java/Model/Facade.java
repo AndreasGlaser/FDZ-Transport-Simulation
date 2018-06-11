@@ -54,9 +54,8 @@ public class Facade {
         networkController.disconnect();
     }
 
-    public SimpleBooleanProperty connectedProperty(){
-        return new SimpleBooleanProperty(true);
-        /*TODO*/
+    public boolean isConnected(){
+        return NetworkController.getInstance().isConnected();
     }
 
     /* STATIONS -----------------------------------------------------------------*/
@@ -124,5 +123,6 @@ public class Facade {
     public void addToConnectionObservable(ConnectionObserver observer){
         networkController.addObserver(observer);
     }
+
 
 }
