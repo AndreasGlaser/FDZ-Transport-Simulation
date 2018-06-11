@@ -5,6 +5,7 @@ package Model.Network;
  */
 
 import Model.Command.CommandInterpreter;
+import Model.Logger.LoggerInstance;
 
 import java.net.InetAddress;
 
@@ -39,33 +40,41 @@ public class ClientNetwork {
      * Message Listener for incomming Message from Adapter
      */
      public void connect (){
-
+         LoggerInstance.log.info("Try to Connect");
          if (!isRunning){
+             LoggerInstance.log.debug("create new socket");
             client = new Network(ipAddr, port);
              this.isRunning=true;
         }else {
+             LoggerInstance.log.debug("change ip and port to existing socket");
              client.setSocketAddr(ipAddr, port);
              try {
+                 LoggerInstance.log.debug("close existing socket");
                  client.closeSocket();
              } catch (FDZNetworkException e) {
+                 LoggerInstance.log.warn("cant close existing socket {}"+e.getMessage());
                  e.printStackTrace();
              }
          }
-
         //Connect to Adapter
         do{
             try {
+                LoggerInstance.log.debug("try to open connection to ip port");
                 this.client.openConnection();
             }catch (FDZNetworkException e){
+                LoggerInstance.log.warn("cant open connection to ip port"+e.getMessage());
                 e.printStackTrace();
                 try {
+                    LoggerInstance.log.debug("try to close existing socket");
                     this.client.closeSocket();
                 } catch (FDZNetworkException e1) {
+                    LoggerInstance.log.warn("cant close existing socket"+e.getMessage());
                     e1.printStackTrace();
                 }
             }
-
         }while (!client.isConnected() && isRunning);
+
+         LoggerInstance.log.info("connected");
 
          receiveMsg = new Thread (){
              public synchronized void run (){

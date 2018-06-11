@@ -15,7 +15,7 @@ public class MainClient {
         ArrayList<Station> stationList = new ArrayList<Station>(3);
 
         NetworkController ch = NetworkController.getInstance();
-        //byte[] ipAddr = new byte[]{(byte)Integer.parseInt("127"),(byte)Integer.parseInt("0"), (byte)Integer.parseInt("0"), (byte)Integer.parseInt("1")};
+        //byte[] ipAddr = new byte[]{(byte)Integer.parseInt("121"),(byte)Integer.parseInt("0"), (byte)Integer.parseInt("0"), (byte)Integer.parseInt("1")};
         byte [] ipAddr = new byte[]{127,0,0,1};
         ch.connect(ipAddr, 47331);
         Scanner sc = new Scanner(System.in);

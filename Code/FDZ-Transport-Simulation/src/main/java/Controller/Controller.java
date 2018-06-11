@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Logger.OwnOutputStreamAppender;
+import Model.Logger.TextAreaOutputStream;
 import Persistance.ConfigurationPersistor;
 import Persistance.StationData;
 import Persistance.StationType;
@@ -7,12 +9,14 @@ import View.AbstractStation;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class Controller {
@@ -35,22 +39,21 @@ public class Controller {
 	@FXML
 	private Pane statusPane;
 
+	private TextArea textArea;
+
 	public void init(){
 		controllerImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		controllerImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
 		simulatorImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		simulatorImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
 
+		OutputStream outputStream = new TextAreaOutputStream(textArea);
+		OwnOutputStreamAppender.setStaticOutputStream(outputStream);
+
 		String mesID1 = "0000000001";
 		String mesID2 = "0000000002";
 		String mesID3 = "0000000003";
-		logPane.getChildren().add(new Text("Oct 15 00:14:14: STStK001"+mesID1+ "0002ro"));
-		logPane.getChildren().add(new Text("Oct 15 00:14:15: StSTA001"+mesID1+ "0002"));
-		logPane.getChildren().add(new Text("Oct 15 00:15:34: STStK001"+mesID2+ "0003ro"));
-		logPane.getChildren().add(new Text("Oct 15 00:16:30: StSTF001"+mesID2+ "0002xx"));
-		logPane.getChildren().add(new Text("Oct 15 00:23:12: SPXSStK001"+mesID2+ "0002aa"));
-		logPane.getChildren().add(new Text("Oct 15 00:40:54: StSTF000"+mesID3+ "0000"));
-		logPane.getChildren().add(new Text("Oct 15 00:41:00: STStK003"+mesID3+ "000423io"));
+		logPane.getChildren().add(textArea);
 
 
 		statusPane.getChildren().add(new Text("Connect to 172.68.92.1"));
