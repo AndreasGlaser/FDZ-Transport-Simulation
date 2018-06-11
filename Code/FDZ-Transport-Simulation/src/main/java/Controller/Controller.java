@@ -3,6 +3,7 @@ package Controller;
 import Model.Facade;
 import Model.Logger.OwnOutputStreamAppender;
 import Model.Logger.TextAreaOutputStream;
+import Model.Network.ConnectionObserver;
 import Persistance.ConfigurationPersistor;
 import Persistance.IPAddress;
 import Persistance.StationData;
@@ -26,9 +27,10 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class Controller {
+public class Controller implements ConnectionObserver{
 	private ArrayList<AbstractStation> stations = new ArrayList<>();
 	private IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
+	private Facade facade = new Facade();
 
 	@FXML
 	private Pane optionMenu;
@@ -145,20 +147,11 @@ public class Controller {
 			}
 		});
 
-		new Facade().connectedProperty().addListener((observable, oldValue, newValue) -> {
-			controllerConnectionArrow.getStyleClass().clear();
-			if(newValue){
-				controllerConnectionArrow.getStyleClass().add("green");
-			}else {
-				controllerConnectionArrow.getStyleClass().add("red");
-			}
-		});
+		facade.addToConnectionObservable(this);
+
 		
 
 		//nur zur Demonstration
-
-
-
 		String mesID1 = "0000000001";
 		String mesID2 = "0000000002";
 		String mesID3 = "0000000003";
@@ -285,5 +278,10 @@ public class Controller {
 		ipField3.setText(Integer.toString(Byte.toUnsignedInt(address[2])));
 		ipField4.setText(Integer.toString(Byte.toUnsignedInt(address[3])));
 		portField.setText(ipAddress.getPort().toString());
+	}
+
+	@Override
+	public void update() {
+		//TODO: change GUI depending on connection state
 	}
 }
