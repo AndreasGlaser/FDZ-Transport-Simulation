@@ -2,8 +2,6 @@ package Persistance;
 
 import Controller.CrossingController;
 import Controller.StationController;
-import Model.Exception.IllegalSetupException;
-import Model.Facade;
 import View.AbstractStation;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -91,7 +89,7 @@ public class ConfigurationPersistor {
 		//load IPAddress
 		String ipJson = readJSONFromFile(ipFile);
 		IPAddress jsonIpAddress = gson.fromJson(ipJson, IPAddress.class);
-		ipAddress.setAdress(jsonIpAddress.getAdress());
+		ipAddress.setAddress(jsonIpAddress.getAddress());
 		ipAddress.setPort(jsonIpAddress.getPort());
 
 

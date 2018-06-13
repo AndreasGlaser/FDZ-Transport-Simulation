@@ -142,7 +142,7 @@
       <BorderPane fx:id="messagePane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" />
       <Pane maxWidth="1.0">
          <children>
-            <GridPane fx:id="disconnectedIpPane" hgap="1.0" minHeight="120.0" styleClass="disconnectedIpPane" vgap="2.0">
+            <GridPane fx:id="disconnectedIpPane" hgap="1.0" maxWidth="350.0" minHeight="120.0" styleClass="disconnectedIpPane" vgap="2.0">
                <children>
                   <TextField fx:id="ipField1" styleClass="ipField" GridPane.rowIndex="1">
                      <font>
@@ -194,13 +194,13 @@
                   </Button>
                </children>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
                   <ColumnConstraints hgrow="SOMETIMES" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
                   <ColumnConstraints hgrow="SOMETIMES" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
                   <ColumnConstraints hgrow="SOMETIMES" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
                   <ColumnConstraints hgrow="SOMETIMES" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="40.0" prefWidth="100.0" />
                   <ColumnConstraints />

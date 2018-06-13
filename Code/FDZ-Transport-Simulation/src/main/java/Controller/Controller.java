@@ -61,6 +61,10 @@ public class Controller implements ConnectionObserver{
 	private TextField ipField1;
 	@FXML
 	private Polygon controllerConnectionArrow;
+	@FXML
+	private Pane disconnectedIpPane;
+	@FXML
+	private Text ipAddressText;
 
 	@FXML
 	private TextArea textArea;
@@ -87,10 +91,10 @@ public class Controller implements ConnectionObserver{
 				ipField1.positionCaret(3);
 			}
 			try{
-				ipAddress.getAdress()[0] = ((byte)Integer.parseInt(ipField1.getText()));
+				ipAddress.getAddress()[0] = ((byte)Integer.parseInt(ipField1.getText()));
 			}catch(NumberFormatException e){
 				ipField1.setText("0");
-				ipAddress.getAdress()[0] = (byte)0;
+				ipAddress.getAddress()[0] = (byte)0;
 			}
 		});
 		ipField2.setOnKeyReleased(event -> {
@@ -99,10 +103,10 @@ public class Controller implements ConnectionObserver{
 				ipField2.positionCaret(3);
 			}
 			try{
-				ipAddress.getAdress()[1] = ((byte)Integer.parseInt(ipField2.getText()));
+				ipAddress.getAddress()[1] = ((byte)Integer.parseInt(ipField2.getText()));
 			}catch(NumberFormatException e){
 				ipField2.setText("0");
-				ipAddress.getAdress()[1] = (byte)0;
+				ipAddress.getAddress()[1] = (byte)0;
 			}
 		});
 		ipField3.setOnKeyReleased(event -> {
@@ -111,10 +115,10 @@ public class Controller implements ConnectionObserver{
 				ipField3.positionCaret(3);
 			}
 			try{
-				ipAddress.getAdress()[2] = ((byte)Integer.parseInt(ipField3.getText()));
+				ipAddress.getAddress()[2] = ((byte)Integer.parseInt(ipField3.getText()));
 			}catch(NumberFormatException e){
 				ipField3.setText("0");
-				ipAddress.getAdress()[2] = (byte)0;
+				ipAddress.getAddress()[2] = (byte)0;
 			}
 		});
 		ipField4.setOnKeyReleased(event -> {
@@ -123,10 +127,10 @@ public class Controller implements ConnectionObserver{
 				ipField4.positionCaret(3);
 			}
 			try{
-				ipAddress.getAdress()[3] = ((byte)Integer.parseInt(ipField4.getText()));
+				ipAddress.getAddress()[3] = ((byte)Integer.parseInt(ipField4.getText()));
 			}catch(NumberFormatException e){
 				ipField4.setText("0");
-				ipAddress.getAdress()[3] = (byte)0;
+				ipAddress.getAddress()[3] = (byte)0;
 			}
 		});
 		portField.setOnKeyReleased(event -> {
@@ -238,12 +242,15 @@ public class Controller implements ConnectionObserver{
 
 	@FXML
 	private void connect(){
-		new Facade().connect(ipAddress.getAdress(), ipAddress.getPort());
+		new Facade().connect(ipAddress.getAddress(), ipAddress.getPort());
+		disconnectedIpPane.setVisible(false);
+		ipAddressText.setText(ipAddress.toIPAddress());
 	}
 
 	@FXML
 	private void disconnect(){
 		new Facade().disconnect();
+		disconnectedIpPane.setVisible(true);
 	}
 
 	public void askForSaving(Stage primaryStage){
@@ -272,7 +279,7 @@ public class Controller implements ConnectionObserver{
 	}
 
 	private void showIPAddress(){
-		byte[] address = ipAddress.getAdress();
+		byte[] address = ipAddress.getAddress();
 		ipField1.setText(Integer.toString(Byte.toUnsignedInt(address[0])));
 		ipField2.setText(Integer.toString(Byte.toUnsignedInt(address[1])));
 		ipField3.setText(Integer.toString(Byte.toUnsignedInt(address[2])));
@@ -287,8 +294,11 @@ public class Controller implements ConnectionObserver{
 		System.out.println("isConnencted() returns "+facade.isConnected());
 		if(facade.isConnected()){
 			controllerConnectionArrow.getStyleClass().add("green");
+			disconnectedIpPane.setVisible(false);
+			ipAddressText.setText(ipAddress.toIPAddress());
 		}else {
 			controllerConnectionArrow.getStyleClass().add("red");
+			disconnectedIpPane.setVisible(true);
 		}
 	}
 }
