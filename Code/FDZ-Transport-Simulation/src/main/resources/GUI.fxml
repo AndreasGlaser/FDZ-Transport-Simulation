@@ -121,7 +121,7 @@
          <children>
             <ScrollPane prefWidth="200.0">
                <content>
-                  <VBox fx:id="logPane" prefHeight="200.0" prefWidth="100.0" />
+                  <TextArea fx:id="textArea" />
                </content>
             </ScrollPane>
             <ScrollPane prefWidth="200.0" GridPane.columnIndex="2">

@@ -71,11 +71,9 @@ public class Controller implements ConnectionObserver{
 
 	@FXML
 	public void initialize(){
-		TextArea textArea = new TextArea();//TODO: entfernen, nur bis es in der view eingebaut ist
+
 		OutputStream outputStream = new TextAreaOutputStream(textArea);
 		OwnOutputStreamAppender.setStaticOutputStream(outputStream);
-		textArea.setText("sdaf");
-		logPane.getChildren().add(textArea);
 
 
 
