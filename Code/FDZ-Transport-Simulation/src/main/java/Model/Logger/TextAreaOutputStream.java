@@ -7,6 +7,7 @@ import java.io.OutputStream;
 
 public class TextAreaOutputStream extends OutputStream {
 
+    private StringBuilder stringBuilder = new StringBuilder();
     private TextArea textArea;
 
     public TextAreaOutputStream(TextArea textArea){
@@ -15,7 +16,11 @@ public class TextAreaOutputStream extends OutputStream {
 
     @Override
     public void write (int b) throws IOException {
-        textArea.appendText(String.valueOf((char)b));
+        stringBuilder.append((char)b);
+        if(stringBuilder.toString().contains(System.getProperty("line.separator"))){
+            textArea.appendText(stringBuilder.toString());
+            stringBuilder.delete(0, stringBuilder.length());
+        }
     }
 
 }
