@@ -10,8 +10,6 @@ import Model.Station.Station;
 import Model.Station.StationHandler;
 import Model.Station.StationObserver;
 import com.sun.istack.internal.NotNull;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -19,8 +17,8 @@ import java.util.List;
 
 public class Facade {
 
-    private NetworkController networkController;
-    private StationHandler stationHandler;
+    private final NetworkController networkController;
+    private final StationHandler stationHandler;
     private Thread connectionThread;
 
     public Facade(){
@@ -36,16 +34,13 @@ public class Facade {
 
     public synchronized void connect(byte[] ip, int port){
         if(connectionThread == null){
-            connectionThread = new Thread(){
-                @Override
-                public void run (){
-                    try{
-                        NetworkController.getInstance().connect(ip, port);
-                    }catch(UnknownHostException e){
-                        /*TODO Log exception*/
-                    }
+            connectionThread = new Thread(() -> {
+                try{
+                    NetworkController.getInstance().connect(ip, port);
+                }catch(UnknownHostException e){
+                    /*TODO Log exception*/
                 }
-            };
+            });
             connectionThread.start();
         }else{
             connectionThread.interrupt();
@@ -100,7 +95,7 @@ public class Facade {
     }
 
     public void setStationName(String oldName, String newName) throws NullPointerException, IllegalSetupException{
-        if(newName.length() != 0 || newName != null) {
+        if(newName != null && newName.length() != 0) {
             Station station = stationHandler.getStationByName(oldName);
             station.setName(newName);
         }else{

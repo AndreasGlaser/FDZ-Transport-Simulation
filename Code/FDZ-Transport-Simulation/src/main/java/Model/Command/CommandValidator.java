@@ -8,7 +8,7 @@ import Model.Station.StationHandler;
  *
  * Validates the Command interpreted and parsed by CommandInterpreter
  */
-public class CommandValidator {
+class CommandValidator {
 
     private final Integer commandNum;
 

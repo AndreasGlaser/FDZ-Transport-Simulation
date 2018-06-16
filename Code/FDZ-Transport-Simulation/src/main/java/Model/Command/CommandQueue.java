@@ -1,7 +1,5 @@
 package Model.Command;
 
-import Model.Exception.IllegalSetupException;
-
 import java.util.LinkedList;
 
 /**
@@ -10,12 +8,12 @@ import java.util.LinkedList;
 public class CommandQueue {
 
     //Queue for saved Commands
-    private LinkedList<Command> commandQueue;
+    private final LinkedList<Command> commandQueue;
     //List save MessageID that activated not in queue
-    private LinkedList<String> activatedList;
+    private final LinkedList<String> activatedList;
 
     //Thread safe Singleton
-    private static CommandQueue ourInstance = new CommandQueue();
+    private static final CommandQueue ourInstance = new CommandQueue();
 
     /**
      * Add Command Object to Queue on the end
@@ -85,7 +83,7 @@ public class CommandQueue {
                         break;
                 }
             }catch(NullPointerException e){
-                System.err.println(e.getStackTrace());
+                e.printStackTrace();
             }
         }
     }
@@ -128,7 +126,7 @@ public class CommandQueue {
                 }
             }
         }catch (NullPointerException e){
-            System.err.println("COMMAND NOT IN QUEUE, NULLPOINTER");
+            System.err.println("COMMAND NOT IN QUEUE, NULL POINTER");
             System.err.println("INFO :: PRE ACTIVATED COMMANDS WAS NULL");
         }
 

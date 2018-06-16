@@ -1,6 +1,5 @@
 package Model.Command;
 
-import Model.Exception.IllegalSetupException;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 
@@ -8,7 +7,7 @@ import Model.Station.StationHandler;
 
 public class ReleaseCarriage extends Command {
 
-    private int id;
+    private final int id;
 
     /**
      * @param id id of sled to release
@@ -29,12 +28,9 @@ public class ReleaseCarriage extends Command {
             station.driveOutSled();
             System.out.println("\t log: releasing carriage with id " + id);
             super.commandExecuted();
-        }catch(IndexOutOfBoundsException e){
+        }catch(IndexOutOfBoundsException | NullPointerException e){
             super.error();
             // TODO: 16.06.18 log illegal setup
-        }catch(NullPointerException e){
-            super.error();
-            // TODO: 07.06.18 log error id not found
         }
     }
 }

@@ -2,7 +2,6 @@ package Model.Command;
 
 import Model.Exception.IllegalSetupException;
 import Model.Network.NetworkController;
-import Model.Station.PrevPair;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 
@@ -14,7 +13,7 @@ import static java.lang.Thread.sleep;
 
 public class RequestEmptyCarriage extends Command {
 
-    private String position;
+    private final String position;
 
     /**
      *
@@ -30,7 +29,7 @@ public class RequestEmptyCarriage extends Command {
      * Special acknowledgment 1 for the requestEmptyCarriage Command
      */
     @Override
-    protected void commandExecuted(){
+    void commandExecuted(){
         NetworkController.getInstance().acknowledge2(msgID, true);
     }
 

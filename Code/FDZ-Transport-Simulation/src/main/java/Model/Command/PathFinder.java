@@ -13,7 +13,7 @@ import java.util.LinkedList;
  */
 public class PathFinder {
 
-    private LinkedList<Station> path = new LinkedList<>();
+    private final LinkedList<Station> path = new LinkedList<>();
 
     /**
      * The Constructor to find a Path between two Stations

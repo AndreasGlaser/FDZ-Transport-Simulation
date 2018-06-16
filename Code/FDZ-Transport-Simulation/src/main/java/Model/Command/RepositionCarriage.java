@@ -1,11 +1,9 @@
 package Model.Command;
 
-import Model.Exception.CongestionException;
 import Model.Exception.IllegalSetupException;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 
-import java.sql.Time;
 import java.util.LinkedList;
 
 import static java.lang.Thread.sleep;
@@ -14,9 +12,8 @@ import static java.lang.Thread.sleep;
 
 public class RepositionCarriage extends Command {
 
-    private int id;
-    private String position;
-    private final String CONGESTED_ERROR;
+    private final int id;
+    private final String position;
 
     /**
      * @param id id of carriage to reposition
@@ -27,11 +24,6 @@ public class RepositionCarriage extends Command {
         this.id = id;
         this.position = position;
         super.msgID = msgID;
-        CONGESTED_ERROR =
-                "\t log: CONGESTION DETECTED\n" +
-                        "\t      COULD NOT REPOSITION\n" +
-                        "\t      [" + id + "] TO [" + position + "]";
-
     }
 
     // TODO: 16.06.18 javadoc und ack2
@@ -60,7 +52,7 @@ public class RepositionCarriage extends Command {
                     });
                 }else{
                     try {
-                        sleep(TimeMode.findTimeForPath(path.getFirst(), path.get(0+1)));
+                        sleep(TimeMode.findTimeForPath(path.getFirst(), path.get(1)));
                     }catch (InterruptedException e){
                         // TODO: 16.06.18 debug interruption
                     }
@@ -76,9 +68,7 @@ public class RepositionCarriage extends Command {
                 }
                 path.getLast().driveInSled(id);
                 super.commandExecuted();
-            }catch(NullPointerException e){
-                super.error();
-            }catch(IllegalSetupException e){
+            }catch(NullPointerException | IllegalSetupException e){
                 super.error();
             }
         }).start();
