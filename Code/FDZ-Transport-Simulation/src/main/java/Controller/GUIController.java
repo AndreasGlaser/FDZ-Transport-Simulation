@@ -13,6 +13,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -35,9 +36,9 @@ import java.util.ArrayList;
  *
  */
 public class GUIController implements ConnectionObserver{
-	private ArrayList<AbstractStation> stations = new ArrayList<>();
-	private IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
-	private Facade facade = new Facade();
+	private final ArrayList<AbstractStation> stations = new ArrayList<>();
+	private final IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
+	private final Facade facade = new Facade();
 
 	@FXML
 	private Pane optionMenu;
@@ -73,6 +74,8 @@ public class GUIController implements ConnectionObserver{
 	private TextArea textArea;
 	@FXML
 	private Button optionsButton;
+	@FXML
+	private CheckBox fastModeCheckBox;
 
 	@FXML
 	public void initialize(){
@@ -198,9 +201,7 @@ public class GUIController implements ConnectionObserver{
 		if(!newStationUnnamed){
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/StationPane.fxml"));
 			try {
-				loader.setControllerFactory(c ->{
-					return new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations);
-				});
+				loader.setControllerFactory(c -> new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations));
 				loader.load();
 			} catch (IOException e) {
 				e.printStackTrace();//TODO: exceptionhandling
@@ -221,9 +222,7 @@ public class GUIController implements ConnectionObserver{
 		if(!newCrossingUnnamed) {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
 			try {
-				loader.setControllerFactory(c -> {
-					return new CrossingController(new StationData("new Crossing", StationType.CROSSING), stationsPane, stations);
-				});
+				loader.setControllerFactory(c -> new CrossingController(new StationData("new Crossing", StationType.CROSSING), stationsPane, stations));
 				loader.load();
 			} catch (IOException e) {
 				e.printStackTrace();//TODO: exceptionhandling
@@ -258,17 +257,24 @@ public class GUIController implements ConnectionObserver{
 		setOptionsActive(true);
 	}
 
+	@FXML
+	private void onFastModeCheckBoxClicked(){
+		if(fastModeCheckBox.isSelected()){
+			facade.setFastTime(true);
+		}else{
+			facade.setFastTime(false);
+		}
+	}
+
 	public void askForSaving(Stage primaryStage){
 		messagePane.setMouseTransparent(false);
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MessagePane.fxml"));
 		try {
-			loader.setControllerFactory(c -> {
-				return new MessageController("Save configuration?",
-						"The configuration has not been saved, do you want to save it now?",
-						this,
-						primaryStage,
-						messagePane);
-			});
+			loader.setControllerFactory(c -> new MessageController("Save configuration?",
+                    "The configuration has not been saved, do you want to save it now?",
+                    this,
+                    primaryStage,
+                    messagePane));
 			Pane message = loader.load();
 			messagePane.setCenter(message);
 
@@ -315,14 +321,13 @@ public class GUIController implements ConnectionObserver{
 	 * @param bool true to activate options, false to deactivate the options
 	 */
 	private void setOptionsActive(Boolean bool){
+		optionsButton.setDisable(!bool);
 		if(bool){
-			optionsButton.setDisable(!bool);
 			for(AbstractStation station : stations){
 				station.setDisableOptionsButton(!bool);
 			}
 		}else{
 			optionMenu.setVisible(bool);
-			optionsButton.setDisable(!bool);
 			for(AbstractStation station : stations){
 				station.closeOptions();
 				station.setDisableOptionsButton(!bool);

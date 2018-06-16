@@ -23,11 +23,11 @@ public class MessageController {
 	@FXML
 	private Button yesButton;
 
-	private String details;
-	private String message;
-	private GUIController GUIController;
-	private Stage primaryStage;
-	private Pane messagePane;
+	private final String details;
+	private final String message;
+	private final GUIController GUIController;
+	private final Stage primaryStage;
+	private final Pane messagePane;
 
 	public MessageController(String details, String message, GUIController GUIController, Stage primaryStage, Pane messagePane){
 		this.details = details;

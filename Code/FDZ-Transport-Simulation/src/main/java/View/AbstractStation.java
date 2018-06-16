@@ -12,7 +12,7 @@ public abstract class AbstractStation {
 	protected Pane viewPane;
 
 	//helper Variables
-	protected ArrayList<BeltNode> incomingBelts = new ArrayList<>();
+	protected final ArrayList<BeltNode> incomingBelts = new ArrayList<>();
 	protected Double dragXTrans = .0;
 	protected Double dragYTrans = .0;
 	protected Double sceneX = .0;
@@ -43,35 +43,32 @@ public abstract class AbstractStation {
 	public abstract void setName(String name);
 	public String getShortcut(){return data.getShortcut();}
 	public void setShortcut(String shortcut){data.setShortcut(shortcut);}
-	public void setXCord(Double newX){
+	protected void setXCord(Double newX){
 		data.setXCord(newX);
 		viewPane.setTranslateX(newX);
 	}
-	public void setYCord(Double newY){
+	protected void setYCord(Double newY){
 		data.setYCord(newY);
 		viewPane.setTranslateY(newY);
 	}
-	public Double getXCord(){
+	Double getXCord(){
 		return data.getXCord();
 	}
-	public Double getYCord(){
+	Double getYCord(){
 		return data.getYCord();
 	}
 	public ArrayList<Pair<String, Integer>> getPreviousStationsByName(){return data.getPreviousStationsByName();}
 	public StationData getData(){return data;}
-	public void setData(StationData data){
+	protected void setData(StationData data){
 		this.data = data;
 		viewPane.setTranslateX(data.getXCord());
 		viewPane.setTranslateY(data.getYCord());
 	}
-	public DoubleProperty getTranslateXProperty(){
+	DoubleProperty getTranslateXProperty(){
 		return viewPane.translateXProperty();
 	}
-	public DoubleProperty getTranslateYProperty(){
+	DoubleProperty getTranslateYProperty(){
 		return viewPane.translateYProperty();
-	}
-	public Pane getViewPane(){
-		return viewPane;
 	}
 	public abstract void closeOptions();
 	public abstract void setDisableOptionsButton(Boolean bool);
@@ -92,7 +89,7 @@ public abstract class AbstractStation {
 
 	}
 	protected void addPrevStation(Pair<String, Integer> pair){
-		if(prevStationsContains(pair.getKey())) return;
+		if(prevStationsContains(pair.getKey())) return;//TODO wenn vorhanen ersetzen mit neuem
 		data.getPreviousStationsByName().add(pair);
 	}
 }

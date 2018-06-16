@@ -20,8 +20,8 @@ import java.util.ArrayList;
  */
 public class CrossingController extends AbstractStation {
 
-	private Pane parent;
-	private ArrayList<AbstractStation> stations;
+	private final Pane parent;
+	private final ArrayList<AbstractStation> stations;
 
 	@FXML
 	private Pane rootPane;
@@ -129,7 +129,7 @@ public class CrossingController extends AbstractStation {
 		crossingOptionsButton.setDisable(bool);
 	}
 
-	public Pane getPreviousStationsPane(){
+	private Pane getPreviousStationsPane(){
 		return previousStationsPane;
 	}
 
