@@ -19,14 +19,14 @@ public class MessageController {
 
 	private String details;
 	private String message;
-	private Controller controller;
+	private GUIController GUIController;
 	private Stage primaryStage;
 	private Pane messagePane;
 
-	public MessageController(String details, String message, Controller controller, Stage primaryStage, Pane messagePane){
+	public MessageController(String details, String message, GUIController GUIController, Stage primaryStage, Pane messagePane){
 		this.details = details;
 		this.message = message;
-		this.controller = controller;
+		this.GUIController = GUIController;
 		this.primaryStage = primaryStage;
 		this.messagePane = messagePane;
 	}
@@ -45,7 +45,7 @@ public class MessageController {
 	}
 	@FXML
 	private void yesPressed(){
-		controller.saveConfiguration();
+		GUIController.saveConfiguration();
 		primaryStage.close();
 	}
 	@FXML

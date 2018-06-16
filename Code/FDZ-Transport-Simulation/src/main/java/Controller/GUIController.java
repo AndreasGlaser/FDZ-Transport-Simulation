@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class Controller implements ConnectionObserver{
+public class GUIController implements ConnectionObserver{
 	private ArrayList<AbstractStation> stations = new ArrayList<>();
 	private IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
 	private Facade facade = new Facade();
