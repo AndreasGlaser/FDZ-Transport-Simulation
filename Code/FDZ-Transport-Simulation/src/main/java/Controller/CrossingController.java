@@ -3,6 +3,7 @@ package Controller;
 import Persistance.StationData;
 import View.AbstractStation;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -31,6 +32,8 @@ public class CrossingController extends AbstractStation {
 	private TextField crossingNameTextField;
 	@FXML
 	private Pane previousStationsPane;
+	@FXML
+	private Button crossingOptionsButton;
 
 	public CrossingController(StationData data, Pane parent, ArrayList<AbstractStation> stations){
 		this.data = data;
@@ -116,17 +119,19 @@ public class CrossingController extends AbstractStation {
 	}
 
 	@FXML
-	private void closeOptions(){
+	public void closeOptions(){
 		crossingOptions.setVisible(false);
+	}
+
+	@Override
+	public void setDisableOptionsButton(Boolean bool) {
+		crossingOptionsButton.setDisable(bool);
 	}
 
 	public Pane getPreviousStationsPane(){
 		return previousStationsPane;
 	}
 
-	public Pane getOptionsPane(){
-		return crossingOptions;
-	}
 
 
 

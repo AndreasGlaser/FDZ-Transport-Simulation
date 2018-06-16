@@ -72,4 +72,6 @@ public abstract class AbstractStation {
 	public Pane getViewPane(){
 		return viewPane;
 	}
+	public abstract void closeOptions();
+	public abstract void setDisableOptionsButton(Boolean bool);
 }

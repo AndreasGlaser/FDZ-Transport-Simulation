@@ -48,6 +48,8 @@ public class StationController extends AbstractStation implements StationObserve
     private TextField abbreviationField;
     @FXML
     private MenuButton congestionMenu;
+    @FXML
+    private Button stationOptionsButton;
 
     public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations){
         this.data = data;
@@ -274,16 +276,22 @@ public class StationController extends AbstractStation implements StationObserve
         data.setName(name);
     }
 
+    @Override
+    public void closeOptions() {
+        stationOptionsPane.setVisible(false);
+    }
+
+    @Override
+    public void setDisableOptionsButton(Boolean bool) {
+        stationOptionsButton.setDisable(bool);
+    }
+
     public void setSledText(String sledString){
         sledText.setText(sledString);
     }
 
     public Pane getPreviousStationsPane(){
         return previousStationsPane;
-    }
-
-    public Pane getstationOptionsPane(){
-        return stationOptionsPane;
     }
 
     public void setHopsBack(int hopsBack) {

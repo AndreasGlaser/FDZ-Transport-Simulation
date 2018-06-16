@@ -12,6 +12,7 @@ import View.AbstractStation;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -42,15 +43,12 @@ public class GUIController implements ConnectionObserver{
 	private Pane optionMenu;
 	@FXML
 	private Pane stationsPane;
-
 	@FXML
 	private ImageView controllerImageView;
 	@FXML
 	private ImageView simulatorImageView;
 	@FXML
 	private GridPane controllerGridPane;
-	@FXML
-	private Pane logPane;
 	@FXML
 	private Pane statusPane;
 	@FXML
@@ -71,9 +69,10 @@ public class GUIController implements ConnectionObserver{
 	private Pane disconnectedIpPane;
 	@FXML
 	private Text ipAddressText;
-
 	@FXML
 	private TextArea textArea;
+	@FXML
+	private Button optionsButton;
 
 	@FXML
 	public void initialize(){
@@ -256,6 +255,7 @@ public class GUIController implements ConnectionObserver{
 	private void disconnect(){
 		new Facade().disconnect();
 		disconnectedIpPane.setVisible(true);
+		setOptionsActive(true);
 	}
 
 	public void askForSaving(Stage primaryStage){
@@ -304,6 +304,7 @@ public class GUIController implements ConnectionObserver{
 		}else {
 			controllerConnectionArrow.getStyleClass().add("red");
 			disconnectedIpPane.setVisible(true);
+			setOptionsActive(true);
 		}
 	}
 
@@ -314,6 +315,18 @@ public class GUIController implements ConnectionObserver{
 	 * @param bool true to activate options, false to deactivate the options
 	 */
 	private void setOptionsActive(Boolean bool){
-
+		if(bool){
+			optionsButton.setDisable(!bool);
+			for(AbstractStation station : stations){
+				station.setDisableOptionsButton(!bool);
+			}
+		}else{
+			optionMenu.setVisible(bool);
+			optionsButton.setDisable(!bool);
+			for(AbstractStation station : stations){
+				station.closeOptions();
+				station.setDisableOptionsButton(!bool);
+			}
+		}
 	}
 }

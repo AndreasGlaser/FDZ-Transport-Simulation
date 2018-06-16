@@ -15,7 +15,7 @@
             <AnchorPane prefHeight="421.0" prefWidth="648.0" GridPane.columnIndex="1">
                <children>
                   <Pane fx:id="stationsPane" maxHeight="0.0" maxWidth="0.0" />
-                  <Button mnemonicParsing="false" onAction="#openCloseOptions" styleClass="optionButton" text="" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#openCloseOptions" styleClass="optionButton" text="" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                   <VBox fx:id="optionMenu" layoutX="398.0" spacing="10.0" styleClass="optionMenu" visible="false" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="65.0">
                      <children>
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#addStation" text="new Station" />
