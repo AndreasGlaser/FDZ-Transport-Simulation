@@ -1,5 +1,6 @@
 package Model.Logger;
 
+import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
@@ -23,7 +24,10 @@ public class TextAreaOutputStream extends OutputStream {
     public void write (int aByte) throws IOException {
         stringBuilder.append((char)aByte);
         if(stringBuilder.toString().contains(System.getProperty("line.separator"))){
-            textArea.appendText(stringBuilder.toString());
+            String output = stringBuilder.toString();
+            Platform.runLater(() ->{
+                textArea.appendText(output);
+            });
             stringBuilder.delete(0, stringBuilder.length());
         }
     }
