@@ -10,6 +10,12 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
+/**
+ * The Controller for Crossings
+ * @author Andreas Glaser
+ *
+ *
+ */
 public class CrossingController extends AbstractStation {
 
 	private Pane parent;

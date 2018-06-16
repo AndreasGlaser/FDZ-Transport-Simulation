@@ -27,6 +27,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
+/**
+ * The Controller for the GUI
+ * @author Andreas Glaser
+ *
+ *
+ */
 public class GUIController implements ConnectionObserver{
 	private ArrayList<AbstractStation> stations = new ArrayList<>();
 	private IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
@@ -243,6 +249,7 @@ public class GUIController implements ConnectionObserver{
 		new Facade().connect(ipAddress.getAddress(), ipAddress.getPort());
 		disconnectedIpPane.setVisible(false);
 		ipAddressText.setText(ipAddress.toIPAddress());
+		setOptionsActive(false);
 	}
 
 	@FXML
@@ -298,5 +305,15 @@ public class GUIController implements ConnectionObserver{
 			controllerConnectionArrow.getStyleClass().add("red");
 			disconnectedIpPane.setVisible(true);
 		}
+	}
+
+
+	/**
+	 * deactivates or activates all options that change the configuration,
+	 * for persistance reasons this method should be called before receiving commands
+	 * @param bool true to activate options, false to deactivate the options
+	 */
+	private void setOptionsActive(Boolean bool){
+
 	}
 }

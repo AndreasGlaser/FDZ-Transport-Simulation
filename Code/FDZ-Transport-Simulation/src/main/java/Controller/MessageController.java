@@ -6,6 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * The Controller for pop-up-messages
+ * @author Andreas Glaser
+ *
+ *
+ */
 public class MessageController {
 
 	@FXML
