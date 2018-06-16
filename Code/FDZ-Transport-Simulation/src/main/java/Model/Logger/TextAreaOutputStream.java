@@ -14,9 +14,14 @@ public class TextAreaOutputStream extends OutputStream {
         this.textArea=textArea;
     }
 
+    /**
+     *
+     * @param aByte the given byte that will be written, the bytes will be buffered until a line separator is given
+     * @throws IOException
+     */
     @Override
-    public void write (int b) throws IOException {
-        stringBuilder.append((char)b);
+    public void write (int aByte) throws IOException {
+        stringBuilder.append((char)aByte);
         if(stringBuilder.toString().contains(System.getProperty("line.separator"))){
             textArea.appendText(stringBuilder.toString());
             stringBuilder.delete(0, stringBuilder.length());
