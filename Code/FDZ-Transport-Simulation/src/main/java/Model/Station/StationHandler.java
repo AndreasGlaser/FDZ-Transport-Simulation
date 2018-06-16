@@ -87,6 +87,9 @@ public class StationHandler{
             if (sledInside != null && sledInside == id) {
                 return station;
             }
+        }
+        for (Station station : stations){
+            Integer sledInside = station.getSledsInStation().get(0);
             if (sledInside != null && sledInside == EMPTY_CARRIAGE) {
                 station.idFound(id);
                 return station;

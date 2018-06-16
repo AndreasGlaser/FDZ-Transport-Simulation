@@ -30,8 +30,10 @@ public class ReleaseCarriage extends Command {
             System.out.println("\t log: releasing carriage with id " + id);
             super.commandExecuted();
         }catch(IndexOutOfBoundsException e){
+            super.error();
             throw new IllegalSetupException("No Stations in Setup");
         }catch(NullPointerException e){
+            super.error();
             // TODO: 07.06.18 log error id not found
         }
     }
