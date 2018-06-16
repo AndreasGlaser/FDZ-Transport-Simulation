@@ -3,6 +3,7 @@ package View;
 import Persistance.StationData;
 import javafx.beans.property.DoubleProperty;
 import javafx.scene.layout.Pane;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,7 @@ public abstract class AbstractStation {
 		parent.getChildren().removeAll(incomingBelts);
 		incomingBelts.clear();
 		for(AbstractStation i: stations){
-			if(data.getPreviousStationsByName().contains(i.getName())){
+			if(prevStationsContains(i.getName())){
 				BeltNode belt = new BeltNode(i, this);
 				incomingBelts.add(belt);
 				parent.getChildren().add(belt);
@@ -56,7 +57,7 @@ public abstract class AbstractStation {
 	public Double getYCord(){
 		return data.getYCord();
 	}
-	public ArrayList<String> getPreviousStationsByName(){return data.getPreviousStationsByName();}
+	public ArrayList<Pair<String, Integer>> getPreviousStationsByName(){return data.getPreviousStationsByName();}
 	public StationData getData(){return data;}
 	public void setData(StationData data){
 		this.data = data;
@@ -74,4 +75,24 @@ public abstract class AbstractStation {
 	}
 	public abstract void closeOptions();
 	public abstract void setDisableOptionsButton(Boolean bool);
+	protected Boolean prevStationsContains(String name){
+		for(Pair<String, Integer> stationPair: data.getPreviousStationsByName()){
+			if(stationPair.getKey().equals(name))return true;
+		}
+		return false;
+	}
+	protected void prevStationRemove(String name){
+		ArrayList<Pair<String, Integer>> toRemove = new ArrayList<>();
+		for(Pair<String, Integer> stationPair: data.getPreviousStationsByName()){
+			if(stationPair.getKey().equals(name))toRemove.add(stationPair);
+		}
+		for(Pair<String, Integer> stationPair: toRemove){
+			data.getPreviousStationsByName().remove(stationPair);
+		}
+
+	}
+	protected void addPrevStation(Pair<String, Integer> pair){
+		if(prevStationsContains(pair.getKey())) return;
+		data.getPreviousStationsByName().add(pair);
+	}
 }

@@ -192,7 +192,7 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
         System.out.println(prev);
 
         try{
-            facade.addPrevStation(station, prev);
+            facade.addPrevStation(station, prev,1);
             System.out.println("PrevStation "+prev+" added successfully to "+station);
         }catch(NullPointerException e){
             System.out.println("Could not add "+prev+" to "+station);

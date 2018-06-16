@@ -1,6 +1,6 @@
 package Persistance;
 
-import View.AbstractStation;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 
@@ -9,7 +9,7 @@ public class StationData {
 	private String shortcut = "";
 	private Double xCord = 0.;
 	private Double yCord = 0.;
-	private ArrayList<String> reachableStationsByName = new ArrayList<>();
+	private ArrayList<Pair<String, Integer>> reachableStationsByName = new ArrayList<>();
 	private StationType stationType;
 	private Integer hopsBack = 1;
 
@@ -41,7 +41,7 @@ public class StationData {
 	public Double getYCord(){
 		return yCord;
 	}
-	public ArrayList<String> getPreviousStationsByName(){return reachableStationsByName;}
+	public ArrayList<Pair<String, Integer>> getPreviousStationsByName(){return reachableStationsByName;}
 
 	public void setstationType(StationType type){ this.stationType = type;}
 	public StationType getstationType(){return stationType;}
