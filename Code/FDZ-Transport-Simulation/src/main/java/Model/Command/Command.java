@@ -2,8 +2,6 @@ package Model.Command;
 
 import Model.Exception.IllegalSetupException;
 
-import java.util.HashSet;
-
 import static Model.Network.NetworkController.getInstance;
 
 /**
