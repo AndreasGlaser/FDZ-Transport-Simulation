@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Command.ShutdownObserver;
+import Model.Command.ShutdownTransport;
 import Model.Exception.IllegalSetupException;
 import Model.Network.ConnectionObserver;
 import Model.Network.NetworkController;
@@ -123,6 +125,8 @@ public class Facade {
     public void addToConnectionObservable(ConnectionObserver observer){
         networkController.addObserver(observer);
     }
+
+    public void addToShutdownObservable(ShutdownObserver observer){ShutdownTransport.addObserver(observer);}
 
 
 }

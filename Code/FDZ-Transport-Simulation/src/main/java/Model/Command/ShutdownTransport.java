@@ -1,8 +1,13 @@
 package Model.Command;
 
+import java.util.HashSet;
+
 /**@author nlehmann*/
 
 public class ShutdownTransport extends Command {
+
+    private static HashSet<ShutdownObserver> observers = new HashSet<>(2);
+
 
     /**
      * @param msgID message ID of message that initiated the Command
@@ -14,7 +19,11 @@ public class ShutdownTransport extends Command {
     @Override
     public void execute(){
         System.out.println("\t log: shutting down");
-        /*TODO*/
+        ShutdownTransport.observers.forEach(shutdownObserver -> shutdownObserver.shutdown());
         super.commandExecuted();
+    }
+
+    public static void addObserver(ShutdownObserver observer){
+        observers.add(observer);
     }
 }
