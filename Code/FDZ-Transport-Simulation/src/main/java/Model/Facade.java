@@ -8,11 +8,13 @@ import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 import Model.Station.StationObserver;
+import com.sun.istack.internal.NotNull;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Facade {
 
@@ -75,7 +77,7 @@ public class Facade {
         stationHandler.deleteStation(station);
     }
 
-    public void addPrevStation(String toName, String prevName) throws NullPointerException{
+    public void addPrevStation(String toName, String prevName, int pathTime) throws NullPointerException{
         Station to = stationHandler.getStationByName(toName);
         Station prev = stationHandler.getStationByName(prevName);
         to.addPrevStation(prev);
@@ -116,7 +118,10 @@ public class Facade {
     public ArrayList<Integer> getSledsInStation(String name) throws NullPointerException{
         return stationHandler.getStationByName(name).getSledsInStation();
     }
-    
+
+    public void setSledsInStation(@NotNull String stationName, @NotNull List<Integer> ids){
+        stationHandler.getStationByName(stationName).setSledsInStation(ids);
+    }
 
     public void addToStationObservable(String name, StationObserver observer) throws NullPointerException{
         stationHandler.getStationByName(name).addObserver(observer);

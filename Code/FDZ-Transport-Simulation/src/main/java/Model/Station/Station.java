@@ -1,9 +1,11 @@
 package Model.Station;
 
 import Model.Exception.IllegalSetupException;
+import com.sun.istack.internal.NotNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -134,6 +136,20 @@ public class Station{
     private void setSledInside(Integer id){
         this.sledInside = id;
         this.setChanged();
+    }
+
+    /**
+     * Sets the IDs in the Station, used for loading new configs
+     * @param list list of ids in station
+     */
+    public void setSledsInStation(@NotNull List<Integer> list){
+        if(list != null && !list.isEmpty()) {
+            setSledInside(list.get(0));
+            if(list.size() > 1){
+                list.remove(0);
+                idsInCongestion = new ArrayList<>(list);
+            }
+        }
     }
 
 
