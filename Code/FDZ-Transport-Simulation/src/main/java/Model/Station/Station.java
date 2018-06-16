@@ -18,7 +18,7 @@ public class Station{
     private String name, shortCut;
     private Semaphore semaphore;
     private ArrayList<Integer> idsInCongestion;
-    private ArrayList<Station> prevStations;
+    private ArrayList<PrevPair> prevStations;
     private Integer sledInside;
     private int hopsBackToNewCarriage;
     private final HashSet<StationObserver> observers;
@@ -164,14 +164,16 @@ public class Station{
     /**
      * Adds a station to the Objects prevList
      * @param station a Station which is not null and not equal to one, that is already in prevList
+     * @param pathTime time in seconds which sled need from prev to station, default value is 1s, if input is <1
      */
-    public void addPrevStation(Station station){
-        if(!this.prevStations.contains(station)) {
-            prevStations.add(station);
-            this.setChanged();
-        }else if(station == null){
+    public void addPrevStation(Station station, int pathTime){
+        if(station == null){
             /* TODO DEBUG not changed */
             System.err.println("NullPointer will not be added to PrevList");
+        }else if(this.prevStations.stream().filter(prevPair -> prevPair.getPrevStation() == station).count() == 0 &&
+                pathTime >= 1) {
+            prevStations.add(new PrevPair(station,pathTime));
+            this.setChanged();
         }else{
             /* TODO DEBUG not changed */
             System.err.println("Station already in PrevList");
@@ -183,13 +185,11 @@ public class Station{
      * @param station a station which is not null and in the specified prevList
      * @throws NullPointerException thrown if the Station is null or not in the prevList
      */
-    public void deletePrevStation(Station station) throws NullPointerException{
-        if(this.prevStations.contains(station)){
-            prevStations.remove(station);
+    public void deletePrevStation(Station station){
+        this.prevStations.stream().filter(prevPair -> prevPair.getPrevStation() == station).forEach(prevPair -> {
+            this.prevStations.remove(prevPair);
             this.setChanged();
-        }else{
-            throw new NullPointerException("Station not in used PrevList");
-        }
+        });
     }
 
     /*Getter*/
@@ -225,9 +225,9 @@ public class Station{
 
     /**
      * Getter for the PrevStations to determine a path
-     * @return list of stations directly previous to this station
+     * @return list of stations directly previous to this station paired with time
      */
-    public ArrayList<Station> getPrevStations(){
+    public ArrayList<PrevPair> getPrevStations(){
         return prevStations;
     }
 

@@ -2,6 +2,7 @@ package Model;
 
 import Model.Command.ShutdownObserver;
 import Model.Command.ShutdownTransport;
+import Model.Command.TimeMode;
 import Model.Exception.IllegalSetupException;
 import Model.Network.ConnectionObserver;
 import Model.Network.NetworkController;
@@ -9,8 +10,6 @@ import Model.Station.Station;
 import Model.Station.StationHandler;
 import Model.Station.StationObserver;
 import com.sun.istack.internal.NotNull;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -18,8 +17,8 @@ import java.util.List;
 
 public class Facade {
 
-    private NetworkController networkController;
-    private StationHandler stationHandler;
+    private final NetworkController networkController;
+    private final StationHandler stationHandler;
     private Thread connectionThread;
 
     public Facade(){
@@ -35,16 +34,13 @@ public class Facade {
 
     public synchronized void connect(byte[] ip, int port){
         if(connectionThread == null){
-            connectionThread = new Thread(){
-                @Override
-                public void run (){
-                    try{
-                        NetworkController.getInstance().connect(ip, port);
-                    }catch(UnknownHostException e){
-                        /*TODO Log exception*/
-                    }
+            connectionThread = new Thread(() -> {
+                try{
+                    NetworkController.getInstance().connect(ip, port);
+                }catch(UnknownHostException e){
+                    /*TODO Log exception*/
                 }
-            };
+            });
             connectionThread.start();
         }else{
             connectionThread.interrupt();
@@ -80,7 +76,7 @@ public class Facade {
     public void addPrevStation(String toName, String prevName, int pathTime) throws NullPointerException{
         Station to = stationHandler.getStationByName(toName);
         Station prev = stationHandler.getStationByName(prevName);
-        to.addPrevStation(prev);
+        to.addPrevStation(prev, pathTime);
     }
 
     public void deletePrevStation(String nameOf, String prevName) throws NullPointerException{
@@ -99,7 +95,7 @@ public class Facade {
     }
 
     public void setStationName(String oldName, String newName) throws NullPointerException, IllegalSetupException{
-        if(newName.length() != 0 || newName != null) {
+        if(newName != null && newName.length() != 0) {
             Station station = stationHandler.getStationByName(oldName);
             station.setName(newName);
         }else{
@@ -119,7 +115,7 @@ public class Facade {
         return stationHandler.getStationByName(name).getSledsInStation();
     }
 
-    public void setSledsInStation(@NotNull String stationName, @NotNull List<Integer> ids){
+    public void setSledsInStation(@NotNull String stationName, @NotNull List<Integer> ids) throws NullPointerException{
         stationHandler.getStationByName(stationName).setSledsInStation(ids);
     }
 
@@ -133,5 +129,8 @@ public class Facade {
 
     public void addToShutdownObservable(ShutdownObserver observer){ShutdownTransport.addObserver(observer);}
 
+    public void setFastTime(boolean activated){
+        TimeMode.fastModeActivated = activated;
+    }
 
 }

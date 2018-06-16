@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 public class ShutdownTransport extends Command {
 
-    private static HashSet<ShutdownObserver> observers = new HashSet<>(2);
+    private static final HashSet<ShutdownObserver> observers = new HashSet<>(2);
 
 
     /**
@@ -19,7 +19,7 @@ public class ShutdownTransport extends Command {
     @Override
     public void execute(){
         System.out.println("\t log: shutting down");
-        ShutdownTransport.observers.forEach(shutdownObserver -> shutdownObserver.shutdown());
+        ShutdownTransport.observers.forEach(ShutdownObserver::shutdown);
         super.commandExecuted();
     }
 

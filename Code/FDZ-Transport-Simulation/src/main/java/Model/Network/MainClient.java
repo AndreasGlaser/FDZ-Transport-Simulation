@@ -11,6 +11,7 @@ public class MainClient {
 
     public static void main(String[] args) throws UnknownHostException, FDZNetworkException {
 
+        /*
         try {
             new Facade().addStation("Robot", "ro");
             new Facade().addStation("Storage", "st");
@@ -18,16 +19,16 @@ public class MainClient {
         } catch (IllegalSetupException e) {
             e.printStackTrace();
         }
-        new Facade().addPrevStation("Storage", "Robot");
-            new Facade().addPrevStation("Storage", "I/O");
-            new Facade().addPrevStation("Robot", "Storage");
-            new Facade().addPrevStation("I/O", "Robot");
+        new Facade().addPrevStation("Storage", "Robot", 1);
+            new Facade().addPrevStation("Storage", "I/O", 1);
+            new Facade().addPrevStation("Robot", "Storage", 1);
+            new Facade().addPrevStation("I/O", "Robot", 1);
             try {
                 new Facade().setHopsToNewCarriage("Robot", 2);
                 new Facade().setHopsToNewCarriage("Storage", 1);
                 new Facade().setHopsToNewCarriage("I/O", 1);
             }catch(Exception e){}
-
+        */
 
         NetworkController ch = NetworkController.getInstance();
         //byte[] ipAddr = new byte[]{(byte)Integer.parseInt("172"),(byte)Integer.parseInt("16"), (byte)Integer.parseInt("48"), (byte)Integer.parseInt("24")};

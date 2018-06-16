@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 
@@ -149,11 +150,11 @@ public class StationController extends AbstractStation implements StationObserve
     public void initAfterAllStationLoaded(){
         try {
             facade.setHopsToNewCarriage(data.getName(), data.getHopsBack());
-            for(String stationName: data.getPreviousStationsByName()){
+            for(Pair<String, Integer> stationPair: data.getPreviousStationsByName()){
                 for(AbstractStation station: stations){
-                    if(station.getName().equals(stationName)){
-                        if(!data.getName().equals(stationName)){
-                            addPrevStationInModel(station);
+                    if(station.getName().equals(stationPair.getKey())){
+                        if(!data.getName().equals(stationPair.getKey())){
+                            addPrevStationInModel(station, stationPair.getValue());
                         }
 
                     }
@@ -172,33 +173,22 @@ public class StationController extends AbstractStation implements StationObserve
             stationOptionsPane.setVisible(true);
             stationNameTextField.setText(nameText.getText());
             getPreviousStationsPane().getChildren().clear();
-            for (AbstractStation i: stations){
-                if(i.equals(this))continue;
+            for (AbstractStation station: stations){
+                if(station.equals(this))continue;
                 BorderPane prevStationBorderPane = new BorderPane();
                 getPreviousStationsPane().getChildren().add(prevStationBorderPane);
 
-                CheckBox box = new CheckBox(i.getName());
+                CheckBox box = new CheckBox(station.getName());
                 prevStationBorderPane.setLeft(box);
-                if(data.getPreviousStationsByName().contains(i.getData().getName()))box.setSelected(true);
+                if(prevStationsContains(station.getData().getName()))box.setSelected(true);
                 else box.setSelected(false);
-                box.selectedProperty().addListener((observable2, oldValue, newValue) -> {
-                    if(newValue){
-                        data.getPreviousStationsByName().add(i.getData().getName());
-                        addPrevStationInModel(i);
-                    }
-                    else {
-                        data.getPreviousStationsByName().remove(i.getData().getName());
-                        removePrevStationInModel(i);
-                    }
-                    refreshBelts(parent, stations);
 
-                });
 
                 HBox timeBox = new HBox();
                 prevStationBorderPane.setRight(timeBox);
                 Text prevStationTimeText = new Text("s: ");
                 timeBox.getChildren().add(prevStationTimeText);
-                TextField prevStationTimeTextField = new TextField("0");
+                TextField prevStationTimeTextField = new TextField("1");
                 timeBox.getChildren().add(prevStationTimeTextField);
                 prevStationTimeTextField.setMaxWidth(50);
                 prevStationTimeTextField.setTooltip(new Tooltip("Time in s to this station"));
@@ -210,6 +200,19 @@ public class StationController extends AbstractStation implements StationObserve
                     }
 
 
+
+                });
+                box.selectedProperty().addListener((observable2, oldValue, newValue) -> {
+                    if(newValue){
+                        Integer pathTime = Integer.parseInt(prevStationTimeTextField.getText());
+                        addPrevStation(new Pair<>(station.getData().getName(),pathTime));
+                        addPrevStationInModel(station, pathTime);
+                    }
+                    else {
+                        prevStationRemove(station.getData().getName());
+                        removePrevStationInModel(station);
+                    }
+                    refreshBelts(parent, stations);
 
                 });
             }
@@ -224,10 +227,10 @@ public class StationController extends AbstractStation implements StationObserve
         if(station.getData().getstationType().equals(StationType.STATION)){
             new Facade().deletePrevStation(data.getName(), station.getName());
         }else{
-            for(String stationName: station.getPreviousStationsByName()){
+            for(Pair<String, Integer> stationPair: station.getPreviousStationsByName()){
                 for(AbstractStation station2: stations){
-                    if(station2.getName().equals(stationName)){
-                        if(!data.getName().equals(stationName)){
+                    if(station2.getName().equals(stationPair.getKey())){
+                        if(!data.getName().equals(stationPair.getKey())){
                             removePrevStationInModel(station2);
                             System.out.println("removed " +station2.getName());
                         }
@@ -238,16 +241,16 @@ public class StationController extends AbstractStation implements StationObserve
         }
     }
 
-    public void addPrevStationInModel(AbstractStation station) {
+    public void addPrevStationInModel(AbstractStation station, int time) {
 
         if(station.getData().getstationType().equals(StationType.STATION)){
-            new Facade().addPrevStation(data.getName(), station.getName());
+            new Facade().addPrevStation(data.getName(), station.getName(), time);
         }else{
-            for(String stationName: station.getPreviousStationsByName()){
+            for(Pair<String, Integer> stationPair: station.getPreviousStationsByName()){
                 for(AbstractStation station2: stations){
-                    if(station2.getName().equals(stationName)){
-                        if(!data.getName().equals(stationName)){
-                            addPrevStationInModel(station2);
+                    if(station2.getName().equals(stationPair.getKey())){
+                        if(!data.getName().equals(stationPair.getKey())){
+                            addPrevStationInModel(station2, time + stationPair.getValue());
                         }
 
                     }
@@ -309,7 +312,6 @@ public class StationController extends AbstractStation implements StationObserve
 
 
         ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
-        System.out.println(sleds);
         congestionMenu.getItems().clear();
         if (sleds.size() == 0 || sleds.get(0) == null){
             sledPane.getStyleClass().clear();
