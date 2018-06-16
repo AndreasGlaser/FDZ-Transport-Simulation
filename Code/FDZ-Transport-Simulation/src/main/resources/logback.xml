@@ -2,32 +2,27 @@
 
 <!-- Dzianis Brysiuk -->
 
-<!-- For assistance related to logback-translator or configuration  -->
-<!-- files in general, please contact the logback user mailing list -->
-<!-- at http://www.qos.ch/mailman/listinfo/logback-user             -->
-<!--                                                                -->
-<!-- For professional support please see                            -->
-<!--    http://www.qos.ch/shop/products/professionalSupport         -->
-<!--                                                                -->
 <configuration>
 
+    <!-- Console Log -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss} %-5level - %msg%n</pattern>
         </encoder>
     </appender>
 
+    <!-- GUI Log -->
     <appender name="OwnAppender" class="Model.Logger.OwnOutputStreamAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
+            <pattern>%d{HH:mm:ss} %-5level - %msg%n</pattern>
         </encoder>
     </appender>
 
+    <!-- File Log -->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
-
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${USERPROFILE}/FDZ_Log/%d{yyyy-MM-dd}/Log_Number_%i.log</FileNamePattern>
+            <FileNamePattern>FDZ_Log/%d{yyyy-MM-dd}/%d{HH.mm}_number_%i.log</FileNamePattern>
             <maxFileSize>50KB</maxFileSize>
         </rollingPolicy>
 
@@ -36,7 +31,7 @@
         </encoder>
     </appender>
 
-    <!-- Configure so that it outputs to both console and log file -->
+    <!-- Configure outputs -->
     <root level="DEBUG">
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />

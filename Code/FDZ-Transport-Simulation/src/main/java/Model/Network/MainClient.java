@@ -32,9 +32,9 @@ public class MainClient {
 
 
         NetworkController ch = NetworkController.getInstance();
-        byte[] ipAddr = new byte[]{(byte)Integer.parseInt("172"),(byte)Integer.parseInt("16"), (byte)Integer.parseInt("48"), (byte)Integer.parseInt("24")};
-        //byte [] ipAddr = new byte[]{127,0,0,1};
-        ch.connect(ipAddr, 40001);
+        //byte[] ipAddr = new byte[]{(byte)Integer.parseInt("172"),(byte)Integer.parseInt("16"), (byte)Integer.parseInt("48"), (byte)Integer.parseInt("24")};
+        byte [] ipAddr = new byte[]{127,0,0,1};
+        ch.connect(ipAddr, 47331);
         Scanner sc = new Scanner(System.in);
 
         boolean test = true;
