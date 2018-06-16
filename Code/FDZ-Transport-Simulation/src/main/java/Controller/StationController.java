@@ -9,12 +9,19 @@ import Persistance.StationType;
 import View.AbstractStation;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
-
+/**
+ * The Controller for Stations
+ * @author Andreas Glaser
+ *
+ *
+ */
 public class StationController extends AbstractStation implements StationObserver{
 
     private Pane parent;
@@ -41,6 +48,8 @@ public class StationController extends AbstractStation implements StationObserve
     private TextField abbreviationField;
     @FXML
     private MenuButton congestionMenu;
+    @FXML
+    private Button stationOptionsButton;
 
     public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations){
         this.data = data;
@@ -58,13 +67,8 @@ public class StationController extends AbstractStation implements StationObserve
     public void initialize(){
         viewPane = rootPane;
         parent.getChildren().add(viewPane);
-        stationNameTextField.setOnKeyReleased(event -> {
-            setName(stationNameTextField.getText());
-            data.setName(stationNameTextField.getText());
-        });
-        abbreviationField.setOnKeyReleased(event ->{
-            data.setShortcut(abbreviationField.getText());
-        });
+
+
 
         sledPane.getStyleClass().clear();
         sledPane.getStyleClass().add("yellow");
@@ -108,14 +112,38 @@ public class StationController extends AbstractStation implements StationObserve
 
         abbreviationField.setText(data.getShortcut());
         abbreviationField.textProperty().addListener((observable, oldValue, newValue) -> {
+            abbreviationField.getStyleClass().remove("lightRed");
             if(newValue.length()>2){
                 abbreviationField.setText(oldValue);
-                data.setShortcut(oldValue);
-            }else {
+            }else if(newValue.length()== 2){
                 data.setShortcut(newValue);
+                try {
+                    facade.setStationShortCut(data.getName(), newValue);
+                } catch (IllegalSetupException e) {
+                    e.printStackTrace();
+                    abbreviationField.getStyleClass().add("lightRed");
+                }
+            }else{
+                abbreviationField.getStyleClass().add("lightRed");
             }
+
         });
 
+        stationNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            stationNameTextField.getStyleClass().remove("lightRed");
+            if(newValue.length() > 0){
+
+                try {
+                    facade.setStationName(data.getName(), newValue);
+                    setName(newValue);
+                } catch (IllegalSetupException e) {
+                    e.printStackTrace();
+                }
+            }else {
+                stationNameTextField.getStyleClass().add("lightRed");
+            }
+
+        });
     }
 
     public void initAfterAllStationLoaded(){
@@ -146,8 +174,11 @@ public class StationController extends AbstractStation implements StationObserve
             getPreviousStationsPane().getChildren().clear();
             for (AbstractStation i: stations){
                 if(i.equals(this))continue;
+                BorderPane prevStationBorderPane = new BorderPane();
+                getPreviousStationsPane().getChildren().add(prevStationBorderPane);
+
                 CheckBox box = new CheckBox(i.getName());
-                getPreviousStationsPane().getChildren().add(box);
+                prevStationBorderPane.setLeft(box);
                 if(data.getPreviousStationsByName().contains(i.getData().getName()))box.setSelected(true);
                 else box.setSelected(false);
                 box.selectedProperty().addListener((observable2, oldValue, newValue) -> {
@@ -160,6 +191,25 @@ public class StationController extends AbstractStation implements StationObserve
                         removePrevStationInModel(i);
                     }
                     refreshBelts(parent, stations);
+
+                });
+
+                HBox timeBox = new HBox();
+                prevStationBorderPane.setRight(timeBox);
+                Text prevStationTimeText = new Text("s: ");
+                timeBox.getChildren().add(prevStationTimeText);
+                TextField prevStationTimeTextField = new TextField("0");
+                timeBox.getChildren().add(prevStationTimeTextField);
+                prevStationTimeTextField.setMaxWidth(50);
+                prevStationTimeTextField.setTooltip(new Tooltip("Time in s to this station"));
+                prevStationTimeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+                    try {
+                        Integer.parseInt(newValue);
+                    }catch (NumberFormatException e){
+                        prevStationTimeTextField.setText(oldValue);
+                    }
+
+
 
                 });
             }
@@ -188,7 +238,7 @@ public class StationController extends AbstractStation implements StationObserve
         }
     }
 
-    private void addPrevStationInModel(AbstractStation station) {
+    public void addPrevStationInModel(AbstractStation station) {
 
         if(station.getData().getstationType().equals(StationType.STATION)){
             new Facade().addPrevStation(data.getName(), station.getName());
@@ -226,16 +276,22 @@ public class StationController extends AbstractStation implements StationObserve
         data.setName(name);
     }
 
+    @Override
+    public void closeOptions() {
+        stationOptionsPane.setVisible(false);
+    }
+
+    @Override
+    public void setDisableOptionsButton(Boolean bool) {
+        stationOptionsButton.setDisable(bool);
+    }
+
     public void setSledText(String sledString){
         sledText.setText(sledString);
     }
 
     public Pane getPreviousStationsPane(){
         return previousStationsPane;
-    }
-
-    public Pane getstationOptionsPane(){
-        return stationOptionsPane;
     }
 
     public void setHopsBack(int hopsBack) {

@@ -64,6 +64,10 @@
 	-fx-background-color: blue;
 	-fx-fill: blue;
 }
+.lightRed{
+	-fx-background-color: lightcoral;
+	-fx-fill: lightcoral;
+}
 
 .connectionPane{
 	-fx-background-color: #EBEBEB;
