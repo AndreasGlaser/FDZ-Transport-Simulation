@@ -13,8 +13,8 @@ import java.util.*;
 
 public class CommandLineInterface extends Thread implements StationObserver, ConnectionObserver {
 
-    private Scanner sc;
-    private Facade facade;
+    private final Scanner sc;
+    private final Facade facade;
     private boolean connection;
     private final String HELP =
             "+–––––––––––––––––––––––––––––––––+\n" +

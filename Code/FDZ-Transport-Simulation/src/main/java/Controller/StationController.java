@@ -25,9 +25,9 @@ import java.util.ArrayList;
  */
 public class StationController extends AbstractStation implements StationObserver{
 
-    private Pane parent;
-    private ArrayList<AbstractStation> stations;
-    private Facade facade = new Facade();
+    private final Pane parent;
+    private final ArrayList<AbstractStation> stations;
+    private final Facade facade = new Facade();
 
     @FXML
     private Pane rootPane;
@@ -105,7 +105,6 @@ public class StationController extends AbstractStation implements StationObserve
             try {
                 new Facade().setHopsToNewCarriage(data.getName(), newHopsBack);
                 data.setHopsBack(newHopsBack);
-                System.out.println("new hopsBack: "+ newHopsBack);
             } catch (IllegalSetupException e) {
                 System.out.println(e.getMessage());//TODO: Log
             }
@@ -241,7 +240,7 @@ public class StationController extends AbstractStation implements StationObserve
         }
     }
 
-    public void addPrevStationInModel(AbstractStation station, int time) {
+    private void addPrevStationInModel(AbstractStation station, int time) {
 
         if(station.getData().getstationType().equals(StationType.STATION)){
             new Facade().addPrevStation(data.getName(), station.getName(), time);
@@ -289,21 +288,20 @@ public class StationController extends AbstractStation implements StationObserve
         stationOptionsButton.setDisable(bool);
     }
 
-    public void setSledText(String sledString){
+    private void setSledText(String sledString){
         sledText.setText(sledString);
     }
 
-    public Pane getPreviousStationsPane(){
+    private Pane getPreviousStationsPane(){
         return previousStationsPane;
     }
 
-    public void setHopsBack(int hopsBack) {
+    private void setHopsBack(int hopsBack) {
         data.setHopsBack(hopsBack);
     }
 
     @Override
     public void update(Station station) {
-        System.out.println("change occurred to station " + station.getName());
 
         setName(station.getName());
         setShortcut(station.getShortCut());

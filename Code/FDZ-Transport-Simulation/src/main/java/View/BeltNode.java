@@ -8,7 +8,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 
-public class BeltNode extends Pane {
+class BeltNode extends Pane {
 
 	public BeltNode(AbstractStation fromStation, AbstractStation toStation){
 		Double fromXOffset = 120.;
@@ -39,7 +39,7 @@ public class BeltNode extends Pane {
 	}
 
 	/**
-	 * draws a shape representing an conveyer belt between to points
+	 * draws a shape representing an conveyor belt between to points
 	 * @param fromPoint : the starting Point
 	 * @param toPoint : the end Point
 	 */
