@@ -96,15 +96,15 @@ public class Facade {
 
     public void setStationName(String oldName, String newName) throws NullPointerException, IllegalSetupException{
         if(newName.length() != 0 || newName != null) {
-            Station station = stationHandler.getStationByName(newName);
+            Station station = stationHandler.getStationByName(oldName);
             station.setName(newName);
         }else{
             throw new IllegalSetupException("Input Name is invalid");
         }
     }
-    public void setStationShortCut(String oldShortCut, String newShortCut) throws NullPointerException, IllegalSetupException{
+    public void setStationShortCut(String name, String newShortCut) throws NullPointerException, IllegalSetupException{
         if(newShortCut.length() == 2){
-            Station station = stationHandler.getStationByShortCut(oldShortCut);
+            Station station = stationHandler.getStationByName(name);
             station.setShortCut(newShortCut);
         }else{
             throw new IllegalSetupException("Input ShortCut is invalid");

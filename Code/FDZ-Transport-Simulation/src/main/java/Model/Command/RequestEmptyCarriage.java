@@ -35,47 +35,10 @@ public class RequestEmptyCarriage extends Command {
         NetworkController.getInstance().acknowledge2(msgID, true);
     }
 
-    /*
+    // TODO: 16.06.18 doc und ack2 
     @Override
     public void execute() throws IllegalSetupException{
-        Station temp;
-        try{
-            temp = StationHandler.getInstance().getStationByShortCut(position);
-            new PathFinder(temp, temp.getHopsToNewCarriage());
-            temp.driveInSled(EMPTY_CARRIAGE);
-            //empty sled gets unknown id when received
-            System.out.println("\t log: requesting empty carriage to "+ position);
-
-            this.commandExecuted();
-        }catch(CongestionException e){
-            System.err.println("request congestion detected");
-            // TODO: 07.06.18 Staubehandlung
-            this.commandExecuted();
-        }catch(IndexOutOfBoundsException e){
-            System.err.println("request indexoutofbounds");
-            super.error();
-            throw new IllegalSetupException("No Stations in Setup");
-        }catch(NullPointerException e){
-            System.err.println("request nullpointer");
-            super.error();
-        }
-    }
-*/
-
-    @Override
-    public void execute() throws IllegalSetupException{
-        Thread t1 = new Thread(()->{
-            while(true){
-                try{
-                    sleep(5000);
-                }catch (Exception e){
-                    break;
-                }
-                System.err.println("t1 running");
-            }
-        });
-        t1.start();
-
+        
         new Thread(() ->{
             Station temp;
             try {
@@ -93,8 +56,6 @@ public class RequestEmptyCarriage extends Command {
                 System.err.println(e.getMessage());
                 error();
             }}).start();
-
-        t1.interrupt();
-        System.err.println("end requ");
+        
     }
 }
