@@ -167,12 +167,13 @@ public class Station{
      * @param pathTime time in seconds which sled need from prev to station, default value is 1s, if input is <1
      */
     public void addPrevStation(Station station, int pathTime){
-        if(!this.prevStations.contains(station) && pathTime >= 1) {
-            prevStations.add(new PrevPair(station,pathTime));
-            this.setChanged();
-        }else if(station == null){
+        if(station == null){
             /* TODO DEBUG not changed */
             System.err.println("NullPointer will not be added to PrevList");
+        }else if(this.prevStations.stream().filter(prevPair -> prevPair.getPrevStation() == station).count() == 0 &&
+                pathTime >= 1) {
+            prevStations.add(new PrevPair(station,pathTime));
+            this.setChanged();
         }else{
             /* TODO DEBUG not changed */
             System.err.println("Station already in PrevList");
@@ -184,13 +185,11 @@ public class Station{
      * @param station a station which is not null and in the specified prevList
      * @throws NullPointerException thrown if the Station is null or not in the prevList
      */
-    public void deletePrevStation(Station station) throws NullPointerException{
-        if(this.prevStations.contains(station)){
-            prevStations.remove(station);
+    public void deletePrevStation(Station station){
+        this.prevStations.stream().filter(prevPair -> prevPair.getPrevStation() == station).forEach(prevPair -> {
+            this.prevStations.remove(prevPair);
             this.setChanged();
-        }else{
-            throw new NullPointerException("Station not in used PrevList");
-        }
+        });
     }
 
     /*Getter*/
