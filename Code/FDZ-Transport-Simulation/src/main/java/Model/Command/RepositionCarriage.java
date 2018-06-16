@@ -5,6 +5,7 @@ import Model.Exception.IllegalSetupException;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 
+import java.sql.Time;
 import java.util.LinkedList;
 
 import static java.lang.Thread.sleep;
@@ -49,13 +50,30 @@ public class RepositionCarriage extends Command {
             }catch(IndexOutOfBoundsException e){
                 super.error();
             }
-            try{
+            try {
                 LinkedList<Station> path = new PathFinder(from, to).getPath();
-                path.getFirst().driveOutSled();
-                path.stream().filter(s -> (s!=path.getFirst() && s!=path.getLast())).forEachOrdered(station -> {
-                    station.driveInSled(id);
-                    station.driveOutSled();
-                });
+                if(TimeMode.fastModeActivated) {
+                    path.getFirst().driveOutSled();
+                    path.stream().filter(s -> (s != path.getFirst() && s != path.getLast())).forEachOrdered(station -> {
+                        station.driveInSled(id);
+                        station.driveOutSled();
+                    });
+                }else{
+                    try {
+                        sleep(TimeMode.findTimeForPath(path.getFirst(), path.get(0+1)));
+                    }catch (InterruptedException e){
+                        // TODO: 16.06.18 debug interruption
+                    }
+                    for (int i=1; i<path.size()-1; i++){
+                        try{
+                            path.get(i).driveInSled(-1);
+                            path.get(i).driveOutSled();
+                            sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1)));
+                        }catch(InterruptedException e){
+                            // TODO: 16.06.18 debug interruption
+                        }
+                    }
+                }
                 path.getLast().driveInSled(id);
                 super.commandExecuted();
             }catch(NullPointerException e){

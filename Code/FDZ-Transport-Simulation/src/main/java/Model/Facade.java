@@ -2,6 +2,7 @@ package Model;
 
 import Model.Command.ShutdownObserver;
 import Model.Command.ShutdownTransport;
+import Model.Command.TimeMode;
 import Model.Exception.IllegalSetupException;
 import Model.Network.ConnectionObserver;
 import Model.Network.NetworkController;
@@ -134,7 +135,7 @@ public class Facade {
     public void addToShutdownObservable(ShutdownObserver observer){ShutdownTransport.addObserver(observer);}
 
     public void setFastTime(boolean activated){
-
+        TimeMode.fastModeActivated = activated;
     }
 
 }
