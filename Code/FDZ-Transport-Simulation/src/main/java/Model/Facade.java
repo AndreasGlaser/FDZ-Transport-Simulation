@@ -133,5 +133,8 @@ public class Facade {
 
     public void addToShutdownObservable(ShutdownObserver observer){ShutdownTransport.addObserver(observer);}
 
+    public void setFastTime(boolean activated){
+
+    }
 
 }
