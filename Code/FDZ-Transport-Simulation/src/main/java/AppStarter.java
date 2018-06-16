@@ -37,6 +37,18 @@ public class AppStarter extends Application {
                 event.consume();
             }
         });
+        
+        if (StationHandler.getInstance().getStationByName("Storage").getPrevStations().size() == 0){
+            new Facade().addPrevStation("Storage", "Robot", 1);
+            new Facade().addPrevStation("Storage", "I/O",1);
+            new Facade().addPrevStation("Robot", "Storage",1);
+            new Facade().addPrevStation("I/O", "Robot",1);
+            try {
+                new Facade().setHopsToNewCarriage("Robot", 2);
+                new Facade().setHopsToNewCarriage("Storage", 1);
+                new Facade().setHopsToNewCarriage("I/O", 1);
+            }catch(Exception e){}
+        }
 
     }
 

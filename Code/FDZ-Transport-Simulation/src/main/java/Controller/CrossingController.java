@@ -8,6 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
 
 import java.util.ArrayList;
 
@@ -96,11 +97,11 @@ public class CrossingController extends AbstractStation {
 				if(i.equals(this))continue;
 				CheckBox box = new CheckBox(i.getName());
 				getPreviousStationsPane().getChildren().add(box);
-				if(data.getPreviousStationsByName().contains(i.getData().getName()))box.setSelected(true);
+				if(prevStationsContains(i.getData().getName()))box.setSelected(true);
 				else box.setSelected(false);
 				box.selectedProperty().addListener((observable2, oldValue, newValue) -> {
-					if(newValue) data.getPreviousStationsByName().add(i.getData().getName());
-					else data.getPreviousStationsByName().remove(i.getData().getName());
+					if(newValue) addPrevStation(new Pair<>(i.getData().getName(), 1));//TODO: Zeiten in crossing einbauen
+					else prevStationRemove(i.getData().getName());
 					refreshBelts(parent, stations);
 
 				});

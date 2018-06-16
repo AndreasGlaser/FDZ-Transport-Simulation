@@ -294,13 +294,13 @@ public class GUIController implements ConnectionObserver{
 
 	@Override
 	public void update() {
-		//TODO: change GUI depending on connection state
 		controllerConnectionArrow.getStyleClass().clear();
 		System.out.println("isConnencted() returns "+facade.isConnected());
 		if(facade.isConnected()){
 			controllerConnectionArrow.getStyleClass().add("green");
 			disconnectedIpPane.setVisible(false);
 			ipAddressText.setText(ipAddress.toIPAddress());
+			setOptionsActive(false);
 		}else {
 			controllerConnectionArrow.getStyleClass().add("red");
 			disconnectedIpPane.setVisible(true);
@@ -311,7 +311,7 @@ public class GUIController implements ConnectionObserver{
 
 	/**
 	 * deactivates or activates all options that change the configuration,
-	 * for persistance reasons this method should be called before receiving commands
+	 * for persistence reasons this method should be called before receiving commands
 	 * @param bool true to activate options, false to deactivate the options
 	 */
 	private void setOptionsActive(Boolean bool){
