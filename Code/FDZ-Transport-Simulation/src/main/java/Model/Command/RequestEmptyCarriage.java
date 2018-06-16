@@ -1,6 +1,5 @@
 package Model.Command;
 
-import Model.Exception.CongestionException;
 import Model.Exception.IllegalSetupException;
 import Model.Network.NetworkController;
 import Model.Station.Station;
@@ -14,8 +13,7 @@ import static java.lang.Thread.sleep;
 
 public class RequestEmptyCarriage extends Command {
 
-    private String position;
-    private final int EMPTY_CARRIAGE=-1;
+    private final String position;
 
     /**
      *
@@ -31,7 +29,7 @@ public class RequestEmptyCarriage extends Command {
      * Special acknowledgment 1 for the requestEmptyCarriage Command
      */
     @Override
-    protected void commandExecuted(){
+    void commandExecuted(){
         NetworkController.getInstance().acknowledge2(msgID, true);
     }
 
@@ -44,16 +42,29 @@ public class RequestEmptyCarriage extends Command {
             try {
                 temp = StationHandler.getInstance().getStationByShortCut(position);
                 LinkedList<Station> path = new PathFinder(temp, temp.getHopsToNewCarriage()).getPath();
-                path.stream().filter(station -> station != path.getLast()).forEachOrdered(station-> {
-                    station.driveInSled(-1);
-                    station.driveOutSled();
-                });
+                if(TimeMode.fastModeActivated) {
+                    path.stream().filter(station -> station != path.getLast()).forEachOrdered(station -> {
+                        station.driveInSled(-1);
+                        station.driveOutSled();
+                    });
+                }else{
+                    for (int i=0; i<path.size()-1; i++){
+                        path.get(i).driveInSled(-1);
+                        path.get(i).driveOutSled();
+                        try{
+                            sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1)));
+                        }catch(InterruptedException e){
+                            // TODO: 16.06.18 debug interruption
+                        }
+                    }
+                }
                 path.getLast().driveInSled(-1);
                 this.commandExecuted();
             }catch(IllegalSetupException e){
                 System.err.println(e.getMessage());
                 super.error();
-            }}).start();
+            }
+        }).start();
         
     }
 }

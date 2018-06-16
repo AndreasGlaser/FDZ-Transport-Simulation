@@ -69,8 +69,6 @@ public class Network implements Socket {
     }
 
     private synchronized void connect() throws FDZNetworkException {
-       System.out.println("connect");
-       System.out.println(socketAddr);
         try {
             //Connect to a Server with the given IP and Port
             clientSocket = SocketChannel.open();
@@ -134,7 +132,6 @@ public class Network implements Socket {
      */
     @Override
     public void sendMessage(String message) throws FDZNetworkException {
-        System.out.println("a");
         if (clientSocket == null) {
             throw new RuntimeException("Not connected upon receive. Did you forget to call \"openConnection()\" or \"awaitConnection()\"?");
         }

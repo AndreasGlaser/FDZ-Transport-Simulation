@@ -5,6 +5,7 @@ package Model.Network;
  */
 
 import Model.Command.CommandInterpreter;
+import Model.Logger.LoggerInstance;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -35,6 +36,8 @@ public class NetworkController extends ConnectionObservable implements Connectio
     public void connect (byte[] ip, int port) throws UnknownHostException {
         InetAddress ipAddr = InetAddress.getByAddress(ip);
 
+        LoggerInstance.log.info("Open connection to Adapter {}:{}",ipAddr.getAddress(),port);
+
         if (clientNetwork!=null){
             clientNetwork.setIpAddr(ipAddr);
             clientNetwork.setPort(port);
@@ -48,9 +51,10 @@ public class NetworkController extends ConnectionObservable implements Connectio
     }
 
     public void disconnect (){
+        LoggerInstance.log.info("Close connection to Adapter {}:{}",clientNetwork.getIpAddr().getAddress(),clientNetwork.getPort());
         if (clientNetwork!=null){
             clientNetwork.setIsRunning(false);
-            //clientNetwork.close();
+            LoggerInstance.log.info("Disconnected");
         }
     }
 
@@ -63,6 +67,7 @@ public class NetworkController extends ConnectionObservable implements Connectio
      */
     public boolean acknowledge1 (String msgID){
         String message = ACK1_HEAD+msgID+ACK1_CNU_CNE_CE_END;
+        LoggerInstance.log.info("Send ACK01: {} to Adapter",message);
         clientNetwork.sendMessage(message);
         return true;
     }
@@ -75,6 +80,7 @@ public class NetworkController extends ConnectionObservable implements Connectio
      */
     public boolean commandNotUnterstood (String msgID){
         String message = CNU_HEAD+msgID+ACK1_CNU_CNE_CE_END;
+        LoggerInstance.log.info("Send command not understood: {} to Adapter",message);
         clientNetwork.sendMessage(message);
         return true;
     }
@@ -85,6 +91,7 @@ public class NetworkController extends ConnectionObservable implements Connectio
      */
     public void commandNotExecuted (String msgID){
         String message = CNE_HEAD+msgID+ACK1_CNU_CNE_CE_END;
+        LoggerInstance.log.info("Send command not Executed: {} to Adapter",message);
         clientNetwork.sendMessage(message);
     }
 
@@ -95,6 +102,7 @@ public class NetworkController extends ConnectionObservable implements Connectio
      */
     public void notReachDestination (String msgID, int id){
         String message = CNRD_HEAD+msgID+CNRD_END+id;
+        LoggerInstance.log.info("Send command not reach destination: {} to Adapter",message);
         clientNetwork.sendMessage(message);
     }
 
@@ -114,6 +122,7 @@ public class NetworkController extends ConnectionObservable implements Connectio
      */
     public void acknowledge2 (String msgID){
         String message = ACK2_HEAD+msgID+ACK2_CNRD_END;
+        LoggerInstance.log.info("Send ACK02: {} to Adapter",message);
         clientNetwork.sendMessage(message);
     }
 
@@ -125,6 +134,7 @@ public class NetworkController extends ConnectionObservable implements Connectio
      */
     public void acknowledge2 (String msgID, boolean emptyCarriage){
         String message = ACK2_HEAD+msgID+ACK2_CNRD_END+EMPTY_ID;
+        LoggerInstance.log.info("Send ACK02: {} to Adapter",message);
         clientNetwork.sendMessage(message);
     }
 

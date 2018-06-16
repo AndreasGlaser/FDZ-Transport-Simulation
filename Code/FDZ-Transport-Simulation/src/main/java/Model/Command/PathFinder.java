@@ -13,7 +13,7 @@ import java.util.LinkedList;
  */
 public class PathFinder {
 
-    private LinkedList<Station> path = new LinkedList<>();
+    private final LinkedList<Station> path = new LinkedList<>();
 
     /**
      * The Constructor to find a Path between two Stations
@@ -91,7 +91,8 @@ public class PathFinder {
      * @throws IllegalSetupException thrown if Illegal setup has been detected
      */
     private Station findRightNextHopFor(Station aStation)throws IllegalSetupException {
-        ArrayList<Station> list = aStation.getPrevStations();
+        ArrayList<Station> list = new ArrayList<>(aStation.getPrevStations().size());
+        aStation.getPrevStations().forEach(prevPair -> list.add(prevPair.getPrevStation()));
         for (Station station : list) {
             if(station.getHopsToNewCarriage() == aStation.getHopsToNewCarriage()-1) return station;
         }
@@ -115,8 +116,8 @@ public class PathFinder {
             return;
         }
         for(int i=0; i<to.getPrevStations().size();++i){
-            if(path.isEmpty() && to.getPrevStations().get(i)!= init){
-                findRightPathFor(init, from, to.getPrevStations().get(i));
+            if(path.isEmpty() && to.getPrevStations().get(i).getPrevStation() != init){
+                findRightPathFor(init, from, to.getPrevStations().get(i).getPrevStation());
             }
         }
 

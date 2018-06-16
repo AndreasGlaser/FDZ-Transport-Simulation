@@ -37,7 +37,7 @@ public class AppStarter extends Application {
                 event.consume();
             }
         });
-
+        
         if (StationHandler.getInstance().getStationByName("Storage").getPrevStations().size() == 0){
             new Facade().addPrevStation("Storage", "Robot", 1);
             new Facade().addPrevStation("Storage", "I/O",1);
