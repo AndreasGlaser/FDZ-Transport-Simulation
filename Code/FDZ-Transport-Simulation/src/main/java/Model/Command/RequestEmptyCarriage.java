@@ -37,7 +37,7 @@ public class RequestEmptyCarriage extends Command {
 
     // TODO: 16.06.18 doc und ack2 
     @Override
-    public void execute() throws IllegalSetupException{
+    public void execute(){
         
         new Thread(() ->{
             Station temp;
@@ -49,12 +49,10 @@ public class RequestEmptyCarriage extends Command {
                     station.driveOutSled();
                 });
                 path.getLast().driveInSled(-1);
-                commandExecuted();
-            }catch(CongestionException e){
-                System.err.println(e.getMessage());
+                this.commandExecuted();
             }catch(IllegalSetupException e){
                 System.err.println(e.getMessage());
-                error();
+                super.error();
             }}).start();
         
     }
