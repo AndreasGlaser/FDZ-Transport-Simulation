@@ -1,6 +1,9 @@
 package Model.Network;
 
+import Model.Exception.IllegalSetupException;
+import Model.Facade;
 import Model.Station.Station;
+import Model.Station.StationHandler;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -9,15 +12,29 @@ import java.util.Scanner;
 public class MainClient {
 
     public static void main(String[] args) throws UnknownHostException, FDZNetworkException {
-        /*Station robot = new Station("robot", "ro");
-        Station stock = new Station("stock", "la");
-        Station inOut = new Station("inOut", "ea");
-        ArrayList<Station> stationList = new ArrayList<Station>(3);
+
+        try {
+            new Facade().addStation("Robot", "ro");
+            new Facade().addStation("Storage", "st");
+            new Facade().addStation("I/O", "io");
+        } catch (IllegalSetupException e) {
+            e.printStackTrace();
+        }
+        new Facade().addPrevStation("Storage", "Robot");
+            new Facade().addPrevStation("Storage", "I/O");
+            new Facade().addPrevStation("Robot", "Storage");
+            new Facade().addPrevStation("I/O", "Robot");
+            try {
+                new Facade().setHopsToNewCarriage("Robot", 2);
+                new Facade().setHopsToNewCarriage("Storage", 1);
+                new Facade().setHopsToNewCarriage("I/O", 1);
+            }catch(Exception e){}
+
 
         NetworkController ch = NetworkController.getInstance();
-        //byte[] ipAddr = new byte[]{(byte)Integer.parseInt("121"),(byte)Integer.parseInt("0"), (byte)Integer.parseInt("0"), (byte)Integer.parseInt("1")};
-        byte [] ipAddr = new byte[]{127,0,0,1};
-        ch.connect(ipAddr, 47331);
+        byte[] ipAddr = new byte[]{(byte)Integer.parseInt("172"),(byte)Integer.parseInt("16"), (byte)Integer.parseInt("48"), (byte)Integer.parseInt("24")};
+        //byte [] ipAddr = new byte[]{127,0,0,1};
+        ch.connect(ipAddr, 40001);
         Scanner sc = new Scanner(System.in);
 
         boolean test = true;
@@ -43,7 +60,7 @@ public class MainClient {
             }
         }
 
-        ch.disconnect();*/
+        ch.disconnect();
     }
 
 }
