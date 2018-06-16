@@ -15,7 +15,7 @@ abstract class Command {
      * Method to be Overridden in subclasses, executes their Commands
      * @throws IllegalSetupException if illegal setup is detected in method
      */
-    public abstract void execute() throws IllegalSetupException;
+    public abstract void execute();
 
     /**
      * Signals the Network to send the commandExecuted acknowledgment

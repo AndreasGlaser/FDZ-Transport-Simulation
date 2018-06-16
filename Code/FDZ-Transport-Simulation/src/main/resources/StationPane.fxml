@@ -43,7 +43,7 @@
          </children>
       </GridPane>
       <Button fx:id="stationOptionsButton" mnemonicParsing="false" onAction="#openCloseStationOptions" styleClass="stationOptionButton" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
-      <VBox fx:id="stationOptionsPane" layoutX="43.0" layoutY="-56.0" prefHeight="410.0" prefWidth="177.0" styleClass="stationOptions" visible="false">
+      <VBox fx:id="stationOptionsPane" layoutX="13.0" layoutY="-56.0" prefHeight="410.0" prefWidth="234.0" styleClass="stationOptions" visible="false">
          <children>
             <AnchorPane prefHeight="37.0" prefWidth="172.0">
                <children>
@@ -59,11 +59,11 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Stations back to SledStorage:" wrappingWidth="176.927734375" />
             <ChoiceBox fx:id="hopsBackBox" prefWidth="150.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Previous Station:" />
-            <ScrollPane hbarPolicy="NEVER" prefHeight="200.0" prefWidth="200.0">
+            <ScrollPane prefHeight="200.0" prefWidth="200.0">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
-                        <VBox fx:id="previousStationsPane" prefHeight="200.0" prefWidth="200.0" />
+                        <VBox fx:id="previousStationsPane" prefWidth="203.0" />
                      </children></AnchorPane>
               </content>
             </ScrollPane>

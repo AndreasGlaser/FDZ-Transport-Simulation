@@ -12,6 +12,7 @@ import View.AbstractStation;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -27,7 +28,13 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-public class Controller implements ConnectionObserver{
+/**
+ * The Controller for the GUI
+ * @author Andreas Glaser
+ *
+ *
+ */
+public class GUIController implements ConnectionObserver{
 	private ArrayList<AbstractStation> stations = new ArrayList<>();
 	private IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
 	private Facade facade = new Facade();
@@ -36,15 +43,12 @@ public class Controller implements ConnectionObserver{
 	private Pane optionMenu;
 	@FXML
 	private Pane stationsPane;
-
 	@FXML
 	private ImageView controllerImageView;
 	@FXML
 	private ImageView simulatorImageView;
 	@FXML
 	private GridPane controllerGridPane;
-	@FXML
-	private Pane logPane;
 	@FXML
 	private Pane statusPane;
 	@FXML
@@ -65,9 +69,10 @@ public class Controller implements ConnectionObserver{
 	private Pane disconnectedIpPane;
 	@FXML
 	private Text ipAddressText;
-
 	@FXML
 	private TextArea textArea;
+	@FXML
+	private Button optionsButton;
 
 	@FXML
 	public void initialize(){
@@ -243,12 +248,14 @@ public class Controller implements ConnectionObserver{
 		new Facade().connect(ipAddress.getAddress(), ipAddress.getPort());
 		disconnectedIpPane.setVisible(false);
 		ipAddressText.setText(ipAddress.toIPAddress());
+		setOptionsActive(false);
 	}
 
 	@FXML
 	private void disconnect(){
 		new Facade().disconnect();
 		disconnectedIpPane.setVisible(true);
+		setOptionsActive(true);
 	}
 
 	public void askForSaving(Stage primaryStage){
@@ -297,6 +304,29 @@ public class Controller implements ConnectionObserver{
 		}else {
 			controllerConnectionArrow.getStyleClass().add("red");
 			disconnectedIpPane.setVisible(true);
+			setOptionsActive(true);
+		}
+	}
+
+
+	/**
+	 * deactivates or activates all options that change the configuration,
+	 * for persistance reasons this method should be called before receiving commands
+	 * @param bool true to activate options, false to deactivate the options
+	 */
+	private void setOptionsActive(Boolean bool){
+		if(bool){
+			optionsButton.setDisable(!bool);
+			for(AbstractStation station : stations){
+				station.setDisableOptionsButton(!bool);
+			}
+		}else{
+			optionMenu.setVisible(bool);
+			optionsButton.setDisable(!bool);
+			for(AbstractStation station : stations){
+				station.closeOptions();
+				station.setDisableOptionsButton(!bool);
+			}
 		}
 	}
 }

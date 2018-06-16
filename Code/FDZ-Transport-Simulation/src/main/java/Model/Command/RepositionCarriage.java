@@ -33,51 +33,9 @@ public class RepositionCarriage extends Command {
 
     }
 
-/*
-    //@Override
-    public void execute() throws IllegalSetupException {
-        try {
-            Station from = StationHandler.getInstance().getStationBySledID(id);
-            Station to = StationHandler.getInstance().getStationByShortCut(position);
-            System.err.println("trying path");
-            new PathFinder(from, to);
-            System.err.println("path found");
-            //No Congestion from source to destination
-            from.driveOutSled();
-            System.err.println("drove out");
-            // TODO: 07.06.18 test if blocked command is stuck here
-            to.driveInSled(id);
-            System.out.println("\t log: reposition carriage " + id + " to " + position);
-            super.commandExecuted();
-        }catch(CongestionException e) {
-            System.out.println(e.getBlockingStation().getName() + " is blocking");
-            System.out.println(CONGESTED_ERROR);
-            // TODO: 07.06.18 handle congestion
-        }catch (IndexOutOfBoundsException e){
-            super.error();
-            throw new IllegalSetupException("No Stations in Setup");
-        }catch(NullPointerException e){
-            super.error();
-            e.printStackTrace();
-            // TODO: 07.06.18 stations not found
-        }
-
-    }
-*/
-
+    // TODO: 16.06.18 javadoc und ack2
     @Override
-    public void execute() throws IllegalSetupException{
-        Thread t1 = new Thread(()->{
-            while(true){
-                try{
-                    sleep(5000);
-                }catch (Exception e){
-                    break;
-                }
-                System.err.println("t1 running");
-            }
-        });
-        t1.start();
+    public void execute(){
 
         new Thread(() ->{
             Station from = null, to = null;
@@ -99,16 +57,13 @@ public class RepositionCarriage extends Command {
                     station.driveOutSled();
                 });
                 path.getLast().driveInSled(id);
-            }catch(CongestionException e){
+                super.commandExecuted();
             }catch(NullPointerException e){
                 super.error();
             }catch(IllegalSetupException e){
                 super.error();
             }
         }).start();
-
-        t1.interrupt();
-        System.err.println("end repo");
 
     }
 }

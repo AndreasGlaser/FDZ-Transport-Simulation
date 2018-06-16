@@ -1,6 +1,6 @@
 
 
-import Controller.Controller;
+import Controller.GUIController;
 import Model.Facade;
 import Model.Station.StationHandler;
 import View.CommandLineInterface;
@@ -28,12 +28,12 @@ public class AppStarter extends Application {
         primaryStage.getIcons().add(new Image("/images/FDZLogo.png"));
 
         //load Configuration on Program start
-        Controller controller = ((Controller) loader.getController());
-        controller.loadConfiguration();
+        GUIController GUIController = ((GUIController) loader.getController());
+        GUIController.loadConfiguration();
 
         primaryStage.setOnCloseRequest(event -> {
-            if(!controller.isConfigurationSaved()){
-                controller.askForSaving(primaryStage);
+            if(!GUIController.isConfigurationSaved()){
+                GUIController.askForSaving(primaryStage);
                 event.consume();
             }
         });

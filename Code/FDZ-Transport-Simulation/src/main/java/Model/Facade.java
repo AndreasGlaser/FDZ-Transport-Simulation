@@ -1,16 +1,20 @@
 package Model;
 
+import Model.Command.ShutdownObserver;
+import Model.Command.ShutdownTransport;
 import Model.Exception.IllegalSetupException;
 import Model.Network.ConnectionObserver;
 import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 import Model.Station.StationObserver;
+import com.sun.istack.internal.NotNull;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Facade {
 
@@ -73,7 +77,7 @@ public class Facade {
         stationHandler.deleteStation(station);
     }
 
-    public void addPrevStation(String toName, String prevName) throws NullPointerException{
+    public void addPrevStation(String toName, String prevName, int pathTime) throws NullPointerException{
         Station to = stationHandler.getStationByName(toName);
         Station prev = stationHandler.getStationByName(prevName);
         to.addPrevStation(prev);
@@ -96,15 +100,15 @@ public class Facade {
 
     public void setStationName(String oldName, String newName) throws NullPointerException, IllegalSetupException{
         if(newName.length() != 0 || newName != null) {
-            Station station = stationHandler.getStationByName(newName);
+            Station station = stationHandler.getStationByName(oldName);
             station.setName(newName);
         }else{
             throw new IllegalSetupException("Input Name is invalid");
         }
     }
-    public void setStationShortCut(String oldShortCut, String newShortCut) throws NullPointerException, IllegalSetupException{
+    public void setStationShortCut(String name, String newShortCut) throws NullPointerException, IllegalSetupException{
         if(newShortCut.length() == 2){
-            Station station = stationHandler.getStationByShortCut(oldShortCut);
+            Station station = stationHandler.getStationByName(name);
             station.setShortCut(newShortCut);
         }else{
             throw new IllegalSetupException("Input ShortCut is invalid");
@@ -114,7 +118,10 @@ public class Facade {
     public ArrayList<Integer> getSledsInStation(String name) throws NullPointerException{
         return stationHandler.getStationByName(name).getSledsInStation();
     }
-    
+
+    public void setSledsInStation(@NotNull String stationName, @NotNull List<Integer> ids){
+        stationHandler.getStationByName(stationName).setSledsInStation(ids);
+    }
 
     public void addToStationObservable(String name, StationObserver observer) throws NullPointerException{
         stationHandler.getStationByName(name).addObserver(observer);
@@ -123,6 +130,8 @@ public class Facade {
     public void addToConnectionObservable(ConnectionObserver observer){
         networkController.addObserver(observer);
     }
+
+    public void addToShutdownObservable(ShutdownObserver observer){ShutdownTransport.addObserver(observer);}
 
 
 }

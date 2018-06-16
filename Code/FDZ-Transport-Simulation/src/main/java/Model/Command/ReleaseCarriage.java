@@ -23,15 +23,17 @@ public class ReleaseCarriage extends Command {
      * The Method, which executes the Command RELEASE_CARRIAGE
      */
     @Override
-    public void execute() throws IllegalSetupException {
+    public void execute() {
         try {
             Station station = StationHandler.getInstance().getStationBySledID(id);
             station.driveOutSled();
             System.out.println("\t log: releasing carriage with id " + id);
             super.commandExecuted();
         }catch(IndexOutOfBoundsException e){
-            throw new IllegalSetupException("No Stations in Setup");
+            super.error();
+            // TODO: 16.06.18 log illegal setup
         }catch(NullPointerException e){
+            super.error();
             // TODO: 07.06.18 log error id not found
         }
     }
