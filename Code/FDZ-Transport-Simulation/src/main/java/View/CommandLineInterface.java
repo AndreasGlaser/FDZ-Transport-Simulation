@@ -4,6 +4,7 @@ import Model.Exception.IllegalSetupException;
 import Model.Facade;
 import Model.Network.ConnectionObserver;
 import Model.Network.NetworkController;
+import Model.Station.PrevPair;
 import Model.Station.Station;
 import Model.Station.StationHandler;
 import Model.Station.StationObserver;
@@ -110,12 +111,12 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
                 });
             }
             System.out.println("\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
-            ArrayList<Station> prev = stationList.get(i).getPrevStations();
+            ArrayList<PrevPair> prev = stationList.get(i).getPrevStations();
             System.out.println(
                     "\t"+stationList.get(i).getPrevStations().size()+" prevs");
             for (int j = 0; j < prev.size(); j++) {
                 System.out.print(
-                        "\t| prev"+j+" = "+ prev.get(j).getName() +"\n");
+                        "\t| prev"+j+" = "+ prev.get(j).getPrevStation().getName() +"\n");
             }
             System.out.println("\n----END-----\n");
         }
@@ -190,9 +191,11 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
         System.out.print("name of prevStation:");
         String prev = s.nextLine();
         System.out.println(prev);
+        System.out.print("Time for Path in s:");
+        int pathTime = sc.nextInt();
 
         try{
-            facade.addPrevStation(station, prev);
+            facade.addPrevStation(station, prev, pathTime);
             System.out.println("PrevStation "+prev+" added successfully to "+station);
         }catch(NullPointerException e){
             System.out.println("Could not add "+prev+" to "+station);

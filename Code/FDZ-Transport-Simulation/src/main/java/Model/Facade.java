@@ -80,7 +80,7 @@ public class Facade {
     public void addPrevStation(String toName, String prevName, int pathTime) throws NullPointerException{
         Station to = stationHandler.getStationByName(toName);
         Station prev = stationHandler.getStationByName(prevName);
-        to.addPrevStation(prev);
+        to.addPrevStation(prev, pathTime);
     }
 
     public void deletePrevStation(String nameOf, String prevName) throws NullPointerException{
@@ -119,7 +119,7 @@ public class Facade {
         return stationHandler.getStationByName(name).getSledsInStation();
     }
 
-    public void setSledsInStation(@NotNull String stationName, @NotNull List<Integer> ids){
+    public void setSledsInStation(@NotNull String stationName, @NotNull List<Integer> ids) throws NullPointerException{
         stationHandler.getStationByName(stationName).setSledsInStation(ids);
     }
 

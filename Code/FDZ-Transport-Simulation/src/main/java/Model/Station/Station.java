@@ -18,7 +18,7 @@ public class Station{
     private String name, shortCut;
     private Semaphore semaphore;
     private ArrayList<Integer> idsInCongestion;
-    private ArrayList<Station> prevStations;
+    private ArrayList<PrevPair> prevStations;
     private Integer sledInside;
     private int hopsBackToNewCarriage;
     private final HashSet<StationObserver> observers;
@@ -164,10 +164,11 @@ public class Station{
     /**
      * Adds a station to the Objects prevList
      * @param station a Station which is not null and not equal to one, that is already in prevList
+     * @param pathTime time in seconds which sled need from prev to station, default value is 1s, if input is <1
      */
-    public void addPrevStation(Station station){
-        if(!this.prevStations.contains(station)) {
-            prevStations.add(station);
+    public void addPrevStation(Station station, int pathTime){
+        if(!this.prevStations.contains(station) && pathTime >= 1) {
+            prevStations.add(new PrevPair(station,pathTime));
             this.setChanged();
         }else if(station == null){
             /* TODO DEBUG not changed */
@@ -225,9 +226,9 @@ public class Station{
 
     /**
      * Getter for the PrevStations to determine a path
-     * @return list of stations directly previous to this station
+     * @return list of stations directly previous to this station paired with time
      */
-    public ArrayList<Station> getPrevStations(){
+    public ArrayList<PrevPair> getPrevStations(){
         return prevStations;
     }
 
