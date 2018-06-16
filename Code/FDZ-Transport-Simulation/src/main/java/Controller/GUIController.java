@@ -13,6 +13,7 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -73,6 +74,8 @@ public class GUIController implements ConnectionObserver{
 	private TextArea textArea;
 	@FXML
 	private Button optionsButton;
+	@FXML
+	private CheckBox fastModeCheckBox;
 
 	@FXML
 	public void initialize(){
@@ -252,6 +255,15 @@ public class GUIController implements ConnectionObserver{
 		new Facade().disconnect();
 		disconnectedIpPane.setVisible(true);
 		setOptionsActive(true);
+	}
+
+	@FXML
+	private void onFastModeCheckBoxClicked(){
+		if(fastModeCheckBox.isSelected()){
+			facade.setFastTime(true);
+		}else{
+			facade.setFastTime(false);
+		}
 	}
 
 	public void askForSaving(Stage primaryStage){

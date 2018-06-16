@@ -187,13 +187,19 @@ public class StationController extends AbstractStation implements StationObserve
                 prevStationBorderPane.setRight(timeBox);
                 Text prevStationTimeText = new Text("s: ");
                 timeBox.getChildren().add(prevStationTimeText);
-                TextField prevStationTimeTextField = new TextField("1");
+                Integer time = 1;
+                for(Pair<String, Integer> pair: data.getPreviousStationsByName()){
+                    if(pair.getKey().equals(station.getName())) time=pair.getValue();
+                }
+                TextField prevStationTimeTextField = new TextField(time.toString());
                 timeBox.getChildren().add(prevStationTimeTextField);
                 prevStationTimeTextField.setMaxWidth(50);
                 prevStationTimeTextField.setTooltip(new Tooltip("Time in s to this station"));
                 prevStationTimeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
                     try {
-                        Integer.parseInt(newValue);
+                        for(Pair<String, Integer> pair: data.getPreviousStationsByName()){
+                            if(pair.getKey().equals(station.getName())) addPrevStation(new Pair<String, Integer>(pair.getKey(), Integer.parseInt(newValue)));
+                        }
                     }catch (NumberFormatException e){
                         prevStationTimeTextField.setText(oldValue);
                     }
