@@ -35,7 +35,7 @@ public class RepositionCarriage extends Command {
 
     // TODO: 16.06.18 javadoc und ack2
     @Override
-    public void execute() throws IllegalSetupException{
+    public void execute(){
 
         new Thread(() ->{
             Station from = null, to = null;
@@ -57,7 +57,7 @@ public class RepositionCarriage extends Command {
                     station.driveOutSled();
                 });
                 path.getLast().driveInSled(id);
-            }catch(CongestionException e){
+                super.commandExecuted();
             }catch(NullPointerException e){
                 super.error();
             }catch(IllegalSetupException e){

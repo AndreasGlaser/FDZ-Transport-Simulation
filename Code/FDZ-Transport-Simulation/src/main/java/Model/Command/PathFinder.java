@@ -15,11 +15,11 @@ public class PathFinder {
     private LinkedList<Station> path = new LinkedList<>();
 
 
-    public PathFinder(Station from, Station to) throws CongestionException, IllegalSetupException, NullPointerException {
+    public PathFinder(Station from, Station to) throws  IllegalSetupException, NullPointerException {
         blocking = checkPath(from, to);
         printPath();
     }
-    public PathFinder(Station station, int hops) throws CongestionException, IllegalSetupException, NullPointerException{
+    public PathFinder(Station station, int hops) throws  IllegalSetupException, NullPointerException{
         blocking = checkPath(hops, station);
         printPath();
     }

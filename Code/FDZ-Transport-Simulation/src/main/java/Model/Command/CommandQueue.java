@@ -39,11 +39,7 @@ public class CommandQueue {
      * Remove and start first Command Object and proof if there Commands in waiting List
      */
     private void dequeue (){
-        try{
-            commandQueue.pollFirst().execute();
-        }catch(IllegalSetupException e){
-            System.err.println("WRONG SETUP!!!\n"+e.getMessage());
-        }
+        commandQueue.pollFirst().execute();
         if (!activatedList.isEmpty()){
             for (int i=0; i<=activatedList.size();i++){
                 if (activatedList.get(i).compareTo(commandQueue.peekFirst().msgID)==0){
