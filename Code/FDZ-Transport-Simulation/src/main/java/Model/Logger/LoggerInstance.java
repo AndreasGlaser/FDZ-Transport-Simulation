@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 public class LoggerInstance {
 
     public static final Logger log = LoggerFactory.getLogger(LoggerInstance.class);
-    public static LoggerContext loggerContext = (LoggerContext)LoggerFactory.getILoggerFactory();
-    public static Logger rootLogger = loggerContext.getLogger(LoggerInstance.class);
+    private static final LoggerContext loggerContext = (LoggerContext)LoggerFactory.getILoggerFactory();
+    private static final Logger rootLogger = loggerContext.getLogger(LoggerInstance.class);
 
     public static void infoLevel (){
         ((ch.qos.logback.classic.Logger) rootLogger).setLevel(Level.INFO);

@@ -1,6 +1,6 @@
 package Model.Command;
 
-import Model.Exception.IllegalSetupException;
+import Model.Logger.LoggerInstance;
 
 import java.util.LinkedList;
 
@@ -10,12 +10,12 @@ import java.util.LinkedList;
 public class CommandQueue {
 
     //Queue for saved Commands
-    private LinkedList<Command> commandQueue;
+    private final LinkedList<Command> commandQueue;
     //List save MessageID that activated not in queue
-    private LinkedList<String> activatedList;
+    private final LinkedList<String> activatedList;
 
     //Thread safe Singleton
-    private static CommandQueue ourInstance = new CommandQueue();
+    private final static CommandQueue ourInstance = new CommandQueue();
 
     /**
      * Add Command Object to Queue on the end
@@ -39,7 +39,12 @@ public class CommandQueue {
      * Remove and start first Command Object and proof if there Commands in waiting List
      */
     private void dequeue (){
-        commandQueue.pollFirst().execute();
+        Command command = commandQueue.pollFirst();
+        if (command!=null){
+            command.execute();
+        }
+
+
         if (!activatedList.isEmpty()){
             for (int i=0; i<=activatedList.size();i++){
                 if (activatedList.get(i).compareTo(commandQueue.peekFirst().msgID)==0){
@@ -85,7 +90,7 @@ public class CommandQueue {
                         break;
                 }
             }catch(NullPointerException e){
-                System.err.println(e.getStackTrace());
+                LoggerInstance.log.error("No Position found for command: {}",command);
             }
         }
     }
@@ -95,8 +100,9 @@ public class CommandQueue {
      * @param command
      */
     private void findPos (Command command){
+        int thisPosition=-1;
         for (int i = 0; i<=commandQueue.size(); i++){
-            if (command.msgID.compareTo(commandQueue.get(i).msgID)==-1){
+            if (command.msgID.compareTo(commandQueue.get(i).msgID)==thisPosition){
                 insert (i, command);
                 break;
             }
@@ -128,8 +134,7 @@ public class CommandQueue {
                 }
             }
         }catch (NullPointerException e){
-            System.err.println("COMMAND NOT IN QUEUE, NULLPOINTER");
-            System.err.println("INFO :: PRE ACTIVATED COMMANDS WAS NULL");
+            LoggerInstance.log.error("Command not in queue or pre activated command was null");
         }
 
     }
