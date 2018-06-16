@@ -94,5 +94,11 @@
 
 .ipField{
 
-	-fx-font-size: 10;
+	-fx-font-size: 15;
+}
+
+.disconnectedIpPane{
+	-fx-background-color: #EBEBEB;
+	-fx-border-color: #A9C3DD;
+	-fx-border-width: 2;
 }
