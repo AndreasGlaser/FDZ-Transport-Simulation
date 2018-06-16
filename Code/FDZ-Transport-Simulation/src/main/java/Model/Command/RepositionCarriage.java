@@ -53,7 +53,7 @@ public class RepositionCarriage extends Command {
                 }else{
                     try {
                         sleep(TimeMode.findTimeForPath(path.getFirst(), path.get(1)));
-                    }catch (InterruptedException e){
+                    }catch (InterruptedException | IndexOutOfBoundsException e){
                         // TODO: 16.06.18 debug interruption
                     }
                     for (int i=1; i<path.size()-1; i++){

@@ -4,7 +4,7 @@ import Model.Station.PrevPair;
 import Model.Station.Station;
 
 public class TimeMode {
-    public static boolean fastModeActivated = false;
+    public static boolean fastModeActivated = true;
 
     public static int findTimeForPath(Station from, Station to){
         for(PrevPair prevPair : to.getPrevStations()){
