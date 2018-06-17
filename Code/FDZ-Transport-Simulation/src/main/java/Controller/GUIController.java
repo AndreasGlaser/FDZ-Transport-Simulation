@@ -51,8 +51,6 @@ public class GUIController implements ConnectionObserver{
 	@FXML
 	private GridPane controllerGridPane;
 	@FXML
-	private Pane statusPane;
-	@FXML
 	private BorderPane messagePane;
 	@FXML
 	private TextField portField;
@@ -71,7 +69,9 @@ public class GUIController implements ConnectionObserver{
 	@FXML
 	private Text ipAddressText;
 	@FXML
-	private TextArea textArea;
+	private TextArea logTextArea;
+	@FXML
+	private TextArea statusTextArea;
 	@FXML
 	private Button optionsButton;
 	@FXML
@@ -80,7 +80,7 @@ public class GUIController implements ConnectionObserver{
 	@FXML
 	public void initialize(){
 
-		OutputStream outputStream = new TextAreaOutputStream(textArea);
+		OutputStream outputStream = new TextAreaOutputStream(logTextArea);
 		OwnOutputStreamAppender.setStaticOutputStream(outputStream);
 
 
@@ -166,21 +166,21 @@ public class GUIController implements ConnectionObserver{
 		String mesID2 = "0000000002";
 		String mesID3 = "0000000003";
 
-		statusPane.getChildren().add(new Text("Connect to 172.68.92.1"));
-		statusPane.getChildren().add(new Text("Empty sled ordered to RO"));
-		statusPane.getChildren().add(new Text("Empty sled arrived at RO"));
-		statusPane.getChildren().add(new Text("Congestion in station RO"));
-		statusPane.getChildren().add(new Text("Command not executed Oct 15 00:23:12: SPXSStK001"+mesID2+ "0002aa"));
-		statusPane.getChildren().add(new Text("Release carriage with ID 23"));
-		statusPane.getChildren().add(new Text("Reposition the carriage with id 23 to position IO"));
-		statusPane.getChildren().add(new Text("Port number changed to 23"));
-		statusPane.getChildren().add(new Text("Connection lost to 172.68.92.1"));
-		statusPane.getChildren().add(new Text("Empty sled ordered to ST"));
-		statusPane.getChildren().add(new Text("Empty sled arrived at ST"));
-		statusPane.getChildren().add(new Text("Congestion in station ST"));
-		statusPane.getChildren().add(new Text("Command not executed Oct 15 00:41:00: STStK003"+mesID3+ "000423io"));
-		statusPane.getChildren().add(new Text("Release carriage with ID 23"));
-		statusPane.getChildren().add(new Text("Reposition the carriage with id 23 to position IO"));
+		statusTextArea.appendText("Connect to 172.68.92.1 \n");
+		statusTextArea.appendText("Empty sled ordered to RO \n");
+		statusTextArea.appendText("Empty sled arrived at RO \n");
+		statusTextArea.appendText("Congestion in station RO \n");
+		statusTextArea.appendText("Command not executed Oct 15 00:23:12: SPXSStK001"+mesID2+ "0002aa \n");
+		statusTextArea.appendText("Release carriage with ID 23 \n");
+		statusTextArea.appendText("Reposition the carriage with id 23 to position IO \n");
+		statusTextArea.appendText("Port number changed to 23 \n");
+		statusTextArea.appendText("Connection lost to 172.68.92.1 \n");
+		statusTextArea.appendText("Empty sled ordered to ST \n");
+		statusTextArea.appendText("Empty sled arrived at ST \n");
+		statusTextArea.appendText("Congestion in station ST \n");
+		statusTextArea.appendText("Command not executed Oct 15 00:41:00: STStK003"+mesID3+ "000423io \n");
+		statusTextArea.appendText("Release carriage with ID 23 \n");
+		statusTextArea.appendText("Reposition the carriage with id 23 to position IO \n");
 
 	}
 
