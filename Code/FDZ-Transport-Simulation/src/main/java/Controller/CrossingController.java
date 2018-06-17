@@ -50,35 +50,14 @@ public class CrossingController extends AbstractStation {
 
 	@FXML
 	public void initialize(){
-		viewPane = rootPane;
-		parent.getChildren().add(viewPane);
+		super.initialize(rootPane, parent);
 		crossingNameTextField.setOnKeyReleased(event -> {
 			setName(crossingNameTextField.getText());
 			data.setName(crossingNameTextField.getText());
 		});
 		refreshBelts(parent, stations);
-
 		setData(data);
 		setName(data.getName());
-
-		//make Dragable
-		viewPane.setOnMousePressed(e ->{
-			sceneX = e.getSceneX();
-			sceneY = e.getSceneY();
-
-			dragXTrans = viewPane.getTranslateX();
-			dragYTrans = viewPane.getTranslateY();
-		});
-		viewPane.setOnMouseDragged(e->{
-			setXCord(e.getSceneX()  - sceneX + dragXTrans);
-			setYCord(e.getSceneY() - sceneY + dragYTrans);
-		});
-
-
-		crossingNameTextField.setOnKeyReleased(event -> {
-			setName(crossingNameTextField.getText());
-			data.setName(crossingNameTextField.getText());
-		});
 	}
 
 	@Override

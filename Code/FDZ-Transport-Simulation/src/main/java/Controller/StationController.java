@@ -67,11 +67,7 @@ public class StationController extends AbstractStation implements StationObserve
 
     @FXML
     public void initialize(){
-        viewPane = rootPane;
-        parent.getChildren().add(viewPane);
-
-
-
+        super.initialize(rootPane, parent);
 
         sledPane.getStyleClass().add("yellow");
         sledText.setText("Empty");
@@ -84,18 +80,6 @@ public class StationController extends AbstractStation implements StationObserve
         setName(data.getName());
         setSledText("Empty");
 
-        //make Dragable
-        viewPane.setOnMousePressed(e ->{
-            sceneX = e.getSceneX();
-            sceneY = e.getSceneY();
-
-            dragXTrans = viewPane.getTranslateX();
-            dragYTrans = viewPane.getTranslateY();
-        });
-        viewPane.setOnMouseDragged(e->{
-            setXCord(e.getSceneX()  - sceneX + dragXTrans);
-            setYCord(e.getSceneY() - sceneY + dragYTrans);
-        });
 
         hopsBackBox.getItems().addAll(1,2,3,4,5,6,7,8,9);
         hopsBackBox.getSelectionModel().select(data.getHopsBack());

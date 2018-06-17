@@ -2,6 +2,8 @@ package View;
 
 import Persistance.StationData;
 import javafx.beans.property.DoubleProperty;
+import javafx.geometry.Bounds;
+import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.util.Pair;
 
@@ -13,11 +15,27 @@ public abstract class AbstractStation {
 
 	//helper Variables
 	protected final ArrayList<BeltNode> incomingBelts = new ArrayList<>();
-	protected Double dragXTrans = .0;
-	protected Double dragYTrans = .0;
-	protected Double sceneX = .0;
-	protected Double sceneY = .0;
+	private Double dragXTrans = .0;
+	private Double dragYTrans = .0;
+	private Double sceneX = .0;
+	private Double sceneY = .0;
 
+	protected void initialize(Pane rootPane, Pane parent){
+		viewPane = rootPane;
+		parent.getChildren().add(viewPane);
+		//make Dragable
+		viewPane.setOnMousePressed(e ->{
+			sceneX = e.getSceneX();
+			sceneY = e.getSceneY();
+
+			dragXTrans = viewPane.getTranslateX();
+			dragYTrans = viewPane.getTranslateY();
+		});
+		viewPane.setOnMouseDragged(e->{
+			setXCord(e.getSceneX()  - sceneX + dragXTrans);
+			setYCord(e.getSceneY()  - sceneY + dragYTrans);
+		});
+	}
 
 	/**
 	 * removes all Belts and adds Belts to fit the current configuration
@@ -43,11 +61,11 @@ public abstract class AbstractStation {
 	public abstract void setName(String name);
 	public String getShortcut(){return data.getShortcut();}
 	public void setShortcut(String shortcut){data.setShortcut(shortcut);}
-	protected void setXCord(Double newX){
+	private void setXCord(Double newX){
 		data.setXCord(newX);
 		viewPane.setTranslateX(newX);
 	}
-	protected void setYCord(Double newY){
+	private void setYCord(Double newY){
 		data.setYCord(newY);
 		viewPane.setTranslateY(newY);
 	}
