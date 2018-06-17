@@ -71,10 +71,9 @@ public class StationController extends AbstractStation implements StationObserve
 
 
 
-        sledPane.getStyleClass().clear();
+
         sledPane.getStyleClass().add("yellow");
         sledText.setText("Empty");
-        congestionMenu.getStyleClass().clear();
         congestionMenu.getStyleClass().add("green");
         congestionMenu.setText("no Congestion");
 
@@ -316,12 +315,14 @@ public class StationController extends AbstractStation implements StationObserve
 
 
         ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
-        congestionMenu.getItems().clear();
+        congestionMenu.getStyleClass().remove("red");
+        congestionMenu.getStyleClass().remove("green");
+        sledPane.getStyleClass().remove("yellow");
+        sledPane.getStyleClass().remove("blue");
+        sledPane.getStyleClass().remove("green");
         if (sleds.size() == 0 || sleds.get(0) == null){
-            sledPane.getStyleClass().clear();
             sledPane.getStyleClass().add("yellow");
             sledText.setText("Empty");
-            congestionMenu.getStyleClass().clear();
             congestionMenu.getStyleClass().add("green");
             congestionMenu.setText("no Congestion");
         }else if(sleds.size() > 0){
@@ -330,7 +331,6 @@ public class StationController extends AbstractStation implements StationObserve
                 congestionMenu.getItems().add(new MenuItem(sledId.toString()));
             }
 
-            sledPane.getStyleClass().clear();
             if(sleds.get(0) != null){
                 if(sleds.get(0).equals(-1)){
                     sledText.setText("Empty Sled");
@@ -340,9 +340,6 @@ public class StationController extends AbstractStation implements StationObserve
                     sledPane.getStyleClass().add("green");
                 }
             }
-
-
-            congestionMenu.getStyleClass().clear();
             if(sleds.size()>1){
                 congestionMenu.getStyleClass().add("red");
                 congestionMenu.setText("Congestion");
