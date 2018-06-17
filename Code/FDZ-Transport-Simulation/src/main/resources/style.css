@@ -106,3 +106,8 @@
 	-fx-border-color: #A9C3DD;
 	-fx-border-width: 2;
 }
+
+
+.redBorder{
+	-fx-border-color: red;
+}
