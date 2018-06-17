@@ -59,7 +59,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Stations back to SledStorage:" wrappingWidth="176.927734375" />
             <ChoiceBox fx:id="hopsBackBox" prefWidth="150.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Previous Station:" />
-            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>

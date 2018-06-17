@@ -89,7 +89,9 @@ public abstract class AbstractStation {
 
 	}
 	protected void addPrevStation(Pair<String, Integer> pair){
-		if(prevStationsContains(pair.getKey())) return;//TODO wenn vorhanen ersetzen mit neuem
+		if(prevStationsContains(pair.getKey())){
+			prevStationRemove(pair.getKey());
+		}
 		data.getPreviousStationsByName().add(pair);
 	}
 }

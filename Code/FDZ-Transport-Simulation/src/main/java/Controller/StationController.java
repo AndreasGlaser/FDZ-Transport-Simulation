@@ -196,11 +196,19 @@ public class StationController extends AbstractStation implements StationObserve
                 prevStationTimeTextField.setTooltip(new Tooltip("Time in s to this station"));
                 prevStationTimeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
                     try {
+                        prevStationTimeTextField.getStyleClass().remove("red");
+                        prevStationTimeTextField.getStyleClass().add("green");
                         for(Pair<String, Integer> pair: data.getPreviousStationsByName()){
-                            if(pair.getKey().equals(station.getName())) addPrevStation(new Pair<String, Integer>(pair.getKey(), Integer.parseInt(newValue)));
+                            if(pair.getKey().equals(station.getName())){
+                                addPrevStation(new Pair<>(pair.getKey(), Integer.parseInt(newValue)));
+                                addPrevStationInModel(station, Integer.parseInt(newValue));
+                                break;
+                            }
                         }
                     }catch (NumberFormatException e){
-                        prevStationTimeTextField.setText(oldValue);
+                        prevStationTimeTextField.getStyleClass().remove("green");
+                        prevStationTimeTextField.getStyleClass().add("red");
+
                     }
 
 
@@ -249,6 +257,7 @@ public class StationController extends AbstractStation implements StationObserve
 
         if(station.getData().getstationType().equals(StationType.STATION)){
             new Facade().addPrevStation(data.getName(), station.getName(), time);
+            System.out.println("GUI added: "+station.getName()+" as prevStation with time: "+ time + " to Station: "+ getName());
         }else{
             for(Pair<String, Integer> stationPair: station.getPreviousStationsByName()){
                 for(AbstractStation station2: stations){
@@ -317,6 +326,7 @@ public class StationController extends AbstractStation implements StationObserve
         ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
         congestionMenu.getStyleClass().remove("red");
         congestionMenu.getStyleClass().remove("green");
+        congestionMenu.getItems().clear();
         sledPane.getStyleClass().remove("yellow");
         sledPane.getStyleClass().remove("blue");
         sledPane.getStyleClass().remove("green");
@@ -353,4 +363,7 @@ public class StationController extends AbstractStation implements StationObserve
     }
 
 
+    public void updatePrevStations(AbstractStation station, Integer time) {
+        addPrevStationInModel(station, time);
+    }
 }
