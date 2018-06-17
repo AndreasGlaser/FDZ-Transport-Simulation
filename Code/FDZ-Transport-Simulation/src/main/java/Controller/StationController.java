@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
+import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationObserver;
 import Persistance.StationData;
@@ -237,14 +238,19 @@ public class StationController extends AbstractStation implements StationObserve
     private void removePrevStationInModel(AbstractStation station) {
 
         if(station.getData().getstationType().equals(StationType.STATION)){
-            new Facade().deletePrevStation(data.getName(), station.getName());
+            try {
+                new Facade().deletePrevStation(data.getName(), station.getName());
+            }catch (NullPointerException e){
+                //no action is needed, this only means that there are more than on way the prevStation that should be deleted
+            }
+
+            System.out.println("removed " +station.getName());
         }else{
             for(Pair<String, Integer> stationPair: station.getPreviousStationsByName()){
                 for(AbstractStation station2: stations){
                     if(station2.getName().equals(stationPair.getKey())){
                         if(!data.getName().equals(stationPair.getKey())){
                             removePrevStationInModel(station2);
-                            System.out.println("removed " +station2.getName());
                         }
 
                     }
