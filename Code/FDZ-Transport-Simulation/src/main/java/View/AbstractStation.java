@@ -32,8 +32,15 @@ public abstract class AbstractStation {
 			dragYTrans = viewPane.getTranslateY();
 		});
 		viewPane.setOnMouseDragged(e->{
-			setXCord(e.getSceneX()  - sceneX + dragXTrans);
-			setYCord(e.getSceneY()  - sceneY + dragYTrans);
+			Double newX = e.getSceneX()  - sceneX + dragXTrans;
+			Double newY = e.getSceneY()  - sceneY + dragYTrans;
+			//checks if the Pane leaves the parentPane
+			if(newX >=0){
+				setXCord(newX);
+			}
+			if(newY >=0){
+				setYCord(newY);
+			}
 		});
 	}
 

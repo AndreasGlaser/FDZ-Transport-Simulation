@@ -140,7 +140,7 @@
          </rowConstraints>
       </GridPane>
       <BorderPane fx:id="messagePane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" />
-      <Pane maxWidth="1.0">
+      <Pane maxWidth="1.0" pickOnBounds="false">
          <children>
             <GridPane fx:id="disconnectedIpPane" hgap="1.0" maxWidth="350.0" minHeight="120.0" styleClass="disconnectedIpPane" vgap="2.0">
                <children>

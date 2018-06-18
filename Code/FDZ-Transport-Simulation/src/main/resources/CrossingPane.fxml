@@ -37,7 +37,7 @@
          </children>
       </GridPane>
       <Button fx:id="crossingOptionsButton" mnemonicParsing="false" onAction="#openCloseOptions" styleClass="stationOptionButton" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
-      <VBox fx:id="crossingOptions" layoutX="14.0" layoutY="-56.0" prefHeight="323.0" prefWidth="235.0" styleClass="stationOptions" visible="false">
+      <VBox fx:id="crossingOptions" layoutX="14.0" layoutY="-56.0" prefHeight="323.0" prefWidth="230.0" spacing="5.0" styleClass="stationOptions" visible="false">
          <children>
             <AnchorPane prefHeight="37.0" prefWidth="172.0">
                <children>
@@ -53,11 +53,14 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
-                        <VBox fx:id="previousStationsPane" prefWidth="203.0" />
+                        <VBox fx:id="previousStationsPane" prefWidth="190.0" />
                      </children></AnchorPane>
               </content>
             </ScrollPane>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>
