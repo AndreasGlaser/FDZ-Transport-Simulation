@@ -37,9 +37,13 @@ public abstract class AbstractStation {
 			//checks if the Pane leaves the parentPane
 			if(newX >=0){
 				setXCord(newX);
+			}else {
+				setXCord(0.);
 			}
 			if(newY >=0){
 				setYCord(newY);
+			}else {
+				setYCord(0.);
 			}
 		});
 	}
