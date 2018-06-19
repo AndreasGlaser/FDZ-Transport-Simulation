@@ -1,5 +1,7 @@
 package Model.Network;
 
+import Model.Exception.FDZNetworkException;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -28,8 +30,8 @@ public class Network implements Socket {
 
     /**
      * Initializes the Sockets.
-     * @param ipAddr The address identifying the remote machine. To init a server use localhost.
-     * @param port The port to listen on / to connect to.
+     * @param ipAddr The address identifying the remote machine.
+     * @param port The port to listen connect to.
      */
     protected Network(InetAddress ipAddr, int port) {
 

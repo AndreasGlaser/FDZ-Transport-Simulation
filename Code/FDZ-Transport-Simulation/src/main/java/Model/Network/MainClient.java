@@ -1,12 +1,10 @@
 package Model.Network;
 
+import Model.Exception.FDZNetworkException;
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
-import Model.Station.Station;
-import Model.Station.StationHandler;
 
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainClient {

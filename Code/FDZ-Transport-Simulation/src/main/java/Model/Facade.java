@@ -35,11 +35,7 @@ public class Facade {
     public synchronized void connect(byte[] ip, int port){
         if(connectionThread == null){
             connectionThread = new Thread(() -> {
-                try{
-                    NetworkController.getInstance().connect(ip, port);
-                }catch(UnknownHostException e){
-                    /*TODO Log exception*/
-                }
+                NetworkController.getInstance().connect(ip, port);
             });
             connectionThread.start();
         }else{

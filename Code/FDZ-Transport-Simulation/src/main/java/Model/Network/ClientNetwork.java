@@ -5,8 +5,8 @@ package Model.Network;
  */
 
 import Model.Command.CommandInterpreter;
+import Model.Exception.FDZNetworkException;
 import Model.Logger.LoggerInstance;
-
 import java.net.InetAddress;
 
 public class ClientNetwork extends ConnectionObservable{
@@ -17,19 +17,21 @@ public class ClientNetwork extends ConnectionObservable{
     private InetAddress ipAddr;
     //Adapter Port Nummer
     private int port;
-    //flag to stop Thread
+    //flag to stop Threads
     private volatile boolean isRunning = false;
+    //Received command from Adapter
     private String messageOutgoing;
+    //Connection Status
     private boolean connection=false;
 
     /**
      * Thread is waiting for Command from connected Adapter and send receiving message to CommandInterpreter
      */
-    Thread receiveMsg;
-    Thread firstConnect;
+    private Thread receiveMsg;
+    private Thread firstConnection;
 
     /**
-     * Creates a new Thread for CleintNetwork
+     * Init ClientNetwork witch IP and Port
      * @param ipAddr contains IP Address from Adapter
      * @param port contains Port Nummer of Adapter for Connection
      */
@@ -39,26 +41,31 @@ public class ClientNetwork extends ConnectionObservable{
     }
 
     /**
-     * Message Listener for incomming Message from Adapter
+     *
      */
      public void connect (){
+         //Create new Network Socket with given IP/Port
          if (!isRunning){
-             LoggerInstance.log.debug("Create new Network socket {}:{}",ipAddr.getAddress(),port);
+             LoggerInstance.log.debug("Create new Network Socket {}:{}",ipAddr.getAddress(),port);
             client = new Network(ipAddr, port);
              this.isRunning=true;
-        }else {
+        }
+        //Change IP/Port for existing Network Socket
+        else {
              LoggerInstance.log.debug("Changing IP-Address and Port-Number to {}:{}",ipAddr.getAddress(),port);
              client.setSocketAddr(ipAddr, port);
              try {
                  LoggerInstance.log.debug("Close existing Socket");
+                 //Need to close Socket because the Socket is already opened
                  client.closeSocket();
              } catch (FDZNetworkException e) {
                  LoggerInstance.log.warn("Cant close existing socket: ", new FDZNetworkException(e));
              }
          }
-        //Connect to Adapter
-        firstConnect = new Thread (){
+        //Connect to Adapter first time
+        firstConnection = new Thread (){
              public synchronized void run (){
+                 //tries to connect as long as connected to Adapter or User Interrupt
                  do{
                      try {
                          LoggerInstance.log.debug("Trying to open connection to Adapter: {}:{}",ipAddr.getAddress(),port);
@@ -73,6 +80,8 @@ public class ClientNetwork extends ConnectionObservable{
                          }
                      }
                  }while (!client.isConnected() && isRunning);
+
+                 //update connection status
                  if (isRunning){
                      setConnection(true);
                  }
@@ -81,13 +90,13 @@ public class ClientNetwork extends ConnectionObservable{
                      LoggerInstance.log.info("Succefull connected to Adapter: {}:{}",ipAddr.getAddress(),port);
                  }
 
-
+                 //Starts Thread that always waiting for Message from Adapter
                  if(isRunning){
                      receiveMsg.start();
                  }
              }
         };
-         firstConnect.start();
+         firstConnection.start();
 
 
 
@@ -100,14 +109,14 @@ public class ClientNetwork extends ConnectionObservable{
                  //wait and receive messages from Adapter
                  while (isRunning) {
                      try {
-
+                         //Wait for Command
                          messageIncomming = client.receiveMessage();
                          LoggerInstance.log.info("Received command: {}",messageIncomming);
+                         //Start Interpreter with receiving command
                          new CommandInterpreter(messageIncomming).start();
 
                      } catch (FDZNetworkException e) {
-                         LoggerInstance.log.info("Connection lost to Adapter: {}:{}",ipAddr.getAddress(),port);
-                         LoggerInstance.log.debug("Connection error: ", new FDZNetworkException(e));
+                         LoggerInstance.log.debug("Connection lost to Adapter: {}:{}",ipAddr.getAddress(),port);
                          try {
                              client.closeSocket();
                          } catch (FDZNetworkException e1) {
@@ -145,9 +154,14 @@ public class ClientNetwork extends ConnectionObservable{
     public void close (){
         if (client!=null){
             this.client.finalize();
+            LoggerInstance.log.info("Successfully disconnected from Adapter");
         }
     }
 
+    /**
+     * Starts Thread that tries to send Message to Adapter and stops only if message successfully send.
+     * @param message Answer of receiving Command
+     */
     public void sendMessage (String message){
         this.messageOutgoing=message;
         final Thread sendMsg = new Thread (){
@@ -164,7 +178,7 @@ public class ClientNetwork extends ConnectionObservable{
                         LoggerInstance.log.warn("Cant close existing socket: ", new FDZNetworkException(e1));
                     }
                     setConnection(false);
-                    //Reconnect if connection lost to Adapter
+                    //Reconnect if connection lost to Adapter and tries to send message again
                     while (!client.isConnected()&&isRunning) {
                         LoggerInstance.log.info("Trying to reconnect to Adapter: {}:{} ", ipAddr.getAddress(),port);
                         try {
@@ -188,11 +202,19 @@ public class ClientNetwork extends ConnectionObservable{
         sendMsg.start();
     }
 
+    /**
+     * Changes connection Status
+     * @param connection boolean state of connection Status
+     */
     private void setConnection (boolean connection){
         this.connection=connection;
         setChanged();
     }
 
+    /**
+     * Connection Status at the moment
+     * @return boolean state of connection Status
+     */
     public boolean connectionToAdapter (){
         return connection;
     }
@@ -214,7 +236,7 @@ public class ClientNetwork extends ConnectionObservable{
     }
 
     /**
-     * Thread will be stopped
+     * Stop connection to Adapter and stop all running Threads
      */
     public void setIsRunning (boolean isRunning){
         if(receiveMsg.isAlive()){
