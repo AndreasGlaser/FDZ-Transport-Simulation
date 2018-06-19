@@ -152,8 +152,19 @@ public class Station{
         }
     }
 
+    // TODO: 19.06.18 inline doc
+    public void setPathTime(Station prev, int time) throws NullPointerException{
+        for(PrevPair pair : prevStations){
+            if(pair.getPrevStation().equals(prev)){
+                pair.setPathTime(time);
+                return;
+            }
+        }
+        throw new NullPointerException("PrevStation not in List of PrevStations");
+    }
 
-    public void idFound(int id){
+
+    void idFound(int id){
         if( sledInside != null && sledInside == -1){
             setSledInside(id);
         }

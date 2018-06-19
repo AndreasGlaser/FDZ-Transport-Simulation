@@ -52,7 +52,7 @@ public class RequestEmptyCarriage extends Command {
                         path.get(i).driveInSled(-1);
                         path.get(i).driveOutSled();
                         try{
-                            sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1)));
+                            sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1))*1000);
                         }catch(InterruptedException e){
                             // TODO: 16.06.18 debug interruption
                         }

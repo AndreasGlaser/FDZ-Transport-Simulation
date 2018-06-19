@@ -127,6 +127,14 @@ public class Facade {
 
     public void setFastTime(boolean activated){
         TimeMode.fastModeActivated = activated;
+        System.out.println(activated +" timeMode");
     }
+
+    public void setPathTime(String stationName, String prevName, int time) throws NullPointerException {
+        Station station = stationHandler.getStationByName(stationName);
+        Station prev = stationHandler.getStationByName(prevName);
+        station.setPathTime(prev, time);
+    }
+
 
 }

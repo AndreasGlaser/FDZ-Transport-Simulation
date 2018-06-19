@@ -116,7 +116,7 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
                     "\t"+stationList.get(i).getPrevStations().size()+" prevs");
             for (int j = 0; j < prev.size(); j++) {
                 System.out.print(
-                        "\t| prev"+j+" = "+ prev.get(j).getPrevStation().getName() +"\n");
+                        "\t| prev"+j+" = "+ prev.get(j).getPrevStation().getName() + " " + prev.get(j).getPathTime() + "\n");
             }
             System.out.println("\n----END-----\n");
         }

@@ -51,16 +51,18 @@ public class RepositionCarriage extends Command {
                         station.driveOutSled();
                     });
                 }else{
+                    path.getFirst().driveOutSled();
                     try {
-                        sleep(TimeMode.findTimeForPath(path.getFirst(), path.get(1)));
+                        sleep(TimeMode.findTimeForPath(path.getFirst(), path.get(1))*1000);
                     }catch (InterruptedException | IndexOutOfBoundsException e){
                         // TODO: 16.06.18 debug interruption
                     }
+                    System.err.println(path.size());
                     for (int i=1; i<path.size()-1; i++){
                         try{
-                            path.get(i).driveInSled(-1);
+                            path.get(i).driveInSled(id);
                             path.get(i).driveOutSled();
-                            sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1)));
+                            sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1))*1000);
                         }catch(InterruptedException e){
                             // TODO: 16.06.18 debug interruption
                         }
