@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
+import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationObserver;
 import Persistance.StationData;
@@ -66,15 +67,10 @@ public class StationController extends AbstractStation implements StationObserve
 
     @FXML
     public void initialize(){
-        viewPane = rootPane;
-        parent.getChildren().add(viewPane);
+        super.initialize(rootPane, parent);
 
-
-
-        sledPane.getStyleClass().clear();
         sledPane.getStyleClass().add("yellow");
         sledText.setText("Empty");
-        congestionMenu.getStyleClass().clear();
         congestionMenu.getStyleClass().add("green");
         congestionMenu.setText("no Congestion");
 
@@ -84,18 +80,6 @@ public class StationController extends AbstractStation implements StationObserve
         setName(data.getName());
         setSledText("Empty");
 
-        //make Dragable
-        viewPane.setOnMousePressed(e ->{
-            sceneX = e.getSceneX();
-            sceneY = e.getSceneY();
-
-            dragXTrans = viewPane.getTranslateX();
-            dragYTrans = viewPane.getTranslateY();
-        });
-        viewPane.setOnMouseDragged(e->{
-            setXCord(e.getSceneX()  - sceneX + dragXTrans);
-            setYCord(e.getSceneY() - sceneY + dragYTrans);
-        });
 
         hopsBackBox.getItems().addAll(1,2,3,4,5,6,7,8,9);
         hopsBackBox.getSelectionModel().select(data.getHopsBack());
@@ -197,11 +181,19 @@ public class StationController extends AbstractStation implements StationObserve
                 prevStationTimeTextField.setTooltip(new Tooltip("Time in s to this station"));
                 prevStationTimeTextField.textProperty().addListener((observable, oldValue, newValue) -> {
                     try {
+                        prevStationTimeTextField.getStyleClass().remove("red");
+                        prevStationTimeTextField.getStyleClass().add("green");
                         for(Pair<String, Integer> pair: data.getPreviousStationsByName()){
-                            if(pair.getKey().equals(station.getName())) addPrevStation(new Pair<String, Integer>(pair.getKey(), Integer.parseInt(newValue)));
+                            if(pair.getKey().equals(station.getName())){
+                                addPrevStation(new Pair<>(pair.getKey(), Integer.parseInt(newValue)));
+                                addPrevStationInModel(station, Integer.parseInt(newValue));
+                                break;
+                            }
                         }
                     }catch (NumberFormatException e){
-                        prevStationTimeTextField.setText(oldValue);
+                        prevStationTimeTextField.getStyleClass().remove("green");
+                        prevStationTimeTextField.getStyleClass().add("red");
+
                     }
 
 
@@ -230,14 +222,19 @@ public class StationController extends AbstractStation implements StationObserve
     private void removePrevStationInModel(AbstractStation station) {
 
         if(station.getData().getstationType().equals(StationType.STATION)){
-            new Facade().deletePrevStation(data.getName(), station.getName());
+            try {
+                new Facade().deletePrevStation(data.getName(), station.getName());
+            }catch (NullPointerException e){
+                //no action is needed, this only means that there are more than on way the prevStation that should be deleted
+            }
+
+            System.out.println("removed " +station.getName());
         }else{
             for(Pair<String, Integer> stationPair: station.getPreviousStationsByName()){
                 for(AbstractStation station2: stations){
                     if(station2.getName().equals(stationPair.getKey())){
                         if(!data.getName().equals(stationPair.getKey())){
                             removePrevStationInModel(station2);
-                            System.out.println("removed " +station2.getName());
                         }
 
                     }
@@ -250,6 +247,7 @@ public class StationController extends AbstractStation implements StationObserve
 
         if(station.getData().getstationType().equals(StationType.STATION)){
             new Facade().addPrevStation(data.getName(), station.getName(), time);
+            System.out.println("GUI added: "+station.getName()+" as prevStation with time: "+ time + " to Station: "+ getName());
         }else{
             for(Pair<String, Integer> stationPair: station.getPreviousStationsByName()){
                 for(AbstractStation station2: stations){
@@ -316,12 +314,15 @@ public class StationController extends AbstractStation implements StationObserve
 
 
         ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
+        congestionMenu.getStyleClass().remove("red");
+        congestionMenu.getStyleClass().remove("green");
         congestionMenu.getItems().clear();
+        sledPane.getStyleClass().remove("yellow");
+        sledPane.getStyleClass().remove("blue");
+        sledPane.getStyleClass().remove("green");
         if (sleds.size() == 0 || sleds.get(0) == null){
-            sledPane.getStyleClass().clear();
             sledPane.getStyleClass().add("yellow");
             sledText.setText("Empty");
-            congestionMenu.getStyleClass().clear();
             congestionMenu.getStyleClass().add("green");
             congestionMenu.setText("no Congestion");
         }else if(sleds.size() > 0){
@@ -330,7 +331,6 @@ public class StationController extends AbstractStation implements StationObserve
                 congestionMenu.getItems().add(new MenuItem(sledId.toString()));
             }
 
-            sledPane.getStyleClass().clear();
             if(sleds.get(0) != null){
                 if(sleds.get(0).equals(-1)){
                     sledText.setText("Empty Sled");
@@ -340,9 +340,6 @@ public class StationController extends AbstractStation implements StationObserve
                     sledPane.getStyleClass().add("green");
                 }
             }
-
-
-            congestionMenu.getStyleClass().clear();
             if(sleds.size()>1){
                 congestionMenu.getStyleClass().add("red");
                 congestionMenu.setText("Congestion");
@@ -356,4 +353,7 @@ public class StationController extends AbstractStation implements StationObserve
     }
 
 
+    public void updatePrevStations(AbstractStation station, Integer time) {
+        addPrevStationInModel(station, time);
+    }
 }

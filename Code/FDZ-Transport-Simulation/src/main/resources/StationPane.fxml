@@ -19,7 +19,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="133.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox alignment="TOP_CENTER" minHeight="-Infinity" prefHeight="133.0" prefWidth="172.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
                   <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                      <font>
@@ -37,13 +37,13 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </VBox.margin>
                   </BorderPane>
-                  <MenuButton fx:id="congestionMenu" mnemonicParsing="false" text="Congestion" />
+                  <MenuButton fx:id="congestionMenu" mnemonicParsing="false" prefHeight="25.0" text="no Congestion" />
                </children>
             </VBox>
          </children>
       </GridPane>
       <Button fx:id="stationOptionsButton" mnemonicParsing="false" onAction="#openCloseStationOptions" styleClass="stationOptionButton" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0" />
-      <VBox fx:id="stationOptionsPane" layoutX="13.0" layoutY="-56.0" prefHeight="410.0" prefWidth="234.0" styleClass="stationOptions" visible="false">
+      <VBox fx:id="stationOptionsPane" layoutX="13.0" layoutY="-56.0" prefHeight="486.0" prefWidth="234.0" spacing="5.0" styleClass="stationOptions" visible="false">
          <children>
             <AnchorPane prefHeight="37.0" prefWidth="172.0">
                <children>
@@ -59,7 +59,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Stations back to SledStorage:" wrappingWidth="176.927734375" />
             <ChoiceBox fx:id="hopsBackBox" prefWidth="150.0" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Previous Station:" />
-            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" vbarPolicy="ALWAYS">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
@@ -68,6 +68,9 @@
               </content>
             </ScrollPane>
          </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>

@@ -1,6 +1,7 @@
 package View;
 
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -8,7 +9,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 
-class BeltNode extends Pane {
+class BeltNode extends Group {
 
 	public BeltNode(AbstractStation fromStation, AbstractStation toStation){
 		Double fromXOffset = 120.;
@@ -78,7 +79,7 @@ class BeltNode extends Pane {
 			belt = Shape.union(belt, triangle);
 		}
 		belt.setFill(beltColor);
-		getChildren().add(belt);
+
 
 		if(fromPoint.getY()<toPoint.getY()){
 			belt.getTransforms().add(
@@ -89,7 +90,6 @@ class BeltNode extends Pane {
 					new Rotate(-xAxis.angle(toPoint.subtract(fromPoint)),
 							fromPoint.getX(), fromPoint.getY()));
 		}
-
-
+		getChildren().add(belt);
 	}
 }

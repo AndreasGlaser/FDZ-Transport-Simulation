@@ -12,9 +12,17 @@
    <children>
       <GridPane>
          <children>
-            <AnchorPane prefHeight="421.0" prefWidth="648.0" GridPane.columnIndex="1">
+            <ScrollPane prefViewportHeight="420.0" prefViewportWidth="570.0" GridPane.columnIndex="1">
+               <content>
+                  <Pane fx:id="stationsPane">
+                     <padding>
+                        <Insets bottom="80.0" right="140.0" />
+                     </padding>
+                  </Pane>
+               </content>
+            </ScrollPane>
+            <AnchorPane pickOnBounds="false" GridPane.columnIndex="1">
                <children>
-                  <Pane fx:id="stationsPane" maxHeight="0.0" maxWidth="0.0" />
                   <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#openCloseOptions" styleClass="optionButton" text="" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                   <VBox fx:id="optionMenu" layoutX="398.0" spacing="10.0" styleClass="optionMenu" visible="false" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="65.0">
                      <children>
@@ -30,7 +38,7 @@
                   </VBox>
                </children>
             </AnchorPane>
-            <GridPane fx:id="controllerGridPane" maxWidth="230.0" minWidth="230.0" styleClass="connectionPane" vgap="5.0">
+            <GridPane fx:id="controllerGridPane" styleClass="connectionPane" vgap="5.0">
                <children>
                   <ImageView fx:id="simulatorImageView" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
                      <image>
@@ -110,7 +118,7 @@
             </GridPane>
          </children>
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="340.44000000000005" minWidth="10.0" percentWidth="17.0" prefWidth="234.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="230.0" prefWidth="230.0" />
             <ColumnConstraints hgrow="SOMETIMES" />
          </columnConstraints>
          <rowConstraints>
@@ -119,16 +127,8 @@
       </GridPane>
       <GridPane styleClass="loggingPane" GridPane.rowIndex="1">
          <children>
-            <ScrollPane prefWidth="200.0">
-               <content>
-                  <TextArea fx:id="textArea" />
-               </content>
-            </ScrollPane>
-            <ScrollPane prefWidth="200.0" GridPane.columnIndex="2">
-               <content>
-                  <VBox fx:id="statusPane" prefHeight="200.0" prefWidth="100.0" />
-               </content>
-            </ScrollPane>
+            <TextArea fx:id="logTextArea" />
+            <TextArea fx:id="statusTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
          </children>
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
@@ -140,7 +140,7 @@
          </rowConstraints>
       </GridPane>
       <BorderPane fx:id="messagePane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" />
-      <Pane maxWidth="1.0">
+      <Pane maxWidth="1.0" pickOnBounds="false">
          <children>
             <GridPane fx:id="disconnectedIpPane" hgap="1.0" maxWidth="350.0" minHeight="120.0" styleClass="disconnectedIpPane" vgap="2.0">
                <children>
