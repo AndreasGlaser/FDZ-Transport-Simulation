@@ -139,7 +139,7 @@ public class NetworkController extends ConnectionObservable implements Connectio
      * @param msgID messageID from received Command
      */
     public void acknowledge2 (String msgID){
-        String message = ACK2_HEAD+msgID+ACK2_CNRD_END;
+        String message = ACK2_HEAD+msgID+ACK1_CNU_CNE_CE_END;
         LoggerInstance.log.info("Send ACK02: {} to Adapter",message);
         clientNetwork.sendMessage(message);
     }
