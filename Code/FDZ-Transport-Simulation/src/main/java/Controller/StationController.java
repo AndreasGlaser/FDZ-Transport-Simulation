@@ -8,6 +8,7 @@ import Model.Station.StationObserver;
 import Persistance.StationData;
 import Persistance.StationType;
 import View.AbstractStation;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -324,48 +325,48 @@ public class StationController extends AbstractStation implements StationObserve
 
     @Override
     public void update(Station station) {
+        Platform.runLater(() -> {
+            setName(station.getName());
+            setShortcut(station.getShortCut());
+            setHopsBack(station.getHopsToNewCarriage());
 
-        setName(station.getName());
-        setShortcut(station.getShortCut());
-        setHopsBack(station.getHopsToNewCarriage());
-        //TODO übernehmen der Änderungen an den prevstations die in der cli gemacht wurden
-
-
-        ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
-        congestionMenu.getStyleClass().remove("red");
-        congestionMenu.getStyleClass().remove("green");
-        congestionMenu.getItems().clear();
-        sledPane.getStyleClass().remove("yellow");
-        sledPane.getStyleClass().remove("blue");
-        sledPane.getStyleClass().remove("green");
-        if (sleds.size() == 0 || sleds.get(0) == null){
-            sledPane.getStyleClass().add("yellow");
-            sledText.setText("Empty");
-            congestionMenu.getStyleClass().add("green");
-            congestionMenu.setText("no Congestion");
-        }else if(sleds.size() > 0){
-            for(Integer sledId: sleds){
-                if(sledId == null)continue;
-                congestionMenu.getItems().add(new MenuItem(sledId.toString()));
-            }
-
-            if(sleds.get(0) != null){
-                if(sleds.get(0).equals(-1)){
-                    sledText.setText("Empty Sled");
-                    sledPane.getStyleClass().add("blue");
-                }else{
-                    sledText.setText("Sled with Pallet "+ sleds.get(0));
-                    sledPane.getStyleClass().add("green");
-                }
-            }
-            if(sleds.size()>1){
-                congestionMenu.getStyleClass().add("red");
-                congestionMenu.setText("Congestion");
-            }else {
+            ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
+            congestionMenu.getStyleClass().remove("red");
+            congestionMenu.getStyleClass().remove("green");
+            congestionMenu.getItems().clear();
+            sledPane.getStyleClass().remove("yellow");
+            sledPane.getStyleClass().remove("blue");
+            sledPane.getStyleClass().remove("green");
+            if (sleds.size() == 0 || sleds.get(0) == null){
+                sledPane.getStyleClass().add("yellow");
+                sledText.setText("Empty");
                 congestionMenu.getStyleClass().add("green");
                 congestionMenu.setText("no Congestion");
+            }else if(sleds.size() > 0){
+                for(Integer sledId: sleds){
+                    if(sledId == null)continue;
+                    congestionMenu.getItems().add(new MenuItem(sledId.toString()));
+                }
+
+                if(sleds.get(0) != null){
+                    if(sleds.get(0).equals(-1)){
+                        sledText.setText("Empty Sled");
+                        sledPane.getStyleClass().add("blue");
+                    }else{
+                        sledText.setText("Sled with Pallet "+ sleds.get(0));
+                        sledPane.getStyleClass().add("green");
+                    }
+                }
+                if(sleds.size()>1){
+                    congestionMenu.getStyleClass().add("red");
+                    congestionMenu.setText("Congestion");
+                }else {
+                    congestionMenu.getStyleClass().add("green");
+                    congestionMenu.setText("no Congestion");
+                }
             }
-        }
+        });
+
 
 
     }

@@ -9,6 +9,7 @@ import Persistance.IPAddress;
 import Persistance.StationData;
 import Persistance.StationType;
 import View.AbstractStation;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -300,18 +301,21 @@ public class GUIController implements ConnectionObserver{
 
 	@Override
 	public void update() {
-		controllerConnectionArrow.getStyleClass().clear();
-		System.out.println("isConnencted() returns "+facade.isConnected());
-		if(facade.isConnected()){
-			controllerConnectionArrow.getStyleClass().add("green");
-			disconnectedIpPane.setVisible(false);
-			ipAddressText.setText(ipAddress.toIPAddress());
-			setOptionsActive(false);
-		}else {
-			controllerConnectionArrow.getStyleClass().add("red");
-			disconnectedIpPane.setVisible(true);
-			setOptionsActive(true);
-		}
+		Platform.runLater(() -> {
+			controllerConnectionArrow.getStyleClass().clear();
+			System.out.println("isConnencted() returns "+facade.isConnected());
+			if(facade.isConnected()){
+				controllerConnectionArrow.getStyleClass().add("green");
+				disconnectedIpPane.setVisible(false);
+				ipAddressText.setText(ipAddress.toIPAddress());
+				setOptionsActive(false);
+			}else {
+				controllerConnectionArrow.getStyleClass().add("red");
+				disconnectedIpPane.setVisible(true);
+				setOptionsActive(true);
+			}
+		});
+
 	}
 
 
