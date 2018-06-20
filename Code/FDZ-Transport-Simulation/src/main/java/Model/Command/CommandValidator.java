@@ -102,7 +102,7 @@ class CommandValidator {
         if(position != null && position.length() != 2){
             throw new IllegalCommandException("Length of position not 2");
         }
-        if(StationHandler.getInstance().getStationByShortCut(position) == null){
+        if(position != null && StationHandler.getInstance().getStationByShortCut(position) == null){
             throw new IllegalCommandException("Position not known to system");
         }
     }
