@@ -94,8 +94,12 @@ public class NetworkController extends ConnectionObservable implements Connectio
     public boolean commandNotUnterstood (String msgID){
         final String CNU_HEAD = "StSTF000";
         String message = CNU_HEAD+msgID+ACK1_CNU_CNE_CE_END;
-        LoggerInstance.log.info("Send command not understood: {} to Adapter",message);
-        clientNetwork.sendMessage(message);
+        if(msgID!=null) {
+            LoggerInstance.log.info("Send command not understood: {} to Adapter", message);
+            clientNetwork.sendMessage(message);
+        }else {
+            LoggerInstance.log.error("Illegel command: {}",message);
+        }
         return true;
     }
 

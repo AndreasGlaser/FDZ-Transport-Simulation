@@ -17,7 +17,7 @@ public class CommandInterpreter extends Thread {
 
     private final String command;
     private String position, messageID;
-    private int commandNum = -1, beginMesID = -1;
+    private int commandNum = -1, beginMesID = 8;
     private Integer carriageID = null, paramCount = null;
 
     /*--CONSTRUCTOR--------------------------------------------------------------*/
@@ -103,10 +103,10 @@ public class CommandInterpreter extends Thread {
      */
     private void parseValues() throws IllegalCommandException{
         this.commandNum = parseCommandNum();
+        this.messageID = parseMessageID();
         this.paramCount = parseParamCount();
         this.position = parsePosition();
         this.carriageID = parseCarriageID();
-        this.messageID = parseMessageID();
         LoggerInstance.log.debug("Done Parsing Values of Message "+ messageID);
     }
 
@@ -134,7 +134,6 @@ public class CommandInterpreter extends Thread {
             throw new IllegalCommandException(mes);
         }
         try{
-            this.beginMesID = cntIndex+1;   //messageID begins
             return Integer.parseInt(Character.toString(chars[cntIndex]));
         }catch(NumberFormatException e){
             LoggerInstance.log.error("No Number at Position where CommandNum is expected", e);
@@ -235,32 +234,11 @@ public class CommandInterpreter extends Thread {
      */
     private String parseMessageID(){
         /*STStK00.<??>..*/
-        int end = command.length();
-        if(commandNum == 1 || commandNum == 2){
-            try {
-                return command.substring(beginMesID, end-6);
-            }catch(StringIndexOutOfBoundsException sEx){
-                LoggerInstance.log.error(sEx.getMessage(), sEx);
-                return null;
-            }
+        try{
+            return command.substring(beginMesID, beginMesID+13);
+        }catch(StringIndexOutOfBoundsException e){
+            return null;
         }
-        if(commandNum == 3){
-            try {
-                return command.substring(beginMesID, end-8);
-            }catch(StringIndexOutOfBoundsException sEx){
-                LoggerInstance.log.error(sEx.getMessage(), sEx);
-                return null;
-            }
-        }
-        if(commandNum == 4){
-            try {
-                return command.substring(beginMesID, end-4);
-            }catch(StringIndexOutOfBoundsException sEx){
-                LoggerInstance.log.error(sEx.getMessage(), sEx);
-                return null;
-            }
-        }
-        return null;
     }
 
 }
