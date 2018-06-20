@@ -186,7 +186,7 @@ public class StationController extends AbstractStation implements StationObserve
                         for(Pair<String, Integer> pair: data.getPreviousStationsByName()){
                             if(pair.getKey().equals(station.getName())){
                                 addPrevStation(new Pair<>(pair.getKey(), Integer.parseInt(newValue)));
-                                addPrevStationInModel(station, Integer.parseInt(newValue));
+                                updatePrevStationTimeInModel(station, Integer.parseInt(newValue));
                                 break;
                             }
                         }
@@ -254,6 +254,24 @@ public class StationController extends AbstractStation implements StationObserve
                     if(station2.getName().equals(stationPair.getKey())){
                         if(!data.getName().equals(stationPair.getKey())){
                             addPrevStationInModel(station2, time + stationPair.getValue());
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+    private void updatePrevStationTimeInModel(AbstractStation station, int time) {
+
+        if(station.getData().getstationType().equals(StationType.STATION)){
+            new Facade().setPathTime(data.getName(), station.getName(), time);
+            System.out.println("GUI updated: "+station.getName()+" as prevStation with time: "+ time + " to Station: "+ getName());
+        }else{
+            for(Pair<String, Integer> stationPair: station.getPreviousStationsByName()){
+                for(AbstractStation station2: stations){
+                    if(station2.getName().equals(stationPair.getKey())){
+                        if(!data.getName().equals(stationPair.getKey())){
+                            updatePrevStationTimeInModel(station2, time + stationPair.getValue());
                         }
 
                     }
@@ -354,6 +372,6 @@ public class StationController extends AbstractStation implements StationObserve
 
 
     public void updatePrevStations(AbstractStation station, Integer time) {
-        addPrevStationInModel(station, time);
+        updatePrevStationTimeInModel(station, time);
     }
 }
