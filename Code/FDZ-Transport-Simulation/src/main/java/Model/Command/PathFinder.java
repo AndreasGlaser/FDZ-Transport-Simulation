@@ -1,6 +1,7 @@
 package Model.Command;
 
 import Model.Exception.IllegalSetupException;
+import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ public class PathFinder {
      * @throws NullPointerException thrown if the stations are not known or null
      */
     public PathFinder(Station from, Station to) throws  IllegalSetupException, NullPointerException {
+        LoggerInstance.log.debug("Trying to find Path for Reposition Command");
         checkPath(from, to);
     }
 
@@ -34,6 +36,7 @@ public class PathFinder {
      * @throws NullPointerException thrown if the stations are not known or null
      */
     public PathFinder(Station station, int hops) throws  IllegalSetupException, NullPointerException{
+        LoggerInstance.log.debug("Trying to find Path for RequestEmptyCarriage Command");
         checkPath(hops, station);
     }
 
@@ -42,6 +45,9 @@ public class PathFinder {
      * @return Path requested in one of the Constructors
      */
     public LinkedList<Station> getPath(){
+        final StringBuilder builder = new StringBuilder();
+        path.stream().forEachOrdered(station ->  builder.append("|"+station.getName()+"|"));
+        LoggerInstance.log.debug("Returning Path: " + builder.toString());
         return path;
     }
 

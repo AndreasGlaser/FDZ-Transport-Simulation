@@ -1,10 +1,8 @@
 import Model.Command.PathFinder;
-import Model.Exception.CongestionException;
 import Model.Exception.IllegalSetupException;
 import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,8 +11,9 @@ import java.util.LinkedList;
 
 import static org.junit.Assert.fail;
 
-/**@author nlehmann */
-
+/**
+ *@author nlehmann
+ */
 public class PathFinderTest {
 
     private ArrayList<Station> stations = StationHandler.getInstance().getStationList();
@@ -48,8 +47,6 @@ public class PathFinderTest {
         NetworkController.getInstance().testCommand("STStK0011527162650:000002la");
         try{
             new PathFinder(inOut,robot);
-        }catch (CongestionException e){
-            Assert.assertEquals(e.getBlockingStation(), stock);
         }catch (IllegalSetupException e){}
     }
     @Test
@@ -57,8 +54,6 @@ public class PathFinderTest {
         NetworkController.getInstance().testCommand("STStK0011527162650:000002la");
         try{
             new PathFinder(robot,2);
-        }catch (CongestionException e){
-            Assert.assertEquals(e.getBlockingStation(), stock);
         }catch (IllegalSetupException e){
             System.err.println("Wrong TestSetup");
         }
@@ -68,8 +63,6 @@ public class PathFinderTest {
         twoExtraStations();
         try {
             new PathFinder(robot,robot.getHopsToNewCarriage());
-        }catch(CongestionException e){
-            fail("Should not be Congested");
         }catch (IllegalSetupException e){
             System.err.println("Wrong TestSetup");
         }

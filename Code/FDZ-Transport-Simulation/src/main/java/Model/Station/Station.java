@@ -197,6 +197,7 @@ public class Station{
      * @throws NullPointerException thrown if the Station is null or not in the prevList
      */
     public void deletePrevStation(Station station){
+        // TODO: 20.06.18 foreach removes objects
         this.prevStations.stream().filter(prevPair -> prevPair.getPrevStation() == station).forEach(prevPair -> {
             this.prevStations.remove(prevPair);
             this.setChanged();

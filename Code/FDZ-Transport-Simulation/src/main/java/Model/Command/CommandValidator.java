@@ -1,6 +1,7 @@
 package Model.Command;
 
 import Model.Exception.IllegalCommandException;
+import Model.Logger.LoggerInstance;
 import Model.Station.StationHandler;
 
 /**
@@ -23,6 +24,7 @@ class CommandValidator {
      * @throws IllegalCommandException if the Command is not valid
      */
     public CommandValidator(String command, String messageID, String position, Integer commandNum, Integer paramCount, Integer id) throws IllegalCommandException {
+        LoggerInstance.log.debug("Starting Command Validation for "+ messageID);
         this.commandNum = commandNum;
         this.validateCommand(command);
         this.validateCommandNum(commandNum);
@@ -30,6 +32,7 @@ class CommandValidator {
         this.validateParamCount(paramCount);
         this.validatePosition(position);
         this.validateID(id);
+        LoggerInstance.log.info("Successfully Validated Command with MessageID " + messageID);
     }
 
     private void validateCommand(String command) throws IllegalCommandException{
