@@ -300,7 +300,6 @@ public class StationController extends AbstractStation implements StationObserve
     @FXML
     private void closeStationOptions(){
         stationOptionsPane.setVisible(false);
-        statePersistor.loadState(rootPane,stations,ipAddress);
     }
 
     public void setName(String name){

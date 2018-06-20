@@ -17,11 +17,24 @@ public class StatePersistor extends Persistor{
     private static Path stationsPath = Paths.get("state/stations.txt");
     private static Path ipPath = Paths.get("state/ip.txt");
     private static Path sledsPath = Paths.get("state/sleds.txt");
-
+    private static File sledsFile = sledsPath.toFile();
+    private static File stationsFile = stationsPath.toFile();
+    private static File ipFile = ipPath.toFile();
 
     public StatePersistor() {
         super(stationsPath, ipPath);
     }
+
+    public static Boolean isFilesExist(){
+        return sledsFile.exists() && stationsFile.exists() && ipFile.exists();
+    }
+    public static void deleteFiles(){
+        System.out.println("deleting files");
+        sledsFile.delete();
+        stationsFile.delete();
+        ipFile.delete();
+    }
+
 
     public Boolean isStateFileExisting(){
         return true;//TODO: überprüfen ob alle drei Dateien vorhanden sind
@@ -65,5 +78,7 @@ public class StatePersistor extends Persistor{
         });
         return gson.toJson(sleds);
     }
+
+
 }
 

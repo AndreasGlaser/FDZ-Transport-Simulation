@@ -4,10 +4,7 @@ import Model.Facade;
 import Model.Logger.OwnOutputStreamAppender;
 import Model.Logger.TextAreaOutputStream;
 import Model.Network.ConnectionObserver;
-import Persistance.ConfigurationPersistor;
-import Persistance.IPAddress;
-import Persistance.StationData;
-import Persistance.StationType;
+import Persistance.*;
 import View.AbstractStation;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
@@ -242,6 +239,11 @@ public class GUIController implements ConnectionObserver{
 		configurationPersistor.loadConfiguration(stationsPane, stations, ipAddress);
 		showIPAddress();
 	}
+	public void loadState(){
+		StatePersistor statePersistor = new StatePersistor();
+		statePersistor.loadState(stationsPane,stations,ipAddress);
+		showIPAddress();
+	}
 
 	@FXML
 	private void connect(){
@@ -269,10 +271,9 @@ public class GUIController implements ConnectionObserver{
 
 	public void askForSaving(Stage primaryStage){
 		messagePane.setMouseTransparent(false);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/MessagePane.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/AskForSavingMessagePane.fxml"));
 		try {
-			loader.setControllerFactory(c -> new MessageController("Save configuration?",
-                    "The configuration has not been saved, do you want to save it now?",
+			loader.setControllerFactory(c -> new MessageController(
                     this,
                     primaryStage,
                     messagePane));
@@ -284,6 +285,21 @@ public class GUIController implements ConnectionObserver{
 			e.printStackTrace();//TODO: exceptionhandling
 		}
 
+	}
+	public void askForRestore(){
+		messagePane.setMouseTransparent(false);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/AskForRestoreMessagePane.fxml"));
+		try {
+			loader.setControllerFactory(c -> new AskForRestoreMessageController(
+					this,
+					messagePane));
+			Pane message = loader.load();
+			messagePane.setCenter(message);
+
+
+		} catch (IOException e) {
+			e.printStackTrace();//TODO: exceptionhandling
+		}
 	}
 
 	public Boolean isConfigurationSaved(){

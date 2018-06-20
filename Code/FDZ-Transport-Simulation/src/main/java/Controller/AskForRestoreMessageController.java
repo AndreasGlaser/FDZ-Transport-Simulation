@@ -2,21 +2,11 @@ package Controller;
 
 import Persistance.StatePersistor;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.util.function.Function;
-
-/**
- * The Controller for pop-up-messages
- * @author Andreas Glaser
- *
- *
- */
-public class MessageController {
-
+public class AskForRestoreMessageController {
 	@FXML
 	private Label detailsLabel;
 	@FXML
@@ -24,16 +14,14 @@ public class MessageController {
 
 	private final String details;
 	private final String message;
-	private final GUIController GUIController;
-	private final Stage primaryStage;
+	private final GUIController guiController;
 	private final Pane messagePane;
 
 
-	public MessageController(GUIController GUIController, Stage primaryStage, Pane messagePane){
-		this.details = "Save configuration?";
-		this.message = "The configuration has not been saved, do you want to save it now?";
-		this.GUIController = GUIController;
-		this.primaryStage = primaryStage;
+	public AskForRestoreMessageController(GUIController guiController, Pane messagePane){
+		this.details = "The application was not closed correct.";
+		this.message = "Do you want to restore the last state?";
+		this.guiController = guiController;
 		this.messagePane = messagePane;
 	}
 
@@ -47,15 +35,16 @@ public class MessageController {
 
 	@FXML
 	private void noPressed(){
-		primaryStage.close();
+		guiController.loadConfiguration();
+		closeThisWindow();
 	}
 	@FXML
 	private void yesPressed(){
-		GUIController.saveConfiguration();
-		primaryStage.close();
+		guiController.loadState();
+		closeThisWindow();
 	}
-	@FXML
-	private void cancelPressed(){
+
+	private void closeThisWindow(){
 		messagePane.setMouseTransparent(true);
 		messagePane.getChildren().clear();
 	}
