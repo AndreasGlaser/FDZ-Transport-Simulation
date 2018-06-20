@@ -1,7 +1,10 @@
 package Model.Command;
 
 import Model.Exception.IllegalCommandException;
+import Model.Logger.LoggerInstance;
 import Model.Network.NetworkController;
+
+import java.util.Date;
 
 /**
  * @author nlehmann
@@ -24,6 +27,7 @@ public class CommandInterpreter extends Thread {
      * @param command the full String received by the NetworkController
      */
     public CommandInterpreter(String command) {
+        LoggerInstance.log.debug("Interpreter started");
         this.command = command;
     }
 
@@ -33,38 +37,36 @@ public class CommandInterpreter extends Thread {
             this.parseValues();
             new CommandValidator(command, messageID, position, commandNum, paramCount, carriageID);
         }catch(IllegalCommandException e){
+            LoggerInstance.log.warn("Interpreter couldn't find right Command for input Message!");
             error(messageID);
         }
 
-        System.out.println("\t log: \n" +
-                "\t\tcommandNum = " + commandNum + "\n" +
-                "\t\tcarriageID = " + carriageID + "\n" +
-                "\t\tposition   = " + position + "\n" +
-                "\t\tmessageID  = " + messageID);
-
         switch (this.commandNum) {
             case 1:
-                System.out.println("\t log: " + "interpreted case 1");
+                LoggerInstance.log.info("Interpreted RequestEmptyCarriage to " + position +" Command");
                 CommandQueue.getInstance().add(new RequestEmptyCarriage(position, messageID));
+                LoggerInstance.log.debug("Added new RequestEmptyCarriage Command to Queue");
                 acknowledge(messageID);
                 break;
             case 2:
-                System.out.println("\t log: " + "interpreted case 2");
+                LoggerInstance.log.info("Interpreted ReleaseCarriage " + carriageID + " Command");
                 CommandQueue.getInstance().add(new ReleaseCarriage(carriageID, messageID));
+                LoggerInstance.log.debug("Added new ReleaseCarriage Command to Queue");
                 acknowledge(messageID);
                 break;
             case 3:
-                System.out.println("\t log: " + "interpreted case 3");
+                LoggerInstance.log.info("Interpreted RepositionCarriage " + carriageID +" to " + position + " Command");
                 CommandQueue.getInstance().add(new RepositionCarriage(carriageID, position, messageID));
+                LoggerInstance.log.debug("Adding new RepositionCarriage Command to Queue");
                 acknowledge(messageID);
                 break;
             case 4:
-                System.out.println("\t log: " + "interpreted case 4");
+                LoggerInstance.log.info("Interpreted ShutdownTransportCommand at "+ new Date(System.currentTimeMillis()).toString());
                 CommandQueue.getInstance().add(new ShutdownTransport(messageID));
+                LoggerInstance.log.debug("Adding new ShutdownTransport Command to Queue");
                 acknowledge(messageID);
                 break;
             default:
-                System.out.println("\t log: default");
                 error(messageID);
         }
     }
@@ -76,6 +78,7 @@ public class CommandInterpreter extends Thread {
     private void acknowledge(String messageID){
         if(NetworkController.getInstance().acknowledge1(messageID)) {
             CommandQueue.getInstance().activate(messageID);
+            LoggerInstance.log.debug("Activated Command with MessageID "+ messageID);
         }
     }
 
@@ -84,6 +87,7 @@ public class CommandInterpreter extends Thread {
      * @param messageID Message ID of the Command
      */
     private void error(String messageID){
+        LoggerInstance.log.warn("Interpreter couldn't find right Command for input Message!");
         NetworkController.getInstance().commandNotUnterstood(messageID);
     }
 
@@ -100,6 +104,7 @@ public class CommandInterpreter extends Thread {
         this.position = parsePosition();
         this.carriageID = parseCarriageID();
         this.messageID = parseMessageID();
+        LoggerInstance.log.debug("Done Parsing Values of Message "+ messageID);
     }
 
     /**
@@ -121,21 +126,20 @@ public class CommandInterpreter extends Thread {
                 cntIndex++;                     //find commandNum
             }
         }catch(ArrayIndexOutOfBoundsException e){
-            String mes = "\t\t\tCommandInterpreter at: parseCommandNum(); \n" +
-                    "\t\t\tUnable to read Command (empty)";
+            LoggerInstance.log.error("Unable to read Command (empty): ", e);
+            String mes = "CommandInterpreter at: parseCommandNum(). Unable to read Command (empty)";
             throw new IllegalCommandException(mes);
         }
         try{
             this.beginMesID = cntIndex+1;   //messageID begins
             return Integer.parseInt(Character.toString(chars[cntIndex]));
         }catch(NumberFormatException e){
-            String mes = "\t\t\tCommandInterpreter at: parseCommandNum(); \n" +
-                    "\t\t\tNo Number at Position where CommandNum\n" +
-                    "\t\t\tis expected";
+            LoggerInstance.log.error("No Number at Position where CommandNum is expected", e);
+            String mes = "CommandInterpreter at: parseCommandNum(). No Number at Position where CommandNum is expected";
             throw new IllegalCommandException(mes);      //invalid command
-        }catch(ArrayIndexOutOfBoundsException aEx){
-            String mes = "\t\t\tCommandInterpreter at: parseCommandNum(); \n" +
-                    "\t\t\tUnable to read Command (empty)";
+        }catch(ArrayIndexOutOfBoundsException e){
+            LoggerInstance.log.error("Unable to read Command (empty)", e);
+            String mes = "CommandInterpreter at: parseCommandNum(). Unable to read Command (empty)";
             throw new IllegalCommandException(mes);
         }
     }
@@ -149,6 +153,7 @@ public class CommandInterpreter extends Thread {
         try{
             return Integer.parseInt(command.substring(24,25));
         }catch (NumberFormatException | IndexOutOfBoundsException e){
+            LoggerInstance.log.error("Parameter Count is null", e);
             throw new IllegalCommandException("Parameter Count is null");
         }
     }
@@ -168,9 +173,10 @@ public class CommandInterpreter extends Thread {
             String sub = command.substring(end - 1, end + 1);
             try {
                 Integer.parseInt(sub);
-                String mes = "\t\t\tCommandInterpreter at: parsePosition(); \n" +
-                        "\t\t\tNumber found, where Position expected";
-                throw new IllegalCommandException(mes);      //no number expected
+                String mes = "CommandInterpreter at: parsePosition(). Number found, where Position expected";
+                IllegalCommandException e = new IllegalCommandException(mes);
+                LoggerInstance.log.error("Number found, where Position expected", e);
+                throw e;      //no number expected
             } catch (NumberFormatException e) {
                 return sub;
             }
@@ -196,8 +202,8 @@ public class CommandInterpreter extends Thread {
                 try {
                     return Integer.parseInt(sub);   //number expected
                 } catch (NumberFormatException e) {
-                    String mes = "\t\t\tCommandInterpreter at: parseCarriageID();\n" +
-                            "\t\t\tNo ID found, where expected [at last 2]";
+                    LoggerInstance.log.error("No ID found, where expected [at last 2]", e);
+                    String mes = "CommandInterpreter at: parseCarriageID(). No ID found, where expected [at last 2]";
                     throw new IllegalCommandException(mes);    //no id found
                 }
             } else if (paramCount != null && paramCount == 4 && commandNum == 3) {
@@ -205,15 +211,15 @@ public class CommandInterpreter extends Thread {
                 try {
                     return Integer.parseInt(sub);   //number expected
                 } catch (NumberFormatException e) {
-                    String mes = "\t\t\tCommandInterpreter at: parseCarriageID();\n" +
-                            "\t\t\tNo ID found, where expected\n" +
-                            "\t\t\t[at 3rd+4th last]";
+                    LoggerInstance.log.error("No ID found, where expected [at 3rd+4th last]", e);
+                    String mes = "CommandInterpreter at: parseCarriageID(). No ID found, where expected [at 3rd+4th last]";
                     throw new IllegalCommandException(mes);    //no id found
                 }
             }
-            String mes = "\t\t\tCommandInterpreter at: parseCarriageID(); \n" +
-                    "\t\t\tNo ID found, where expected";
-            throw new IllegalCommandException(mes);    //no id found
+            String mes = "CommandInterpreter at: parseCarriageID(); No ID found, where expected";
+            IllegalCommandException e = new IllegalCommandException(mes);    //no id found
+            LoggerInstance.log.error("No ID found, where expected", e);
+            throw e;
         }else{
             return -1;
         }
@@ -231,7 +237,7 @@ public class CommandInterpreter extends Thread {
             try {
                 return command.substring(beginMesID, end-6);
             }catch(StringIndexOutOfBoundsException sEx){
-                System.out.println(sEx.getMessage());
+                LoggerInstance.log.error(sEx.getMessage(), sEx);
                 return null;
             }
         }
@@ -239,7 +245,7 @@ public class CommandInterpreter extends Thread {
             try {
                 return command.substring(beginMesID, end-8);
             }catch(StringIndexOutOfBoundsException sEx){
-                System.out.println(sEx.getMessage());
+                LoggerInstance.log.error(sEx.getMessage(), sEx);
                 return null;
             }
         }
@@ -247,7 +253,7 @@ public class CommandInterpreter extends Thread {
             try {
                 return command.substring(beginMesID, end-4);
             }catch(StringIndexOutOfBoundsException sEx){
-                System.out.println(sEx.getMessage());
+                LoggerInstance.log.error(sEx.getMessage(), sEx);
                 return null;
             }
         }
