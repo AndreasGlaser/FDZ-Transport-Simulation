@@ -31,6 +31,8 @@ public class AppStarter extends Application {
         GUIController GUIController = ((GUIController) loader.getController());
         GUIController.loadConfiguration();
 
+        //TODO: or load State if Crached
+
         primaryStage.setOnCloseRequest(event -> {
             if(!GUIController.isConfigurationSaved()){
                 GUIController.askForSaving(primaryStage);

@@ -40,6 +40,7 @@ public class GUIController implements ConnectionObserver{
 	private final ArrayList<AbstractStation> stations = new ArrayList<>();
 	private final IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
 	private final Facade facade = new Facade();
+	private ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
 
 	@FXML
 	private Pane optionMenu;
@@ -202,7 +203,7 @@ public class GUIController implements ConnectionObserver{
 		if(!newStationUnnamed){
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/StationPane.fxml"));
 			try {
-				loader.setControllerFactory(c -> new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations));
+				loader.setControllerFactory(c -> new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations, ipAddress));
 				loader.load();
 			} catch (IOException e) {
 				e.printStackTrace();//TODO: exceptionhandling
@@ -233,12 +234,11 @@ public class GUIController implements ConnectionObserver{
 
 	@FXML
 	public void saveConfiguration(){
-		ConfigurationPersistor.saveConfiguration(stations, ipAddress);
+		configurationPersistor.saveConfiguration(stations, ipAddress);
 	}
 
 	@FXML
 	public void loadConfiguration(){
-		ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
 		configurationPersistor.loadConfiguration(stationsPane, stations, ipAddress);
 		showIPAddress();
 	}
@@ -287,7 +287,7 @@ public class GUIController implements ConnectionObserver{
 	}
 
 	public Boolean isConfigurationSaved(){
-		return ConfigurationPersistor.isConfigurationSaved(stations,ipAddress);
+		return configurationPersistor.isConfigurationSaved(stations,ipAddress);
 	}
 
 	private void showIPAddress(){

@@ -5,6 +5,8 @@ import Model.Facade;
 import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationObserver;
+import Persistance.IPAddress;
+import Persistance.StatePersistor;
 import Persistance.StationData;
 import Persistance.StationType;
 import View.AbstractStation;
@@ -30,6 +32,9 @@ public class StationController extends AbstractStation implements StationObserve
     private final Pane parent;
     private final ArrayList<AbstractStation> stations;
     private final Facade facade = new Facade();
+    private ArrayList<Integer> sleds = new ArrayList<>();
+    private StatePersistor statePersistor = new StatePersistor();
+    private IPAddress ipAddress;
 
     @FXML
     private Pane rootPane;
@@ -54,10 +59,11 @@ public class StationController extends AbstractStation implements StationObserve
     @FXML
     private Button stationOptionsButton;
 
-    public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations){
+    public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations, IPAddress ipAddress){
         this.data = data;
         this.parent = parent;
         this.stations = stations;
+        this.ipAddress = ipAddress;
         stations.add(this);
         try {
             facade.addStation(data.getName(), data.getShortcut());
@@ -294,11 +300,15 @@ public class StationController extends AbstractStation implements StationObserve
     @FXML
     private void closeStationOptions(){
         stationOptionsPane.setVisible(false);
+        statePersistor.loadState(rootPane,stations,ipAddress);
     }
 
     public void setName(String name){
         nameText.setText(name);
         data.setName(name);
+    }
+    public ArrayList<Integer> getSleds(){
+        return sleds;
     }
 
     @Override
@@ -326,11 +336,12 @@ public class StationController extends AbstractStation implements StationObserve
     @Override
     public void update(Station station) {
         Platform.runLater(() -> {
+            statePersistor.saveState(stations, ipAddress);
             setName(station.getName());
             setShortcut(station.getShortCut());
             setHopsBack(station.getHopsToNewCarriage());
 
-            ArrayList<Integer> sleds = new Facade().getSledsInStation(data.getName());
+            sleds = new Facade().getSledsInStation(data.getName());
             congestionMenu.getStyleClass().remove("red");
             congestionMenu.getStyleClass().remove("green");
             congestionMenu.getItems().clear();
