@@ -60,9 +60,15 @@ public class PathFinder {
      */
     private void checkPath(Station from, Station to) throws IllegalSetupException, NullPointerException {
         if(from == null || to == null){
+            System.err.println("null");
             throw new NullPointerException("Station is null");
         }
         findRightPathFor(to, from, to);
+        if(path.isEmpty()){
+            System.err.println("illegal");
+            this.getPath();
+            throw new IllegalSetupException("No possible path");
+        }
     }
 
     /**
@@ -129,8 +135,6 @@ public class PathFinder {
 
         if(!path.isEmpty()){
             path.addLast(to);
-        }else{
-            throw new IllegalSetupException("No possible path");
         }
     }
 }
