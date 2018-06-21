@@ -1,6 +1,7 @@
 package Model.Command;
 
 import Model.Exception.IllegalSetupException;
+import Model.Logger.LoggerInstance;
 import Model.Network.NetworkController;
 import Model.Station.Station;
 import Model.Station.StationHandler;
@@ -21,6 +22,7 @@ public class RequestEmptyCarriage extends Command {
      * @param msgID message ID of the incoming message that initiated the Command
      */
     RequestEmptyCarriage(String position, String msgID){
+        LoggerInstance.log.debug("Creating new RequestEmptyCarriage Command to "+position);
         this.position = position;
         super.msgID = msgID;
     }
@@ -47,6 +49,8 @@ public class RequestEmptyCarriage extends Command {
                         station.driveInSled(-1);
                         station.driveOutSled();
                     });
+                    path.getLast().driveInSled(-1);
+                    LoggerInstance.log.info("Done Requesting Carriage in FastMode");
                 }else{
                     for (int i=0; i<path.size()-1; i++){
                         path.get(i).driveInSled(-1);
@@ -57,11 +61,12 @@ public class RequestEmptyCarriage extends Command {
                             // TODO: 16.06.18 debug interruption
                         }
                     }
+                    path.getLast().driveInSled(-1);
+                    LoggerInstance.log.info("Done Requesting Carriage in SlowMode");
                 }
-                path.getLast().driveInSled(-1);
                 this.commandExecuted();
-            }catch(IllegalSetupException e){
-                System.err.println(e.getMessage());
+            }catch(IllegalSetupException | NullPointerException e){
+                LoggerInstance.log.error("Illegal Setup Detected in RequestEmptyCarriage", e);
                 super.error();
             }
         }).start();

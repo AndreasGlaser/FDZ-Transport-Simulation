@@ -1,10 +1,13 @@
 package Model.Command;
 
 import Model.Exception.IllegalSetupException;
+import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationHandler;
+import sun.rmi.runtime.Log;
 
 import java.util.LinkedList;
+import java.util.logging.Logger;
 
 import static java.lang.Thread.sleep;
 
@@ -21,6 +24,7 @@ public class RepositionCarriage extends Command {
      * @param msgID message ID of the incoming message initiating the Command
      */
     RepositionCarriage(int id, String position, String msgID){
+        LoggerInstance.log.debug("Creating new Reposition Carriage Command of ID "+id +" to "+position);
         this.id = id;
         this.position = position;
         super.msgID = msgID;
@@ -36,10 +40,10 @@ public class RepositionCarriage extends Command {
                 from = StationHandler.getInstance().getStationBySledID(id);
                 to = StationHandler.getInstance().getStationByShortCut(position);
             }catch(NullPointerException e){
+                LoggerInstance.log.warn("Station or ID does not exist (RepositionCarriage)");
                 super.error();
-                e.printStackTrace();
-                // TODO: 07.06.18 stations not found
             }catch(IndexOutOfBoundsException e){
+                LoggerInstance.log.error("IndexOutOfBounds, Illegal Setup found", e);
                 super.error();
             }
             try {
@@ -50,28 +54,31 @@ public class RepositionCarriage extends Command {
                         station.driveInSled(id);
                         station.driveOutSled();
                     });
+                    path.getLast().driveInSled(id);
+                    LoggerInstance.log.info("Done Repositioning in FastMode");
                 }else{
                     path.getFirst().driveOutSled();
                     try {
                         sleep(TimeMode.findTimeForPath(path.getFirst(), path.get(1))*1000);
                     }catch (InterruptedException | IndexOutOfBoundsException e){
-                        // TODO: 16.06.18 debug interruption
+                        LoggerInstance.log.warn("Interruption in Repositioning in SlowMode");
                     }
-                    System.err.println(path.size());
                     for (int i=1; i<path.size()-1; i++){
                         try{
                             path.get(i).driveInSled(id);
                             path.get(i).driveOutSled();
                             sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1))*1000);
                         }catch(InterruptedException e){
-                            // TODO: 16.06.18 debug interruption
+                            LoggerInstance.log.warn("Interruption in Repositioning in SlowMode");
                         }
                     }
+                    path.getLast().driveInSled(id);
+                    LoggerInstance.log.info("Done Repositioning in SlowMode");
                 }
-                path.getLast().driveInSled(id);
                 super.commandExecuted();
             }catch(NullPointerException | IllegalSetupException e){
                 super.error();
+                LoggerInstance.log.error("Illegal Setup detected in Repositioning Carriage");
             }
         }).start();
 

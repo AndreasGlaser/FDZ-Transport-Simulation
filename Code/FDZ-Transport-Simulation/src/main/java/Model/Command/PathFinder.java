@@ -3,6 +3,7 @@ package Model.Command;
 import Model.Exception.IllegalSetupException;
 import Model.Logger.LoggerInstance;
 import Model.Station.Station;
+import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -60,13 +61,12 @@ public class PathFinder {
      */
     private void checkPath(Station from, Station to) throws IllegalSetupException, NullPointerException {
         if(from == null || to == null){
-            System.err.println("null");
+            LoggerInstance.log.warn("Given Station is null (PathFinder)");
             throw new NullPointerException("Station is null");
         }
         findRightPathFor(to, from, to);
         if(path.isEmpty()){
-            System.err.println("illegal");
-            this.getPath();
+            LoggerInstance.log.warn("No possible Path between "+from.getName()+ " and "+to.getName());
             throw new IllegalSetupException("No possible path");
         }
     }
@@ -82,6 +82,7 @@ public class PathFinder {
         /*returns null if no congestion on way or
          *first station, which was congested in way */
         if(to == null){
+            LoggerInstance.log.warn("Given Station is null (PathFinder)");
             throw new NullPointerException("Station is null");
         }
         if(hops == 1 || to.getPrevStations().size() == 0){
@@ -108,8 +109,10 @@ public class PathFinder {
         for (Station station : list) {
             if(station.getHopsToNewCarriage() == aStation.getHopsToNewCarriage()-1) return station;
         }
-        throw new IllegalSetupException("Station "+aStation.getName()+"has no Prev Station with"+
+        IllegalSetupException e = new IllegalSetupException("Station "+aStation.getName()+"has no Prev Station with"+
                 "Hops-1 == "+(aStation.getHopsToNewCarriage()-1));
+        LoggerInstance.log.error("Illegal Setup found by PathFinder", e);
+        throw e;
     }
 
     /**
@@ -117,9 +120,8 @@ public class PathFinder {
      * @param init Destination Station, never changed in recursive call
      * @param from Beginning of Path
      * @param to End of Path, changed in recursive Call
-     * @throws IllegalSetupException If no possible Path could be found
      */
-    private void findRightPathFor(Station init, Station from, Station to) throws IllegalSetupException{
+    private void findRightPathFor(Station init, Station from, Station to) {
         if(from == to && to == init && to.getPrevStations().isEmpty()){
             return; /*Loop detected*/
         }

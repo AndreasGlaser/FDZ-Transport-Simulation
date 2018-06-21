@@ -39,7 +39,7 @@ public class CommandInterpreter extends Thread {
             new CommandValidator(command, messageID, position, commandNum, paramCount, carriageID);
             System.err.println("validated");
         }catch(IllegalCommandException e){
-            LoggerInstance.log.warn("Interpreter couldn't find right Command for input Message!");
+            LoggerInstance.log.warn("Interpreter detected Illegal Command Structure!");
             error(messageID);
             return;
         }
