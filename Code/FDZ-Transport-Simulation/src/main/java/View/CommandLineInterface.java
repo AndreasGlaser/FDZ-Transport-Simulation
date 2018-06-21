@@ -1,5 +1,6 @@
 package View;
 
+import Model.Command.ShutdownObserver;
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
 import Model.Network.ConnectionObserver;
@@ -11,13 +12,12 @@ import Model.Station.StationObserver;
 
 import java.util.*;
 
-public class CommandLineInterface extends Thread implements StationObserver, ConnectionObserver {
+public class CommandLineInterface extends Thread implements StationObserver, ConnectionObserver, ShutdownObserver {
 
     private final Scanner sc;
     private final Facade facade;
-    private boolean connection;
     private final String HELP =
-            "+–––––––––––––––––––––––––––––––––+\n" +
+                    "+–––––––––––––––––––––––––––––––––+\n" +
                     "| Type in TestCommand:            |\n" +
                     "| -\"q\" to end program             |\n" +
                     "| -\"h\" for help                   |\n" +
@@ -27,28 +27,23 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
                     "| -\"m\" to manipulate Station      |\n" +
                     "| -\"FDZ-Command\" to test System   |\n" +
                     "+–––––––––––––––––––––––––––––––––+";
-    private final String QUIT =
-            "+––––––––––––––––––––––––––+\n"+
-                    "|Detected Shutdown, do you |\n" +
-                    "|want to quit as well?[y|*]|\n" +
-                    "+––––––––––––––––––––––––––+\n#";
 
 
     public CommandLineInterface() {
         this.sc = new Scanner(System.in);
         System.out.println(HELP);
         facade = new Facade();
-        connection = false;
     }
 
     @Override
     public void update(Station station)
     {
-        System.err.println(station.getName()+" changed");
+        printState();
     }
     @Override
-    public void update(){ connection = NetworkController.getInstance().isConnected();
-    }
+    public void update(){ printStatus(); }
+    @Override
+    public void shutdown(){ this.quit(); }
 
     @Override
     public void run(){
@@ -80,10 +75,11 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
     }
 
     private void addObserver(){
-        StationHandler.getInstance().getStationList().stream().forEach(station -> {
-            facade.addToStationObservable(station.getName(), this);
-        });
+        StationHandler.getInstance().getStationList().forEach(station ->
+            facade.addToStationObservable(station.getName(), this)
+        );
         facade.addToConnectionObservable(this);
+        facade.addToShutdownObservable(this);
     }
 
     private void printStatus(){
@@ -91,32 +87,30 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
     }
 
     private void printState(){
-        List<Station> stationList = StationHandler.getInstance().getStationList();/*TODO falscher Zugriff*/
-        for(int i=0; i<stationList.size(); i++){
+        List<Station> stationList = StationHandler.getInstance().getStationList();//TODO falscher Zugriff
+        for (Station aStationList : stationList) {
             /*foreach station*/
             System.out.print(
-                    "\t|"+stationList.get(i).getName()+"\n"+
+                    "\t|" + aStationList.getName() + "\n" +
                             "\t|––––––––––––––––––––––––\n" +
-                            "\t|->shortCut  |" + stationList.get(i).getShortCut() + "\n"+
+                            "\t|->shortCut  |" + aStationList.getShortCut() + "\n" +
                             "\t|->   id     |");
             try {
-                System.out.print(facade.getSledsInStation(stationList.get(i).getName()).get(0) + "\n");
-            }catch(Exception e){
+                System.out.print(facade.getSledsInStation(aStationList.getName()).get(0) + "\n");
+            } catch (Exception e) {
                 System.out.print("-2\n");
             }
-            System.out.println("\t|->congested |" + stationList.get(i).isCongested());
-            if(stationList.get(i).isCongested()){
-                stationList.get(i).getSledsInStation().forEach(id -> {
-                    System.out.print("\t\twith "+id+"\n");
-                });
+            System.out.println("\t|->congested |" + aStationList.isCongested());
+            if (aStationList.isCongested()) {
+                aStationList.getSledsInStation().forEach(id -> System.out.print("\t\twith " + id + "\n"));
             }
-            System.out.println("\t|->hopsBack  |" + stationList.get(i).getHopsToNewCarriage());
-            ArrayList<PrevPair> prev = stationList.get(i).getPrevStations();
+            System.out.println("\t|->hopsBack  |" + aStationList.getHopsToNewCarriage());
+            ArrayList<PrevPair> prev = aStationList.getPrevStations();
             System.out.println(
-                    "\t"+stationList.get(i).getPrevStations().size()+" prevs");
+                    "\t" + aStationList.getPrevStations().size() + " prevs");
             for (int j = 0; j < prev.size(); j++) {
                 System.out.print(
-                        "\t| prev"+j+" = "+ prev.get(j).getPrevStation().getName() + " " + prev.get(j).getPathTime() + "\n");
+                        "\t| prev" + j + " = " + prev.get(j).getPrevStation().getName() + " " + prev.get(j).getPathTime() + "\n");
             }
             System.out.println("\n----END-----\n");
         }
@@ -208,6 +202,10 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
     }
 
     private boolean quit(){
+        String QUIT = "+––––––––––––––––––––––––––+\n" +
+                "|Detected Shutdown, do you |\n" +
+                "|want to quit as well?[y|*]|\n" +
+                "+––––––––––––––––––––––––––+\n#";
         System.out.print(QUIT);
         if(sc.next().compareToIgnoreCase("y") == 0) {
             return true;

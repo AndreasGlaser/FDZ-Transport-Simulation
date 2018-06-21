@@ -4,10 +4,8 @@ import Model.Exception.IllegalSetupException;
 import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationHandler;
-import sun.rmi.runtime.Log;
 
 import java.util.LinkedList;
-import java.util.logging.Logger;
 
 import static java.lang.Thread.sleep;
 

@@ -17,7 +17,7 @@ public class CommandInterpreter extends Thread {
 
     private final String command;
     private String position, messageID;
-    private int commandNum = -1, beginMesID = 8;
+    private int commandNum = -1;
     private Integer carriageID = null, paramCount = null;
 
     /*--CONSTRUCTOR--------------------------------------------------------------*/
@@ -235,7 +235,8 @@ public class CommandInterpreter extends Thread {
     private String parseMessageID(){
         /*STStK00.<??>..*/
         try{
-            return command.substring(beginMesID, beginMesID+13);
+            int beginMesID = 8;
+            return command.substring(beginMesID, beginMesID +13);
         }catch(StringIndexOutOfBoundsException e){
             return null;
         }

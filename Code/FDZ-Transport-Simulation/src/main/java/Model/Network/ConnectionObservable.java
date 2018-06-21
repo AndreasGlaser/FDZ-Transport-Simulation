@@ -9,13 +9,13 @@ public abstract class ConnectionObservable {
 
     private HashSet<ConnectionObserver> observers;
 
-    public ConnectionObservable(){
+    ConnectionObservable(){
         observers = new HashSet<>(2);
     }
 
-    protected void setChanged(){
+    void setChanged(){
         if(!observers.isEmpty()){
-            observers.forEach(observer -> observer.update());
+            observers.forEach(ConnectionObserver::update);
         }
     }
 

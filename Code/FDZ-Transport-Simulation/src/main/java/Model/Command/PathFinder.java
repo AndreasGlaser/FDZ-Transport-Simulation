@@ -3,7 +3,6 @@ package Model.Command;
 import Model.Exception.IllegalSetupException;
 import Model.Logger.LoggerInstance;
 import Model.Station.Station;
-import sun.rmi.runtime.Log;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -47,7 +46,7 @@ public class PathFinder {
      */
     public LinkedList<Station> getPath(){
         final StringBuilder builder = new StringBuilder();
-        path.stream().forEachOrdered(station ->  builder.append("|"+station.getName()+"|"));
+        path.stream().forEachOrdered(station -> builder.append("|").append(station.getName()).append("|"));
         LoggerInstance.log.debug("Returning Path: " + builder.toString());
         return path;
     }

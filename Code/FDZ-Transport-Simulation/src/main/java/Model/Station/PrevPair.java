@@ -5,7 +5,7 @@ import com.sun.istack.internal.NotNull;
 
 public class PrevPair {
 
-    private Station prevStation;
+    private final Station prevStation;
     private int pathTime;
 
     PrevPair(@NotNull Station aPrevStation, int aPathTime){

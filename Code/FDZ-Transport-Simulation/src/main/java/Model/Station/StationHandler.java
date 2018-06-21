@@ -147,7 +147,7 @@ public class StationHandler{
     /*Helpers*/
 
 
-    // TODO: 07.06.18 entfernen!!
+    // TODO: 07.06.18 remove!!
     public ArrayList<Station> getStationList(){
         return stations;
     }

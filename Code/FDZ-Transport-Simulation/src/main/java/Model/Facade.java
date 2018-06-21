@@ -33,9 +33,7 @@ public class Facade {
 
     public synchronized void connect(byte[] ip, int port){
         if(connectionThread == null){
-            connectionThread = new Thread(() -> {
-                NetworkController.getInstance().connect(ip, port);
-            });
+            connectionThread = new Thread(() -> NetworkController.getInstance().connect(ip, port));
             connectionThread.start();
         }else{
             connectionThread.interrupt();
