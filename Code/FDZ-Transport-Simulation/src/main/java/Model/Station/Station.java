@@ -1,6 +1,7 @@
 package Model.Station;
 
 import Model.Exception.IllegalSetupException;
+import Model.Logger.LoggerInstance;
 import com.sun.istack.internal.NotNull;
 
 import java.util.ArrayList;
@@ -65,11 +66,11 @@ public class Station{
                 setChanged();
                 break;
             } catch (InterruptedException e) {
-                System.err.println("Station "+getName()+"s semaphore has been interrupted");
+                LoggerInstance.log.warn("Semaphore in Station {} interrupted", name);
             }
         }/*acquired successfully*/
         this.setSledInside(id);
-
+        LoggerInstance.log.debug("New Sled in Station {} is {}", name, id);
     }
 
     /**
@@ -81,6 +82,7 @@ public class Station{
     public void driveOutSled(){
         this.setSledInside(null);
         semaphore.release();
+        LoggerInstance.log.debug("No more Sled in Station {}", name);
     }
 
     /*Setter*/
@@ -92,8 +94,10 @@ public class Station{
      */
     public void setName(String aName) throws IllegalSetupException {
         if(aName == null || aName.length() == 0){
+            LoggerInstance.log.warn("Illegal Input in setStationName()");
             throw new IllegalSetupException("New StationName is invalid");
         }else{
+            LoggerInstance.log.debug("Station {}s name has been changed to {}", name, aName);
             this.name = aName;
             this.setChanged();
         }
@@ -106,9 +110,11 @@ public class Station{
      */
     public void setShortCut(String aShortCut) throws IllegalSetupException{
         if(aShortCut != null && aShortCut.length() == 2){
+            LoggerInstance.log.debug("Station {}s shortCut has been changed from {} to {}",name, shortCut, aShortCut);
             this.shortCut = aShortCut;
             this.setChanged();
         }else{
+            LoggerInstance.log.warn("Illegal Input in setStationShortCut()");
             throw new IllegalSetupException("New StationShortCut is invalid");
         }
     }
@@ -120,11 +126,14 @@ public class Station{
      */
     public void setHopsToNewCarriage(int hopsBack) throws IllegalSetupException{
         if(hopsBack < 1){
+            LoggerInstance.log.warn("Illegal Input in setStationsHopsToNewCarriage(), too small");
             throw new IllegalSetupException("Given HopsBack is too small");
         }
         if(hopsBack >= StationHandler.getInstance().getAmountOfStations()){
+            LoggerInstance.log.warn("Illegal Input in setStationsHopsToNewCarriage(), too big");
             throw new IllegalSetupException("Given HopsBack is too big");
         }
+        LoggerInstance.log.debug("Set HopsBack of Station {} from {} to {}", name, hopsBackToNewCarriage, hopsBack);
         this.hopsBackToNewCarriage = hopsBack;
         this.setChanged();
     }
@@ -149,10 +158,16 @@ public class Station{
                 list.remove(0);
                 idsInCongestion = new ArrayList<>(list);
             }
+            LoggerInstance.log.debug("New State of Station set for {}", name);
         }
     }
 
-    // TODO: 19.06.18 inline doc
+    /**
+     * Setter for the PathTime of a PrevStation to the Station
+     * @param prev PrevStation for which new PathTime is to be set
+     * @param time PathTime in Seconds
+     * @throws NullPointerException thrown if PrevStation is not in List of the Stations PrevList
+     */
     public void setPathTime(Station prev, int time) throws NullPointerException{
         for(PrevPair pair : prevStations){
             if(pair.getPrevStation().equals(prev)){
@@ -160,12 +175,17 @@ public class Station{
                 return;
             }
         }
+        LoggerInstance.log.warn("No Station such Station in setPathTime for Station {}", name);
         throw new NullPointerException("PrevStation not in List of PrevStations");
     }
 
-
+    /**
+     * Method to Call, if an EmptySled has been found and Command with unknown ID has been received
+     * @param id Unknown ID, which will replace the EmptySled in Station
+     */
     void idFound(int id){
         if( sledInside != null && sledInside == -1){
+            LoggerInstance.log.debug("Found Empty Sled with new ID {}", id);
             setSledInside(id);
         }
     }
@@ -179,15 +199,13 @@ public class Station{
      */
     public void addPrevStation(Station station, int pathTime){
         if(station == null){
-            /* TODO DEBUG not changed */
-            System.err.println("NullPointer will not be added to PrevList");
-        }else if(this.prevStations.stream().filter(prevPair -> prevPair.getPrevStation() == station).count() == 0 &&
-                pathTime >= 1) {
+            LoggerInstance.log.warn("Null will not be added to Station {}s PrevList", name);
+        }else if(this.prevStations.stream().noneMatch(prevPair -> prevPair.getPrevStation() == station) && pathTime >= 1) {
+            LoggerInstance.log.info("Adding Station {} to {}s PrevList with PathTime {}", station, name, pathTime);
             prevStations.add(new PrevPair(station,pathTime));
             this.setChanged();
         }else{
-            /* TODO DEBUG not changed */
-            System.err.println("Station already in PrevList");
+            LoggerInstance.log.warn("Station already in PrevList of Station {}", name);
         }
     }
 
@@ -199,6 +217,7 @@ public class Station{
     public void deletePrevStation(Station station){
         // TODO: 20.06.18 foreach removes objects
         this.prevStations.stream().filter(prevPair -> prevPair.getPrevStation() == station).forEach(prevPair -> {
+            LoggerInstance.log.info("Removing {} from Station {}s PrevList", station.getName(), name);
             this.prevStations.remove(prevPair);
             this.setChanged();
         });
@@ -258,6 +277,7 @@ public class Station{
      */
     private void setChanged(){
         if(!observers.isEmpty()){
+            LoggerInstance.log.info("Notifying all Observers of {}", name);
             observers.forEach(observer -> observer.update(this));
         }
     }
@@ -268,6 +288,7 @@ public class Station{
      */
     public void addObserver(StationObserver o) {
         observers.add(o);
+        LoggerInstance.log.debug("Adding Observer to {}s List", name);
         o.update(this);
     }
 }
