@@ -3,6 +3,7 @@
 import Controller.GUIController;
 import Model.Facade;
 import Model.Station.StationHandler;
+import Persistance.StatePersistor;
 import View.CommandLineInterface;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,19 +27,23 @@ public class AppStarter extends Application {
         primaryStage.setMinWidth(900);
         primaryStage.setMinHeight(700);
         primaryStage.getIcons().add(new Image("/images/FDZLogo.png"));
-
-        //load Configuration on Program start
-        GUIController GUIController = ((GUIController) loader.getController());
-        GUIController.loadConfiguration();
+        GUIController guiController = loader.getController();
+        if(StatePersistor.isFilesExist()){
+            guiController.askForRestore();
+        }else {
+            //load Configuration on Program start
+            guiController.loadConfiguration();
+        }
 
         primaryStage.setOnCloseRequest(event -> {
-            if(!GUIController.isConfigurationSaved()){
-                GUIController.askForSaving(primaryStage);
+            if(!guiController.isConfigurationSaved()){
+                guiController.askForSaving(primaryStage);
                 event.consume();
             }
+            StatePersistor.deleteFiles();
         });
         
-        if (StationHandler.getInstance().getStationByName("Storage").getPrevStations().size() == 0){
+        /*if (StationHandler.getInstance().getStationByName("Storage").getPrevStations().size() == 0){
             new Facade().addPrevStation("Storage", "Robot", 1);
             new Facade().addPrevStation("Storage", "I/O",1);
             new Facade().addPrevStation("Robot", "Storage",1);
@@ -48,7 +53,7 @@ public class AppStarter extends Application {
                 new Facade().setHopsToNewCarriage("Storage", 1);
                 new Facade().setHopsToNewCarriage("I/O", 1);
             }catch(Exception e){}
-        }
+        }*/
 
     }
 
