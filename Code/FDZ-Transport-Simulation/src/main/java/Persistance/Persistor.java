@@ -54,6 +54,20 @@ public abstract class Persistor {
     public void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress) {
         rootPane.getChildren().clear();
         stations.clear();
+        File stationFile = stationsPath.toFile();
+        File ipFile = ipPath.toFile();
+        if(!stationFile.exists() || !ipFile.exists()){
+            try {
+                stationFile.getParentFile().mkdirs();
+                stationFile.createNewFile();
+                ipFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            saveConfiguration(stations, ipAddress);
+            return;
+        }
+
         String json = readJSONFromFile(stationsPath);
         Gson gson = new Gson();
         Type collectionType = new TypeToken<Collection<StationData>>(){}.getType();
