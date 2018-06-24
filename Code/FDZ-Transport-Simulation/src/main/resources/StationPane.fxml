@@ -48,7 +48,7 @@
             <AnchorPane prefHeight="37.0" prefWidth="172.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                  <Button mnemonicParsing="false" onAction="#closeStationOptions" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button mnemonicParsing="false" onAction="#closeOptions" text="x" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Station Name:" />
