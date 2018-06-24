@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Facade;
+import Model.Logger.LoggerInstance;
 import Model.Logger.OwnOutputStreamAppender;
 import Model.Logger.TextAreaOutputStream;
 import Model.Network.ConnectionObserver;
@@ -89,7 +90,7 @@ public class GUIController implements ConnectionObserver{
 		try {
 			userIPText.setText(InetAddress.getLocalHost().getHostAddress());
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			LoggerInstance.log.warn("IP-Address of user pc could not be read.");
 		}
 		controllerImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		controllerImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
