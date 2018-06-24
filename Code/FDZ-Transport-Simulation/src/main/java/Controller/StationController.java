@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
-import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationObserver;
 import Persistance.IPAddress;
@@ -12,6 +11,7 @@ import Persistance.StationType;
 import View.AbstractStation;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 public class StationController extends AbstractStation implements StationObserver{
 
     private final Pane parent;
+    private final BorderPane messagePane;
     private final ArrayList<AbstractStation> stations;
     private final Facade facade = new Facade();
     private ArrayList<Integer> sleds = new ArrayList<>();
@@ -60,11 +62,12 @@ public class StationController extends AbstractStation implements StationObserve
     @FXML
     private Button stationOptionsButton;
 
-    public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations, IPAddress ipAddress){
+    public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations, IPAddress ipAddress, BorderPane messagePane){
         this.data = data;
         this.parent = parent;
         this.stations = stations;
         this.ipAddress = ipAddress;
+        this.messagePane = messagePane;
         stations.add(this);
         try {
             facade.addStation(data.getName(), data.getShortcut());
@@ -130,7 +133,6 @@ public class StationController extends AbstractStation implements StationObserve
                 if(station.getName().equals(newValue)){
                     nameGiven = true;
                 }
-                System.out.println(nameGiven);
             }
             if(newValue.length() > 0 && !nameGiven){
                 setName(newValue);
@@ -313,8 +315,20 @@ public class StationController extends AbstractStation implements StationObserve
     }
 
     private void showInvalidNameMessage() {
-        //TODO: implementieren
-        System.out.println("name ungültig");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AskForSavingMessagePane.fxml"));
+        try {
+            loader.setControllerFactory(c -> new ErrorMessageController(
+                    messagePane,
+                    "This name is invalid.",
+                    "Please chose a different one."
+                    ));
+            Pane message = loader.load();
+            messagePane.setCenter(message);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();//TODO: exceptionhandling
+        }
     }
 
     public void setName(String name){

@@ -198,9 +198,9 @@ public class GUIController implements ConnectionObserver{
 		}
 
 		if(!newStationUnnamed){
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/StationPane.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/StationPane.fxml"));
 			try {
-				loader.setControllerFactory(c -> new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations, ipAddress));
+				loader.setControllerFactory(c -> new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations, ipAddress, messagePane));
 				loader.load();
 			} catch (IOException e) {
 				e.printStackTrace();//TODO: exceptionhandling
@@ -219,7 +219,7 @@ public class GUIController implements ConnectionObserver{
 			if(station.getName().equals("new Crossing"))newCrossingUnnamed= true;
 		}
 		if(!newCrossingUnnamed) {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/CrossingPane.fxml"));
 			try {
 				loader.setControllerFactory(c -> new CrossingController(new StationData("new Crossing", StationType.CROSSING), stationsPane, stations));
 				loader.load();
@@ -236,12 +236,12 @@ public class GUIController implements ConnectionObserver{
 
 	@FXML
 	public void loadConfiguration(){
-		configurationPersistor.loadConfiguration(stationsPane, stations, ipAddress);
+		configurationPersistor.loadConfiguration(stationsPane, stations, ipAddress, messagePane);
 		showIPAddress();
 	}
 	public void loadState(){
 		StatePersistor statePersistor = new StatePersistor();
-		statePersistor.loadState(stationsPane,stations,ipAddress);
+		statePersistor.loadState(stationsPane,stations,ipAddress, messagePane);
 		showIPAddress();
 	}
 
@@ -270,10 +270,9 @@ public class GUIController implements ConnectionObserver{
 	}
 
 	public void askForSaving(Stage primaryStage){
-		messagePane.setMouseTransparent(false);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/AskForSavingMessagePane.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AskForSavingMessagePane.fxml"));
 		try {
-			loader.setControllerFactory(c -> new MessageController(
+			loader.setControllerFactory(c -> new AskForSavingMessageController(
                     this,
                     primaryStage,
                     messagePane));
@@ -287,8 +286,7 @@ public class GUIController implements ConnectionObserver{
 
 	}
 	public void askForRestore(){
-		messagePane.setMouseTransparent(false);
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/AskForRestoreMessagePane.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AskForRestoreMessagePane.fxml"));
 		try {
 			loader.setControllerFactory(c -> new AskForRestoreMessageController(
 					this,

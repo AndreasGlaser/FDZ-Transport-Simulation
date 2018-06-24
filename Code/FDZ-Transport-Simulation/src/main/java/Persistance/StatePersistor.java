@@ -5,6 +5,7 @@ import Model.Facade;
 import View.AbstractStation;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.io.*;
@@ -58,8 +59,8 @@ public class StatePersistor extends Persistor{
         }
     }
 
-    public void loadState(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress){
-        loadConfiguration(rootPane, stations, ipAddress);
+    public void loadState(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress, BorderPane messagePane){
+        loadConfiguration(rootPane, stations, ipAddress, messagePane);
         String json = readJSONFromFile(sledsPath);
         System.out.println("loaded"+ json);
         Gson gson = new Gson();

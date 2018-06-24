@@ -10,12 +10,12 @@ import javafx.stage.Stage;
 import java.util.function.Function;
 
 /**
- * The Controller for pop-up-messages
+ * The Controller for the ask-for-saving-message
  * @author Andreas Glaser
  *
  *
  */
-public class MessageController {
+public class AskForSavingMessageController {
 
 	@FXML
 	private Label detailsLabel;
@@ -29,7 +29,7 @@ public class MessageController {
 	private final Pane messagePane;
 
 
-	public MessageController(GUIController GUIController, Stage primaryStage, Pane messagePane){
+	public AskForSavingMessageController(GUIController GUIController, Stage primaryStage, Pane messagePane){
 		this.details = "Save configuration?";
 		this.message = "The configuration has not been saved, do you want to save it now?";
 		this.GUIController = GUIController;
@@ -39,6 +39,7 @@ public class MessageController {
 
 	@FXML
 	private void initialize(){
+		messagePane.setMouseTransparent(false);
 		detailsLabel.setText(details);
 		messageLabel.setText(message);
 		detailsLabel.getStyleClass().add("detailsLabel");

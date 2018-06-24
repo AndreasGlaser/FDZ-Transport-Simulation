@@ -42,7 +42,7 @@
                <children>
                   <ImageView fx:id="simulatorImageView" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
                      <image>
-                        <Image url="@images/FDZLogo.png" />
+                        <Image url="@../images/FDZLogo.png" />
                      </image>
                   </ImageView>
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
@@ -58,7 +58,7 @@
                      <children>
                         <ImageView fx:id="controllerImageView" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/ControllerLogo.png" />
+                              <Image url="@../images/ControllerLogo.png" />
                            </image>
                         </ImageView>
                      </children>
