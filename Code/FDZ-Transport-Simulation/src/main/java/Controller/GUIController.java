@@ -25,6 +25,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 /**
@@ -68,6 +70,8 @@ public class GUIController implements ConnectionObserver{
 	@FXML
 	private Text ipAddressText;
 	@FXML
+	private Text userIPText;
+	@FXML
 	private TextArea logTextArea;
 	@FXML
 	private TextArea statusTextArea;
@@ -82,9 +86,11 @@ public class GUIController implements ConnectionObserver{
 		OutputStream outputStream = new TextAreaOutputStream(logTextArea);
 		OwnOutputStreamAppender.setStaticOutputStream(outputStream);
 
-
-
-
+		try {
+			userIPText.setText(InetAddress.getLocalHost().getHostAddress());
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
 		controllerImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));
 		controllerImageView.fitHeightProperty().bind(controllerGridPane.heightProperty());
 		simulatorImageView.fitWidthProperty().bind(Bindings.add(controllerGridPane.widthProperty(), -20));

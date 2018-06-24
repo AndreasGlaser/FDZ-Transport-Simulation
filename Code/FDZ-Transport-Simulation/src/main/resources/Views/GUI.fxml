@@ -48,7 +48,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IP" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="198.068.092.011" />
+                        <Text fx:id="userIPText" strokeType="OUTSIDE" strokeWidth="0.0" text="198.068.092.011" />
                      </children>
                      <GridPane.margin>
                         <Insets left="10.0" />
