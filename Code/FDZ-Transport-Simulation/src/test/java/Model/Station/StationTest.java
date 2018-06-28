@@ -148,9 +148,9 @@ public class StationTest {
 
     @Test
     public void setPrevStations(){
-        station.addPrevStation(prev1);
+        station.addPrevStation(prev1,1);
         Assert.assertEquals(prev1, station.getPrevStations().get(0));
-        station.addPrevStation(prev2);
+        station.addPrevStation(prev2,1);
         Assert.assertEquals(prev2, station.getPrevStations().get(1));
     }
 

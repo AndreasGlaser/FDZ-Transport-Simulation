@@ -30,10 +30,10 @@ public class PathFinderTest {
             stations.add(robot);
             stations.add(stock);
             stations.add(inOut);
-            robot.addPrevStation(stock);
-            stock.addPrevStation(inOut);
-            stock.addPrevStation(robot);
-            inOut.addPrevStation(robot);
+            robot.addPrevStation(stock, 0);
+            stock.addPrevStation(inOut, 0);
+            stock.addPrevStation(robot, 0);
+            inOut.addPrevStation(robot, 0);
             robot.setHopsToNewCarriage(2);
             stock.setHopsToNewCarriage(1);
             inOut.setHopsToNewCarriage(1);
@@ -75,12 +75,12 @@ public class PathFinderTest {
             Station station2 = new Station("two", "2");
             station1.setHopsToNewCarriage(2);
             station2.setHopsToNewCarriage(1);
-            station2.addPrevStation(robot);
-            station1.addPrevStation(station2);
-            station1.addPrevStation(inOut);
+            station2.addPrevStation(robot, 0);
+            station1.addPrevStation(station2, 0);
+            station1.addPrevStation(inOut, 0);
             stock.getPrevStations().remove(0);
-            stock.addPrevStation(station1);
-            stock.addPrevStation(inOut);
+            stock.addPrevStation(station1, 0);
+            stock.addPrevStation(inOut, 0);
             station1.driveInSled(12);
         }catch(IllegalSetupException e) {
             fail();

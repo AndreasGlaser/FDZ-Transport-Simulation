@@ -277,7 +277,7 @@ public class Station{
      */
     private void setChanged(){
         if(!observers.isEmpty()){
-            LoggerInstance.log.info("Notifying all Observers of {}", name);
+            LoggerInstance.log.debug("Notifying all Observers of {}", name);
             observers.forEach(observer -> observer.update(this));
         }
     }

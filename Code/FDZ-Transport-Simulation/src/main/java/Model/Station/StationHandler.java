@@ -101,8 +101,13 @@ public class StationHandler{
                 return station;
             }
         }
+
         LoggerInstance.log.warn("{} in none of Stations in StationHandler.getStationBySledID()", id);
         throw new NullPointerException("Id in none of the Stations");
+    }
+
+    public void getStationByIDInCongestion() throws NullPointerException{
+        // TODO: 21.06.18 implement delete IDs by release in Congestion
     }
 
     /*Manipulate List*/
