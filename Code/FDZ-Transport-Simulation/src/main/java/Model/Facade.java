@@ -10,6 +10,8 @@ import Model.Station.Station;
 import Model.Station.StationHandler;
 import Model.Station.StationObserver;
 import com.sun.istack.internal.NotNull;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ public class Facade {
     private final NetworkController networkController;
     private final StationHandler stationHandler;
     private Thread connectionThread;
+    private StringProperty statusProperty = new SimpleStringProperty();
 
     public Facade(){
         networkController = NetworkController.getInstance();
@@ -134,8 +137,12 @@ public class Facade {
     }
 
     public void setStatus (String status){
-
+        statusProperty.set(status);
+        return;
     }
 
+    public StringProperty statusProperty(){
+        return statusProperty;
+    }
 
 }

@@ -82,6 +82,10 @@ public class GUIController implements ConnectionObserver{
 	@FXML
 	public void initialize(){
 
+		facade.statusProperty().addListener((observable, oldValue, newValue) -> {
+			statusTextArea.setText(newValue);
+		});
+
 		OutputStream LogOutputStream = new LogAreaOutputStream(logTextArea);
 		LogOutputStreamAppender.setStaticOutputStream(LogOutputStream);
 
