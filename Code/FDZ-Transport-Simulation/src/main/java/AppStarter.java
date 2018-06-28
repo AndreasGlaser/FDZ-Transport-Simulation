@@ -1,8 +1,6 @@
 
 
 import Controller.GUIController;
-import Model.Facade;
-import Model.Station.StationHandler;
 import Persistance.StatePersistor;
 import View.CommandLineInterface;
 import javafx.application.Application;
@@ -17,7 +15,7 @@ public class AppStarter extends Application {
 
 	@Override
     public void start(Stage primaryStage) throws Exception{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/GUI.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("FDZ-Transport-Simulation");
         Scene scene = new Scene(root, 1600, 1000);

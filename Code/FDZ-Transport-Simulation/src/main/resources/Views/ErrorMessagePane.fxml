@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="369.0" styleClass="messagePane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MessageController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="195.0" prefWidth="369.0" styleClass="messagePane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ErrorMessageController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -36,18 +36,10 @@
                   <Insets />
                </HBox.margin>
             </HBox>
-            <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS">
-               <children>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" text="Cancel" />
-               </children></Pane>
-            <Button fx:id="noButton" cancelButton="true" minWidth="80.0" mnemonicParsing="false" onAction="#noPressed" text="No" HBox.hgrow="NEVER">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
+            <Pane maxWidth="+Infinity" HBox.hgrow="ALWAYS" />
             <HBox fx:id="okParent" alignment="CENTER">
                <children>
-                  <Button fx:id="yesButton" minWidth="80.0" mnemonicParsing="false" onAction="#yesPressed" text="Yes" HBox.hgrow="NEVER">
+                  <Button fx:id="okButton" minWidth="80.0" mnemonicParsing="false" onAction="#okPressed" text="OK" HBox.hgrow="NEVER">
                      <HBox.margin>
                         <Insets left="14.0" />
                      </HBox.margin>

@@ -1,12 +1,18 @@
 package Controller;
 
-import Persistance.StatePersistor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class AskForRestoreMessageController {
+/**
+ * The Controller for Error-messages
+ * @author Andreas Glaser
+ *
+ *
+ */
+public class ErrorMessageController {
+
 	@FXML
 	private Label detailsLabel;
 	@FXML
@@ -14,17 +20,14 @@ public class AskForRestoreMessageController {
 
 	private final String details;
 	private final String message;
-	private final GUIController guiController;
 	private final Pane messagePane;
 
 
-	public AskForRestoreMessageController(GUIController guiController, Pane messagePane){
-		this.details = "The application was not closed correct.";
-		this.message = "Do you want to restore the last state?";
-		this.guiController = guiController;
+	public ErrorMessageController(Pane messagePane, String details, String message){
+		this.details = details;
+		this.message = message;
 		this.messagePane = messagePane;
 	}
-
 	@FXML
 	private void initialize(){
 		messagePane.setMouseTransparent(false);
@@ -33,19 +36,8 @@ public class AskForRestoreMessageController {
 		detailsLabel.getStyleClass().add("detailsLabel");
 		messageLabel.getStyleClass().add("messageLabel");
 	}
-
 	@FXML
-	private void noPressed(){
-		guiController.loadConfiguration();
-		closeThisWindow();
-	}
-	@FXML
-	private void yesPressed(){
-		guiController.loadState();
-		closeThisWindow();
-	}
-
-	private void closeThisWindow(){
+	private void okPressed(){
 		messagePane.setMouseTransparent(true);
 		messagePane.getChildren().clear();
 	}

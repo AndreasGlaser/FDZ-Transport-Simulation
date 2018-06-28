@@ -6,6 +6,7 @@ import View.AbstractStation;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.io.*;
@@ -51,9 +52,23 @@ public abstract class Persistor {
             e.printStackTrace();//TODO: Exceptionhandling
         }
     }
-    public void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress) {
+    public void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress, BorderPane messagePane) {
         rootPane.getChildren().clear();
         stations.clear();
+        File stationFile = stationsPath.toFile();
+        File ipFile = ipPath.toFile();
+        if(!stationFile.exists() || !ipFile.exists()){
+            try {
+                stationFile.getParentFile().mkdirs();
+                stationFile.createNewFile();
+                ipFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            saveConfiguration(stations, ipAddress);
+            return;
+        }
+
         String json = readJSONFromFile(stationsPath);
         Gson gson = new Gson();
         Type collectionType = new TypeToken<Collection<StationData>>(){}.getType();
@@ -61,10 +76,10 @@ public abstract class Persistor {
 
         for(StationData stationData: stationsFromJson){
             if(stationData.getstationType().equals(StationType.STATION)){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/StationPane.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/StationPane.fxml"));
                 try {
                     loader.setControllerFactory(c ->{
-                        return new StationController(stationData,rootPane,stations, ipAddress);
+                        return new StationController(stationData,rootPane,stations, ipAddress, messagePane);
                     });
                     loader.load();
 
@@ -72,7 +87,7 @@ public abstract class Persistor {
                     e.printStackTrace();//TODO: exceptionhandling
                 }
             }else if(stationData.getstationType().equals(StationType.CROSSING)){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/CrossingPane.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/CrossingPane.fxml"));
                 try {
                     loader.setControllerFactory(c ->{
                         return new CrossingController(stationData,rootPane,stations);

@@ -2,7 +2,6 @@ package Controller;
 
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
-import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationObserver;
 import Persistance.IPAddress;
@@ -12,6 +11,7 @@ import Persistance.StationType;
 import View.AbstractStation;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -30,11 +31,13 @@ import java.util.ArrayList;
 public class StationController extends AbstractStation implements StationObserver{
 
     private final Pane parent;
+    private final BorderPane messagePane;
     private final ArrayList<AbstractStation> stations;
     private final Facade facade = new Facade();
     private ArrayList<Integer> sleds = new ArrayList<>();
     private StatePersistor statePersistor = new StatePersistor();
     private IPAddress ipAddress;
+    private String modelName;
 
     @FXML
     private Pane rootPane;
@@ -59,11 +62,12 @@ public class StationController extends AbstractStation implements StationObserve
     @FXML
     private Button stationOptionsButton;
 
-    public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations, IPAddress ipAddress){
+    public StationController(StationData data, Pane parent, ArrayList<AbstractStation> stations, IPAddress ipAddress, BorderPane messagePane){
         this.data = data;
         this.parent = parent;
         this.stations = stations;
         this.ipAddress = ipAddress;
+        this.messagePane = messagePane;
         stations.add(this);
         try {
             facade.addStation(data.getName(), data.getShortcut());
@@ -85,6 +89,7 @@ public class StationController extends AbstractStation implements StationObserve
 
         setData(data);
         setName(data.getName());
+        modelName = data.getName();
         setSledText("Empty");
 
 
@@ -122,14 +127,15 @@ public class StationController extends AbstractStation implements StationObserve
 
         stationNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             stationNameTextField.getStyleClass().remove("lightRed");
-            if(newValue.length() > 0){
-
-                try {
-                    facade.setStationName(data.getName(), newValue);
-                    setName(newValue);
-                } catch (IllegalSetupException e) {
-                    e.printStackTrace();
+            Boolean nameGiven = false;
+            for(AbstractStation station: stations){
+                if(station.equals(this))continue;
+                if(station.getName().equals(newValue)){
+                    nameGiven = true;
                 }
+            }
+            if(newValue.length() > 0 && !nameGiven){
+                setName(newValue);
             }else {
                 stationNameTextField.getStyleClass().add("lightRed");
             }
@@ -158,7 +164,7 @@ public class StationController extends AbstractStation implements StationObserve
 
     @FXML
     private void openCloseStationOptions(){
-        if(stationOptionsPane.isVisible())stationOptionsPane.setVisible(false);
+        if(stationOptionsPane.isVisible())closeOptions();
         else {
             stationOptionsPane.setVisible(true);
             stationNameTextField.setText(nameText.getText());
@@ -297,9 +303,32 @@ public class StationController extends AbstractStation implements StationObserve
         }
     }
 
-    @FXML
-    private void closeStationOptions(){
-        stationOptionsPane.setVisible(false);
+    private void setNameInModel() {
+
+        try {
+            facade.setStationName(modelName, getName());
+            modelName = getName();
+        } catch (IllegalSetupException e) {
+            setName(modelName);
+            showInvalidNameMessage();
+        }
+    }
+
+    private void showInvalidNameMessage() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AskForSavingMessagePane.fxml"));
+        try {
+            loader.setControllerFactory(c -> new ErrorMessageController(
+                    messagePane,
+                    "This name is invalid.",
+                    "Please chose a different one."
+                    ));
+            Pane message = loader.load();
+            messagePane.setCenter(message);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();//TODO: exceptionhandling
+        }
     }
 
     public void setName(String name){
@@ -313,6 +342,7 @@ public class StationController extends AbstractStation implements StationObserve
     @Override
     public void closeOptions() {
         stationOptionsPane.setVisible(false);
+        setNameInModel();
     }
 
     @Override
