@@ -1,6 +1,7 @@
 package Model.Command;
 
 import Model.Exception.IllegalSetupException;
+import Model.Facade;
 import Model.Logger.LoggerInstance;
 import Model.Network.NetworkController;
 import Model.Station.Station;
@@ -23,6 +24,7 @@ public class RequestEmptyCarriage extends Command {
      */
     RequestEmptyCarriage(String position, String msgID){
         LoggerInstance.log.debug("Creating new RequestEmptyCarriage Command to "+position);
+        new Facade().setStatus("Moving empty Carriage with to "+position);
         this.position = position;
         super.msgID = msgID;
     }

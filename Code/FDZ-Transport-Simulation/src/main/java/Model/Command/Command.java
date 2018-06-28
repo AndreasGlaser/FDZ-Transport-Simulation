@@ -1,5 +1,7 @@
 package Model.Command;
 
+import Model.Facade;
+
 import static Model.Network.NetworkController.getInstance;
 
 /**
@@ -19,6 +21,7 @@ abstract class Command {
      */
     void commandExecuted(){
         getInstance().acknowledge2(msgID);
+        new Facade().setStatus("Finished");
     }
 
     /**
