@@ -12,7 +12,7 @@
     </appender>
 
     <!-- GUI Log -->
-    <appender name="OwnAppender" class="Model.Logger.OwnOutputStreamAppender">
+    <appender name="Log" class="Model.Logger.LogOutputStreamAppender">
         <encoder>
             <pattern>%d{HH:mm:ss} %-5level - %msg%n</pattern>
         </encoder>
@@ -35,8 +35,9 @@
     <!-- Configure outputs -->
     <root level="DEBUG">
         <appender-ref ref="FILE" />
-        <appender-ref ref="STDOUT" />
-        <appender-ref ref="OwnAppender" />
+       <!-- <appender-ref ref="STDOUT" /> -->
+        <appender-ref ref="Log" />
+
 
     </root>
 </configuration>

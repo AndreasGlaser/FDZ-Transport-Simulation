@@ -1,9 +1,7 @@
 package Controller;
 
 import Model.Facade;
-import Model.Logger.LoggerInstance;
-import Model.Logger.OwnOutputStreamAppender;
-import Model.Logger.TextAreaOutputStream;
+import Model.Logger.*;
 import Model.Network.ConnectionObserver;
 import Persistance.*;
 import View.AbstractStation;
@@ -84,8 +82,9 @@ public class GUIController implements ConnectionObserver{
 	@FXML
 	public void initialize(){
 
-		OutputStream outputStream = new TextAreaOutputStream(logTextArea);
-		OwnOutputStreamAppender.setStaticOutputStream(outputStream);
+		OutputStream LogOutputStream = new LogAreaOutputStream(logTextArea);
+		LogOutputStreamAppender.setStaticOutputStream(LogOutputStream);
+
 
 		try {
 			userIPText.setText(InetAddress.getLocalHost().getHostAddress());
@@ -164,29 +163,6 @@ public class GUIController implements ConnectionObserver{
 		});
 
 		facade.addToConnectionObservable(this);
-
-		
-
-		//nur zur Demonstration
-		String mesID1 = "0000000001";
-		String mesID2 = "0000000002";
-		String mesID3 = "0000000003";
-
-		statusTextArea.appendText("Connect to 172.68.92.1 \n");
-		statusTextArea.appendText("Empty sled ordered to RO \n");
-		statusTextArea.appendText("Empty sled arrived at RO \n");
-		statusTextArea.appendText("Congestion in station RO \n");
-		statusTextArea.appendText("Command not executed Oct 15 00:23:12: SPXSStK001"+mesID2+ "0002aa \n");
-		statusTextArea.appendText("Release carriage with ID 23 \n");
-		statusTextArea.appendText("Reposition the carriage with id 23 to position IO \n");
-		statusTextArea.appendText("Port number changed to 23 \n");
-		statusTextArea.appendText("Connection lost to 172.68.92.1 \n");
-		statusTextArea.appendText("Empty sled ordered to ST \n");
-		statusTextArea.appendText("Empty sled arrived at ST \n");
-		statusTextArea.appendText("Congestion in station ST \n");
-		statusTextArea.appendText("Command not executed Oct 15 00:41:00: STStK003"+mesID3+ "000423io \n");
-		statusTextArea.appendText("Release carriage with ID 23 \n");
-		statusTextArea.appendText("Reposition the carriage with id 23 to position IO \n");
 
 	}
 

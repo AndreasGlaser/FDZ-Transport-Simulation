@@ -1,6 +1,7 @@
 package Model.Command;
 
 import Model.Exception.IllegalSetupException;
+import Model.Facade;
 import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationHandler;
@@ -23,6 +24,7 @@ public class RepositionCarriage extends Command {
      */
     RepositionCarriage(int id, String position, String msgID){
         LoggerInstance.log.debug("Creating new Reposition Carriage Command of ID "+id +" to "+position);
+        new Facade().setStatus("Reposition Carriage with ID: "+id+" to "+position);
         this.id = id;
         this.position = position;
         super.msgID = msgID;

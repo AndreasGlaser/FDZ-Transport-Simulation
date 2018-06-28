@@ -1,8 +1,6 @@
 package Model.Network;
 
-/**
- * @author Dzianis Brysiuk
- */
+
 
 import Model.Command.CommandInterpreter;
 import Model.Logger.LoggerInstance;
@@ -10,7 +8,9 @@ import Model.Logger.LoggerInstance;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-
+/**
+ * @author Dzianis Brysiuk
+ */
 public class NetworkController extends ConnectionObservable implements ConnectionObserver{
 
     private static NetworkController ourInstance = new NetworkController();
@@ -18,7 +18,6 @@ public class NetworkController extends ConnectionObservable implements Connectio
     private ClientNetwork clientNetwork;
 
     final private String ACK2_HEAD = "StSTA002";
-    final private String ACK2_CNRD_END = "0002";
     final private String ACK1_CNU_CNE_CE_END = "0000";
     private boolean isConnected;
 
@@ -157,7 +156,8 @@ public class NetworkController extends ConnectionObservable implements Connectio
      */
     public void acknowledge2 (String msgID, boolean emptyCarriage){
         final String EMPTY_ID = "00";
-        String message = ACK2_HEAD+msgID+ACK2_CNRD_END+EMPTY_ID;
+        String ACK2_CNRD_END = "0002";
+        String message = ACK2_HEAD+msgID+ ACK2_CNRD_END +EMPTY_ID;
         LoggerInstance.log.info("Send ACK02: {} to Adapter",message);
         clientNetwork.sendMessage(message);
     }

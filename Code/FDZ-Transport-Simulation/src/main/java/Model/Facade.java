@@ -133,5 +133,9 @@ public class Facade {
         station.setPathTime(prev, time);
     }
 
+    public void setStatus (String status){
+
+    }
+
 
 }
