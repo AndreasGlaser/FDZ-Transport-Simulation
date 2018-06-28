@@ -3,6 +3,7 @@ package Controller;
 import Model.Facade;
 import Model.Logger.*;
 import Model.Network.ConnectionObserver;
+import Model.Status.StatusObserver;
 import Persistance.*;
 import View.AbstractStation;
 import javafx.application.Platform;
@@ -34,7 +35,7 @@ import java.util.ArrayList;
  *
  *
  */
-public class GUIController implements ConnectionObserver{
+public class GUIController implements ConnectionObserver, StatusObserver{
 	private final ArrayList<AbstractStation> stations = new ArrayList<>();
 	private final IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
 	private final Facade facade = new Facade();
@@ -82,9 +83,7 @@ public class GUIController implements ConnectionObserver{
 	@FXML
 	public void initialize(){
 
-		facade.statusProperty().addListener((observable, oldValue, newValue) -> {
-			statusTextArea.setText(newValue);
-		});
+
 
 		OutputStream LogOutputStream = new LogAreaOutputStream(logTextArea);
 		LogOutputStreamAppender.setStaticOutputStream(LogOutputStream);
@@ -167,6 +166,7 @@ public class GUIController implements ConnectionObserver{
 		});
 
 		facade.addToConnectionObservable(this);
+		facade.statusObservable().addObserver(this);
 
 	}
 
@@ -338,5 +338,12 @@ public class GUIController implements ConnectionObserver{
 				station.setDisableOptionsButton(!bool);
 			}
 		}
+	}
+
+	@Override
+	public void updateStatus() {
+		System.out.println("status ausgegeben"+facade.statusObservable().getValue());
+		Platform.runLater(()->statusTextArea.setText(facade.statusObservable().getValue()));
+
 	}
 }
