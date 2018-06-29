@@ -21,7 +21,6 @@ abstract class Command {
      */
     void commandExecuted(){
         getInstance().acknowledge2(msgID);
-        new Facade().setStatus("Finished");//TODO in aknowledge verschieben
     }
 
     /**

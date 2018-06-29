@@ -3,6 +3,7 @@ package Model.Network;
 
 
 import Model.Command.CommandInterpreter;
+import Model.Facade;
 import Model.Logger.LoggerInstance;
 
 import java.net.InetAddress;
@@ -147,6 +148,8 @@ public class NetworkController extends ConnectionObservable implements Connectio
         String message = ACK2_HEAD+msgID+ACK2_END;
         LoggerInstance.log.info("Send ACK02: {} to Adapter",message);
         clientNetwork.sendMessage(message);
+        //Update GUI Status
+        new Facade().setStatus("Finished");
     }
 
     /**
