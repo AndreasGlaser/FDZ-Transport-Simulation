@@ -2,8 +2,6 @@ package View;
 
 import Persistance.StationData;
 import javafx.beans.property.DoubleProperty;
-import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
 import javafx.scene.layout.Pane;
 import javafx.util.Pair;
 
@@ -65,6 +63,10 @@ public abstract class AbstractStation {
 			}
 		}
 	}
+
+	/**
+	 * this method must be called after all Stations are loaded, so that all settings can be set correct
+	 */
 	public abstract void initAfterAllStationLoaded();
 	public String getName(){
 		return data.getName();

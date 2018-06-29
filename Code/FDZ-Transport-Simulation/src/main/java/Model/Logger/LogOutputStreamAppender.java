@@ -1,6 +1,7 @@
 package Model.Logger;
 
 import ch.qos.logback.core.OutputStreamAppender;
+
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
 

@@ -2,7 +2,6 @@ package View;
 
 import javafx.geometry.Point2D;
 import javafx.scene.Group;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
@@ -11,7 +10,7 @@ import javafx.scene.transform.Rotate;
 
 class BeltNode extends Group {
 
-	public BeltNode(AbstractStation fromStation, AbstractStation toStation){
+	BeltNode(AbstractStation fromStation, AbstractStation toStation){
 		Double fromXOffset = 120.;
 		Double fromYOffset = 70.;
 		Double toXOffset = 120.;
@@ -26,7 +25,6 @@ class BeltNode extends Group {
 			getChildren().retainAll();
 			drawBelt(new Point2D(fromStation.getXCord()+fromXOffset, fromStation.getYCord()+fromYOffset), new Point2D(toStation.getXCord()+toXOffset, toStation.getYCord()+toYOffset));
 		});
-
 
 		toStation.getTranslateXProperty().addListener((event, oldX, newX)->{
 			getChildren().retainAll();

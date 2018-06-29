@@ -3,7 +3,6 @@ package Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 /**
  * The Controller for Error-messages
@@ -23,12 +22,13 @@ public class ErrorMessageController {
 	private final Pane messagePane;
 
 
-	public ErrorMessageController(Pane messagePane, String details, String message){
+	ErrorMessageController(Pane messagePane, String details, String message){
 		this.details = details;
 		this.message = message;
 		this.messagePane = messagePane;
 	}
 	@FXML
+	/*this method will be called once the fxml-File is fully loaded and every GUI-Element is available for manipulation*/
 	private void initialize(){
 		messagePane.setMouseTransparent(false);
 		detailsLabel.setText(details);

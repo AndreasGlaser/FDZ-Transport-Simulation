@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Exception.IllegalSetupException;
 import Model.Facade;
+import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationObserver;
 import Persistance.IPAddress;
@@ -35,8 +36,8 @@ public class StationController extends AbstractStation implements StationObserve
     private final ArrayList<AbstractStation> stations;
     private final Facade facade = new Facade();
     private ArrayList<Integer> sleds = new ArrayList<>();
-    private StatePersistor statePersistor = new StatePersistor();
-    private IPAddress ipAddress;
+    private final StatePersistor statePersistor = new StatePersistor();
+    private final IPAddress ipAddress;
     private String modelName;
 
     @FXML
@@ -72,11 +73,12 @@ public class StationController extends AbstractStation implements StationObserve
         try {
             facade.addStation(data.getName(), data.getShortcut());
         } catch (IllegalSetupException e) {
-            e.printStackTrace();
+            LoggerInstance.log.warn("Station: "+ data.getName()+" could not be added.");
         }
     }
 
     @FXML
+    /*this method will be called once the fxml-File is fully loaded and every GUI-Element is available for manipulation*/
     public void initialize(){
         super.initialize(rootPane, parent);
 
@@ -90,8 +92,7 @@ public class StationController extends AbstractStation implements StationObserve
         setData(data);
         setName(data.getName());
         modelName = data.getName();
-        setSledText("Empty");
-
+        sledText.setText("Empty");
 
         hopsBackBox.getItems().addAll(1,2,3,4,5,6,7,8,9);
         hopsBackBox.getSelectionModel().select(data.getHopsBack());
@@ -102,7 +103,7 @@ public class StationController extends AbstractStation implements StationObserve
                 new Facade().setHopsToNewCarriage(data.getName(), newHopsBack);
                 data.setHopsBack(newHopsBack);
             } catch (IllegalSetupException e) {
-                System.out.println(e.getMessage());//TODO: Log
+                LoggerInstance.log.warn("HopsBack could not be set to: "+ newHopsBack+ " the value is either smaller than 0 or greater than the number of stations.");
             }
         });
 
@@ -122,7 +123,6 @@ public class StationController extends AbstractStation implements StationObserve
             }else{
                 abbreviationField.getStyleClass().add("lightRed");
             }
-
         });
 
         stationNameTextField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -139,7 +139,6 @@ public class StationController extends AbstractStation implements StationObserve
             }else {
                 stationNameTextField.getStyleClass().add("lightRed");
             }
-
         });
     }
 
@@ -152,13 +151,12 @@ public class StationController extends AbstractStation implements StationObserve
                         if(!data.getName().equals(stationPair.getKey())){
                             addPrevStationInModel(station, stationPair.getValue());
                         }
-
                     }
                 }
             }
             new Facade().addToStationObservable(data.getName(), this);
         } catch (IllegalSetupException e) {
-            e.printStackTrace();//TODO log
+            LoggerInstance.log.warn("HopsBack could not be set to: "+ data.getHopsBack()+ " the value is either smaller than 0 or greater than the number of stations.");
         }
     }
 
@@ -178,7 +176,6 @@ public class StationController extends AbstractStation implements StationObserve
                 prevStationBorderPane.setLeft(box);
                 if(prevStationsContains(station.getData().getName()))box.setSelected(true);
                 else box.setSelected(false);
-
 
                 HBox timeBox = new HBox();
                 prevStationBorderPane.setRight(timeBox);
@@ -208,9 +205,6 @@ public class StationController extends AbstractStation implements StationObserve
                         prevStationTimeTextField.getStyleClass().add("red");
 
                     }
-
-
-
                 });
                 box.selectedProperty().addListener((observable2, oldValue, newValue) -> {
                     if(newValue){
@@ -223,25 +217,18 @@ public class StationController extends AbstractStation implements StationObserve
                         removePrevStationInModel(station);
                     }
                     refreshBelts(parent, stations);
-
                 });
             }
-
-
-
         }
     }
 
     private void removePrevStationInModel(AbstractStation station) {
-
-        if(station.getData().getstationType().equals(StationType.STATION)){
+        if(station.getData().getStationType().equals(StationType.STATION)){
             try {
                 new Facade().deletePrevStation(data.getName(), station.getName());
             }catch (NullPointerException e){
-                //no action is needed, this only means that there are more than on way the prevStation that should be deleted
+                //no action is needed, this only means that there are more than on way to the prevStation that should be deleted
             }
-
-            System.out.println("removed " +station.getName());
         }else{
             for(Pair<String, Integer> stationPair: station.getPreviousStationsByName()){
                 for(AbstractStation station2: stations){
@@ -257,10 +244,12 @@ public class StationController extends AbstractStation implements StationObserve
     }
 
     private void addPrevStationInModel(AbstractStation station, int time) {
-
-        if(station.getData().getstationType().equals(StationType.STATION)){
-            new Facade().addPrevStation(data.getName(), station.getName(), time);
-            System.out.println("GUI added: "+station.getName()+" as prevStation with time: "+ time + " to Station: "+ getName());
+        if(station.getData().getStationType().equals(StationType.STATION)){
+            try {
+                new Facade().addPrevStation(data.getName(), station.getName(), time);
+            }catch (NullPointerException e){
+                LoggerInstance.log.warn("PrevStation: "+station.getName() +"could not be added, because Station: "+data.getName()+"dos not exist.");
+            }
         }else{
             for(Pair<String, Integer> stationPair: station.getPreviousStationsByName()){
                 for(AbstractStation station2: stations){
@@ -268,7 +257,6 @@ public class StationController extends AbstractStation implements StationObserve
                         if(!data.getName().equals(stationPair.getKey())){
                             addPrevStationInModel(station2, time + stationPair.getValue());
                         }
-
                     }
                 }
             }
@@ -276,7 +264,7 @@ public class StationController extends AbstractStation implements StationObserve
     }
     private void updatePrevStationTimeInModel(AbstractStation station, int time) {
 
-        if(station.getData().getstationType().equals(StationType.STATION)){
+        if(station.getData().getStationType().equals(StationType.STATION)){
             new Facade().setPathTime(data.getName(), station.getName(), time);
             System.out.println("GUI updated: "+station.getName()+" as prevStation with time: "+ time + " to Station: "+ getName());
         }else{
@@ -304,7 +292,6 @@ public class StationController extends AbstractStation implements StationObserve
     }
 
     private void setNameInModel() {
-
         try {
             facade.setStationName(modelName, getName());
             modelName = getName();
@@ -324,10 +311,8 @@ public class StationController extends AbstractStation implements StationObserve
                     ));
             Pane message = loader.load();
             messagePane.setCenter(message);
-
-
         } catch (IOException e) {
-            e.printStackTrace();//TODO: exceptionhandling
+            LoggerInstance.log.warn("AskForSavingMessagePane.fxml could not be loaded.");
         }
     }
 
@@ -342,16 +327,12 @@ public class StationController extends AbstractStation implements StationObserve
     @Override
     public void closeOptions() {
         stationOptionsPane.setVisible(false);
-        setNameInModel();
+        setNameInModel();//TODO: die anderen werte auch nur zu diesen zeitpunkten aktualisieren
     }
 
     @Override
     public void setDisableOptionsButton(Boolean bool) {
         stationOptionsButton.setDisable(bool);
-    }
-
-    private void setSledText(String sledString){
-        sledText.setText(sledString);
     }
 
     private Pane getPreviousStationsPane(){
@@ -406,13 +387,9 @@ public class StationController extends AbstractStation implements StationObserve
                 }
             }
         });
-
-
-
     }
 
-
-    public void updatePrevStations(AbstractStation station, Integer time) {
+    void updatePrevStations(AbstractStation station, Integer time) {
         updatePrevStationTimeInModel(station, time);
     }
 }

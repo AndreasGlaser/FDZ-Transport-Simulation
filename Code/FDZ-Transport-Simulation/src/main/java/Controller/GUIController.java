@@ -39,7 +39,7 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 	private final ArrayList<AbstractStation> stations = new ArrayList<>();
 	private final IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
 	private final Facade facade = new Facade();
-	private ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
+	private final ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
 
 	@FXML
 	private Pane optionMenu;
@@ -81,13 +81,10 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 	private CheckBox fastModeCheckBox;
 
 	@FXML
+	/*this method will be called once the fxml-File is fully loaded and every GUI-Element is available for manipulation*/
 	public void initialize(){
-
-
-
 		OutputStream LogOutputStream = new LogAreaOutputStream(logTextArea);
 		LogOutputStreamAppender.setStaticOutputStream(LogOutputStream);
-
 
 		try {
 			userIPText.setText(InetAddress.getLocalHost().getHostAddress());
@@ -174,7 +171,6 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 	public void openCloseOptions(){
 		if(optionMenu.isVisible()) optionMenu.setVisible(false);
 		else optionMenu.setVisible(true);
-
 	}
 
 	@FXML
@@ -190,13 +186,9 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 				loader.setControllerFactory(c -> new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations, ipAddress, messagePane));
 				loader.load();
 			} catch (IOException e) {
-				e.printStackTrace();//TODO: exceptionhandling
+				LoggerInstance.log.error("StationPane.fxml could not be loaded");
 			}
 		}
-
-
-
-
 	}
 
 	@FXML
@@ -211,7 +203,7 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 				loader.setControllerFactory(c -> new CrossingController(new StationData("new Crossing", StationType.CROSSING), stationsPane, stations));
 				loader.load();
 			} catch (IOException e) {
-				e.printStackTrace();//TODO: exceptionhandling
+				LoggerInstance.log.error("CrossingPane.fxml could not be loaded");
 			}
 		}
 	}
@@ -226,7 +218,7 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 		configurationPersistor.loadConfiguration(stationsPane, stations, ipAddress, messagePane);
 		showIPAddress();
 	}
-	public void loadState(){
+	void loadState(){
 		StatePersistor statePersistor = new StatePersistor();
 		statePersistor.loadState(stationsPane,stations,ipAddress, messagePane);
 		showIPAddress();
@@ -265,12 +257,9 @@ public class GUIController implements ConnectionObserver, StatusObserver{
                     messagePane));
 			Pane message = loader.load();
 			messagePane.setCenter(message);
-
-
 		} catch (IOException e) {
-			e.printStackTrace();//TODO: exceptionhandling
+			LoggerInstance.log.error("AskForSavingMessagePane.fxml could not be loaded");
 		}
-
 	}
 	public void askForRestore(){
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AskForRestoreMessagePane.fxml"));
@@ -280,10 +269,8 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 					messagePane));
 			Pane message = loader.load();
 			messagePane.setCenter(message);
-
-
 		} catch (IOException e) {
-			e.printStackTrace();//TODO: exceptionhandling
+			LoggerInstance.log.error("AskForRestoreMessagePane.fxml could not be loaded");
 		}
 	}
 
@@ -291,6 +278,9 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 		return configurationPersistor.isConfigurationSaved(stations,ipAddress);
 	}
 
+	/**
+	 * Updates the Textfields in the GUI to show the User the loaded IP-Address
+	 */
 	private void showIPAddress(){
 		byte[] address = ipAddress.getAddress();
 		ipField1.setText(Integer.toString(Byte.toUnsignedInt(address[0])));
@@ -304,7 +294,6 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 	public void update() {
 		Platform.runLater(() -> {
 			controllerConnectionArrow.getStyleClass().clear();
-			System.out.println("isConnencted() returns "+facade.isConnected());
 			if(facade.isConnected()){
 				controllerConnectionArrow.getStyleClass().add("green");
 				disconnectedIpPane.setVisible(false);
@@ -316,7 +305,6 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 				setOptionsActive(true);
 			}
 		});
-
 	}
 
 
@@ -342,7 +330,6 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 
 	@Override
 	public void updateStatus() {
-		System.out.println("status ausgegeben"+facade.statusObservable().getValue());
 		Platform.runLater(()->statusTextArea.setText(facade.statusObservable().getValue()));
 
 	}

@@ -20,7 +20,6 @@ import java.util.ArrayList;
  * The Controller for Crossings
  * @author Andreas Glaser
  *
- *
  */
 public class CrossingController extends AbstractStation {
 
@@ -47,8 +46,8 @@ public class CrossingController extends AbstractStation {
 		stations.add(this);
 	}
 
-
 	@FXML
+	/*this method will be called once the fxml-File is fully loaded and every GUI-Element is available for manipulation*/
 	public void initialize(){
 		super.initialize(rootPane, parent);
 		crossingNameTextField.setOnKeyReleased(event -> {
@@ -85,7 +84,6 @@ public class CrossingController extends AbstractStation {
 				prevStationBorderPane.setLeft(box);
 				if(prevStationsContains(station.getData().getName()))box.setSelected(true);
 				else box.setSelected(false);
-
 
 				HBox timeBox = new HBox();
 				prevStationBorderPane.setRight(timeBox);
@@ -142,15 +140,14 @@ public class CrossingController extends AbstractStation {
 	 * @param triggerStation to prevent infinite loops, it is checked if a prevStation is the one that triggered the Update
 	 */
 	private void lookForStationsThatNeedToUpdate(AbstractStation triggerStation) {
-		stations.stream().filter(station -> !station.equals(triggerStation)).forEach(station ->{
-			station.getPreviousStationsByName().stream().filter(pair -> pair.getKey().equals(getName())).forEach(pair ->{
-				if(station.getData().getstationType().equals(StationType.STATION)){
-					((StationController)station).updatePrevStations(this, pair.getValue());
-				}else {
-					((CrossingController)station).lookForStationsThatNeedToUpdate(triggerStation);
-				}
-			});
-		});
+		stations.stream().filter(station -> !station.equals(triggerStation)).forEach(station ->
+				station.getPreviousStationsByName().stream().filter(pair -> pair.getKey().equals(getName())).forEach(pair ->{
+			if(station.getData().getStationType().equals(StationType.STATION)){
+				((StationController)station).updatePrevStations(this, pair.getValue());
+			}else {
+				((CrossingController)station).lookForStationsThatNeedToUpdate(triggerStation);
+			}
+		}));
 	}
 
 	@FXML
