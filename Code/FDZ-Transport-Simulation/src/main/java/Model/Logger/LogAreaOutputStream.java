@@ -4,6 +4,9 @@ import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 import java.io.OutputStream;
 
+/**
+ * Dzianis Brysiuk
+ */
 public class LogAreaOutputStream extends OutputStream {
 
     private final StringBuilder stringBuilder = new StringBuilder();

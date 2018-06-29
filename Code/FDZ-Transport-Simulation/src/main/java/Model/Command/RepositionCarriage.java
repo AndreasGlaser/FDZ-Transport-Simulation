@@ -24,7 +24,7 @@ public class RepositionCarriage extends Command {
      */
     RepositionCarriage(int id, String position, String msgID){
         LoggerInstance.log.debug("Creating new Reposition Carriage Command of ID "+id +" to "+position);
-        new Facade().setStatus("Repositioning Carriage with ID: "+id+" to "+position);
+        new Facade().setStatus("Repositioning carriage with ID: "+id+" to station: "+position);
         this.id = id;
         this.position = position;
         super.msgID = msgID;

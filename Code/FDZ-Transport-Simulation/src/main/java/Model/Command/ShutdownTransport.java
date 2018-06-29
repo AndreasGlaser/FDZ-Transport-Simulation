@@ -1,5 +1,6 @@
 package Model.Command;
 
+import Model.Facade;
 import Model.Logger.LoggerInstance;
 
 import java.util.HashSet;
@@ -16,6 +17,7 @@ public class ShutdownTransport extends Command {
      */
     ShutdownTransport(String msgID){
         LoggerInstance.log.debug("Creating new ShutdownTransport Command");
+        new Facade().setStatus("Shut down system");
         super.msgID = msgID;
     }
 

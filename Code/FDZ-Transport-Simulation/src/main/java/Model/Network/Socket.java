@@ -5,7 +5,7 @@ import Model.Exception.FDZNetworkException;
 /**
  * @author Dzianis Brysiuk
  */
-public interface Socket {
+interface Socket {
 
     /**
      *This function receives a message from the network.
@@ -20,7 +20,7 @@ public interface Socket {
      * @param message The message to be sent.
      * @throws FDZNetworkException if an error occurs.
      */
-    void sendMessage(String message) throws FDZNetworkException;
+    void sendMessage(String message);
 
     /**
      * This function checks if the socket is connected.

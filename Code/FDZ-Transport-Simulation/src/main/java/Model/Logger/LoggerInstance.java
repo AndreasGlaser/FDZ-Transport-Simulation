@@ -5,6 +5,9 @@ import ch.qos.logback.classic.LoggerContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Dzianis Brysiuk
+ */
 public class LoggerInstance {
 
     public static final Logger log = LoggerFactory.getLogger(LoggerInstance.class);

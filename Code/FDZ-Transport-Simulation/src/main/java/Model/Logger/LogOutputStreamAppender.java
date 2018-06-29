@@ -4,7 +4,10 @@ import ch.qos.logback.core.OutputStreamAppender;
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
 
-public class LogOutputStreamAppender<E> extends ch.qos.logback.core.OutputStreamAppender {
+/**
+ * Dzianis Brysiuk
+ */
+public class LogOutputStreamAppender<E> extends OutputStreamAppender {
 
     private static final DelegatingOutputStream DEL_OUT_STREAM = new DelegatingOutputStream();
 

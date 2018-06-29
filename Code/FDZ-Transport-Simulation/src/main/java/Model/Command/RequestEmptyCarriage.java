@@ -24,7 +24,7 @@ public class RequestEmptyCarriage extends Command {
      */
     RequestEmptyCarriage(String position, String msgID){
         LoggerInstance.log.debug("Creating new RequestEmptyCarriage Command to "+position);
-        new Facade().setStatus("Moving empty Carriage with to "+position);
+        new Facade().setStatus("Moving empty carriage to station: "+position);
         this.position = position;
         super.msgID = msgID;
     }

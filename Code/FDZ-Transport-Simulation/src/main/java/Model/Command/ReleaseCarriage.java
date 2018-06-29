@@ -18,7 +18,7 @@ public class ReleaseCarriage extends Command {
      */
     ReleaseCarriage(int id, String msgID){
         LoggerInstance.log.debug("Creating new ReleaseCarriage Command for ID " +id);
-        new Facade().setStatus("Releasing Carriage with ID: "+id);
+        new Facade().setStatus("Releasing carriage with ID: "+id);
         this.id = id;
         super.msgID = msgID;
     }
