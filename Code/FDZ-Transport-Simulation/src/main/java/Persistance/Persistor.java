@@ -2,6 +2,7 @@ package Persistance;
 
 import Controller.CrossingController;
 import Controller.StationController;
+import Model.Logger.LoggerInstance;
 import View.AbstractStation;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,84 +19,77 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public abstract class Persistor {
-    protected Path stationsPath;
-    protected Path ipPath;
+    private final Path stationsPath;
+    private final Path ipPath;
+    private final File stationFile;
+    private final File ipFile;
 
-    public Persistor(Path stationsPath, Path ipPath){
+    Persistor(Path stationsPath, Path ipPath){
         this.stationsPath = stationsPath;
         this.ipPath = ipPath;
+        this.stationFile = stationsPath.toFile();
+        this.ipFile = ipPath.toFile();
     }
 
     public void saveConfiguration(ArrayList<AbstractStation> stations, IPAddress ipAddress){
         String json = toJSON(stations);
         String ipJson = toJSON(ipAddress);
-        File stationFile = stationsPath.toFile();
-        File ipFile = ipPath.toFile();
-        if(!stationFile.exists()) try {
-            stationFile.getParentFile().mkdirs();
-            stationFile.createNewFile();
-            ipFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        createFilesIfNotExist();
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(stationsPath.toFile()), "utf-8"))) {
+                new FileOutputStream(stationFile), "utf-8"))) {
             writer.write(json);
         } catch (IOException e) {
-            e.printStackTrace();//TODO: Exceptionhandling
+            LoggerInstance.log.error("writing in File: "+ stationsPath +" not possible.");
         }
 
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(ipPath.toFile()), "utf-8"))) {
+                new FileOutputStream(ipFile), "utf-8"))) {
             writer.write(ipJson);
         } catch (IOException e) {
-            e.printStackTrace();//TODO: Exceptionhandling
+            LoggerInstance.log.error("writing in File: "+ ipPath +" not possible.");
         }
     }
-    public void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress, BorderPane messagePane) {
-        rootPane.getChildren().clear();
-        stations.clear();
-        File stationFile = stationsPath.toFile();
-        File ipFile = ipPath.toFile();
-        if(!stationFile.exists() || !ipFile.exists()){
+
+    private Boolean createFilesIfNotExist() {
+        if(!stationFile.exists()||!ipFile.exists()){
             try {
                 stationFile.getParentFile().mkdirs();
                 stationFile.createNewFile();
                 ipFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
+            }catch (IOException e) {
+                LoggerInstance.log.error("Save files could not be created.");
             }
-            saveConfiguration(stations, ipAddress);
-            return;
+            return true;
         }
+        else return false;
+    }
 
+    public void loadConfiguration(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress, BorderPane messagePane) {
+        rootPane.getChildren().clear();
+        stations.clear();
+        if(createFilesIfNotExist())saveConfiguration(stations, ipAddress);
         String json = readJSONFromFile(stationsPath);
         Gson gson = new Gson();
         Type collectionType = new TypeToken<Collection<StationData>>(){}.getType();
         ArrayList<StationData> stationsFromJson = gson.fromJson(json, collectionType);
 
         for(StationData stationData: stationsFromJson){
-            if(stationData.getstationType().equals(StationType.STATION)){
+            if(stationData.getStationType().equals(StationType.STATION)){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/StationPane.fxml"));
                 try {
-                    loader.setControllerFactory(c ->{
-                        return new StationController(stationData,rootPane,stations, ipAddress, messagePane);
-                    });
+                    loader.setControllerFactory(c -> new StationController(stationData,rootPane,stations, ipAddress, messagePane));
                     loader.load();
-
                 } catch (IOException e) {
-                    e.printStackTrace();//TODO: exceptionhandling
+                    LoggerInstance.log.error("StationPane.fxml could not be loaded.");
                 }
-            }else if(stationData.getstationType().equals(StationType.CROSSING)){
+            }else if(stationData.getStationType().equals(StationType.CROSSING)){
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/CrossingPane.fxml"));
                 try {
-                    loader.setControllerFactory(c ->{
-                        return new CrossingController(stationData,rootPane,stations);
-                    });
+                    loader.setControllerFactory(c -> new CrossingController(stationData,rootPane,stations));
                     loader.load();
 
                 } catch (IOException e) {
-                    e.printStackTrace();//TODO: exceptionhandling
+                   LoggerInstance.log.error("CrossingPane.fxml could not be loaded.");
                 }
             }
         }
@@ -114,20 +108,16 @@ public abstract class Persistor {
 
     }
     public Boolean isConfigurationSaved(ArrayList<AbstractStation> stations, IPAddress ipAddress){
-        if(readJSONFromFile(stationsPath).equals(toJSON(stations)) &&
-                readJSONFromFile(ipPath).equals(toJSON(ipAddress)))return true;
-        else return false;
+        return readJSONFromFile(stationsPath).equals(toJSON(stations)) &&
+                readJSONFromFile(ipPath).equals(toJSON(ipAddress));
     }
 
-    protected String readJSONFromFile(Path file) {
+    String readJSONFromFile(Path file) {
         StringBuilder json = new StringBuilder();
         try  {
-            Files.readAllLines(file, StandardCharsets.UTF_8).forEach(line -> json.append(line));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return "";
+            Files.readAllLines(file, StandardCharsets.UTF_8).forEach(json::append);
         } catch (IOException e) {
-            e.printStackTrace();
+            LoggerInstance.log.error("reading from File: "+ file +" not possible.");
             return "";
         }
         return json.toString();

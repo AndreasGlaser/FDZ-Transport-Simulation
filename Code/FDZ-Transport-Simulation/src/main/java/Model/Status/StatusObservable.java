@@ -1,22 +1,20 @@
 package Model.Status;
 
-import Model.Network.ConnectionObserver;
-
 import java.util.HashSet;
 
 /**
  * @author Andreas Glaser
  */
 public class StatusObservable {
-    private static StatusObservable instance = new StatusObservable();
+    private static final StatusObservable instance = new StatusObservable();
     private String value = "";
 
     private final HashSet<StatusObserver> observers;
     public static StatusObservable getInstance(){
         return instance;
     }
-    public StatusObservable(){
-        observers = new HashSet<StatusObserver>(2);
+    private StatusObservable(){
+        observers = new HashSet<>(2);
     }
 
     private void setChanged(){

@@ -10,10 +10,8 @@ import Model.Station.Station;
 import Model.Station.StationHandler;
 import Model.Station.StationObserver;
 import Model.Status.StatusObservable;
-import Model.Status.StatusObserver;
 import com.sun.istack.internal.NotNull;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +21,7 @@ public class Facade {
     private final NetworkController networkController;
     private final StationHandler stationHandler;
     private Thread connectionThread;
-    private StatusObservable statusObservable;
+    private final StatusObservable statusObservable;
 
     public Facade(){
         networkController = NetworkController.getInstance();
