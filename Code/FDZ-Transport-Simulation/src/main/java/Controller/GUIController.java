@@ -164,8 +164,8 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 		facade.addToConnectionObservable(this);
 		facade.statusObservable().addObserver(this);
 		logLevelBox.getItems().addAll("info", "debug", "warn", "error");
-		logLevelBox.selectionModelProperty().addListener((observable, oldValue, newValue) -> {
-			switch(newValue.getSelectedItem()){
+		logLevelBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			switch(newValue){
 				case "info": LoggerInstance.infoLevel();
 							break;
 				case "debug": LoggerInstance.debugLevel();
@@ -175,8 +175,9 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 				case "error": LoggerInstance.errorLevel();
 							break;
 			}
+			LoggerInstance.log.error("test");
 		});
-		logLevelBox.getSelectionModel().select("warn");
+		logLevelBox.getSelectionModel().select("info");
 
 	}
 
