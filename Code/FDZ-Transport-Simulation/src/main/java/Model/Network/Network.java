@@ -134,7 +134,7 @@ public class Network implements Socket {
      *Sends a message to the Adapter. The string message is encoded as ASCII
      */
     @Override
-    public void sendMessage(String message) {
+    public void sendMessage(String message) throws FDZNetworkException{
         if (clientSocket == null) {
             LoggerInstance.log.warn("Cant receive message: ",new RuntimeException("Not connected upon receive"));
         }

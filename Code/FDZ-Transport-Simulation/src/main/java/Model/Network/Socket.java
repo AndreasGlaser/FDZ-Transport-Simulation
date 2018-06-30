@@ -20,7 +20,7 @@ interface Socket {
      * @param message The message to be sent.
      * @throws FDZNetworkException if an error occurs.
      */
-    void sendMessage(String message);
+    void sendMessage(String message) throws FDZNetworkException;
 
     /**
      * This function checks if the socket is connected.
