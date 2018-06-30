@@ -10,10 +10,7 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -79,6 +76,8 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 	private Button optionsButton;
 	@FXML
 	private CheckBox fastModeCheckBox;
+	@FXML
+	private ChoiceBox<String> logLevelBox;
 
 	@FXML
 	/*this method will be called once the fxml-File is fully loaded and every GUI-Element is available for manipulation*/
@@ -164,6 +163,20 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 
 		facade.addToConnectionObservable(this);
 		facade.statusObservable().addObserver(this);
+		logLevelBox.getItems().addAll("info", "debug", "warn", "error");
+		logLevelBox.selectionModelProperty().addListener((observable, oldValue, newValue) -> {
+			switch(newValue.getSelectedItem()){
+				case "info": LoggerInstance.infoLevel();
+							break;
+				case "debug": LoggerInstance.debugLevel();
+							break;
+				case "warn": LoggerInstance.warnLevel();
+							break;
+				case "error": LoggerInstance.errorLevel();
+							break;
+			}
+		});
+		logLevelBox.getSelectionModel().select("warn");
 
 	}
 
