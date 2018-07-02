@@ -1,20 +1,16 @@
 package Controller;
 
 import Model.Facade;
-import Model.Logger.LoggerInstance;
-import Model.Logger.OwnOutputStreamAppender;
-import Model.Logger.TextAreaOutputStream;
+import Model.Logger.*;
 import Model.Network.ConnectionObserver;
+import Model.Status.StatusObserver;
 import Persistance.*;
 import View.AbstractStation;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -36,11 +32,11 @@ import java.util.ArrayList;
  *
  *
  */
-public class GUIController implements ConnectionObserver{
+public class GUIController implements ConnectionObserver, StatusObserver{
 	private final ArrayList<AbstractStation> stations = new ArrayList<>();
 	private final IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
 	private final Facade facade = new Facade();
-	private ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
+	private final ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
 
 	@FXML
 	private Pane optionMenu;
@@ -80,12 +76,14 @@ public class GUIController implements ConnectionObserver{
 	private Button optionsButton;
 	@FXML
 	private CheckBox fastModeCheckBox;
+	@FXML
+	private ChoiceBox<String> logLevelBox;
 
 	@FXML
+	/*this method will be called once the fxml-File is fully loaded and every GUI-Element is available for manipulation*/
 	public void initialize(){
-
-		OutputStream outputStream = new TextAreaOutputStream(logTextArea);
-		OwnOutputStreamAppender.setStaticOutputStream(outputStream);
+		OutputStream LogOutputStream = new LogAreaOutputStream(logTextArea);
+		LogOutputStreamAppender.setStaticOutputStream(LogOutputStream);
 
 		try {
 			userIPText.setText(InetAddress.getLocalHost().getHostAddress());
@@ -164,29 +162,21 @@ public class GUIController implements ConnectionObserver{
 		});
 
 		facade.addToConnectionObservable(this);
-
-		
-
-		//nur zur Demonstration
-		String mesID1 = "0000000001";
-		String mesID2 = "0000000002";
-		String mesID3 = "0000000003";
-
-		statusTextArea.appendText("Connect to 172.68.92.1 \n");
-		statusTextArea.appendText("Empty sled ordered to RO \n");
-		statusTextArea.appendText("Empty sled arrived at RO \n");
-		statusTextArea.appendText("Congestion in station RO \n");
-		statusTextArea.appendText("Command not executed Oct 15 00:23:12: SPXSStK001"+mesID2+ "0002aa \n");
-		statusTextArea.appendText("Release carriage with ID 23 \n");
-		statusTextArea.appendText("Reposition the carriage with id 23 to position IO \n");
-		statusTextArea.appendText("Port number changed to 23 \n");
-		statusTextArea.appendText("Connection lost to 172.68.92.1 \n");
-		statusTextArea.appendText("Empty sled ordered to ST \n");
-		statusTextArea.appendText("Empty sled arrived at ST \n");
-		statusTextArea.appendText("Congestion in station ST \n");
-		statusTextArea.appendText("Command not executed Oct 15 00:41:00: STStK003"+mesID3+ "000423io \n");
-		statusTextArea.appendText("Release carriage with ID 23 \n");
-		statusTextArea.appendText("Reposition the carriage with id 23 to position IO \n");
+		facade.statusObservable().addObserver(this);
+		logLevelBox.getItems().addAll("debug", "info",  "warn", "error");
+		logLevelBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			switch(newValue){
+				case "info": LoggerInstance.infoLevel();
+							break;
+				case "debug": LoggerInstance.debugLevel();
+							break;
+				case "warn": LoggerInstance.warnLevel();
+							break;
+				case "error": LoggerInstance.errorLevel();
+							break;
+			}
+		});
+		logLevelBox.getSelectionModel().select("info");
 
 	}
 
@@ -194,7 +184,6 @@ public class GUIController implements ConnectionObserver{
 	public void openCloseOptions(){
 		if(optionMenu.isVisible()) optionMenu.setVisible(false);
 		else optionMenu.setVisible(true);
-
 	}
 
 	@FXML
@@ -210,13 +199,9 @@ public class GUIController implements ConnectionObserver{
 				loader.setControllerFactory(c -> new StationController(new StationData("new Station", StationType.STATION),stationsPane,stations, ipAddress, messagePane));
 				loader.load();
 			} catch (IOException e) {
-				e.printStackTrace();//TODO: exceptionhandling
+				LoggerInstance.log.error("StationPane.fxml could not be loaded");
 			}
 		}
-
-
-
-
 	}
 
 	@FXML
@@ -231,7 +216,7 @@ public class GUIController implements ConnectionObserver{
 				loader.setControllerFactory(c -> new CrossingController(new StationData("new Crossing", StationType.CROSSING), stationsPane, stations));
 				loader.load();
 			} catch (IOException e) {
-				e.printStackTrace();//TODO: exceptionhandling
+				LoggerInstance.log.error("CrossingPane.fxml could not be loaded");
 			}
 		}
 	}
@@ -246,7 +231,7 @@ public class GUIController implements ConnectionObserver{
 		configurationPersistor.loadConfiguration(stationsPane, stations, ipAddress, messagePane);
 		showIPAddress();
 	}
-	public void loadState(){
+	void loadState(){
 		StatePersistor statePersistor = new StatePersistor();
 		statePersistor.loadState(stationsPane,stations,ipAddress, messagePane);
 		showIPAddress();
@@ -285,12 +270,9 @@ public class GUIController implements ConnectionObserver{
                     messagePane));
 			Pane message = loader.load();
 			messagePane.setCenter(message);
-
-
 		} catch (IOException e) {
-			e.printStackTrace();//TODO: exceptionhandling
+			LoggerInstance.log.error("AskForSavingMessagePane.fxml could not be loaded");
 		}
-
 	}
 	public void askForRestore(){
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AskForRestoreMessagePane.fxml"));
@@ -300,10 +282,8 @@ public class GUIController implements ConnectionObserver{
 					messagePane));
 			Pane message = loader.load();
 			messagePane.setCenter(message);
-
-
 		} catch (IOException e) {
-			e.printStackTrace();//TODO: exceptionhandling
+			LoggerInstance.log.error("AskForRestoreMessagePane.fxml could not be loaded");
 		}
 	}
 
@@ -311,6 +291,9 @@ public class GUIController implements ConnectionObserver{
 		return configurationPersistor.isConfigurationSaved(stations,ipAddress);
 	}
 
+	/**
+	 * Updates the Textfields in the GUI to show the User the loaded IP-Address
+	 */
 	private void showIPAddress(){
 		byte[] address = ipAddress.getAddress();
 		ipField1.setText(Integer.toString(Byte.toUnsignedInt(address[0])));
@@ -324,7 +307,6 @@ public class GUIController implements ConnectionObserver{
 	public void update() {
 		Platform.runLater(() -> {
 			controllerConnectionArrow.getStyleClass().clear();
-			System.out.println("isConnencted() returns "+facade.isConnected());
 			if(facade.isConnected()){
 				controllerConnectionArrow.getStyleClass().add("green");
 				disconnectedIpPane.setVisible(false);
@@ -336,7 +318,6 @@ public class GUIController implements ConnectionObserver{
 				setOptionsActive(true);
 			}
 		});
-
 	}
 
 
@@ -358,5 +339,11 @@ public class GUIController implements ConnectionObserver{
 				station.setDisableOptionsButton(!bool);
 			}
 		}
+	}
+
+	@Override
+	public void updateStatus() {
+		Platform.runLater(()->statusTextArea.setText(facade.statusObservable().getValue()));
+
 	}
 }

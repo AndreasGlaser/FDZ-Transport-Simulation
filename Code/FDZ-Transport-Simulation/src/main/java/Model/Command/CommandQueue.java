@@ -97,7 +97,7 @@ public class CommandQueue {
                         break;
                 }
             }catch(NullPointerException e){
-                e.printStackTrace();
+                LoggerInstance.log.warn("COMMAND NOT IN QUEUE ");
             }
         }
     }
@@ -149,8 +149,7 @@ public class CommandQueue {
                 }
             }
         }catch (NullPointerException e){
-            System.err.println("COMMAND NOT IN QUEUE, NULL POINTER");
-            System.err.println("INFO :: PRE ACTIVATED COMMANDS WAS NULL");
+            LoggerInstance.log.warn("COMMAND NOT IN QUEUE or PRE ACTIVATED COMMAND WAS NULL");
         }
 
     }

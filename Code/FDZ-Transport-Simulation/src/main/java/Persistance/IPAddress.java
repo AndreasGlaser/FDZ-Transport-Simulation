@@ -9,7 +9,7 @@ public class IPAddress {
 		this.port = port;
 	}
 
-	public void setAddress(byte[] Adress){
+	void setAddress(byte[] Adress){
 		this.address = Adress;
 	}
 	public byte[] getAddress(){

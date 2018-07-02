@@ -1,5 +1,7 @@
 package Model.Command;
 
+import Model.Facade;
+
 import static Model.Network.NetworkController.getInstance;
 
 /**

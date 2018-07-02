@@ -5,7 +5,7 @@ import Model.Exception.FDZNetworkException;
 /**
  * @author Dzianis Brysiuk
  */
-public interface Socket {
+interface Socket {
 
     /**
      *This function receives a message from the network.

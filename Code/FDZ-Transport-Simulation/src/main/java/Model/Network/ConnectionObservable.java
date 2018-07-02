@@ -7,7 +7,7 @@ import java.util.HashSet;
  */
 public abstract class ConnectionObservable {
 
-    private HashSet<ConnectionObserver> observers;
+    private final HashSet<ConnectionObserver> observers;
 
     ConnectionObservable(){
         observers = new HashSet<>(2);

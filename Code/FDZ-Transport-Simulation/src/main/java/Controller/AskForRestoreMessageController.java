@@ -1,24 +1,25 @@
 package Controller;
 
-import Persistance.StatePersistor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-
+/**
+ * The Controller for the ask-for-restore-message
+ * @author Andreas Glaser
+ *
+ */
 public class AskForRestoreMessageController {
 	@FXML
 	private Label detailsLabel;
 	@FXML
 	private Label messageLabel;
-
 	private final String details;
 	private final String message;
 	private final GUIController guiController;
 	private final Pane messagePane;
 
 
-	public AskForRestoreMessageController(GUIController guiController, Pane messagePane){
+	AskForRestoreMessageController(GUIController guiController, Pane messagePane){
 		this.details = "The application was not closed correct.";
 		this.message = "Do you want to restore the last state?";
 		this.guiController = guiController;
@@ -26,6 +27,7 @@ public class AskForRestoreMessageController {
 	}
 
 	@FXML
+	/*this method will be called once the fxml-File is fully loaded and every GUI-Element is available for manipulation*/
 	private void initialize(){
 		messagePane.setMouseTransparent(false);
 		detailsLabel.setText(details);

@@ -1,6 +1,7 @@
 package Model.Network;
 
 import Model.Exception.FDZNetworkException;
+import Model.Logger.LoggerInstance;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -16,31 +17,31 @@ import java.nio.charset.StandardCharsets;
 public class Network implements Socket {
 
     //Number of bytes in the packet header
-    final static int HEADER_LENGTH = 25;
+    private final static int HEADER_LENGTH = 25;
 
     //Position of payload-length in packet header
-    final static int PAYLOAD_LENGTH_OFFSET = 21;
-    final static int PAYLOAD_LENGTH_SIZE = 4;
+    private final static int PAYLOAD_LENGTH_OFFSET = 21;
+    private final static int PAYLOAD_LENGTH_SIZE = 4;
 
     //The address used to connect; Contains IP and Port information
-    SocketAddress socketAddr;
+    private SocketAddress socketAddr;
 
     //Client socket
     private SocketChannel clientSocket;
 
     /**
      * Initializes the Sockets.
-     * @param ipAddr The address identifying the remote machine.
-     * @param port The port to listen connect to.
+     * @param ipAddr contains IP Address from Adapter
+     * @param port contains Port Number of Adapter for Connection.
      */
-    protected Network(InetAddress ipAddr, int port) {
+    Network(InetAddress ipAddr, int port) {
 
         socketAddr = new InetSocketAddress(ipAddr, port);
 
     }
 
     /**
-     * Closes the socket that is used for communication (ClientSocket).
+     * Closes the socket that is used for communication.
      * @throws FDZNetworkException if an error occurs.
      */
     public synchronized void closeSocket() throws FDZNetworkException {
@@ -63,7 +64,7 @@ public class Network implements Socket {
      * Tries to connect to the Adapter.
      * @throws FDZNetworkException if an error occurs.
      */
-    protected synchronized void openConnection() throws FDZNetworkException {
+    synchronized void openConnection() throws FDZNetworkException {
 
         if (clientSocket == null) {
             connect();
@@ -82,14 +83,14 @@ public class Network implements Socket {
         }
     }
 
-    /** Receives a message from the Adapter. Reads header and payload and returns one string.
-     *
+    /**
+     *Receives a message from the Adapter. Reads header and payload and returns one string.
      */
     @Override
     public String receiveMessage() throws FDZNetworkException {
 
         if (clientSocket == null) {
-            throw new RuntimeException("Not connected upon receive. Did you forget to call \"openConnection()\" or \"awaitConnection()\"?");
+            LoggerInstance.log.warn("Cant receive message: ",new RuntimeException("Not connected upon receive"));
         }
 
         try {
@@ -100,7 +101,7 @@ public class Network implements Socket {
             while(header.hasRemaining()) {
                 //Check if the connection is closed
                 if (clientSocket.read(header) == -1) {
-                    throw new IOException("End-of-Stream while read()");
+                    LoggerInstance.log.warn("End of Stream while read(): ", new IOException());
                 }
             }
 
@@ -117,7 +118,7 @@ public class Network implements Socket {
             while(payload.hasRemaining()) {
                 //Check if the connection is closed
                 if (clientSocket.read(payload) == -1) {
-                    throw new IOException("End-of-Stream while read()");
+                    LoggerInstance.log.warn("End of Stream while read(): ", new IOException());
                 }
             }
 
@@ -129,13 +130,13 @@ public class Network implements Socket {
         }
     }
 
-    /** Sends a message to the Adapter. The string message is encoded as ASCII
-     *
+    /**
+     *Sends a message to the Adapter. The string message is encoded as ASCII
      */
     @Override
-    public void sendMessage(String message) throws FDZNetworkException {
+    public void sendMessage(String message) throws FDZNetworkException{
         if (clientSocket == null) {
-            throw new RuntimeException("Not connected upon receive. Did you forget to call \"openConnection()\" or \"awaitConnection()\"?");
+            LoggerInstance.log.warn("Cant receive message: ",new RuntimeException("Not connected upon receive"));
         }
 
         try {
@@ -144,14 +145,13 @@ public class Network implements Socket {
             ByteBuffer buffer = ByteBuffer.allocate(toSend.length);
             buffer.put(toSend);
 
-            //This need to be done
             buffer.flip();
             while(buffer.hasRemaining()) {
                 clientSocket.write(buffer);
             }
         }
         catch(IOException e) {
-            throw new FDZNetworkException(e);
+            LoggerInstance.log.warn("Message convert fails: ",new FDZNetworkException(e));
         }
     }
 

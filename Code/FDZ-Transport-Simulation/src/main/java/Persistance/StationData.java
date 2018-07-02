@@ -9,14 +9,14 @@ public class StationData {
 	private String shortcut = "";
 	private Double xCord = 0.;
 	private Double yCord = 0.;
-	private ArrayList<Pair<String, Integer>> reachableStationsByName = new ArrayList<>();
-	private StationType stationType;
+	private final ArrayList<Pair<String, Integer>> reachableStationsByName = new ArrayList<>();
+	private final StationType stationType;
 	private Integer hopsBack = 1;
 
 
 	public StationData(String name, StationType type){
 		setName(name);
-		setstationType(type);
+		stationType = type;
 		if(type.equals(StationType.STATION))setShortcut("NS");
 		else setShortcut("");
 	}
@@ -43,8 +43,7 @@ public class StationData {
 	}
 	public ArrayList<Pair<String, Integer>> getPreviousStationsByName(){return reachableStationsByName;}
 
-	public void setstationType(StationType type){ this.stationType = type;}
-	public StationType getstationType(){return stationType;}
+	public StationType getStationType(){return stationType;}
 	public void setHopsBack(Integer hops){
 		hopsBack= hops;
 	}

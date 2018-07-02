@@ -91,7 +91,7 @@ public class CommandInterpreter extends Thread {
      */
     private void error(String messageID){
         LoggerInstance.log.warn("Interpreter couldn't find right Command for input Message!");
-        NetworkController.getInstance().commandNotUnterstood(messageID);
+        NetworkController.getInstance().commandNotUnderstood(messageID);
     }
 
     /*--PARSER-------------------------------------------------------------------*/

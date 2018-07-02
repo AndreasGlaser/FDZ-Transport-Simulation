@@ -4,12 +4,15 @@ import javafx.application.Platform;
 import javafx.scene.control.TextArea;
 import java.io.OutputStream;
 
-public class TextAreaOutputStream extends OutputStream {
+/**
+ * Dzianis Brysiuk
+ */
+public class LogAreaOutputStream extends OutputStream {
 
     private final StringBuilder stringBuilder = new StringBuilder();
     private final TextArea textArea;
 
-    public TextAreaOutputStream(TextArea textArea){
+    public LogAreaOutputStream(TextArea textArea){
         this.textArea=textArea;
     }
 

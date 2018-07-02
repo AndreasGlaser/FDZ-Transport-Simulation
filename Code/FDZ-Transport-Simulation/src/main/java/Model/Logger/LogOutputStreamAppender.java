@@ -1,10 +1,14 @@
 package Model.Logger;
 
 import ch.qos.logback.core.OutputStreamAppender;
+
 import java.io.FilterOutputStream;
 import java.io.OutputStream;
 
-public class OwnOutputStreamAppender<E> extends OutputStreamAppender {
+/**
+ * Dzianis Brysiuk
+ */
+public class LogOutputStreamAppender<E> extends OutputStreamAppender {
 
     private static final DelegatingOutputStream DEL_OUT_STREAM = new DelegatingOutputStream();
 
