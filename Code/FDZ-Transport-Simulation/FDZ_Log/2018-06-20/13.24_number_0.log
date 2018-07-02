@@ -1,0 +1,21 @@
+13:24:49 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+13:24:49 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+13:24:49 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+13:24:49 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+13:24:53 DEBUG - Interpreter started
+13:24:53 DEBUG - Done Parsing Values of Message 0000000000:00
+13:24:53 DEBUG - Starting Command Validation for 0000000000:00
+13:24:53 INFO  - Successfully Validated Command with MessageID 0000000000:00
+13:24:53 INFO  - Interpreted RequestEmptyCarriage to ro Command
+13:24:53 DEBUG - Added new RequestEmptyCarriage Command to Queue
+13:24:53 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+13:24:53 DEBUG - Activated Command with MessageID 0000000000:00
+13:24:53 DEBUG - Trying to find Path for RequestEmptyCarriage Command
+13:24:53 DEBUG - Returning Path: |Storage||Robot|
+13:24:53 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+13:25:02 DEBUG - Interpreter started
+13:25:02 DEBUG - Done Parsing Values of Message 0000000000:00
+13:25:02 DEBUG - Starting Command Validation for 0000000000:00
+13:25:02 WARN  - Interpreter couldn't find right Command for input Message!
+13:25:02 WARN  - Interpreter couldn't find right Command for input Message!
+13:25:02 INFO  - Send command not understood: StSTF0000000000000:000000 to Adapter

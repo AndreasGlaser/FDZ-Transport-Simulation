@@ -1,0 +1,35 @@
+17:55:31 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+17:55:31 DEBUG - Create new Network socket [127, 0, 0, 1]:47331
+17:55:31 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+17:55:31 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+17:55:54 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+17:55:54 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+17:56:29 INFO  - Close connection to Adapter [127, 0, 0, 1]:47331
+17:56:29 INFO  - Disconnected
+17:56:29 INFO  - Connection lost to Adapter: [127, 0, 0, 1]:47331
+17:56:29 DEBUG - Connection error: 
+Model.Network.FDZNetworkException: Model.Network.FDZNetworkException: java.nio.channels.ClosedByInterruptException
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:110)
+Caused by: Model.Network.FDZNetworkException: java.nio.channels.ClosedByInterruptException
+	at Model.Network.Network.receiveMessage(Network.java:126)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:104)
+Caused by: java.nio.channels.ClosedByInterruptException: null
+	at java.nio.channels.spi.AbstractInterruptibleChannel.end(AbstractInterruptibleChannel.java:202)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:407)
+	at Model.Network.Network.receiveMessage(Network.java:100)
+	... 1 common frames omitted
+17:56:55 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+17:56:55 DEBUG - Create new Network socket [127, 0, 0, 1]:47331
+17:56:55 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+17:56:55 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+17:57:45 INFO  - Send command not understood: StSTF0000000000000:000000 to Adapter
+17:57:45 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+17:57:45 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter
+17:58:00 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+17:58:00 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+17:58:22 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+17:59:40 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+17:59:40 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+17:59:55 INFO  - Send command not understood: StSTF0000000000000:000000 to Adapter
+17:59:55 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+17:59:55 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter

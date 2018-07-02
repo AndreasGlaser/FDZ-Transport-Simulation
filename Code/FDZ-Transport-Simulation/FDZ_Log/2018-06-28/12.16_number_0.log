@@ -1,0 +1,15 @@
+12:16:21 DEBUG - Station nulls name has been changed to robot
+12:16:21 DEBUG - Station robots shortCut has been changed from null to ro
+12:16:21 DEBUG - Station nulls name has been changed to stock
+12:16:21 DEBUG - Station stocks shortCut has been changed from null to la
+12:16:21 DEBUG - Station nulls name has been changed to InOut
+12:16:21 DEBUG - Station InOuts shortCut has been changed from null to ea
+12:16:22 WARN  - Station already in PrevList of Station robot
+12:16:22 WARN  - Station already in PrevList of Station stock
+12:16:22 WARN  - Station already in PrevList of Station stock
+12:16:22 WARN  - Station already in PrevList of Station InOut
+12:16:22 DEBUG - Set HopsBack of Station robot from 1 to 2
+12:16:22 DEBUG - Set HopsBack of Station stock from 1 to 1
+12:16:22 DEBUG - Set HopsBack of Station InOut from 1 to 1
+12:16:22 DEBUG - Station nulls name has been changed to one
+12:16:22 WARN  - Illegal Input in setStationShortCut()

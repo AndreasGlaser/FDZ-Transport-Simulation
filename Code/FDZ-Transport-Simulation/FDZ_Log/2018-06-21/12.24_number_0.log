@@ -1,0 +1,1023 @@
+12:24:40 DEBUG - Station nulls name has been changed to Robot
+12:24:40 DEBUG - Station Robots shortCut has been changed from null to ro
+12:24:40 INFO  - Added Station Robot to Setup
+12:24:40 DEBUG - Station nulls name has been changed to I/O
+12:24:40 DEBUG - Station I/Os shortCut has been changed from null to ea
+12:24:40 INFO  - Added Station I/O to Setup
+12:24:40 DEBUG - Station nulls name has been changed to Storage
+12:24:40 DEBUG - Station Storages shortCut has been changed from null to la
+12:24:40 INFO  - Added Station Storage to Setup
+12:24:40 DEBUG - Set HopsBack of Station Robot from 1 to 2
+12:24:40 INFO  - Adding Station Model.Station.Station@28d9fec3 to Robots PrevList with PathTime 20
+12:24:40 DEBUG - Adding Observer to Robots List
+12:24:40 DEBUG - Set HopsBack of Station I/O from 1 to 1
+12:24:40 INFO  - Adding Station Model.Station.Station@1f2813c1 to I/Os PrevList with PathTime 19
+12:24:40 DEBUG - Adding Observer to I/Os List
+12:24:40 DEBUG - Set HopsBack of Station Storage from 1 to 1
+12:24:40 INFO  - Adding Station Model.Station.Station@1f2813c1 to Storages PrevList with PathTime 20
+12:24:40 INFO  - Adding Station Model.Station.Station@3eaf12d3 to Storages PrevList with PathTime 9
+12:24:40 DEBUG - Adding Observer to Storages List
+12:24:57 INFO  - Open connection to Adapter [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Create new Network Socket [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 DEBUG - Close existing Socket
+12:24:57 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:57 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket
+12:24:58 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 WARN  - Cant open connection to Adapter: [127, 0, 0, 1]:47354
+12:24:58 DEBUG - Close existing Socket

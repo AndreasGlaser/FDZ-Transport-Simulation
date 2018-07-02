@@ -1,0 +1,4 @@
+13:53:25 INFO  - Open connection to Adapter [-84, 16, 48, 24]:40001
+13:53:25 DEBUG - Create new Network Socket [-84, 16, 48, 24]:40001
+13:53:25 DEBUG - Trying to open connection to Adapter: [-84, 16, 48, 24]:40001
+13:53:25 INFO  - Succefull connected to Adapter: [-84, 16, 48, 24]:40001

@@ -1,0 +1,314 @@
+09:42:48 DEBUG - Station nulls name has been changed to Robot
+09:42:48 DEBUG - Station Robots shortCut has been changed from null to ro
+09:42:48 INFO  - Added Station Robot to Setup
+09:42:49 DEBUG - Station nulls name has been changed to I/O
+09:42:49 DEBUG - Station I/Os shortCut has been changed from null to ea
+09:42:49 INFO  - Added Station I/O to Setup
+09:42:49 DEBUG - Station nulls name has been changed to Storage
+09:42:49 DEBUG - Station Storages shortCut has been changed from null to la
+09:42:49 INFO  - Added Station Storage to Setup
+09:42:49 DEBUG - Set HopsBack of Station Robot from 1 to 2
+09:42:49 INFO  - Adding Station Model.Station.Station@28d9fec3 to Robots PrevList with PathTime 20
+09:42:49 DEBUG - Adding Observer to Robots List
+09:42:49 DEBUG - Set HopsBack of Station I/O from 1 to 1
+09:42:49 INFO  - Adding Station Model.Station.Station@1f2813c1 to I/Os PrevList with PathTime 19
+09:42:49 DEBUG - Adding Observer to I/Os List
+09:42:49 DEBUG - Set HopsBack of Station Storage from 1 to 1
+09:42:49 INFO  - Adding Station Model.Station.Station@1f2813c1 to Storages PrevList with PathTime 20
+09:42:49 INFO  - Adding Station Model.Station.Station@3eaf12d3 to Storages PrevList with PathTime 9
+09:42:49 DEBUG - Adding Observer to Storages List
+09:44:01 INFO  - Open connection to Adapter [-84, 16, 48, 24]:40001
+09:44:01 DEBUG - Create new Network Socket [-84, 16, 48, 24]:40001
+09:44:01 DEBUG - Trying to open connection to Adapter: [-84, 16, 48, 24]:40001
+09:44:01 INFO  - Succefull connected to Adapter: [-84, 16, 48, 24]:40001
+09:44:46 DEBUG - Interpreter started
+09:44:46 DEBUG - Done Parsing Values of Message 0000000000:00
+09:44:46 DEBUG - Starting Command Validation for 0000000000:00
+09:44:46 INFO  - Successfully Validated Command with MessageID 0000000000:00
+09:44:46 INFO  - Interpreted RequestEmptyCarriage to ea Command
+09:44:46 DEBUG - Creating new RequestEmptyCarriage Command to ea
+09:44:46 DEBUG - Added new RequestEmptyCarriage Command to Queue
+09:44:46 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+09:44:46 DEBUG - Activated Command with MessageID 0000000000:00
+09:44:46 DEBUG - Trying to find Path for RequestEmptyCarriage Command
+09:44:46 DEBUG - Returning Path: |I/O|
+09:44:46 INFO  - Notifying all Observers of I/O
+09:44:46 INFO  - Notifying all Observers of I/O
+09:44:46 INFO  - Notifying all Observers of I/O
+09:44:46 DEBUG - New Sled in Station I/O is -1
+09:44:46 INFO  - Done Requesting Carriage in FastMode
+09:44:46 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+09:45:17 DEBUG - Interpreter started
+09:45:17 DEBUG - Done Parsing Values of Message 0000000000:00
+09:45:17 DEBUG - Starting Command Validation for 0000000000:00
+09:45:17 INFO  - Successfully Validated Command with MessageID 0000000000:00
+09:45:17 INFO  - Interpreted RepositionCarriage 12 to la Command
+09:45:17 DEBUG - Creating new Reposition Carriage Command of ID 12 to la
+09:45:17 DEBUG - Adding new RepositionCarriage Command to Queue
+09:45:17 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+09:45:17 DEBUG - Activated Command with MessageID 0000000000:00
+09:45:17 DEBUG - Found Empty Sled with new ID 12
+09:45:17 INFO  - Notifying all Observers of I/O
+09:45:17 DEBUG - Trying to find Path for Reposition Command
+09:45:17 DEBUG - Returning Path: |I/O||Storage|
+09:45:17 INFO  - Notifying all Observers of I/O
+09:45:17 DEBUG - No more Sled in Station I/O
+09:45:17 INFO  - Notifying all Observers of Storage
+09:45:17 INFO  - Notifying all Observers of Storage
+09:45:17 INFO  - Notifying all Observers of Storage
+09:45:17 DEBUG - New Sled in Station Storage is 12
+09:45:17 INFO  - Done Repositioning in FastMode
+09:45:17 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter
+09:55:50 DEBUG - Interpreter started
+09:55:50 DEBUG - Done Parsing Values of Message 0000000000:00
+09:55:50 DEBUG - Starting Command Validation for 0000000000:00
+09:55:50 INFO  - Successfully Validated Command with MessageID 0000000000:00
+09:55:50 INFO  - Interpreted RepositionCarriage 12 to la Command
+09:55:50 DEBUG - Creating new Reposition Carriage Command of ID 12 to la
+09:55:50 DEBUG - Adding new RepositionCarriage Command to Queue
+09:55:50 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+09:55:50 DEBUG - Activated Command with MessageID 0000000000:00
+09:55:50 DEBUG - Trying to find Path for Reposition Command
+09:55:50 DEBUG - Returning Path: |Storage|
+09:55:50 INFO  - Notifying all Observers of Storage
+09:55:50 DEBUG - No more Sled in Station Storage
+09:55:50 INFO  - Notifying all Observers of Storage
+09:55:50 INFO  - Notifying all Observers of Storage
+09:55:50 INFO  - Notifying all Observers of Storage
+09:55:50 DEBUG - New Sled in Station Storage is 12
+09:55:50 INFO  - Done Repositioning in FastMode
+09:55:50 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter
+10:17:33 DEBUG - Interpreter started
+10:17:33 DEBUG - Done Parsing Values of Message 0000000000:00
+10:17:33 DEBUG - Starting Command Validation for 0000000000:00
+10:17:33 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:17:33 INFO  - Interpreted RequestEmptyCarriage to ea Command
+10:17:33 DEBUG - Creating new RequestEmptyCarriage Command to ea
+10:17:33 DEBUG - Added new RequestEmptyCarriage Command to Queue
+10:17:33 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:17:33 DEBUG - Activated Command with MessageID 0000000000:00
+10:17:33 DEBUG - Trying to find Path for RequestEmptyCarriage Command
+10:17:33 DEBUG - Returning Path: |I/O|
+10:17:33 INFO  - Notifying all Observers of I/O
+10:17:33 INFO  - Notifying all Observers of I/O
+10:17:33 INFO  - Notifying all Observers of I/O
+10:17:33 DEBUG - New Sled in Station I/O is -1
+10:17:33 INFO  - Done Requesting Carriage in FastMode
+10:17:33 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+10:17:52 DEBUG - Interpreter started
+10:17:52 DEBUG - Done Parsing Values of Message 0000000000:00
+10:17:52 DEBUG - Starting Command Validation for 0000000000:00
+10:17:52 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:17:52 INFO  - Interpreted RepositionCarriage 33 to ro Command
+10:17:52 DEBUG - Creating new Reposition Carriage Command of ID 33 to ro
+10:17:52 DEBUG - Adding new RepositionCarriage Command to Queue
+10:17:52 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:17:52 DEBUG - Activated Command with MessageID 0000000000:00
+10:17:52 DEBUG - Found Empty Sled with new ID 33
+10:17:52 INFO  - Notifying all Observers of I/O
+10:17:52 DEBUG - Trying to find Path for Reposition Command
+10:17:52 DEBUG - Returning Path: |I/O||Storage||Robot|
+10:17:52 INFO  - Notifying all Observers of I/O
+10:17:52 DEBUG - No more Sled in Station I/O
+10:17:52 INFO  - Notifying all Observers of Storage
+10:18:07 DEBUG - Interpreter started
+10:18:07 DEBUG - Done Parsing Values of Message 0000000000:00
+10:18:07 DEBUG - Starting Command Validation for 0000000000:00
+10:18:07 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:18:07 INFO  - Interpreted RequestEmptyCarriage to ea Command
+10:18:07 DEBUG - Creating new RequestEmptyCarriage Command to ea
+10:18:07 DEBUG - Added new RequestEmptyCarriage Command to Queue
+10:18:07 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:18:07 DEBUG - Activated Command with MessageID 0000000000:00
+10:18:07 DEBUG - Trying to find Path for RequestEmptyCarriage Command
+10:18:07 DEBUG - Returning Path: |I/O|
+10:18:07 INFO  - Notifying all Observers of I/O
+10:18:07 INFO  - Notifying all Observers of I/O
+10:18:07 INFO  - Notifying all Observers of I/O
+10:18:07 DEBUG - New Sled in Station I/O is -1
+10:18:07 INFO  - Done Requesting Carriage in FastMode
+10:18:07 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+10:18:27 DEBUG - Interpreter started
+10:18:27 DEBUG - Done Parsing Values of Message 0000000000:00
+10:18:27 DEBUG - Starting Command Validation for 0000000000:00
+10:18:27 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:18:27 INFO  - Interpreted RepositionCarriage 12 to ro Command
+10:18:27 DEBUG - Creating new Reposition Carriage Command of ID 12 to ro
+10:18:27 DEBUG - Adding new RepositionCarriage Command to Queue
+10:18:27 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:18:27 DEBUG - Activated Command with MessageID 0000000000:00
+10:18:27 DEBUG - Trying to find Path for Reposition Command
+10:18:27 DEBUG - Returning Path: |Storage||Robot|
+10:18:27 INFO  - Notifying all Observers of Storage
+10:18:27 DEBUG - No more Sled in Station Storage
+10:18:27 INFO  - Notifying all Observers of Storage
+10:18:27 INFO  - Notifying all Observers of Robot
+10:18:27 INFO  - Notifying all Observers of Storage
+10:18:27 DEBUG - New Sled in Station Storage is 33
+10:18:27 INFO  - Notifying all Observers of Storage
+10:18:27 DEBUG - No more Sled in Station Storage
+10:18:27 INFO  - Notifying all Observers of Robot
+10:18:27 INFO  - Notifying all Observers of Robot
+10:18:28 INFO  - Notifying all Observers of Robot
+10:18:28 DEBUG - New Sled in Station Robot is 12
+10:18:28 INFO  - Done Repositioning in FastMode
+10:18:28 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter
+10:19:53 DEBUG - Interpreter started
+10:19:53 DEBUG - Done Parsing Values of Message 0000000000:00
+10:19:53 DEBUG - Starting Command Validation for 0000000000:00
+10:19:53 WARN  - Interpreter detected Illegal Command Structure!
+10:19:53 WARN  - Interpreter couldn't find right Command for input Message!
+10:19:53 INFO  - Send command not understood: StSTF0000000000000:000000 to Adapter
+10:21:00 DEBUG - Interpreter started
+10:21:00 DEBUG - Done Parsing Values of Message 0000000000:00
+10:21:00 DEBUG - Starting Command Validation for 0000000000:00
+10:21:00 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:21:00 INFO  - Interpreted RepositionCarriage 45 to la Command
+10:21:00 DEBUG - Creating new Reposition Carriage Command of ID 45 to la
+10:21:00 DEBUG - Adding new RepositionCarriage Command to Queue
+10:21:00 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:21:00 DEBUG - Activated Command with MessageID 0000000000:00
+10:21:00 DEBUG - Found Empty Sled with new ID 45
+10:21:00 INFO  - Notifying all Observers of I/O
+10:21:00 DEBUG - Trying to find Path for Reposition Command
+10:21:00 DEBUG - Returning Path: |I/O||Storage|
+10:21:00 INFO  - Notifying all Observers of I/O
+10:21:00 DEBUG - No more Sled in Station I/O
+10:21:00 INFO  - Notifying all Observers of Storage
+10:21:00 INFO  - Notifying all Observers of Storage
+10:21:00 INFO  - Notifying all Observers of Storage
+10:21:00 DEBUG - New Sled in Station Storage is 45
+10:21:00 INFO  - Done Repositioning in FastMode
+10:21:00 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter
+10:21:07 DEBUG - Interpreter started
+10:21:07 DEBUG - Done Parsing Values of Message 0000000000:00
+10:21:07 DEBUG - Starting Command Validation for 0000000000:00
+10:21:07 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:21:07 INFO  - Interpreted RequestEmptyCarriage to ea Command
+10:21:07 DEBUG - Creating new RequestEmptyCarriage Command to ea
+10:21:07 DEBUG - Added new RequestEmptyCarriage Command to Queue
+10:21:07 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:21:07 DEBUG - Activated Command with MessageID 0000000000:00
+10:21:07 DEBUG - Trying to find Path for RequestEmptyCarriage Command
+10:21:07 DEBUG - Returning Path: |I/O|
+10:21:07 INFO  - Notifying all Observers of I/O
+10:21:07 INFO  - Notifying all Observers of I/O
+10:21:07 INFO  - Notifying all Observers of I/O
+10:21:07 DEBUG - New Sled in Station I/O is -1
+10:21:07 INFO  - Done Requesting Carriage in FastMode
+10:21:07 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+10:21:29 DEBUG - Interpreter started
+10:21:29 DEBUG - Done Parsing Values of Message 0000000000:00
+10:21:29 DEBUG - Starting Command Validation for 0000000000:00
+10:21:29 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:21:29 INFO  - Interpreted RepositionCarriage 88 to la Command
+10:21:29 DEBUG - Creating new Reposition Carriage Command of ID 88 to la
+10:21:29 DEBUG - Adding new RepositionCarriage Command to Queue
+10:21:29 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:21:29 DEBUG - Activated Command with MessageID 0000000000:00
+10:21:29 DEBUG - Found Empty Sled with new ID 88
+10:21:29 INFO  - Notifying all Observers of I/O
+10:21:29 DEBUG - Trying to find Path for Reposition Command
+10:21:29 DEBUG - Returning Path: |I/O||Storage|
+10:21:29 INFO  - Notifying all Observers of I/O
+10:21:29 DEBUG - No more Sled in Station I/O
+10:21:29 INFO  - Notifying all Observers of Storage
+10:21:37 DEBUG - Interpreter started
+10:21:37 DEBUG - Done Parsing Values of Message 0000000000:00
+10:21:37 DEBUG - Starting Command Validation for 0000000000:00
+10:21:37 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:21:37 INFO  - Interpreted RequestEmptyCarriage to ea Command
+10:21:37 DEBUG - Creating new RequestEmptyCarriage Command to ea
+10:21:37 DEBUG - Added new RequestEmptyCarriage Command to Queue
+10:21:37 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:21:37 DEBUG - Activated Command with MessageID 0000000000:00
+10:21:37 DEBUG - Trying to find Path for RequestEmptyCarriage Command
+10:21:37 DEBUG - Returning Path: |I/O|
+10:21:37 INFO  - Notifying all Observers of I/O
+10:21:37 INFO  - Notifying all Observers of I/O
+10:21:37 INFO  - Notifying all Observers of I/O
+10:21:37 DEBUG - New Sled in Station I/O is -1
+10:21:37 INFO  - Done Requesting Carriage in FastMode
+10:21:37 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+10:21:48 DEBUG - Interpreter started
+10:21:48 DEBUG - Done Parsing Values of Message 0000000000:00
+10:21:48 DEBUG - Starting Command Validation for 0000000000:00
+10:21:48 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:21:48 INFO  - Interpreted RepositionCarriage 99 to la Command
+10:21:48 DEBUG - Creating new Reposition Carriage Command of ID 99 to la
+10:21:48 DEBUG - Adding new RepositionCarriage Command to Queue
+10:21:48 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:21:48 DEBUG - Activated Command with MessageID 0000000000:00
+10:21:48 DEBUG - Found Empty Sled with new ID 99
+10:21:48 INFO  - Notifying all Observers of I/O
+10:21:48 DEBUG - Trying to find Path for Reposition Command
+10:21:48 DEBUG - Returning Path: |I/O||Storage|
+10:21:48 INFO  - Notifying all Observers of I/O
+10:21:48 DEBUG - No more Sled in Station I/O
+10:21:48 INFO  - Notifying all Observers of Storage
+10:22:12 DEBUG - Interpreter started
+10:22:12 DEBUG - Done Parsing Values of Message 0000000000:00
+10:22:12 DEBUG - Starting Command Validation for 0000000000:00
+10:22:12 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:22:12 INFO  - Interpreted RepositionCarriage 12 to ea Command
+10:22:12 DEBUG - Creating new Reposition Carriage Command of ID 12 to ea
+10:22:12 DEBUG - Adding new RepositionCarriage Command to Queue
+10:22:12 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:22:12 DEBUG - Activated Command with MessageID 0000000000:00
+10:22:12 DEBUG - Trying to find Path for Reposition Command
+10:22:12 DEBUG - Returning Path: |Robot||I/O|
+10:22:12 INFO  - Notifying all Observers of Robot
+10:22:12 INFO  - Notifying all Observers of Robot
+10:22:12 INFO  - Notifying all Observers of Robot
+10:22:12 DEBUG - New Sled in Station Robot is 33
+10:22:12 INFO  - Done Repositioning in FastMode
+10:22:12 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter
+10:22:12 DEBUG - No more Sled in Station Robot
+10:22:12 INFO  - Notifying all Observers of I/O
+10:22:12 INFO  - Notifying all Observers of I/O
+10:22:12 INFO  - Notifying all Observers of I/O
+10:22:12 DEBUG - New Sled in Station I/O is 12
+10:22:12 INFO  - Done Repositioning in FastMode
+10:22:12 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter
+10:47:22 DEBUG - Interpreter started
+10:47:22 DEBUG - Done Parsing Values of Message 0000000000:00
+10:47:22 DEBUG - Starting Command Validation for 0000000000:00
+10:47:22 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:47:22 INFO  - Interpreted ReleaseCarriage 45 Command
+10:47:22 DEBUG - Creating new ReleaseCarriage Command for ID 45
+10:47:22 DEBUG - Added new ReleaseCarriage Command to Queue
+10:47:22 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:47:22 INFO  - Notifying all Observers of Storage
+10:47:22 DEBUG - No more Sled in Station Storage
+10:47:22 INFO  - Releasing carriage with ID 45
+10:47:22 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter
+10:47:22 DEBUG - Activated Command with MessageID 0000000000:00
+10:47:22 INFO  - Notifying all Observers of Storage
+10:47:22 INFO  - Notifying all Observers of Storage
+10:47:22 DEBUG - New Sled in Station Storage is 88
+10:47:22 INFO  - Done Repositioning in FastMode
+10:47:22 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter
+10:47:39 DEBUG - Interpreter started
+10:47:39 DEBUG - Done Parsing Values of Message 0000000000:00
+10:47:39 DEBUG - Starting Command Validation for 0000000000:00
+10:47:39 INFO  - Successfully Validated Command with MessageID 0000000000:00
+10:47:39 INFO  - Interpreted ReleaseCarriage 99 Command
+10:47:39 DEBUG - Creating new ReleaseCarriage Command for ID 99
+10:47:39 DEBUG - Added new ReleaseCarriage Command to Queue
+10:47:39 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:47:39 WARN  - 99 in none of Stations in StationHandler.getStationBySledID()
+10:47:39 ERROR - ID not in List
+java.lang.NullPointerException: Id in none of the Stations
+	at Model.Station.StationHandler.getStationBySledID(StationHandler.java:105)
+	at Model.Command.ReleaseCarriage.execute(ReleaseCarriage.java:29)
+	at Model.Command.CommandQueue.dequeue(CommandQueue.java:43)
+	at Model.Command.CommandQueue.activate(CommandQueue.java:144)
+	at Model.Command.CommandInterpreter.acknowledge(CommandInterpreter.java:83)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:58)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:180)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:175)
+	at Model.Facade.testCommand(Facade.java:31)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:201)
+	at View.CommandLineInterface.run(CommandLineInterface.java:59)
+10:47:39 INFO  - Send command not Executed: StSTF0010000000000:000000 to Adapter
+10:47:39 DEBUG - Activated Command with MessageID 0000000000:00

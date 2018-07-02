@@ -1,0 +1,64 @@
+12:26:00 DEBUG - Station nulls name has been changed to robot
+12:26:00 DEBUG - Station robots shortCut has been changed from null to ro
+12:26:00 DEBUG - Station nulls name has been changed to stock
+12:26:00 DEBUG - Station stocks shortCut has been changed from null to la
+12:26:00 DEBUG - Station nulls name has been changed to InOut
+12:26:00 DEBUG - Station InOuts shortCut has been changed from null to ea
+12:26:00 WARN  - Station already in PrevList of Station robot
+12:26:00 WARN  - Station already in PrevList of Station stock
+12:26:00 WARN  - Station already in PrevList of Station stock
+12:26:00 WARN  - Station already in PrevList of Station InOut
+12:26:00 DEBUG - Set HopsBack of Station robot from 1 to 2
+12:26:00 DEBUG - Set HopsBack of Station stock from 1 to 1
+12:26:00 DEBUG - Set HopsBack of Station InOut from 1 to 1
+12:26:00 DEBUG - Station nulls name has been changed to one
+12:26:00 DEBUG - Station ones shortCut has been changed from null to s1
+12:26:00 DEBUG - Station nulls name has been changed to two
+12:26:00 DEBUG - Station twos shortCut has been changed from null to s2
+12:26:00 DEBUG - Set HopsBack of Station one from 1 to 2
+12:26:00 DEBUG - Set HopsBack of Station two from 1 to 1
+12:26:00 WARN  - Station already in PrevList of Station two
+12:26:00 WARN  - Station already in PrevList of Station one
+12:26:00 WARN  - Station already in PrevList of Station one
+12:26:00 DEBUG - Station nulls name has been changed to robot
+12:26:00 DEBUG - Station robots shortCut has been changed from null to ro
+12:26:00 DEBUG - Station nulls name has been changed to stock
+12:26:00 DEBUG - Station stocks shortCut has been changed from null to la
+12:26:00 DEBUG - Station nulls name has been changed to InOut
+12:26:00 DEBUG - Station InOuts shortCut has been changed from null to ea
+12:26:00 WARN  - Station already in PrevList of Station robot
+12:26:00 WARN  - Station already in PrevList of Station stock
+12:26:00 WARN  - Station already in PrevList of Station stock
+12:26:00 WARN  - Station already in PrevList of Station InOut
+12:26:00 DEBUG - Set HopsBack of Station robot from 1 to 2
+12:26:00 DEBUG - Set HopsBack of Station stock from 1 to 1
+12:26:00 DEBUG - Set HopsBack of Station InOut from 1 to 1
+12:26:00 DEBUG - Interpreter started
+12:26:00 DEBUG - Done Parsing Values of Message 1527162650:00
+12:26:00 DEBUG - Starting Command Validation for 1527162650:00
+12:26:00 INFO  - Successfully Validated Command with MessageID 1527162650:00
+12:26:00 INFO  - Interpreted RequestEmptyCarriage to la Command
+12:26:00 DEBUG - Creating new RequestEmptyCarriage Command to la
+12:26:00 DEBUG - Added new RequestEmptyCarriage Command to Queue
+12:26:00 INFO  - Send ACK01: StSTA0011527162650:000000 to Adapter
+12:26:00 DEBUG - Station nulls name has been changed to robot
+12:26:00 DEBUG - Station robots shortCut has been changed from null to ro
+12:26:00 DEBUG - Station nulls name has been changed to stock
+12:26:00 DEBUG - Station stocks shortCut has been changed from null to la
+12:26:00 DEBUG - Station nulls name has been changed to InOut
+12:26:00 DEBUG - Station InOuts shortCut has been changed from null to ea
+12:26:00 WARN  - Station already in PrevList of Station robot
+12:26:00 WARN  - Station already in PrevList of Station stock
+12:26:00 WARN  - Station already in PrevList of Station stock
+12:26:00 WARN  - Station already in PrevList of Station InOut
+12:26:00 DEBUG - Set HopsBack of Station robot from 1 to 2
+12:26:00 DEBUG - Set HopsBack of Station stock from 1 to 1
+12:26:00 DEBUG - Set HopsBack of Station InOut from 1 to 1
+12:26:00 DEBUG - Interpreter started
+12:26:00 DEBUG - Done Parsing Values of Message 1527162650:00
+12:26:00 DEBUG - Starting Command Validation for 1527162650:00
+12:26:00 INFO  - Successfully Validated Command with MessageID 1527162650:00
+12:26:00 INFO  - Interpreted RequestEmptyCarriage to la Command
+12:26:00 DEBUG - Creating new RequestEmptyCarriage Command to la
+12:26:00 DEBUG - Added new RequestEmptyCarriage Command to Queue
+12:26:00 INFO  - Send ACK01: StSTA0011527162650:000000 to Adapter

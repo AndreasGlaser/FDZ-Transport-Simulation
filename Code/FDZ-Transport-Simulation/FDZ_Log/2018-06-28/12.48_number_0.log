@@ -1,0 +1,107 @@
+12:48:54 DEBUG - Station nulls name has been changed to Station
+12:48:54 DEBUG - Station Stations shortCut has been changed from null to st
+12:48:54 DEBUG - Station nulls name has been changed to prev1
+12:48:54 DEBUG - Station prev1s shortCut has been changed from null to p1
+12:48:54 DEBUG - Station nulls name has been changed to prev2
+12:48:54 DEBUG - Station prev2s shortCut has been changed from null to p2
+12:48:54 INFO  - Added Station Station to Setup
+12:48:54 INFO  - Added Station prev1 to Setup
+12:48:54 INFO  - Added Station prev2 to Setup
+12:48:54 DEBUG - Set HopsBack of Station Station from 1 to 2
+12:48:54 WARN  - Illegal Input in setStationName()
+12:48:54 WARN  - Illegal Input in setStationName()
+12:48:54 DEBUG - Station nulls name has been changed to Station
+12:48:54 WARN  - Illegal Input in setStationShortCut()
+12:48:54 DEBUG - Station nulls name has been changed to Station
+12:48:54 WARN  - Illegal Input in setStationShortCut()
+12:48:54 DEBUG - Station nulls name has been changed to Station
+12:48:54 WARN  - Illegal Input in setStationShortCut()
+12:48:54 DEBUG - Station nulls name has been changed to Station
+12:48:54 DEBUG - Station Stations shortCut has been changed from null to st
+12:48:54 DEBUG - Station nulls name has been changed to prev1
+12:48:54 DEBUG - Station prev1s shortCut has been changed from null to p1
+12:48:54 DEBUG - Station nulls name has been changed to prev2
+12:48:54 DEBUG - Station prev2s shortCut has been changed from null to p2
+12:48:54 INFO  - Added Station Station to Setup
+12:48:54 INFO  - Added Station prev1 to Setup
+12:48:54 INFO  - Added Station prev2 to Setup
+12:48:54 DEBUG - Set HopsBack of Station Station from 1 to 2
+12:48:55 DEBUG - New Sled in Station Station is 1
+12:48:55 DEBUG - No more Sled in Station Station
+12:48:55 DEBUG - New Sled in Station Station is 2
+12:48:55 DEBUG - Station nulls name has been changed to Station
+12:48:55 DEBUG - Station Stations shortCut has been changed from null to st
+12:48:55 DEBUG - Station nulls name has been changed to prev1
+12:48:55 DEBUG - Station prev1s shortCut has been changed from null to p1
+12:48:55 DEBUG - Station nulls name has been changed to prev2
+12:48:55 DEBUG - Station prev2s shortCut has been changed from null to p2
+12:48:55 INFO  - Added Station Station to Setup
+12:48:55 INFO  - Added Station prev1 to Setup
+12:48:55 INFO  - Added Station prev2 to Setup
+12:48:55 DEBUG - Set HopsBack of Station Station from 1 to 2
+12:48:55 WARN  - Illegal Input in setStationName()
+12:48:55 WARN  - Illegal Input in setStationName()
+12:48:55 WARN  - Illegal Input in setStationShortCut()
+12:48:55 WARN  - Illegal Input in setStationShortCut()
+12:48:55 WARN  - Illegal Input in setStationShortCut()
+12:48:55 WARN  - Illegal Input in setStationsHopsToNewCarriage(), too small
+12:48:55 WARN  - Illegal Input in setStationsHopsToNewCarriage(), too small
+12:48:55 WARN  - Illegal Input in setStationsHopsToNewCarriage(), too big
+12:48:55 WARN  - Illegal Input in setStationsHopsToNewCarriage(), too small
+12:48:55 WARN  - Illegal Input in setStationsHopsToNewCarriage(), too big
+12:48:55 DEBUG - Station nulls name has been changed to Station
+12:48:55 DEBUG - Station Stations shortCut has been changed from null to st
+12:48:55 DEBUG - Station nulls name has been changed to prev1
+12:48:55 DEBUG - Station prev1s shortCut has been changed from null to p1
+12:48:55 DEBUG - Station nulls name has been changed to prev2
+12:48:55 DEBUG - Station prev2s shortCut has been changed from null to p2
+12:48:55 INFO  - Added Station Station to Setup
+12:48:55 INFO  - Added Station prev1 to Setup
+12:48:55 INFO  - Added Station prev2 to Setup
+12:48:55 DEBUG - Set HopsBack of Station Station from 1 to 2
+12:48:55 INFO  - Adding Station Model.Station.Station@5702b3b1 to Stations PrevList with PathTime 1
+12:48:55 INFO  - Adding Station Model.Station.Station@69ea3742 to Stations PrevList with PathTime 1
+12:48:55 DEBUG - Station nulls name has been changed to Station
+12:48:55 DEBUG - Station Stations shortCut has been changed from null to st
+12:48:55 DEBUG - Station nulls name has been changed to prev1
+12:48:55 DEBUG - Station prev1s shortCut has been changed from null to p1
+12:48:55 DEBUG - Station nulls name has been changed to prev2
+12:48:55 DEBUG - Station prev2s shortCut has been changed from null to p2
+12:48:55 INFO  - Added Station Station to Setup
+12:48:55 INFO  - Added Station prev1 to Setup
+12:48:55 INFO  - Added Station prev2 to Setup
+12:48:55 DEBUG - Set HopsBack of Station Station from 1 to 2
+12:48:55 DEBUG - New Sled in Station Station is 1
+12:48:55 DEBUG - Station nulls name has been changed to Station
+12:48:55 DEBUG - Station Stations shortCut has been changed from null to st
+12:48:55 DEBUG - Station nulls name has been changed to prev1
+12:48:55 DEBUG - Station prev1s shortCut has been changed from null to p1
+12:48:55 DEBUG - Station nulls name has been changed to prev2
+12:48:55 DEBUG - Station prev2s shortCut has been changed from null to p2
+12:48:55 INFO  - Added Station Station to Setup
+12:48:55 INFO  - Added Station prev1 to Setup
+12:48:55 INFO  - Added Station prev2 to Setup
+12:48:55 DEBUG - Set HopsBack of Station Station from 1 to 2
+12:48:55 DEBUG - New Sled in Station Station is 1
+12:48:55 DEBUG - No more Sled in Station Station
+12:48:55 DEBUG - Station nulls name has been changed to Station
+12:48:55 DEBUG - Station Stations shortCut has been changed from null to st
+12:48:55 DEBUG - Station nulls name has been changed to prev1
+12:48:55 DEBUG - Station prev1s shortCut has been changed from null to p1
+12:48:55 DEBUG - Station nulls name has been changed to prev2
+12:48:55 DEBUG - Station prev2s shortCut has been changed from null to p2
+12:48:55 INFO  - Added Station Station to Setup
+12:48:55 INFO  - Added Station prev1 to Setup
+12:48:55 INFO  - Added Station prev2 to Setup
+12:48:55 DEBUG - Set HopsBack of Station Station from 1 to 2
+12:48:55 DEBUG - Set HopsBack of Station Station from 2 to 2
+12:48:55 DEBUG - Station nulls name has been changed to Station
+12:48:55 DEBUG - Station Stations shortCut has been changed from null to st
+12:48:55 DEBUG - Station nulls name has been changed to prev1
+12:48:55 DEBUG - Station prev1s shortCut has been changed from null to p1
+12:48:55 DEBUG - Station nulls name has been changed to prev2
+12:48:55 DEBUG - Station prev2s shortCut has been changed from null to p2
+12:48:55 INFO  - Added Station Station to Setup
+12:48:55 INFO  - Added Station prev1 to Setup
+12:48:55 INFO  - Added Station prev2 to Setup
+12:48:55 DEBUG - Set HopsBack of Station Station from 1 to 2

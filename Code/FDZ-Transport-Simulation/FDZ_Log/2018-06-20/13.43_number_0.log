@@ -1,0 +1,98 @@
+13:43:35 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+13:43:35 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+13:43:35 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+13:43:35 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+13:43:39 DEBUG - Interpreter started
+13:43:39 ERROR - Unable to read Command (empty): 
+java.lang.ArrayIndexOutOfBoundsException: 5
+	at Model.Command.CommandInterpreter.parseCommandNum(CommandInterpreter.java:125)
+	at Model.Command.CommandInterpreter.parseValues(CommandInterpreter.java:105)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:37)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:175)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:170)
+	at Model.Facade.testCommand(Facade.java:31)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:207)
+	at View.CommandLineInterface.run(CommandLineInterface.java:64)
+13:43:39 WARN  - Interpreter couldn't find right Command for input Message!
+13:43:39 WARN  - Interpreter couldn't find right Command for input Message!
+13:43:39 INFO  - Send command not understood: StSTF000null0000 to Adapter
+13:43:39 DEBUG - Interpreter started
+13:43:39 ERROR - Unable to read Command (empty): 
+java.lang.ArrayIndexOutOfBoundsException: 42
+	at Model.Command.CommandInterpreter.parseCommandNum(CommandInterpreter.java:125)
+	at Model.Command.CommandInterpreter.parseValues(CommandInterpreter.java:105)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:37)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:175)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:170)
+	at Model.Facade.testCommand(Facade.java:31)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:207)
+	at View.CommandLineInterface.run(CommandLineInterface.java:64)
+13:43:39 WARN  - Interpreter couldn't find right Command for input Message!
+13:43:39 WARN  - Interpreter couldn't find right Command for input Message!
+13:43:39 INFO  - Send command not understood: StSTF000null0000 to Adapter
+13:43:39 DEBUG - Interpreter started
+13:43:39 ERROR - Unable to read Command (empty): 
+java.lang.ArrayIndexOutOfBoundsException: 27
+	at Model.Command.CommandInterpreter.parseCommandNum(CommandInterpreter.java:125)
+	at Model.Command.CommandInterpreter.parseValues(CommandInterpreter.java:105)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:37)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:175)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:170)
+	at Model.Facade.testCommand(Facade.java:31)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:207)
+	at View.CommandLineInterface.run(CommandLineInterface.java:64)
+13:43:39 WARN  - Interpreter couldn't find right Command for input Message!
+13:43:39 WARN  - Interpreter couldn't find right Command for input Message!
+13:43:39 INFO  - Send command not understood: StSTF000null0000 to Adapter
+13:43:39 DEBUG - Interpreter started
+13:43:39 ERROR - Unable to read Command (empty): 
+java.lang.ArrayIndexOutOfBoundsException: 66
+	at Model.Command.CommandInterpreter.parseCommandNum(CommandInterpreter.java:125)
+	at Model.Command.CommandInterpreter.parseValues(CommandInterpreter.java:105)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:37)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:175)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:170)
+	at Model.Facade.testCommand(Facade.java:31)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:207)
+	at View.CommandLineInterface.run(CommandLineInterface.java:64)
+13:43:39 WARN  - Interpreter couldn't find right Command for input Message!
+13:43:39 WARN  - Interpreter couldn't find right Command for input Message!
+13:43:39 INFO  - Send command not understood: StSTF000null0000 to Adapter
+13:44:04 DEBUG - Interpreter started
+13:44:04 ERROR - Number found, where Position expected
+Model.Exception.IllegalCommandException: 	log: ERROR
+		IllegalCommandException:
+CommandInterpreter at: parsePosition(). Number found, where Position expected
+	at Model.Command.CommandInterpreter.parsePosition(CommandInterpreter.java:180)
+	at Model.Command.CommandInterpreter.parseValues(CommandInterpreter.java:107)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:37)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:175)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:170)
+	at Model.Facade.testCommand(Facade.java:31)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:207)
+	at View.CommandLineInterface.run(CommandLineInterface.java:64)
+13:44:04 WARN  - Interpreter couldn't find right Command for input Message!
+13:44:04 WARN  - Interpreter couldn't find right Command for input Message!
+13:44:04 INFO  - Send command not understood: StSTF000null0000 to Adapter
+13:44:21 DEBUG - Interpreter started
+13:44:21 DEBUG - Done Parsing Values of Message 0000000000:00
+13:44:21 DEBUG - Starting Command Validation for 0000000000:00
+13:44:21 INFO  - Successfully Validated Command with MessageID 0000000000:00
+13:44:21 INFO  - Interpreted RequestEmptyCarriage to ea Command
+13:44:21 DEBUG - Added new RequestEmptyCarriage Command to Queue
+13:44:21 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+13:44:21 DEBUG - Activated Command with MessageID 0000000000:00
+13:44:21 DEBUG - Trying to find Path for RequestEmptyCarriage Command
+13:44:21 DEBUG - Returning Path: |I/O|
+13:44:21 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+13:44:38 DEBUG - Interpreter started
+13:44:38 DEBUG - Done Parsing Values of Message 0000000000:00
+13:44:38 DEBUG - Starting Command Validation for 0000000000:00
+13:44:38 INFO  - Successfully Validated Command with MessageID 0000000000:00
+13:44:38 INFO  - Interpreted RepositionCarriage 12 to la Command
+13:44:38 DEBUG - Adding new RepositionCarriage Command to Queue
+13:44:38 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+13:44:38 DEBUG - Activated Command with MessageID 0000000000:00
+13:44:38 DEBUG - Trying to find Path for Reposition Command
+13:44:38 DEBUG - Returning Path: |I/O||Storage|
+13:44:38 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter

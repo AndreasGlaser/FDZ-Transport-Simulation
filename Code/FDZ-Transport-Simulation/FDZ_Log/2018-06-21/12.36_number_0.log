@@ -1,0 +1,19 @@
+12:36:03 DEBUG - Station nulls name has been changed to Robot
+12:36:03 DEBUG - Station Robots shortCut has been changed from null to ro
+12:36:03 INFO  - Added Station Robot to Setup
+12:36:03 DEBUG - Station nulls name has been changed to I/O
+12:36:03 DEBUG - Station I/Os shortCut has been changed from null to ea
+12:36:03 INFO  - Added Station I/O to Setup
+12:36:04 DEBUG - Station nulls name has been changed to Storage
+12:36:04 DEBUG - Station Storages shortCut has been changed from null to la
+12:36:04 INFO  - Added Station Storage to Setup
+12:36:04 DEBUG - Set HopsBack of Station Robot from 1 to 2
+12:36:04 INFO  - Adding Station Model.Station.Station@2151e2f9 to Robots PrevList with PathTime 20
+12:36:04 DEBUG - Adding Observer to Robots List
+12:36:04 DEBUG - Set HopsBack of Station I/O from 1 to 1
+12:36:04 INFO  - Adding Station Model.Station.Station@73fb163f to I/Os PrevList with PathTime 19
+12:36:04 DEBUG - Adding Observer to I/Os List
+12:36:04 DEBUG - Set HopsBack of Station Storage from 1 to 1
+12:36:04 INFO  - Adding Station Model.Station.Station@73fb163f to Storages PrevList with PathTime 20
+12:36:04 INFO  - Adding Station Model.Station.Station@5e2d364b to Storages PrevList with PathTime 9
+12:36:04 DEBUG - Adding Observer to Storages List

@@ -1,0 +1,33 @@
+10:09:13 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+10:09:13 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+10:09:13 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+10:09:13 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+10:09:31 INFO  - Close connection to Adapter [127, 0, 0, 1]:47331
+10:09:31 DEBUG - Connection lost to Adapter: [127, 0, 0, 1]:47331
+10:09:31 INFO  - Successfully disconnected from Adapter
+10:09:39 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+10:09:39 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+10:09:39 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+10:09:39 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+10:10:02 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:10:02 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+10:10:08 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:10:08 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter
+10:10:18 INFO  - Close connection to Adapter [127, 0, 0, 1]:47331
+10:10:18 DEBUG - Connection lost to Adapter: [127, 0, 0, 1]:47331
+10:10:18 INFO  - Successfully disconnected from Adapter
+10:10:36 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:10:36 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter
+10:10:45 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+10:10:45 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+10:10:45 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+10:10:45 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+10:11:08 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:11:08 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter
+10:12:19 INFO  - Close connection to Adapter [127, 0, 0, 1]:47331
+10:12:19 DEBUG - Connection lost to Adapter: [127, 0, 0, 1]:47331
+10:12:19 INFO  - Successfully disconnected from Adapter
+10:15:04 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+10:15:04 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+10:15:04 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+10:15:04 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
