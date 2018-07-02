@@ -106,8 +106,24 @@ public class StationHandler{
         throw new NullPointerException("Id in none of the Stations");
     }
 
-    public void getStationByIDInCongestion() throws NullPointerException{
-        // TODO: 21.06.18 implement delete IDs by release in Congestion
+    /**
+     * Method to find an ID which is in an Congestion because Command was interrupted by
+     * System breakdown
+     * @param id the ID to be found
+     * @return The Station in which the id was found in the congestion
+     * @throws NullPointerException thrown if th id could not be found
+     */
+    public Station getStationByIDInCongestion(int id) throws NullPointerException{
+        for (Station station : stations){
+            for(int i=1; i < station.getSledsInStation().size() ; ++i){
+                int sledInCongestion = station.getSledsInStation().get(i);
+                if (sledInCongestion == id){
+                    return station;
+                }
+            }
+        }
+        LoggerInstance.log.warn("{} in none of Stations in StationHandler.getStationByIDInCongestion()", id);
+        throw new NullPointerException("Id in none of the Stations congestion");
     }
 
     /*Manipulate List*/

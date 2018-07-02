@@ -1,8 +1,6 @@
 package Model;
 
-import Model.Command.ShutdownObserver;
-import Model.Command.ShutdownTransport;
-import Model.Command.TimeMode;
+import Model.Command.*;
 import Model.Exception.IllegalSetupException;
 import Model.Network.ConnectionObserver;
 import Model.Network.NetworkController;
@@ -125,6 +123,12 @@ public class Facade {
     }
 
     public void addToShutdownObservable(ShutdownObserver observer){ShutdownTransport.addObserver(observer);}
+
+    // TODO: 02.07.18 @Andreas, implement saveObserver und hier eintragen um Zustand zu speichern
+    // CongestionList nicht mit abspeichern!
+    public void addToSaveObservable(SaveObserver observer){
+        SaveObservable.addObserver(observer);
+    }
 
     public void setFastTime(boolean activated){
         TimeMode.fastModeActivated = activated;

@@ -201,7 +201,7 @@ public class Station{
         if(station == null){
             LoggerInstance.log.warn("Null will not be added to Station {}s PrevList", name);
         }else if(this.prevStations.stream().noneMatch(prevPair -> prevPair.getPrevStation() == station) && pathTime >= 1) {
-            LoggerInstance.log.info("Adding Station {} to {}s PrevList with PathTime {}", station, name, pathTime);
+            LoggerInstance.log.info("Adding Station {} to {}s PrevList with PathTime {}", station.getName(), name, pathTime);
             prevStations.add(new PrevPair(station,pathTime));
             this.setChanged();
         }else{

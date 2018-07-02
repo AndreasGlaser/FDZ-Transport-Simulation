@@ -120,6 +120,17 @@ class CommandValidator {
             case 4: if(id == null){break;}
             default: throw new IllegalCommandException("ID does not meet requirements");
         }
+
+        try{
+            StationHandler.getInstance().getStationBySledID(id);
+        }catch(NullPointerException e){
+            try{
+                StationHandler.getInstance().getStationByIDInCongestion(id);
+            }catch(NullPointerException ee){
+                LoggerInstance.log.warn("Validator found non existent id");
+                throw new IllegalCommandException("Id not found");
+            }
+        }
     }
 
 

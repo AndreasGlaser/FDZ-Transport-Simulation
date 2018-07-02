@@ -56,7 +56,11 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
                 if (input.contains("STStK004")) {
                     if (quit()) break;
                 }
-                testCommand(input);
+                if(NetworkController.getInstance().isConnected()){
+                    testCommand(input);
+                }else{
+                    System.out.println("Need to connect first!");
+                }
             }else if(input.length()==1) {
                 switch (input.charAt(0)) {
                     case 'q': break;
