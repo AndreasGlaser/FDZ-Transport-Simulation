@@ -104,7 +104,7 @@ class ClientNetwork extends ConnectionObservable{
                          messageIncomming = client.receiveMessage();
                          LoggerInstance.log.info("Received command: {}",messageIncomming);
                          //Start Interpreter with receiving command
-                         new CommandInterpreter(messageIncomming).start();
+                         new Thread(new CommandInterpreter(messageIncomming)).start();
 
                      } catch (FDZNetworkException e) {
                          LoggerInstance.log.debug("Connection lost to Adapter: {}:{}",ipAddr.getHostAddress(),port);

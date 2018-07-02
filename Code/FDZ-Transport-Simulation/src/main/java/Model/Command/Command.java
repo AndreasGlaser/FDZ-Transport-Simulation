@@ -1,7 +1,5 @@
 package Model.Command;
 
-import Model.Facade;
-
 import static Model.Network.NetworkController.getInstance;
 
 /**
@@ -10,6 +8,7 @@ import static Model.Network.NetworkController.getInstance;
 abstract class Command {
 
     String msgID;
+    private boolean ack1Success = false;
 
     /**
      * Method to be Overridden in subclasses, executes their Commands
@@ -28,5 +27,20 @@ abstract class Command {
      */
     void error(){
         getInstance().commandNotExecuted(msgID);
+    }
+
+    /**
+     * Getter for Ack1Success flag
+     * @return true, if Ack1 was successful
+     */
+    public boolean getAck1Success(){
+        return ack1Success;
+    }
+
+    /**
+     * Sets the Ack1 Flag to true
+     */
+    public void confirmAck1Success(){
+        ack1Success=true;
     }
 }

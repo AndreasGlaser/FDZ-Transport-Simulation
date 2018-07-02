@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * ThisClass interpretes the Command received by the NetworkController
  */
-public class CommandInterpreter extends Thread {
+public class CommandInterpreter extends SaveObservable implements Runnable {
 
     /*--MEMBER VARIABLES----------------------------------------------------------*/
 
@@ -44,30 +44,35 @@ public class CommandInterpreter extends Thread {
             return;
         }
 
+        Command command;
         switch (this.commandNum) {
             case 1:
                 LoggerInstance.log.info("Interpreted RequestEmptyCarriage to " + position +" Command");
-                CommandQueue.getInstance().add(new RequestEmptyCarriage(position, messageID));
+                command = new RequestEmptyCarriage(position, messageID);
+                CommandQueue.getInstance().add(command);
                 LoggerInstance.log.debug("Added new RequestEmptyCarriage Command to Queue");
-                acknowledge(messageID);
+                acknowledge(messageID, command);
                 break;
             case 2:
                 LoggerInstance.log.info("Interpreted ReleaseCarriage " + carriageID + " Command");
-                CommandQueue.getInstance().add(new ReleaseCarriage(carriageID, messageID));
+                command = new ReleaseCarriage(carriageID, messageID);
+                CommandQueue.getInstance().add(command);
                 LoggerInstance.log.debug("Added new ReleaseCarriage Command to Queue");
-                acknowledge(messageID);
+                acknowledge(messageID, command);
                 break;
             case 3:
                 LoggerInstance.log.info("Interpreted RepositionCarriage " + carriageID +" to " + position + " Command");
-                CommandQueue.getInstance().add(new RepositionCarriage(carriageID, position, messageID));
+                command = new RepositionCarriage(carriageID, position, messageID);
+                CommandQueue.getInstance().add(command);
                 LoggerInstance.log.debug("Adding new RepositionCarriage Command to Queue");
-                acknowledge(messageID);
+                acknowledge(messageID, command);
                 break;
             case 4:
                 LoggerInstance.log.info("Interpreted ShutdownTransportCommand at "+ new Date(System.currentTimeMillis()).toString());
-                CommandQueue.getInstance().add(new ShutdownTransport(messageID));
+                command = new ShutdownTransport(messageID);
+                CommandQueue.getInstance().add(command);
                 LoggerInstance.log.debug("Adding new ShutdownTransport Command to Queue");
-                acknowledge(messageID);
+                acknowledge(messageID, command);
                 break;
             default:
                 error(messageID);
@@ -78,8 +83,10 @@ public class CommandInterpreter extends Thread {
      * Acknowledges the Command for NetworkController to send acknowledge1, waits for response of NetworkController
      * @param messageID Message ID of the Command
      */
-    private void acknowledge(String messageID){
+    private void acknowledge(String messageID, Command command){
         if(NetworkController.getInstance().acknowledge1(messageID)) {
+            command.confirmAck1Success();
+            notifyObservers();
             CommandQueue.getInstance().activate(messageID);
             LoggerInstance.log.debug("Activated Command with MessageID "+ messageID);
         }
@@ -241,6 +248,5 @@ public class CommandInterpreter extends Thread {
             return null;
         }
     }
-
 }
 

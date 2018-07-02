@@ -1,17 +1,21 @@
 package Model.Command;
 
 import Model.Logger.LoggerInstance;
+import Model.Network.NetworkController;
+
 import java.util.LinkedList;
 
 /**
  * @author Dzianis Brysiuk
  */
-public class CommandQueue {
+public class CommandQueue extends SaveObservable{
 
     //Queue for saved Commands
-    private final LinkedList<Command> commandQueue;
+    private LinkedList<Command> commandQueue;
+    //List for Commands to be validated
+    private Command toBeValidated;
     //List save MessageID that activated not in queue
-    private final LinkedList<String> activatedList;
+    private LinkedList<String> activatedList;
 
     //Thread safe Singleton
     private static final CommandQueue ourInstance = new CommandQueue();
@@ -38,9 +42,11 @@ public class CommandQueue {
      * Remove and start first Command Object and proof if there Commands in waiting List
      */
     private void dequeue (){
-        Command command = commandQueue.pollFirst();
+        Command command = commandQueue.peekFirst();
         if (command!=null){
             command.execute();
+            commandQueue.pollFirst();
+            notifyObservers();
         }else{
             LoggerInstance.log.warn("No command to execute available");
         }
@@ -67,8 +73,11 @@ public class CommandQueue {
      * Adding Command to Queue
      * @param command Object command
      */
-    public void add (Command command){
+    public synchronized void add (Command command){
+        toBeValidated = command;
+        notifyObservers();
         validate(command);
+        notifyObservers();
     }
 
     /**
@@ -99,6 +108,7 @@ public class CommandQueue {
                 LoggerInstance.log.warn("COMMAND NOT IN QUEUE ");
             }
         }
+        toBeValidated = null;
     }
 
     /**
@@ -153,7 +163,37 @@ public class CommandQueue {
 
     }
 
+    /**
+     * Sets the CommandQueue to its state before saving
+     * @param queue LinkedList which was read from getCommandQueue
+     * @param toBeValidated Command which was read from getToBeValidated
+     * @param activated LinkedList which was read from getActivatedList
+     */
+    public void setQueueContent(LinkedList<Command> queue, Command toBeValidated, LinkedList<String> activated){
+        this.commandQueue = queue;
+        this.toBeValidated = toBeValidated;
+        this.activatedList = activated;
+        /*checks if a command was to be validated a system breakdown*/
+        if(toBeValidated != null){
+            this.add(toBeValidated);
+        }
+        if(commandQueue.peekFirst().getAck1Success()){
+            activate(commandQueue.peekFirst().msgID);
+        }
+        for (Command command : commandQueue) {
+            if(command.getAck1Success()){
+                activate(command.msgID);
+            }else{
+                NetworkController.getInstance().acknowledge1(command.msgID);
+                activate(command.msgID);
+            }
+        }
+    }
 
+    // TODO: 02.07.18 @Andreas use setQueueContent und Getter
+    public LinkedList<Command> getCommandQueue(){return this.commandQueue;}
+    public LinkedList<String> getActivatedList(){return activatedList;}
+    public Command getToBeValidated(){return toBeValidated;}
 
     public static CommandQueue getInstance() {
         return ourInstance;
@@ -161,6 +201,7 @@ public class CommandQueue {
 
     private CommandQueue() {
         commandQueue = new LinkedList<>();
+        toBeValidated = null;
         activatedList = new LinkedList<>();
     }
 }
