@@ -1,0 +1,52 @@
+14:03:07 INFO  - Open connection to Adapter [-84, 16, 48, 24]:40001
+14:03:07 DEBUG - Create new Network Socket [-84, 16, 48, 24]:40001
+14:03:07 DEBUG - Trying to open connection to Adapter: [-84, 16, 48, 24]:40001
+14:03:07 INFO  - Succefull connected to Adapter: [-84, 16, 48, 24]:40001
+14:03:31 DEBUG - Interpreter started
+14:03:31 ERROR - No Number at Position where CommandNum is expected
+java.lang.NumberFormatException: For input string: ":"
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:580)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Model.Command.CommandInterpreter.parseCommandNum(CommandInterpreter.java:137)
+	at Model.Command.CommandInterpreter.parseValues(CommandInterpreter.java:105)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:37)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:175)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:170)
+	at Model.Facade.testCommand(Facade.java:31)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:207)
+	at View.CommandLineInterface.run(CommandLineInterface.java:64)
+14:03:31 WARN  - Interpreter couldn't find right Command for input Message!
+14:03:31 WARN  - Interpreter couldn't find right Command for input Message!
+14:03:31 INFO  - Send command not understood: StSTF000null0000 to Adapter
+14:04:14 DEBUG - Interpreter started
+14:04:14 ERROR - Number found, where Position expected
+Model.Exception.IllegalCommandException: 	log: ERROR
+		IllegalCommandException:
+CommandInterpreter at: parsePosition(). Number found, where Position expected
+	at Model.Command.CommandInterpreter.parsePosition(CommandInterpreter.java:179)
+	at Model.Command.CommandInterpreter.parseValues(CommandInterpreter.java:108)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:37)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:175)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:170)
+	at Model.Facade.testCommand(Facade.java:31)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:207)
+	at View.CommandLineInterface.run(CommandLineInterface.java:64)
+14:04:14 WARN  - Interpreter couldn't find right Command for input Message!
+14:04:14 WARN  - Interpreter couldn't find right Command for input Message!
+14:04:14 INFO  - Send command not understood: StSTF0000000000000:000000 to Adapter
+14:08:17 DEBUG - Interpreter started
+14:08:17 ERROR - Parameter Count is null
+java.lang.StringIndexOutOfBoundsException: String index out of range: 25
+	at java.lang.String.substring(String.java:1963)
+	at Model.Command.CommandInterpreter.parseParamCount(CommandInterpreter.java:156)
+	at Model.Command.CommandInterpreter.parseValues(CommandInterpreter.java:107)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:37)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:175)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:170)
+	at Model.Facade.testCommand(Facade.java:31)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:207)
+	at View.CommandLineInterface.run(CommandLineInterface.java:64)
+14:08:17 WARN  - Interpreter couldn't find right Command for input Message!
+14:08:17 WARN  - Interpreter couldn't find right Command for input Message!
+14:08:17 INFO  - Send command not understood: StSTF000null0000 to Adapter

@@ -1,0 +1,10 @@
+10:23:15 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+10:23:15 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+10:23:15 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+10:23:15 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+10:23:32 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:23:32 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+10:23:46 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:23:46 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter
+10:24:20 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:24:20 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter

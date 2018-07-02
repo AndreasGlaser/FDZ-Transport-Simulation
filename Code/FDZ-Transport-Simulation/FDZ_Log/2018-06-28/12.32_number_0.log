@@ -1,0 +1,13 @@
+12:32:14 DEBUG - Station nulls name has been changed to one
+12:32:14 DEBUG - Station ones shortCut has been changed from null to s1
+12:32:14 DEBUG - Station nulls name has been changed to two
+12:32:14 DEBUG - Station twos shortCut has been changed from null to s2
+12:32:14 WARN  - Illegal Input in setStationsHopsToNewCarriage(), too big
+12:32:14 DEBUG - Interpreter started
+12:32:14 DEBUG - Done Parsing Values of Message 1527162650:00
+12:32:14 DEBUG - Starting Command Validation for 1527162650:00
+12:32:14 WARN  - ShortCut la not in List of Stations (StationHandler.getStationByShortcut)
+12:32:14 DEBUG - Interpreter started
+12:32:14 DEBUG - Done Parsing Values of Message 1527162650:00
+12:32:14 DEBUG - Starting Command Validation for 1527162650:00
+12:32:14 WARN  - ShortCut la not in List of Stations (StationHandler.getStationByShortcut)

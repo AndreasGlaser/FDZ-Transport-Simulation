@@ -1,0 +1,27 @@
+14:08:19 INFO  - Added Station Robot to Setup
+14:08:19 INFO  - Added Station I/O to Setup
+14:08:19 INFO  - Added Station Storage to Setup
+14:08:19 INFO  - Adding Station Storage to Robots PrevList with PathTime 20
+14:08:19 INFO  - Adding Station Robot to I/Os PrevList with PathTime 19
+14:08:19 INFO  - Adding Station Robot to Storages PrevList with PathTime 20
+14:08:19 INFO  - Adding Station I/O to Storages PrevList with PathTime 9
+14:08:27 INFO  - Open connection to Adapter 172.16.48.24:40001
+14:08:27 INFO  - Successfully connected to Adapter: 172.16.48.24:40001
+14:08:53 ERROR - No ID found, where expected
+Model.Exception.IllegalCommandException: CommandInterpreter at: parseCarriageID(); No ID found, where expected
+	at Model.Command.CommandInterpreter.parseCarriageID(CommandInterpreter.java:229)
+	at Model.Command.CommandInterpreter.parseValues(CommandInterpreter.java:116)
+	at Model.Command.CommandInterpreter.run(CommandInterpreter.java:37)
+	at Model.Network.NetworkController.invokeInterpreter(NetworkController.java:183)
+	at Model.Network.NetworkController.testCommand(NetworkController.java:178)
+	at Model.Facade.testCommand(Facade.java:35)
+	at View.CommandLineInterface.testCommand(CommandLineInterface.java:205)
+	at View.CommandLineInterface.run(CommandLineInterface.java:60)
+14:08:53 WARN  - Interpreter detected Illegal Command Structure!
+14:08:53 WARN  - Interpreter couldn't find right Command for input Message!
+14:08:53 INFO  - Send command not understood: StSTF0000000000003:000000 to Adapter
+14:09:01 WARN  - 12 in none of Stations in StationHandler.getStationByIDInCongestion()
+14:09:01 WARN  - Validator found non existent id
+14:09:01 WARN  - Interpreter detected Illegal Command Structure!
+14:09:01 WARN  - Interpreter couldn't find right Command for input Message!
+14:09:01 INFO  - Send command not understood: StSTF0000000000003:000000 to Adapter
