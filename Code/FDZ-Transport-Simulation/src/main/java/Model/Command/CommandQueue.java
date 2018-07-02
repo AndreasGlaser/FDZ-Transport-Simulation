@@ -177,8 +177,12 @@ public class CommandQueue extends SaveObservable{
         if(toBeValidated != null){
             this.add(toBeValidated);
         }
-        if(commandQueue.peekFirst().getAck1Success()){
-            activate(commandQueue.peekFirst().msgID);
+        try{
+            if(commandQueue.peekFirst().getAck1Success()){
+                activate(commandQueue.peekFirst().msgID);
+            }
+        }catch(NullPointerException e){
+            LoggerInstance.log.debug("EmptyCommandQueue");
         }
         for (Command command : commandQueue) {
             if(command.getAck1Success()){
