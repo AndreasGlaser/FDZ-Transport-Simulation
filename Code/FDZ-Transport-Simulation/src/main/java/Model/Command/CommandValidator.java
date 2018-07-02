@@ -114,13 +114,24 @@ class CommandValidator {
      */
     private void validateID(Integer id) throws IllegalCommandException{
         switch(commandNum){
-            case 1: if(id == null){break;}
-            case 2: if(-1 <= id && id <= 99){break;}
-            case 3: if(-1 <= id && id <= 99){break;}
+            case 1: if(id == -1){break;}
+            case 2: if(-1 <= id && id <= 99){
+                searchID(id);
+                break;
+            }
+            case 3: if(-1 <= id && id <= 99){
+                searchID(id);
+                break;
+            }
             case 4: if(id == null){break;}
             default: throw new IllegalCommandException("ID does not meet requirements");
         }
+    }
 
+
+
+
+    private void searchID(int id) throws IllegalCommandException{
         try{
             StationHandler.getInstance().getStationBySledID(id);
         }catch(NullPointerException e){
