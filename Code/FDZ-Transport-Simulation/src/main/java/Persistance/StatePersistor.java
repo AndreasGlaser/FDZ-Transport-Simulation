@@ -1,7 +1,7 @@
 package Persistance;
 
-import Controller.StationController;
-import Model.Facade;
+import Model.Command.Command;
+import Model.Command.CommandQueue;
 import Model.Logger.LoggerInstance;
 import View.AbstractStation;
 import com.google.gson.Gson;
@@ -18,41 +18,79 @@ import java.util.*;
 public class StatePersistor extends Persistor{
     private static final Path stationsPath = Paths.get("state/stations.txt");
     private static final Path ipPath = Paths.get("state/ip.txt");
-    private static final Path sledsPath = Paths.get("state/sleds.txt");
-    private static final File sledsFile = sledsPath.toFile();
+    private static final Path commandsPath = Paths.get("state/commands.txt");
+    private static final File commandsFile = commandsPath.toFile();
+    private static final Path toBeValidatedCommandPath = Paths.get("state/toBeValidatedCommand.txt");
+    private static final File toBeValidatedCommandFile = toBeValidatedCommandPath.toFile();
+    private static final Path activatedCommandsPath = Paths.get("state/activatedCommands.txt");
+    private static final File activatedCommandsFile = activatedCommandsPath.toFile();
     private static final File stationsFile = stationsPath.toFile();
     private static final File ipFile = ipPath.toFile();
+    private static Gson gson = new Gson();
 
     public StatePersistor() {
         super(stationsPath, ipPath);
     }
 
     public static Boolean isFilesExist(){
-        return sledsFile.exists() && stationsFile.exists() && ipFile.exists();
+        return commandsFile.exists() && stationsFile.exists() && ipFile.exists() && toBeValidatedCommandFile.exists() && activatedCommandsFile.exists();
     }
 
     /**
      * deletes the save-files for the state, if this method is not called the application will know the application was not exited correct the last time.
      */
     public static void deleteFiles(){
-        sledsFile.delete();
+        commandsFile.delete();
+        activatedCommandsFile.delete();
+        toBeValidatedCommandFile.delete();
         stationsFile.delete();
         ipFile.delete();
     }
 
+    private void createFilesIfNotExist(){
+        if(!commandsFile.exists()|| !activatedCommandsFile.exists() || !toBeValidatedCommandFile.exists()) try {
+            commandsFile.getParentFile().mkdirs();
+            commandsFile.createNewFile();
+            activatedCommandsFile.createNewFile();
+            toBeValidatedCommandFile.createNewFile();
+        } catch (IOException e) {
+            LoggerInstance.log.warn("Files to save the state could not be created.");
+        }
+    }
+
     public void saveState(ArrayList<AbstractStation> stations, IPAddress ipAddress){
         saveConfiguration(stations, ipAddress);
-        String sledsJson = sledsToJSON(stations);
-        File sledsFile = sledsPath.toFile();
-        if(!sledsFile.exists()) try {
-            sledsFile.getParentFile().mkdirs();
-            sledsFile.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        createFilesIfNotExist();
+        saveCommands();
+        saveActivatedCommands();
+        saveToBeValidatedCommand();
+    }
+
+    private void saveToBeValidatedCommand() {
+        String toBeValidatedCommandJson = toBeValidatedCommandToJSON();
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(sledsFile), "utf-8"))) {
-            writer.write(sledsJson);
+                new FileOutputStream(toBeValidatedCommandFile), "utf-8"))) {
+            writer.write(toBeValidatedCommandJson);
+        } catch (IOException e) {
+            LoggerInstance.log.warn("state could not be saved.");
+        }
+    }
+
+    private void saveActivatedCommands() {
+        String activatedCommandsJson = activatedCommandsToJSON();
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(activatedCommandsFile), "utf-8"))) {
+            writer.write(activatedCommandsJson);
+        } catch (IOException e) {
+            LoggerInstance.log.warn("state could not be saved.");
+        }
+    }
+
+    private void saveCommands() {
+        String commandsJson = commandsToJSON();
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(commandsFile), "utf-8"))) {
+            writer.write(commandsJson);
         } catch (IOException e) {
             LoggerInstance.log.warn("state could not be saved.");
         }
@@ -60,20 +98,28 @@ public class StatePersistor extends Persistor{
 
     public void loadState(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress, BorderPane messagePane){
         loadConfiguration(rootPane, stations, ipAddress, messagePane);
-        String json = readJSONFromFile(sledsPath);
-        Gson gson = new Gson();
-        Type collectionType = new TypeToken<Map<String,Collection<Integer>>>(){}.getType();
-        Map<String, ArrayList<Integer>> sledsFromJson = gson.fromJson(json, collectionType);
-        for(Map.Entry<String, ArrayList<Integer>> sleds: sledsFromJson.entrySet()){
-            new Facade().setSledsInStation(sleds.getKey(), sleds.getValue());
-        }
+        String commandsJson = readJSONFromFile(commandsPath);
+        String toBeValididatedCommandsJson = readJSONFromFile(toBeValidatedCommandPath);
+        String activatedCommandsJson = readJSONFromFile(activatedCommandsPath);
+        Type commandsType = new TypeToken<LinkedList<Command>>(){}.getType();
+        Type toBeValididatedCommandsType = new TypeToken<Command>(){}.getType();
+        Type activatedCommandsType = new TypeToken<LinkedList<String>>(){}.getType();
+
+        CommandQueue.getInstance().setQueueContent(
+                gson.fromJson(commandsJson, commandsType),
+                gson.fromJson(toBeValididatedCommandsJson, toBeValididatedCommandsType),
+                gson.fromJson(activatedCommandsJson, activatedCommandsType));
+
     }
 
-    private static String sledsToJSON(ArrayList<AbstractStation> stations){
-        Gson gson = new Gson();
-        HashMap<String,ArrayList<Integer>> sleds = new HashMap<>();
-        stations.stream().filter(station -> station.getData().getStationType().equals(StationType.STATION)).forEach(station -> sleds.put(station.getName(), ((StationController)station).getSleds()));
-        return gson.toJson(sleds);
+    private static String commandsToJSON(){
+        return gson.toJson(CommandQueue.getInstance().getCommandQueue());
+    }
+    private String toBeValidatedCommandToJSON() {
+        return gson.toJson((CommandQueue.getInstance().getToBeValidated()));
+    }
+    private String activatedCommandsToJSON() {
+        return gson.toJson(CommandQueue.getInstance().getActivatedList());
     }
 
 

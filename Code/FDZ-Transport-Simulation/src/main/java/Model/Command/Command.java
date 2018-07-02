@@ -5,7 +5,7 @@ import static Model.Network.NetworkController.getInstance;
 /**
  * @author nlehmann
  */
-abstract class Command {
+public abstract class Command {
 
     String msgID;
     private boolean ack1Success = false;

@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Command.SaveObserver;
 import Model.Facade;
 import Model.Logger.*;
 import Model.Network.ConnectionObserver;
@@ -32,11 +33,12 @@ import java.util.ArrayList;
  *
  *
  */
-public class GUIController implements ConnectionObserver, StatusObserver{
+public class GUIController implements ConnectionObserver, StatusObserver, SaveObserver{
 	private final ArrayList<AbstractStation> stations = new ArrayList<>();
 	private final IPAddress ipAddress = new IPAddress(new byte[]{127,0,0,1}, 47331);
 	private final Facade facade = new Facade();
 	private final ConfigurationPersistor configurationPersistor = new ConfigurationPersistor();
+	private final StatePersistor statePersistor = new StatePersistor();
 
 	@FXML
 	private Pane optionMenu;
@@ -163,6 +165,7 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 
 		facade.addToConnectionObservable(this);
 		facade.statusObservable().addObserver(this);
+		facade.addToSaveObservable(this);
 		logLevelBox.getItems().addAll("debug", "info",  "warn", "error");
 		logLevelBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
 			switch(newValue){
@@ -345,5 +348,10 @@ public class GUIController implements ConnectionObserver, StatusObserver{
 	public void updateStatus() {
 		Platform.runLater(()->statusTextArea.setText(facade.statusObservable().getValue()));
 
+	}
+
+	@Override
+	public void save() {
+		statePersistor.saveState(stations, ipAddress);
 	}
 }

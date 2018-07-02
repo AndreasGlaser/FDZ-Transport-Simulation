@@ -36,8 +36,6 @@ public class StationController extends AbstractStation implements StationObserve
     private final ArrayList<AbstractStation> stations;
     private final Facade facade = new Facade();
     private ArrayList<Integer> sleds = new ArrayList<>();
-    private final StatePersistor statePersistor = new StatePersistor();
-    private final IPAddress ipAddress;
     private String modelName;
 
     @FXML
@@ -67,7 +65,6 @@ public class StationController extends AbstractStation implements StationObserve
         this.data = data;
         this.parent = parent;
         this.stations = stations;
-        this.ipAddress = ipAddress;
         this.messagePane = messagePane;
         stations.add(this);
         try {
@@ -346,7 +343,6 @@ public class StationController extends AbstractStation implements StationObserve
     @Override
     public void update(Station station) {
         Platform.runLater(() -> {
-            statePersistor.saveState(stations, ipAddress);
             setName(station.getName());
             setShortcut(station.getShortCut());
             setHopsBack(station.getHopsToNewCarriage());
