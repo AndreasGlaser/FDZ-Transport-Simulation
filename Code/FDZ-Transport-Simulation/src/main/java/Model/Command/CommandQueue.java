@@ -38,9 +38,10 @@ public class CommandQueue {
      * Remove and start first Command Object and proof if there Commands in waiting List
      */
     private void dequeue (){
-        Command command = commandQueue.pollFirst();
+        Command command = commandQueue.peekFirst();
         if (command!=null){
             command.execute();
+            commandQueue.pollFirst();
         }else{
             LoggerInstance.log.warn("No command to execute available");
         }
