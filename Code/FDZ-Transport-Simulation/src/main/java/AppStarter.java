@@ -1,6 +1,7 @@
 
 
 import Controller.GUIController;
+import Model.Facade;
 import Persistance.StatePersistor;
 import View.CommandLineInterface;
 import javafx.application.Application;
@@ -37,8 +38,14 @@ public class AppStarter extends Application {
             if(!guiController.isConfigurationSaved()){
                 guiController.askForSaving(primaryStage);
                 event.consume();
+            }else {
+                StatePersistor.deleteFiles();
+                Facade facade = new Facade();
+                if(facade.isConnected()){
+                    new Facade().disconnect();
+                }
             }
-            StatePersistor.deleteFiles();
+
         });
     }
 

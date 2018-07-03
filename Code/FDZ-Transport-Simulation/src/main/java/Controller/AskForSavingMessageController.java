@@ -1,5 +1,7 @@
 package Controller;
 
+import Model.Facade;
+import Persistance.StatePersistor;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -24,11 +26,21 @@ public class AskForSavingMessageController extends MessageController{
 
 	@FXML
 	private void noPressed(){
+		StatePersistor.deleteFiles();
+		Facade facade = new Facade();
+		if(facade.isConnected()){
+			new Facade().disconnect();
+		}
 		primaryStage.close();
 	}
 	@FXML
 	private void yesPressed(){
 		guiController.saveConfiguration();
+		StatePersistor.deleteFiles();
+		Facade facade = new Facade();
+		if(facade.isConnected()){
+			new Facade().disconnect();
+		}
 		primaryStage.close();
 	}
 	@FXML
