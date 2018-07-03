@@ -5,10 +5,15 @@ import Model.Facade;
 import Persistance.StatePersistor;
 import View.CommandLineInterface;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 
@@ -28,11 +33,22 @@ public class AppStarter extends Application {
         primaryStage.getIcons().add(new Image("/images/FDZLogo.png"));
         GUIController guiController = loader.getController();
         if(StatePersistor.isFilesExist()){
-            guiController.askForRestore();
+            guiController.askForRestore(scene);
         }else {
             //load Configuration on Program start
             guiController.loadConfiguration();
+            scene.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+                final KeyCombination keyComb = new KeyCodeCombination(KeyCode.S,
+                        KeyCombination.CONTROL_DOWN);
+                public void handle(KeyEvent ke) {
+                    if (keyComb.match(ke) && !new Facade().isConnected()) {
+                        guiController.saveConfiguration();
+                        ke.consume();
+                    }
+                }
+            });
         }
+
 
         primaryStage.setOnCloseRequest(event -> {
             if(!guiController.isConfigurationSaved()){

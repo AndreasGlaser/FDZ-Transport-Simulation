@@ -11,6 +11,7 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -277,12 +278,13 @@ public class GUIController implements ConnectionObserver, StatusObserver, SaveOb
 			LoggerInstance.log.error("AskForSavingMessagePane.fxml could not be loaded");
 		}
 	}
-	public void askForRestore(){
+	public void askForRestore(Scene scene){
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/AskForRestoreMessagePane.fxml"));
 		try {
 			loader.setControllerFactory(c -> new AskForRestoreMessageController(
 					this,
-					messagePane));
+					messagePane,
+					scene));
 			Pane message = loader.load();
 			messagePane.setCenter(message);
 			StatePersistor statePersistor = new StatePersistor();
