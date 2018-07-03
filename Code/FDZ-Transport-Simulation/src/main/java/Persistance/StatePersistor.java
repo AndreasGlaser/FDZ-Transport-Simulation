@@ -5,6 +5,7 @@ import Model.Command.CommandQueue;
 import Model.Logger.LoggerInstance;
 import View.AbstractStation;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -26,10 +27,16 @@ public class StatePersistor extends Persistor{
     private static final File activatedCommandsFile = activatedCommandsPath.toFile();
     private static final File stationsFile = stationsPath.toFile();
     private static final File ipFile = ipPath.toFile();
-    private static Gson gson = new Gson();
+    private static Gson gson;
+    private static Type commandsType = new TypeToken<LinkedList<Command>>(){}.getType();
+    private static Type toBeValididatedCommandsType = new TypeToken<Command>(){}.getType();
+    private static Type activatedCommandsType = new TypeToken<LinkedList<String>>(){}.getType();
 
     public StatePersistor() {
         super(stationsPath, ipPath);
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Command.class, new CommandSerializer());
+        gson = gsonBuilder.create();
     }
 
     public static Boolean isFilesExist(){
@@ -69,6 +76,7 @@ public class StatePersistor extends Persistor{
 
     private void saveToBeValidatedCommand() {
         String toBeValidatedCommandJson = toBeValidatedCommandToJSON();
+        System.out.println(toBeValidatedCommandJson);
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(toBeValidatedCommandFile), "utf-8"))) {
             writer.write(toBeValidatedCommandJson);
@@ -89,6 +97,7 @@ public class StatePersistor extends Persistor{
 
     private void saveCommands() {
         String commandsJson = commandsToJSON();
+        System.out.println(commandsJson);
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(commandsFile), "utf-8"))) {
             writer.write(commandsJson);
@@ -102,9 +111,7 @@ public class StatePersistor extends Persistor{
         String commandsJson = readJSONFromFile(commandsPath);
         String toBeValididatedCommandsJson = readJSONFromFile(toBeValidatedCommandPath);
         String activatedCommandsJson = readJSONFromFile(activatedCommandsPath);
-        Type commandsType = new TypeToken<LinkedList<Command>>(){}.getType();
-        Type toBeValididatedCommandsType = new TypeToken<Command>(){}.getType();
-        Type activatedCommandsType = new TypeToken<LinkedList<String>>(){}.getType();
+
         CommandQueue.getInstance().setQueueContent(
                 gson.fromJson(commandsJson, commandsType),
                 gson.fromJson(toBeValididatedCommandsJson, toBeValididatedCommandsType),
@@ -113,13 +120,13 @@ public class StatePersistor extends Persistor{
     }
 
     private static String commandsToJSON(){
-        return gson.toJson(CommandQueue.getInstance().getCommandQueue());
+        return gson.toJson(CommandQueue.getInstance().getCommandQueue(), commandsType);
     }
     private String toBeValidatedCommandToJSON() {
-        return gson.toJson((CommandQueue.getInstance().getToBeValidated()));
+        return gson.toJson((CommandQueue.getInstance().getToBeValidated()), toBeValididatedCommandsType);
     }
     private String activatedCommandsToJSON() {
-        return gson.toJson(CommandQueue.getInstance().getActivatedList());
+        return gson.toJson(CommandQueue.getInstance().getActivatedList(), activatedCommandsType);
     }
 
 
