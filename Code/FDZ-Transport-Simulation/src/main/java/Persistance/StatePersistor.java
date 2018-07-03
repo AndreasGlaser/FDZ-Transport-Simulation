@@ -144,6 +144,13 @@ public class StatePersistor extends Persistor{
 
     }
 
+    public void loadOnlyIPAddress(IPAddress ipAddress){
+        String ipJson = readJSONFromFile(ipPath);
+        IPAddress jsonIpAddress = gson.fromJson(ipJson, IPAddress.class);
+        ipAddress.setAddress(jsonIpAddress.getAddress());
+        ipAddress.setPort(jsonIpAddress.getPort());
+    }
+
     private static String commandsToJSON(){
         return gson.toJson(CommandQueue.getInstance().getCommandQueue(), commandsType);
     }

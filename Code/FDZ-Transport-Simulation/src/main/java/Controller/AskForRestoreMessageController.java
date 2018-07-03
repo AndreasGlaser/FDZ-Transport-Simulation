@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Facade;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 /**
@@ -13,7 +14,7 @@ public class AskForRestoreMessageController extends MessageController{
 	AskForRestoreMessageController(GUIController guiController, Pane messagePane){
 		super(messagePane);
 		details = "The application was not closed correct.";
-		message = "Do you want to restore the last state?";
+		message = "Do you want to restore the last state? \nIf you chose \"yes\", you need to connect first.";
 		this.guiController = guiController;
 	}
 
@@ -24,8 +25,10 @@ public class AskForRestoreMessageController extends MessageController{
 	}
 	@FXML
 	private void yesPressed(){
-		guiController.loadState();
-		closeThisWindow();
+		if(new Facade().isConnected()){
+			guiController.loadState();
+			closeThisWindow();
+		}
 	}
 
 	private void closeThisWindow(){

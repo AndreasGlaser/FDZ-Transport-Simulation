@@ -1,0 +1,1 @@
+[{"commandType":"RepositionCarriage","properties":{"id":12,"position":"la","msgID":"0000000003:00","ack1Success":true}}]

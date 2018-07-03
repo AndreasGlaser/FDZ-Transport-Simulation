@@ -285,6 +285,9 @@ public class GUIController implements ConnectionObserver, StatusObserver, SaveOb
 					messagePane));
 			Pane message = loader.load();
 			messagePane.setCenter(message);
+			StatePersistor statePersistor = new StatePersistor();
+			statePersistor.loadOnlyIPAddress(ipAddress);
+			showIPAddress();
 		} catch (IOException e) {
 			LoggerInstance.log.error("AskForRestoreMessagePane.fxml could not be loaded");
 		}
