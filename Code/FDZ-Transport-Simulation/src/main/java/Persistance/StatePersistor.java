@@ -1,7 +1,9 @@
 package Persistance;
 
+import Controller.StationController;
 import Model.Command.Command;
 import Model.Command.CommandQueue;
+import Model.Facade;
 import Model.Logger.LoggerInstance;
 import View.AbstractStation;
 import com.google.gson.Gson;
@@ -27,6 +29,8 @@ public class StatePersistor extends Persistor{
     private static final File activatedCommandsFile = activatedCommandsPath.toFile();
     private static final File stationsFile = stationsPath.toFile();
     private static final File ipFile = ipPath.toFile();
+    private static final Path sledsPath = Paths.get("state/sleds.txt");
+    private static final File sledsFile = sledsPath.toFile();
     private static Gson gson;
     private static Type commandsType = new TypeToken<LinkedList<Command>>(){}.getType();
     private static Type toBeValididatedCommandsType = new TypeToken<Command>(){}.getType();
@@ -52,6 +56,7 @@ public class StatePersistor extends Persistor{
         toBeValidatedCommandFile.delete();
         stationsFile.delete();
         ipFile.delete();
+        sledsFile.delete();
     }
 
     private void createFilesIfNotExist(){
@@ -68,10 +73,21 @@ public class StatePersistor extends Persistor{
     public void saveState(ArrayList<AbstractStation> stations, IPAddress ipAddress){
         saveConfiguration(stations, ipAddress);
         createFilesIfNotExist();
+        saveSleds(stations);
         saveCommands();
         saveActivatedCommands();
         saveToBeValidatedCommand();
         LoggerInstance.log.debug("saved state.");
+    }
+
+    private void saveSleds(ArrayList<AbstractStation> stations) {
+        String sledsJson = sledsToJSON(stations);
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(sledsFile), "utf-8"))) {
+            writer.write(sledsJson);
+        } catch (IOException e) {
+            LoggerInstance.log.warn("state could not be saved.");
+        }
     }
 
     private void saveToBeValidatedCommand() {
@@ -108,13 +124,22 @@ public class StatePersistor extends Persistor{
 
     public void loadState(Pane rootPane, ArrayList<AbstractStation> stations, IPAddress ipAddress, BorderPane messagePane){
         loadConfiguration(rootPane, stations, ipAddress, messagePane);
+
+        String sledsJson = readJSONFromFile(sledsPath);
+        Type collectionType = new TypeToken<Map<String,Collection<Integer>>>(){}.getType();
+        Map<String, ArrayList<Integer>> sledsFromJson = gson.fromJson(sledsJson, collectionType);
+        for(Map.Entry<String, ArrayList<Integer>> sleds: sledsFromJson.entrySet()){
+            new Facade().setSledsInStation(sleds.getKey(), sleds.getValue());
+        }
+
+        //load commands
         String commandsJson = readJSONFromFile(commandsPath);
-        String toBeValididatedCommandsJson = readJSONFromFile(toBeValidatedCommandPath);
+        String toBeValidatedCommandsJson = readJSONFromFile(toBeValidatedCommandPath);
         String activatedCommandsJson = readJSONFromFile(activatedCommandsPath);
 
         CommandQueue.getInstance().setQueueContent(
                 gson.fromJson(commandsJson, commandsType),
-                gson.fromJson(toBeValididatedCommandsJson, toBeValididatedCommandsType),
+                gson.fromJson(toBeValidatedCommandsJson, toBeValididatedCommandsType),
                 gson.fromJson(activatedCommandsJson, activatedCommandsType));
 
     }
@@ -128,7 +153,16 @@ public class StatePersistor extends Persistor{
     private String activatedCommandsToJSON() {
         return gson.toJson(CommandQueue.getInstance().getActivatedList(), activatedCommandsType);
     }
-
+    private static String sledsToJSON(ArrayList<AbstractStation> stations){
+        Gson gson = new Gson();
+        HashMap<String,ArrayList<Integer>> sleds = new HashMap<>();
+        stations.stream().filter(station -> station.getData().getStationType().equals(StationType.STATION)).forEach(station -> {
+            ArrayList<Integer> sled = new ArrayList<>();
+            if(((StationController)station).getSleds().size() >0) sled.add(((StationController)station).getSleds().get(0));
+            sleds.put(station.getName(),sled);
+        });
+        return gson.toJson(sleds);
+    }
 
 }
 
