@@ -146,10 +146,11 @@ public class NetworkController extends ConnectionObservable implements Connectio
     public void acknowledge2 (String msgID){
         final String ACK2_END = "0000";
         String message = ACK2_HEAD+msgID+ACK2_END;
-        LoggerInstance.log.info("Send ACK02: {} to Adapter",message);
-        clientNetwork.sendMessage(message);
         //Update GUI Status
         new Facade().setStatus("Finished");
+        LoggerInstance.log.info("Send ACK02: {} to Adapter",message);
+        clientNetwork.sendMessage(message);
+
     }
 
     /**

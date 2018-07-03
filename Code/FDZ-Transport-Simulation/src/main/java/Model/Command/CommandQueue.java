@@ -46,6 +46,7 @@ public class CommandQueue extends SaveObservable{
         if (command!=null){
             command.execute();
             commandQueue.pollFirst();
+            System.err.println("command entfernt");
             notifyObservers();
         }else{
             LoggerInstance.log.warn("No command to execute available");

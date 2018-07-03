@@ -64,6 +64,7 @@ public class StatePersistor extends Persistor{
         saveCommands();
         saveActivatedCommands();
         saveToBeValidatedCommand();
+        LoggerInstance.log.debug("saved state.");
     }
 
     private void saveToBeValidatedCommand() {
@@ -104,7 +105,6 @@ public class StatePersistor extends Persistor{
         Type commandsType = new TypeToken<LinkedList<Command>>(){}.getType();
         Type toBeValididatedCommandsType = new TypeToken<Command>(){}.getType();
         Type activatedCommandsType = new TypeToken<LinkedList<String>>(){}.getType();
-
         CommandQueue.getInstance().setQueueContent(
                 gson.fromJson(commandsJson, commandsType),
                 gson.fromJson(toBeValididatedCommandsJson, toBeValididatedCommandsType),

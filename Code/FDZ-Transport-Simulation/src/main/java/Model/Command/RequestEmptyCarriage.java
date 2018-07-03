@@ -42,12 +42,13 @@ public class RequestEmptyCarriage extends Command {
     @Override
     public void execute(){
         
-        new Thread(() ->{
+        Thread execute = new Thread(() ->{
             Station temp;
             try {
                 temp = StationHandler.getInstance().getStationByShortCut(position);
+                lastUsed = temp;
                 LinkedList<Station> path;
-                if(!this.getAck1Success()){
+                if(this.getAck1Success()){
                     path = new PathFinder(temp, temp.getHopsToNewCarriage()).getPath();
                 }else{
                     path = new PathFinder(lastUsed, lastUsed.getHopsToNewCarriage()).getPath();
@@ -75,10 +76,17 @@ public class RequestEmptyCarriage extends Command {
                 }
                 this.commandExecuted();
             }catch(IllegalSetupException | NullPointerException e){
+                e.printStackTrace();
                 LoggerInstance.log.error("Illegal Setup Detected in RequestEmptyCarriage", e);
                 super.error();
             }
-        }).start();
-        
+        });
+        execute.start();
+        try {
+            execute.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 }
