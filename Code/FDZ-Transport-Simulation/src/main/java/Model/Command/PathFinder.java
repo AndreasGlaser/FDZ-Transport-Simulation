@@ -104,7 +104,9 @@ public class PathFinder {
      */
     private Station findRightNextHopFor(Station aStation)throws IllegalSetupException {
         ArrayList<Station> list = new ArrayList<>(aStation.getPrevStations().size());
-        aStation.getPrevStations().forEach(prevPair -> list.add(prevPair.getPrevStation()));
+        aStation.getPrevStations().forEach(prevPair -> {
+            list.add(prevPair.getPrevStation());
+        });
         for (Station station : list) {
             if(station.getHopsToNewCarriage() == aStation.getHopsToNewCarriage()-1) return station;
         }

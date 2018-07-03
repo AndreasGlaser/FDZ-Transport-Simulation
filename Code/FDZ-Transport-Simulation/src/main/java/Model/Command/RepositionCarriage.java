@@ -35,16 +35,17 @@ public class RepositionCarriage extends Command {
     @Override
     public void execute(){
 
-        new Thread(() ->{
+        Thread execute = new Thread(() ->{
             Station from = null, to = null;
             try {
-                if (!this.getAck1Success()){
+                if (this.getAck1Success()){
                     from = StationHandler.getInstance().getStationBySledID(id);
                     lastUsed = from;
                 }else{
                     try{
-                    }catch(NullPointerException e){
                         from = lastUsed;
+                    }catch(NullPointerException e){
+
                     }
                 }
                 to = StationHandler.getInstance().getStationByShortCut(position);
@@ -91,7 +92,13 @@ public class RepositionCarriage extends Command {
                 super.error();
                 LoggerInstance.log.error("Illegal Setup detected in Repositioning Carriage");
             }
-        }).start();
+        });
+        execute.start();
+        try {
+            execute.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 }
