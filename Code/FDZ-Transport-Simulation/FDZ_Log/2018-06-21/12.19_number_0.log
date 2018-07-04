@@ -1,0 +1,23 @@
+12:19:39 DEBUG - Station nulls name has been changed to Robot
+12:19:39 DEBUG - Station Robots shortCut has been changed from null to ro
+12:19:39 INFO  - Added Station Robot to Setup
+12:19:39 DEBUG - Station nulls name has been changed to I/O
+12:19:39 DEBUG - Station I/Os shortCut has been changed from null to ea
+12:19:39 INFO  - Added Station I/O to Setup
+12:19:39 DEBUG - Station nulls name has been changed to Storage
+12:19:39 DEBUG - Station Storages shortCut has been changed from null to la
+12:19:39 INFO  - Added Station Storage to Setup
+12:19:39 DEBUG - Set HopsBack of Station Robot from 1 to 2
+12:19:39 INFO  - Adding Station Model.Station.Station@70996bd0 to Robots PrevList with PathTime 20
+12:19:39 DEBUG - Adding Observer to Robots List
+12:19:39 DEBUG - Set HopsBack of Station I/O from 1 to 1
+12:19:39 INFO  - Adding Station Model.Station.Station@17791a89 to I/Os PrevList with PathTime 19
+12:19:39 DEBUG - Adding Observer to I/Os List
+12:19:40 DEBUG - Set HopsBack of Station Storage from 1 to 1
+12:19:40 INFO  - Adding Station Model.Station.Station@17791a89 to Storages PrevList with PathTime 20
+12:19:40 INFO  - Adding Station Model.Station.Station@5c7a72f9 to Storages PrevList with PathTime 9
+12:19:40 DEBUG - Adding Observer to Storages List
+12:19:45 INFO  - Open connection to Adapter [-84, 16, 48, 24]:40001
+12:19:45 DEBUG - Create new Network Socket [-84, 16, 48, 24]:40001
+12:19:45 DEBUG - Trying to open connection to Adapter: [-84, 16, 48, 24]:40001
+12:19:45 INFO  - Succefull connected to Adapter: [-84, 16, 48, 24]:40001

@@ -1,0 +1,7 @@
+13:20:37 INFO  - Added Station Robot to Setup
+13:20:37 INFO  - Added Station I/O to Setup
+13:20:37 INFO  - Added Station Storage to Setup
+13:20:37 INFO  - Adding Station Storage to Robots PrevList with PathTime 20
+13:20:37 INFO  - Adding Station Robot to I/Os PrevList with PathTime 19
+13:20:37 INFO  - Adding Station Robot to Storages PrevList with PathTime 20
+13:20:37 INFO  - Adding Station I/O to Storages PrevList with PathTime 9

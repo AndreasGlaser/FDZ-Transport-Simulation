@@ -1,6 +1,5 @@
-package persistance;
+package Persistance;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class StationData {

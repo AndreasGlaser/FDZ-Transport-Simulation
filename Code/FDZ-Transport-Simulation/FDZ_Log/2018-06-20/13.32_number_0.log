@@ -1,0 +1,25 @@
+13:32:10 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+13:32:10 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+13:32:10 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+13:32:10 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+13:32:37 DEBUG - Interpreter started
+13:32:37 DEBUG - Done Parsing Values of Message 0000000000:00
+13:32:37 DEBUG - Starting Command Validation for 0000000000:00
+13:32:37 INFO  - Successfully Validated Command with MessageID 0000000000:00
+13:32:37 INFO  - Interpreted RequestEmptyCarriage to ea Command
+13:32:37 DEBUG - Added new RequestEmptyCarriage Command to Queue
+13:32:37 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+13:32:37 DEBUG - Activated Command with MessageID 0000000000:00
+13:32:37 DEBUG - Trying to find Path for RequestEmptyCarriage Command
+13:32:37 DEBUG - Returning Path: |I/O|
+13:32:37 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+13:33:24 DEBUG - Interpreter started
+13:33:24 DEBUG - Done Parsing Values of Message 0000000000:00
+13:33:24 DEBUG - Starting Command Validation for 0000000000:00
+13:33:24 INFO  - Successfully Validated Command with MessageID 0000000000:00
+13:33:24 INFO  - Interpreted RepositionCarriage 12 to la Command
+13:33:24 DEBUG - Adding new RepositionCarriage Command to Queue
+13:33:24 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+13:33:24 DEBUG - Activated Command with MessageID 0000000000:00
+13:33:24 DEBUG - Trying to find Path for Reposition Command
+13:33:24 INFO  - Send command not Executed: StSTF0010000000000:000000 to Adapter

@@ -1,33 +1,48 @@
 package Model;
 
+import Model.Command.*;
+import Model.Exception.IllegalSetupException;
+import Model.Network.ConnectionObserver;
 import Model.Network.NetworkController;
+import Model.Station.Station;
+import Model.Station.StationHandler;
+import Model.Station.StationObserver;
+import Model.Status.StatusObservable;
+import com.sun.istack.internal.NotNull;
 
-import java.net.UnknownHostException;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class Facade {
 
-    private NetworkController networkController;
-    private StationHandler stationHandler;
+    private final NetworkController networkController;
+    private final StationHandler stationHandler;
+    private Thread connectionThread;
+    private final StatusObservable statusObservable;
 
     public Facade(){
         networkController = NetworkController.getInstance();
         stationHandler = StationHandler.getInstance();
+        statusObservable = StatusObservable.getInstance();
     }
 
-/* NETWORK ------------------------------------------------------------------*/
+    /* NETWORK ------------------------------------------------------------------*/
 
     public void testCommand(String command){
         networkController.testCommand(command);
     }
 
-    public boolean connect(byte[] ip, int port){
-        try{
-            networkController.connect(ip, port);
-            return true;
-        }catch(UnknownHostException e){
-            return false;
+    public synchronized void connect(byte[] ip, int port){
+        if(connectionThread == null){
+            connectionThread = new Thread(() -> NetworkController.getInstance().connect(ip, port));
+            connectionThread.start();
+        }else{
+            connectionThread.interrupt();
+            connectionThread = null;
+            connect(ip, port);
         }
+
     }
 
     public void disconnect(){
@@ -35,50 +50,104 @@ public class Facade {
     }
 
     public boolean isConnected(){
-        /*TODO*/
-        return false;
+        return NetworkController.getInstance().isConnected();
     }
 
     /* STATIONS -----------------------------------------------------------------*/
 
-    public void addStation(String name, String shortCut){
-        stationHandler.addStation(name, shortCut);
-    }
-
-    public boolean deleteStation(String name){
-        try{
-            stationHandler.deleteStation(name);
-            return true;
-        }catch(NullPointerException e){
-            return false;
+    public void addStation(String name, String shortCut) throws IllegalSetupException{
+        if(name != null && name.length() != 0 && shortCut.length() == 2){
+            stationHandler.addStation(new Station(name, shortCut));
+        }else{
+            throw new IllegalSetupException("Name or ShortCut not valid");
         }
     }
 
-    public boolean addPrevStation(String toName, String prevName){
+    public void deleteStation(String name) throws NullPointerException{
+        Station station = stationHandler.getStationByName(name);
+        stationHandler.deleteStation(station);
+    }
+
+    public void addPrevStation(String toName, String prevName, int pathTime) throws NullPointerException{
         Station to = stationHandler.getStationByName(toName);
         Station prev = stationHandler.getStationByName(prevName);
-        try{
-            return to.addPrevStation(prev);
-        }catch(NullPointerException e){
-            return false;
-        }
+        to.addPrevStation(prev, pathTime);
     }
 
-    public boolean setHopsToNewCarriage(String stationName, int hops){
+    public void deletePrevStation(String nameOf, String prevName) throws NullPointerException{
+        Station to = stationHandler.getStationByName(nameOf);
+        Station prev = stationHandler.getStationByName(prevName);
+        to.deletePrevStation(prev);
+    }
+
+    public void setHopsToNewCarriage(String stationName, int hops) throws IllegalSetupException, NullPointerException {
         Station station = stationHandler.getStationByName(stationName);
-        try {
-            if (hops < stationHandler.getStationList().size()){
-                station.setHopsToNewCarriage(hops);
-                return true;
-            }else{
-                return false;
-            }
-        }catch(NullPointerException e){
-            return false;
+        if (hops < stationHandler.getAmountOfStations() && hops >= 1){
+            station.setHopsToNewCarriage(hops);
+        }else{
+            throw new IllegalSetupException("hops is either smaller than 1 or too big");
         }
     }
 
-    public ArrayList<Station> getStationList(){
-        return stationHandler.getStationList();
+    public void setStationName(String oldName, String newName) throws NullPointerException, IllegalSetupException{
+        if(newName != null && newName.length() != 0) {
+            Station station = stationHandler.getStationByName(oldName);
+            station.setName(newName);
+        }else{
+            throw new IllegalSetupException("Input Name is invalid");
+        }
     }
+    public void setStationShortCut(String name, String newShortCut) throws NullPointerException, IllegalSetupException{
+        if(newShortCut.length() == 2){
+            Station station = stationHandler.getStationByName(name);
+            station.setShortCut(newShortCut);
+        }else{
+            throw new IllegalSetupException("Input ShortCut is invalid");
+        }
+    }
+
+    public ArrayList<Integer> getSledsInStation(String name) throws NullPointerException{
+        return stationHandler.getStationByName(name).getSledsInStation();
+    }
+
+    public void setSledsInStation(@NotNull String stationName, @NotNull List<Integer> ids) throws NullPointerException{
+        stationHandler.getStationByName(stationName).setSledsInStation(ids);
+    }
+
+    public void addToStationObservable(String name, StationObserver observer) throws NullPointerException{
+        stationHandler.getStationByName(name).addObserver(observer);
+    }
+
+    public void addToConnectionObservable(ConnectionObserver observer){
+        networkController.addObserver(observer);
+    }
+
+    public void addToShutdownObservable(ShutdownObserver observer){ShutdownTransport.addObserver(observer);}
+
+    public void addToSaveObservable(SaveObserver observer){
+        SaveObservable.addObserver(observer);
+    }
+
+    public void setFastTime(boolean activated){
+        TimeMode.fastModeActivated = activated;
+        System.out.println(activated +" timeMode");
+    }
+    public Boolean isFastTime(){
+        return TimeMode.fastModeActivated;
+    }
+
+    public void setPathTime(String stationName, String prevName, int time) throws NullPointerException {
+        Station station = stationHandler.getStationByName(stationName);
+        Station prev = stationHandler.getStationByName(prevName);
+        station.setPathTime(prev, time);
+    }
+
+    public void setStatus (String status){
+        statusObservable.setValue(status);
+    }
+
+    public StatusObservable statusObservable(){
+        return statusObservable;
+    }
+
 }

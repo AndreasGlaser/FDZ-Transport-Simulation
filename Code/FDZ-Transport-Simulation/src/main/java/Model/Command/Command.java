@@ -1,23 +1,46 @@
 package Model.Command;
 
-import Model.IllegalSetupException;
-
 import static Model.Network.NetworkController.getInstance;
 
 /**
- * @author Dzinais Brysiuk
- * @author Noah Lehmann
+ * @author nlehmann
  */
 public abstract class Command {
 
-    protected String msgID;
+    String msgID;
+    private boolean ack1Success = false;
 
-    public abstract void execute() throws IllegalSetupException;
+    /**
+     * Method to be Overridden in subclasses, executes their Commands
+     */
+    public abstract void execute();
 
-    protected void commandExecuted(){
+    /**
+     * Signals the Network to send the commandExecuted acknowledgment
+     */
+    void commandExecuted(){
         getInstance().acknowledge2(msgID);
     }
-    protected void error(){
+
+    /**
+     * Signals the Network to send the commandNotExecuted error
+     */
+    void error(){
         getInstance().commandNotExecuted(msgID);
+    }
+
+    /**
+     * Getter for Ack1Success flag
+     * @return true, if Ack1 was successful
+     */
+    public boolean getAck1Success(){
+        return ack1Success;
+    }
+
+    /**
+     * Sets the Ack1 Flag to true
+     */
+    public void confirmAck1Success(){
+        ack1Success=true;
     }
 }

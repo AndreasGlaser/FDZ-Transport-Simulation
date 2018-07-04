@@ -1,34 +1,37 @@
 package Model.Network;
 
-/**
- * @author Dzianis Brysiuk
- */
-
-import Model.CommandInterpreter;
-
+import Model.Command.CommandInterpreter;
+import Model.Exception.FDZNetworkException;
+import Model.Logger.LoggerInstance;
 import java.net.InetAddress;
 
-public class ClientNetwork {
+/**
+ * @author Dennis Brysiuk
+ */
+class ClientNetwork extends ConnectionObservable{
 
     //instance of class Network
     private Network client;
-    //IP Adresse from Adapter
+    //IP Address from Adapter
     private InetAddress ipAddr;
-    //Adapter Port Nummer
+    //Adapter Port Number
     private int port;
-    //flag to stop Thread
-    private boolean isRunning = false;
+    //flag to stop Threads
+    private volatile boolean isRunning = false;
+    //Received command from Adapter
     private String messageOutgoing;
+    //Connection Status
+    private boolean connection=false;
 
     /**
-     * Thread is waiting for Command from connected Adapter and send receiving message to CommandInterpreter
+     * Thread that waiting for Commands from Adapter and after receive sends receiving message to CommandInterpreter
      */
-    Thread receiveMsg;
+    private Thread receiveMsg;
 
     /**
-     * Creates a new Thread for CleintNetwork
+     * Set IP Address and Port number of Adapter
      * @param ipAddr contains IP Address from Adapter
-     * @param port contains Port Nummer of Adapter for Connection
+     * @param port contains Port Number of Adapter for Connection
      */
     public ClientNetwork (InetAddress ipAddr, int port){
         this.ipAddr=ipAddr;
@@ -36,36 +39,58 @@ public class ClientNetwork {
     }
 
     /**
-     * Message Listener for incomming Message from Adapter
+     *Starts Thread that tries to connect to Adapter, after successfully connection starts Thread that
+     *wait for messages from Adapter.
      */
      public void connect (){
-
+         //Create new Network Socket with given IP/Port
          if (!isRunning){
-            client = new Network(ipAddr, port);
+             LoggerInstance.log.debug("Create new Network Socket {}:{}",ipAddr.getHostAddress(),port);
+             client = new Network(ipAddr, port);
              this.isRunning=true;
-        }else {
+        }
+        //Change IP/Port for existing Network Socket
+        else {
+             LoggerInstance.log.debug("Changing IP-Address and Port-Number to {}:{}",ipAddr.getHostAddress(),port);
              client.setSocketAddr(ipAddr, port);
              try {
+                 LoggerInstance.log.debug("Close existing Socket");
+                 //Need to close Socket because the Socket is already opened
                  client.closeSocket();
              } catch (FDZNetworkException e) {
-                 e.printStackTrace();
+                 LoggerInstance.log.warn("Cant close existing socket: ", new FDZNetworkException(e));
              }
          }
+        //Connect to Adapter Thread
+         Thread firstConnection = new Thread() {
+             public synchronized void run() {
+                 //tries to connect as long as connected to Adapter or User Interrupt the connection
+                 do {
+                     try {
+                         LoggerInstance.log.debug("Trying to open connection to Adapter: {}:{}", ipAddr.getHostAddress(), port);
+                         client.openConnection();
+                     } catch (FDZNetworkException e) {
+                         LoggerInstance.log.warn("Cant open connection to Adapter: {}:{}", ipAddr.getHostAddress(), port);
+                         try {
+                             LoggerInstance.log.debug("Close existing Socket");
+                             client.closeSocket();
+                         } catch (FDZNetworkException e1) {
+                             LoggerInstance.log.warn("Cant close existing socket: ", new FDZNetworkException(e));
+                         }
+                     }
+                 } while (!client.isConnected() && isRunning);
 
-        //Connect to Adapter
-        do{
-            try {
-                this.client.openConnection();
-            }catch (FDZNetworkException e){
-                e.printStackTrace();
-                try {
-                    this.client.closeSocket();
-                } catch (FDZNetworkException e1) {
-                    e1.printStackTrace();
-                }
-            }
+                 //update connection status and start Thread that waiting all time for Message from Adapter
+                 if (isRunning) {
+                     setConnection(true);
+                     receiveMsg.start();
+                     LoggerInstance.log.info("Successfully connected to Adapter: {}:{}", ipAddr.getHostAddress(), port);
+                 }
 
-        }while (!client.isConnected() && isRunning);
+             }
+         };
+
+         firstConnection.start();
 
          receiveMsg = new Thread (){
              public synchronized void run (){
@@ -73,82 +98,116 @@ public class ClientNetwork {
                  String messageIncomming;
                  isRunning=true;
 
-                 //wait and receive messages from Adapter
                  while (isRunning) {
                      try {
-                         System.out.println("1");
+                         //Wait for Command
                          messageIncomming = client.receiveMessage();
-                         new CommandInterpreter(messageIncomming).run();
+                         LoggerInstance.log.info("Received command: {}",messageIncomming);
+                         //Start Interpreter with receiving command
+                         new Thread(new CommandInterpreter(messageIncomming)).start();
 
-                         System.out.println("3");
                      } catch (FDZNetworkException e) {
-                         e.printStackTrace();
+                         LoggerInstance.log.debug("Connection lost to Adapter: {}:{}",ipAddr.getHostAddress(),port);
                          try {
                              client.closeSocket();
                          } catch (FDZNetworkException e1) {
-                             e1.printStackTrace();
+                             LoggerInstance.log.warn("Cant close existing Socket: ", new FDZNetworkException(e));
                          }
                          //Reconnect if connection lost to Adapter
+                         setConnection(false);
                          while (!client.isConnected()&&isRunning) {
+                             LoggerInstance.log.info("Trying to reconnect to Adapter: {}:{} ", ipAddr.getHostAddress(),port);
                              try {
+                                 LoggerInstance.log.debug("Close existing Socket");
                                  client.closeSocket();
+                                 LoggerInstance.log.debug("Trying to connect to Adapter: {}:{}",ipAddr.getHostAddress(),port);
                                  client.openConnection();
                              } catch (FDZNetworkException e1) {
-                                 e1.printStackTrace();
+                                 LoggerInstance.log.warn("Cant open connection to Adapter: ", new FDZNetworkException(e));
 
                              }
                          }
+                         if(isRunning){
+                             setConnection(true);
+                             LoggerInstance.log.info("Successfully connected to Adapter: {}:{}",ipAddr.getHostAddress(),port);
+                         }
                      }
-                     System.out.println("4");
+
                  }
                  close();
 
              }
          };
-        receiveMsg.start();
     }
 
     /**
      * Close existing Network connection
      */
-    public void close (){
+    @SuppressWarnings("FinalizeCalledExplicitly")
+    private void close(){
         if (client!=null){
             this.client.finalize();
+            LoggerInstance.log.info("Successfully disconnected from Adapter");
         }
     }
 
+    /**
+     * Starts Thread that tries to send Message to Adapter and stops only if message successfully send.
+     * @param message Answer of receiving Command
+     */
     public void sendMessage (String message){
         this.messageOutgoing=message;
-        final Thread sendMsg = new Thread (){
-            @Override
-            public void run() {
+        final Thread sendMsg = new Thread(() -> {
+            try {
+                client.sendMessage(messageOutgoing);
+            } catch (FDZNetworkException e) {
+                LoggerInstance.log.info("Cant send Message: {} to Adapter",messageOutgoing);
                 try {
-                    client.sendMessage(messageOutgoing);
-                } catch (FDZNetworkException e) {
-                    e.printStackTrace();
+                    LoggerInstance.log.debug("Close existing Socket");
+                    client.closeSocket();
+                } catch (FDZNetworkException e1) {
+                    LoggerInstance.log.warn("Cant close existing socket: ", new FDZNetworkException(e1));
+                }
+                setConnection(false);
+                //Reconnect if connection lost to Adapter and tries to send message again
+                while (!client.isConnected()&&isRunning) {
                     try {
+                        LoggerInstance.log.debug("Close existing Socket");
                         client.closeSocket();
+                        LoggerInstance.log.debug("Trying to connect to Adapter: {}:{}",ipAddr.getHostAddress(),port);
+                        client.openConnection();
+                        LoggerInstance.log.debug("Resending Message: {}",messageOutgoing);
+                        client.sendMessage(messageOutgoing);
                     } catch (FDZNetworkException e1) {
-                        e1.printStackTrace();
-                    }
+                        LoggerInstance.log.warn("Cant open connection to Adapter: ", new FDZNetworkException(e1));
 
-                    //Reconnect if connection lost to Adapter
-                    while (!client.isConnected()&&isRunning) {
-                        try {
-                            client.closeSocket();
-                            client.openConnection();
-                            client.sendMessage(messageOutgoing);
-                        } catch (FDZNetworkException e1) {
-                            e1.printStackTrace();
-
-                        }
                     }
                 }
+                if(isRunning){
+                    setConnection(true);
+                    LoggerInstance.log.info("Successfully connected to Adapter: {}:{}",ipAddr.getHostAddress(),port);
+                }
             }
-        };
+        });
         sendMsg.start();
     }
 
+    /**
+     * Changes connection Status
+     * @param connection boolean state of connection Status
+     */
+    private void setConnection (boolean connection){
+        this.connection=connection;
+        setChanged();
+    }
+
+    /**
+     * Connection Status at the moment
+     * @return boolean state of connection Status
+     */
+    public boolean connectionToAdapter (){
+        return connection;
+    }
 
 
     /*------------------------------SETTER/GETTER------------------------------*/
@@ -167,16 +226,13 @@ public class ClientNetwork {
     }
 
     /**
-     * Thread will be stopped
+     * Stop connection to Adapter and stop all running Threads
      */
     public void setIsRunning (boolean isRunning){
-        receiveMsg.interrupt();
-        this.isRunning=isRunning;
-        try {
-            receiveMsg.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if(receiveMsg.isAlive()){
+            receiveMsg.interrupt();
         }
+        this.isRunning=isRunning;
     }
 
 }

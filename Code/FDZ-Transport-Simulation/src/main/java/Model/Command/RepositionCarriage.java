@@ -1,107 +1,104 @@
 package Model.Command;
 
-import Model.CongestionException;
-import Model.IllegalSetupException;
-import Model.Station;
-import Model.StationHandler;
+import Model.Exception.IllegalSetupException;
+import Model.Facade;
+import Model.Logger.LoggerInstance;
+import Model.Station.Station;
+import Model.Station.StationHandler;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-/**@author Noah Lehmann*/
+import static java.lang.Thread.sleep;
+
+/**@author nlehmann*/
 
 public class RepositionCarriage extends Command {
 
-    private int id;
-    private String position;
-    private final int NOT_FOUND=-2, EMPTY_CARRIAGE=-1;
+    private final int id;
+    private final String position;
+    private Station lastUsed = null;
 
-    public RepositionCarriage(int id, String position, String msgID){
+    /**
+     * @param id id of carriage to reposition
+     * @param position shortCut of Station to move id to
+     * @param msgID message ID of the incoming message initiating the Command
+     */
+    RepositionCarriage(int id, String position, String msgID){
+        LoggerInstance.log.debug("Creating new Reposition Carriage Command of ID "+id +" to "+position);
+        new Facade().setStatus("Repositioning carriage with ID: "+id+" to station: "+position);
         this.id = id;
         this.position = position;
         super.msgID = msgID;
     }
 
-    //@Override
-    public void execute() throws IllegalSetupException {
-        ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
-        int idx = findIDinPos(id);
-        if(idx != NOT_FOUND) {
+    // TODO: 16.06.18 javadoc und ack2
+    @Override
+    public void execute(){
+
+        Thread execute = new Thread(() ->{
+            Station from = null, to = null;
             try {
-                Station from = stationList.get(findIDinPos(id));
-                Station to = stationList.get(findPosInList(position));
-                new PathFinder(from, to);
-                /*No Congestion from source to destination*/
-                from.driveOutSled(id);
-                to.driveInSled(id);
-                System.out.println("\t log: reposition carriage " + id + " to "
-                        + position);
-            }catch(CongestionException e) {
-                System.out.println(e.getBlockingStation().getName() + " is blocking");
-                /*Congestion from source to destination, carriage must wait*/
-                /*first blocked station -> blocking*/
-                /*TODO Stau auf weg zu neuer station*/
-                System.out.println("\t log: CONGESTION DETECTED\n" +
-                        "\t      COULD NOT REPOSITION\n" +
-                        "\t      [" + id + "] TO [" + position + "]");
-            }catch (IndexOutOfBoundsException e){
-                throw new IllegalSetupException("No Stations in Setup");
-            }
-        }else{
-            System.out.println("\t log: ID not found\n" +
-                    "\t      COULD NOT REPOSITION\n" +
-                    "\t      [" + id + "] TO [" + position + "]");
-        }
-        super.commandExecuted();
-    }
-
-    /**
-     * Finds a Positions shortcut in the list of known Stations and
-     * returns the Index, if not found -2
-     * @param position
-     * @return positionIndex
-     */
-    private int findPosInList(String position) {
-        ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
-        int idx = 0;
-        while (stationList.get(idx).getShortCut().
-                compareToIgnoreCase(position) != 0) {
-            //find idx of requested station
-            if(++idx == stationList.size()){return NOT_FOUND;}
-        }
-        return idx;
-    }
-
-    /**
-     * Finds an Sled-ID in the Stations known to the System.
-     * returns te index if found, else it searches for an empty sled.
-     * sets the sleds id to the unknown id or only returns -2 if no empty
-     * sled is found.
-     * @param id
-     * @return positionIndex
-     */
-    private int findIDinPos(int id){
-        ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
-        int idx=0;
-        while(stationList.get(idx).getSledInside() != id){
-            //in which station is ID
-            if(idx+1 == stationList.size() && id != EMPTY_CARRIAGE){
-                /*id unknown*/
-                idx = findIDinPos(EMPTY_CARRIAGE);//find empty sled
-                /*finds first empty carriage, expects only one empty carriage*/
-                if(idx != NOT_FOUND){
-                    stationList.get(idx).setSledInside(id);
-                    /*empty carriage gets unknown id*/
-                    return idx;
-                    /*empty carriage found, give unknown id to carriage*/
+                if (this.getAck1Success()){
+                    from = StationHandler.getInstance().getStationBySledID(id);
+                    lastUsed = from;
                 }else{
-                    return NOT_FOUND;
-                    /*no empty sled found, return -2*/
+                    try{
+                        from = lastUsed;
+                    }catch(NullPointerException e){
+
+                    }
                 }
-            }else if(idx+1 == stationList.size() && id == EMPTY_CARRIAGE){
-                return NOT_FOUND;
+                to = StationHandler.getInstance().getStationByShortCut(position);
+            }catch(NullPointerException e){
+                LoggerInstance.log.warn("Station or ID does not exist (RepositionCarriage)");
+                super.error();
+            }catch(IndexOutOfBoundsException e){
+                LoggerInstance.log.error("IndexOutOfBounds, Illegal Setup found", e);
+                super.error();
             }
-            ++idx;
+            try {
+                LinkedList<Station> path = new PathFinder(from, to).getPath();
+                if(TimeMode.fastModeActivated) {
+                    path.getFirst().driveOutSled();
+                    path.stream().filter(s -> (s != path.getFirst() && s != path.getLast())).forEachOrdered(station -> {
+                        station.driveInSled(id);
+                        lastUsed = station;
+                        station.driveOutSled();
+                    });
+                    path.getLast().driveInSled(id);
+                    lastUsed = path.getLast();
+                    LoggerInstance.log.info("Done Repositioning in FastMode");
+                }else{
+                    path.getFirst().driveOutSled();
+                    try {
+                        sleep(TimeMode.findTimeForPath(path.getFirst(), path.get(1))*1000);
+                    }catch (InterruptedException | IndexOutOfBoundsException e){
+                        LoggerInstance.log.warn("Interruption in Repositioning in SlowMode");
+                    }
+                    for (int i=1; i<path.size()-1; i++){
+                        try{
+                            path.get(i).driveInSled(id);
+                            path.get(i).driveOutSled();
+                            sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1))*1000);
+                        }catch(InterruptedException e){
+                            LoggerInstance.log.warn("Interruption in Repositioning in SlowMode");
+                        }
+                    }
+                    path.getLast().driveInSled(id);
+                    LoggerInstance.log.info("Done Repositioning in SlowMode");
+                }
+                super.commandExecuted();
+            }catch(NullPointerException | IllegalSetupException e){
+                super.error();
+                LoggerInstance.log.error("Illegal Setup detected in Repositioning Carriage");
+            }
+        });
+        execute.start();
+        try {
+            execute.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        return idx;
+
     }
 }

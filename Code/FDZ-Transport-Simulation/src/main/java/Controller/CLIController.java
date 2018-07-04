@@ -1,10 +1,6 @@
 package Controller;
 
 import Model.Facade;
-import Model.Station;
-
-import java.util.Collections;
-import java.util.List;
 
 public class CLIController {
 
@@ -20,7 +16,9 @@ public class CLIController {
 
     public boolean connect(byte[] ip, int port){
         if(port>=0 && ip.length == 4){
-            return facade.connect(ip, port);
+            facade.connect(ip, port);
+            return true;
+            /*TODO boolean unused*/
         }else{
             return false;
         }
@@ -30,13 +28,11 @@ public class CLIController {
         facade.disconnect();
     }
 
-    public boolean isConnected(){
-        return facade.isConnected();
-    }
+
 
     /* STATIONS -----------------------------------------------------------------*/
 
-    public boolean addStation(String name, String shortCut){
+   /* public boolean addStation(String name, String shortCut){
         if(name != null && shortCut != null){
             facade.addStation(name,shortCut);
             return true;
@@ -45,15 +41,15 @@ public class CLIController {
         }
     }
 
-    public boolean deleteStation(String name){
+    /*public boolean deleteStation(String name){
         if(name != null){
-            return facade.deleteStation(name);
+           return facade.deleteStation(name);
         }else{
             return false;
         }
     }
 
-    public boolean addPrevStation(String toName, String prevName){
+    /*public boolean addPrevStation(String toName, String prevName){
         if(toName != null && prevName != null){
             return facade.addPrevStation(toName, prevName);
         }else{
@@ -61,7 +57,7 @@ public class CLIController {
         }
     }
 
-    public boolean setHopsToNewCarriage(String stationName, int hops){
+   /* public boolean setHopsToNewCarriage(String stationName, int hops){
         if(stationName != null && hops >= 0){
             return facade.setHopsToNewCarriage(stationName, hops);
         }else{
@@ -69,9 +65,9 @@ public class CLIController {
         }
     }
 
-    public List<Station> getStationList(){
+   /* public List<Station> getStationList(){
         return Collections.unmodifiableList(facade.getStationList());
     }
-
+*/
 
 }

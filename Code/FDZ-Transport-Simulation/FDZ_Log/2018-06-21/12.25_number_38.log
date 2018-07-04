@@ -1,0 +1,1241 @@
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331
+12:29:11 WARN  - Cant open connection to Adapter: 
+Model.Exception.FDZNetworkException: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:135)
+Caused by: Model.Exception.FDZNetworkException: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at Model.Network.Network.receiveMessage(Network.java:128)
+	at Model.Network.ClientNetwork$2.run(ClientNetwork.java:113)
+Caused by: java.io.IOException: Die Verbindung wurde vom Kommunikationspartner zurückgesetzt
+	at sun.nio.ch.FileDispatcherImpl.read0(Native Method)
+	at sun.nio.ch.SocketDispatcher.read(SocketDispatcher.java:39)
+	at sun.nio.ch.IOUtil.readIntoNativeBuffer(IOUtil.java:223)
+	at sun.nio.ch.IOUtil.read(IOUtil.java:197)
+	at sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:380)
+	at Model.Network.Network.receiveMessage(Network.java:102)
+	... 1 common frames omitted
+12:29:11 INFO  - Trying to reconnect to Adapter: [127, 0, 0, 1]:47331 
+12:29:11 DEBUG - Close existing Socket
+12:29:11 DEBUG - Trying to connect to Adapter: [127, 0, 0, 1]:47331

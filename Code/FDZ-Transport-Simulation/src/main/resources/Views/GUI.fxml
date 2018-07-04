@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GUIController">
+   <children>
+      <GridPane>
+         <children>
+            <ScrollPane prefViewportHeight="420.0" prefViewportWidth="570.0" GridPane.columnIndex="1">
+               <content>
+                  <Pane fx:id="stationsPane">
+                     <padding>
+                        <Insets bottom="80.0" right="140.0" />
+                     </padding>
+                  </Pane>
+               </content>
+            </ScrollPane>
+            <AnchorPane pickOnBounds="false" GridPane.columnIndex="1">
+               <children>
+                  <Button fx:id="optionsButton" mnemonicParsing="false" onAction="#openCloseOptions" styleClass="optionButton" text="" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <VBox fx:id="optionMenu" layoutX="398.0" spacing="10.0" styleClass="optionMenu" visible="false" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="65.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#addStation" text="new Station" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#addCrossing" text="new Crossing" />
+                        <CheckBox fx:id="fastModeCheckBox" mnemonicParsing="false" onAction="#onFastModeCheckBoxClicked" selected="true" text="Fast-Mode" />
+                        <Button mnemonicParsing="false" onAction="#saveConfiguration" text="save Configuration" />
+                        <Button mnemonicParsing="false" onAction="#loadConfiguration" text="load Configuration" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+            <GridPane fx:id="controllerGridPane" styleClass="connectionPane" vgap="5.0">
+               <children>
+                  <ImageView fx:id="simulatorImageView" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
+                     <image>
+                        <Image url="@../images/FDZLogo.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IP" />
+                        <Text fx:id="userIPText" strokeType="OUTSIDE" strokeWidth="0.0" text="198.068.092.011" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fx:id="controllerImageView" fitWidth="120.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/ControllerLogo.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                     <center>
+                        <Polygon fx:id="controllerConnectionArrow" fill="#bec3be" stroke="BLACK" strokeType="INSIDE" styleClass="red" BorderPane.alignment="CENTER">
+                           <points>
+                              <Double fx:value="-10.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-10.0" />
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="-20.0" />
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="0.0" />
+                              <Double fx:value="-70.0" />
+                              <Double fx:value="20.0" />
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="10.0" />
+                              <Double fx:value="-50.0" />
+                              <Double fx:value="10.0" />
+                              <Double fx:value="0.0" />
+                           </points>
+                        </Polygon>
+                     </center>
+                  </BorderPane>
+                  <GridPane fx:id="connectedIpPane">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="16.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="193.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="7.0" prefWidth="7.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Text fx:id="ipAddressText" strokeType="OUTSIDE" strokeWidth="0.0" text="ipAdress" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#disconnect" text="Disconnect" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+               <rowConstraints>
+                  <RowConstraints maxHeight="120.0" minHeight="120.0" prefHeight="120.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="91.0" minHeight="10.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="230.0" minWidth="230.0" prefWidth="230.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <GridPane styleClass="loggingPane" GridPane.rowIndex="1">
+         <children>
+            <TextArea fx:id="logTextArea" />
+            <TextArea fx:id="statusTextArea" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" />
+            <VBox prefHeight="107.0" prefWidth="64.0" GridPane.columnIndex="1">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Log-Level:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <ChoiceBox fx:id="logLevelBox" prefWidth="150.0" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="50.0" />
+               </padding>
+            </VBox>
+         </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="60.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+      </GridPane>
+      <BorderPane fx:id="messagePane" mouseTransparent="true" prefHeight="200.0" prefWidth="200.0" />
+      <Pane maxWidth="1.0" pickOnBounds="false">
+         <children>
+            <GridPane fx:id="disconnectedIpPane" hgap="1.0" maxWidth="350.0" minHeight="120.0" styleClass="disconnectedIpPane" vgap="2.0">
+               <children>
+                  <TextField fx:id="ipField1" styleClass="ipField" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="ipField2" styleClass="ipField" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="ipField3" styleClass="ipField" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="ipField4" styleClass="ipField" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="portField" prefHeight="24.0" prefWidth="45.0" styleClass="ipField" text="00000" GridPane.columnIndex="8" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Port" GridPane.columnIndex="8" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IP" GridPane.columnIndex="4" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="." GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#connect" text="Connect" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#disconnect" text="Disconnect" GridPane.columnIndex="6" GridPane.columnSpan="5" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="40.0" prefWidth="100.0" />
+                  <ColumnConstraints />
+                  <ColumnConstraints />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </children>
+      </Pane>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+</GridPane>

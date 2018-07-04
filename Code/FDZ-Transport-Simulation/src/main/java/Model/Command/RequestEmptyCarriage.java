@@ -1,68 +1,92 @@
 package Model.Command;
 
-import Model.CongestionException;
-import Model.IllegalSetupException;
+import Model.Exception.IllegalSetupException;
+import Model.Facade;
+import Model.Logger.LoggerInstance;
 import Model.Network.NetworkController;
-import Model.Station;
-import Model.StationHandler;
+import Model.Station.Station;
+import Model.Station.StationHandler;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+
+import static java.lang.Thread.sleep;
 
 /**@author Noah Lehmann*/
 
 public class RequestEmptyCarriage extends Command {
 
-    private String position;
-    private final int EMPTY_CARRIAGE=-1, NOT_FOUND=-2;
+    private final String position;
+    private Station lastUsed;
 
-    public RequestEmptyCarriage(String position, String msgID){
+    /**
+     *
+     * @param position shortCut of Station which requests an empty carriage
+     * @param msgID message ID of the incoming message that initiated the Command
+     */
+    RequestEmptyCarriage(String position, String msgID){
+        LoggerInstance.log.debug("Creating new RequestEmptyCarriage Command to "+position);
+        new Facade().setStatus("Moving empty carriage to station: "+position);
         this.position = position;
         super.msgID = msgID;
     }
 
+    /**
+     * Special acknowledgment 1 for the requestEmptyCarriage Command
+     */
     @Override
-    protected void commandExecuted(){
+    void commandExecuted(){
         NetworkController.getInstance().acknowledge2(msgID, true);
     }
 
+    // TODO: 16.06.18 doc und ack2 
     @Override
-    public void execute() throws IllegalSetupException{
-        ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
-        try{
-            Station temp = stationList.get(this.findPosInList(position));
-            new PathFinder(temp, temp.getHopsToNewCarriage());
-            if (this.findPosInList(position) != NOT_FOUND) {
-                stationList.get(this.findPosInList(position)).
-                        driveInSled(EMPTY_CARRIAGE);
-                /*empty sled gets unknown id when received*/
-                System.out.println("\t log: requesting empty carriage to "
-                        + position);
+    public void execute(){
+        
+        Thread execute = new Thread(() ->{
+            Station temp;
+            try {
+                temp = StationHandler.getInstance().getStationByShortCut(position);
+                lastUsed = temp;
+                LinkedList<Station> path;
+                if(this.getAck1Success()){
+                    path = new PathFinder(temp, temp.getHopsToNewCarriage()).getPath();
+                }else{
+                    path = new PathFinder(lastUsed, lastUsed.getHopsToNewCarriage()).getPath();
+                }
+                if(TimeMode.fastModeActivated) {
+                    path.stream().filter(station -> station != path.getLast()).forEachOrdered(station -> {
+                        station.driveInSled(-1);
+                        lastUsed = station;
+                        station.driveOutSled();
+                    });
+                    path.getLast().driveInSled(-1);
+                    LoggerInstance.log.info("Done Requesting Carriage in FastMode");
+                }else{
+                    for (int i=0; i<path.size()-1; i++){
+                        path.get(i).driveInSled(-1);
+                        path.get(i).driveOutSled();
+                        try{
+                            sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1))*1000);
+                        }catch(InterruptedException e){
+                            // TODO: 16.06.18 debug interruption
+                        }
+                    }
+                    path.getLast().driveInSled(-1);
+                    LoggerInstance.log.info("Done Requesting Carriage in SlowMode");
+                }
+                this.commandExecuted();
+            }catch(IllegalSetupException | NullPointerException e){
+                e.printStackTrace();
+                LoggerInstance.log.error("Illegal Setup Detected in RequestEmptyCarriage", e);
+                super.error();
             }
-        }catch(CongestionException e){
-            /*TODO Congestion detected*/
-            System.out.println( "\t log: CONGESTION DETECTED\n" +
-                    "\t      COULD NOT REQUEST\n"+
-                    "\t      CARRIAGE TO [" + position + "]");
-        }catch(IndexOutOfBoundsException e){
-            throw new IllegalSetupException("No Stations in Setup");
+        });
+        execute.start();
+        try {
+            execute.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-        this.commandExecuted();
-    }
 
-    /**
-     * Finds a Positions shortcut in the list of known Stations and
-     * returns the Index, if not found -2
-     * @param position
-     * @return positionIndex
-     */
-    private int findPosInList(String position) {
-        ArrayList<Station> stationList = StationHandler.getInstance().getStationList();
-        int idx = 0;
-        while (stationList.size() > 0 && stationList.get(idx).getShortCut().
-                compareToIgnoreCase(position) != 0) {
-            //find idx of requested station
-            if(++idx == stationList.size()){return NOT_FOUND;}
-        }
-        return idx;
     }
 }

@@ -1,0 +1,5 @@
+14:01:34 INFO  - Open connection to Adapter [-84, 16, 48, 24]:40001
+14:01:34 DEBUG - Create new Network Socket [-84, 16, 48, 24]:40001
+14:01:34 DEBUG - Trying to open connection to Adapter: [-84, 16, 48, 24]:40001
+14:01:34 INFO  - Succefull connected to Adapter: [-84, 16, 48, 24]:40001
+14:02:06 DEBUG - Interpreter started

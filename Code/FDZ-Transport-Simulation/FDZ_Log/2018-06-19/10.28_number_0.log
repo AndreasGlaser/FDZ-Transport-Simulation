@@ -1,0 +1,28 @@
+10:28:26 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+10:28:26 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+10:28:26 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+10:28:26 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+10:28:39 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:28:59 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+10:29:15 INFO  - Close connection to Adapter [127, 0, 0, 1]:47331
+10:29:15 DEBUG - Connection lost to Adapter: [127, 0, 0, 1]:47331
+10:29:15 INFO  - Successfully disconnected from Adapter
+10:29:25 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+10:29:25 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+10:29:25 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+10:29:25 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+10:29:30 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:29:30 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter
+10:29:35 INFO  - Close connection to Adapter [127, 0, 0, 1]:47331
+10:29:35 DEBUG - Connection lost to Adapter: [127, 0, 0, 1]:47331
+10:29:35 INFO  - Successfully disconnected from Adapter
+10:29:40 INFO  - Open connection to Adapter [127, 0, 0, 1]:47331
+10:29:40 DEBUG - Create new Network Socket [127, 0, 0, 1]:47331
+10:29:40 DEBUG - Trying to open connection to Adapter: [127, 0, 0, 1]:47331
+10:29:40 INFO  - Succefull connected to Adapter: [127, 0, 0, 1]:47331
+10:29:53 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:30:22 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter
+10:30:40 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:30:59 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter
+10:31:05 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+10:31:34 INFO  - Send ACK02: StSTA0020000000000:000002 to Adapter

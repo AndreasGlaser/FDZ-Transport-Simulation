@@ -1,0 +1,41 @@
+13:49:12 INFO  - Open connection to Adapter [-84, 16, 48, 24]:40001
+13:49:12 DEBUG - Create new Network Socket [-84, 16, 48, 24]:40001
+13:49:12 DEBUG - Trying to open connection to Adapter: [-84, 16, 48, 24]:40001
+13:49:12 INFO  - Succefull connected to Adapter: [-84, 16, 48, 24]:40001
+13:49:26 INFO  - Received command: STStK0011529495368:000002ea
+13:49:26 DEBUG - Interpreter started
+13:49:26 DEBUG - Done Parsing Values of Message 1529495368:00
+13:49:26 DEBUG - Starting Command Validation for 1529495368:00
+13:49:26 INFO  - Successfully Validated Command with MessageID 1529495368:00
+13:49:26 INFO  - Interpreted RequestEmptyCarriage to ea Command
+13:49:26 DEBUG - Added new RequestEmptyCarriage Command to Queue
+13:49:26 INFO  - Send ACK01: StSTA0011529495368:000000 to Adapter
+13:49:26 DEBUG - Activated Command with MessageID 1529495368:00
+13:49:26 DEBUG - Trying to find Path for RequestEmptyCarriage Command
+13:49:26 DEBUG - Returning Path: |I/O|
+13:49:26 INFO  - Send ACK02: StSTA0021529495368:00000200 to Adapter
+13:50:05 INFO  - Received command: STStK0031529495407:00000412la
+13:50:05 DEBUG - Interpreter started
+13:50:05 DEBUG - Done Parsing Values of Message 1529495407:00
+13:50:05 DEBUG - Starting Command Validation for 1529495407:00
+13:50:05 INFO  - Successfully Validated Command with MessageID 1529495407:00
+13:50:05 INFO  - Interpreted RepositionCarriage 12 to la Command
+13:50:05 DEBUG - Adding new RepositionCarriage Command to Queue
+13:50:05 INFO  - Send ACK01: StSTA0011529495407:000000 to Adapter
+13:50:05 DEBUG - Activated Command with MessageID 1529495407:00
+13:50:05 DEBUG - Trying to find Path for Reposition Command
+13:50:05 DEBUG - Returning Path: |I/O||Storage|
+13:50:05 INFO  - Send ACK02: StSTA0021529495407:000000 to Adapter
+13:50:17 INFO  - Received command: STStK0021529495419:00000212
+13:50:17 DEBUG - Interpreter started
+13:50:17 DEBUG - Done Parsing Values of Message 1529495419:00
+13:50:17 DEBUG - Starting Command Validation for 1529495419:00
+13:50:17 INFO  - Successfully Validated Command with MessageID 1529495419:00
+13:50:17 INFO  - Interpreted ReleaseCarriage 12 Command
+13:50:17 DEBUG - Added new ReleaseCarriage Command to Queue
+13:50:17 INFO  - Send ACK01: StSTA0011529495419:000000 to Adapter
+13:50:17 INFO  - Send ACK02: StSTA0021529495419:000000 to Adapter
+13:50:17 DEBUG - Activated Command with MessageID 1529495419:00
+13:50:48 INFO  - Close connection to Adapter [-84, 16, 48, 24]:40001
+13:50:48 DEBUG - Connection lost to Adapter: [-84, 16, 48, 24]:40001
+13:50:48 INFO  - Successfully disconnected from Adapter

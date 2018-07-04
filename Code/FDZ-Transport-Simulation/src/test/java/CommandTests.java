@@ -1,9 +1,12 @@
-import Model.*;
+import Model.Exception.IllegalSetupException;
 import Model.Network.NetworkController;
+import Model.Station.Station;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+
+import static junit.framework.TestCase.fail;
 
 public class CommandTests {
 
@@ -14,7 +17,7 @@ public class CommandTests {
 		ArrayList<Station> standardStations = newStandardStations();
 		NetworkController listener = NetworkController.getInstance();
 		listener.testCommand("STStK00100010002ro");
-		Assert.assertEquals(-1,standardStations.get(0).getSledInside());
+		Assert.assertEquals(-1,(int)standardStations.get(0).getSledsInStation().get(0));
 	}
 
 	@Test
@@ -23,11 +26,11 @@ public class CommandTests {
 		ArrayList<Station> standardStations = newStandardStations();
 		NetworkController listener =NetworkController.getInstance();
 		listener.testCommand("STStK00100010002ro");
-		Assert.assertEquals(-1,standardStations.get(0).getSledInside());
+		Assert.assertEquals(-1,(int)standardStations.get(0).getSledsInStation().get(0));
 
 		//Schlitten zu Lager schicken
 		listener.testCommand("STStK0030002000401la");
-		Assert.assertEquals(1, standardStations.get(1).getSledInside());
+		Assert.assertEquals(1,(int)standardStations.get(0).getSledsInStation().get(0));
 	}
 
 	@Test
@@ -36,15 +39,15 @@ public class CommandTests {
 		ArrayList<Station> standardStations = newStandardStations();
 		NetworkController listener = NetworkController.getInstance();
 		listener.testCommand("STStK00100010002ro");
-		Assert.assertEquals(-1,standardStations.get(0).getSledInside());
+		Assert.assertEquals(-1,(int)standardStations.get(0).getSledsInStation().get(0));
 
 		//Schlitten zu Lager schicken
 		listener.testCommand("STStK0030002000401la");
-		Assert.assertEquals(1, standardStations.get(1).getSledInside());
+		Assert.assertEquals(1, (int)standardStations.get(0).getSledsInStation().get(0));
 
 		//Schlitten freigeben
 		listener.testCommand("STStK0020003000201");
-		Assert.assertEquals(-2, standardStations.get(1).getSledInside());
+		Assert.assertEquals(-2, (int)standardStations.get(0).getSledsInStation().get(0));
 	}
 
 	@Test
@@ -56,10 +59,15 @@ public class CommandTests {
 	}
 
 	private ArrayList<Station> newStandardStations() {
-		ArrayList<Station> standardStations = new ArrayList();
-				standardStations.add(new Station("Robot", "ro"));
-				standardStations.add(new Station("Lager", "la"));
-				standardStations.add(new Station("EinAusgabe", "ea"));
-		return standardStations;
+		try {
+			ArrayList<Station> standardStations = new ArrayList();
+			standardStations.add(new Station("Robot", "ro"));
+			standardStations.add(new Station("Lager", "la"));
+			standardStations.add(new Station("EinAusgabe", "ea"));
+			return standardStations;
+		}catch(IllegalSetupException e){
+			fail();
+		}
+		return null;
 	}
 }

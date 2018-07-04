@@ -1,8 +1,8 @@
-package persistance;
+package Persistance;
 
-import GUI.CrossingController;
-import GUI.AbstractStation;
-import GUI.StationController;
+import Controller.CrossingController;
+import View.AbstractStation;
+import Controller.StationController;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;

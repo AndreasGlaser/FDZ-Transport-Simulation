@@ -1,0 +1,27 @@
+13:03:24 INFO  - Added Station Robot to Setup
+13:03:24 INFO  - Added Station I/O to Setup
+13:03:24 INFO  - Added Station Storage to Setup
+13:03:25 INFO  - Adding Station Storage to Robots PrevList with PathTime 20
+13:03:25 INFO  - Adding Station Robot to I/Os PrevList with PathTime 19
+13:03:25 INFO  - Adding Station Robot to Storages PrevList with PathTime 20
+13:03:25 INFO  - Adding Station I/O to Storages PrevList with PathTime 9
+13:03:37 INFO  - Open connection to Adapter 172.16.48.24:40001
+13:03:37 INFO  - Successfully connected to Adapter: 172.16.48.24:40001
+13:03:41 INFO  - Successfully Validated Command with MessageID 0000000000:00
+13:03:41 INFO  - Interpreted RequestEmptyCarriage to ro Command
+13:03:41 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+13:03:41 INFO  - Done Requesting Carriage in FastMode
+13:03:41 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
+13:03:54 INFO  - Successfully Validated Command with MessageID 0000000000:00
+13:03:54 INFO  - Interpreted RepositionCarriage 12 to ro Command
+13:03:54 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+13:03:54 INFO  - Done Repositioning in FastMode
+13:03:54 INFO  - Send ACK02: StSTA0020000000000:000000 to Adapter
+13:04:05 INFO  - Successfully Validated Command with MessageID 0000000001:00
+13:04:05 INFO  - Interpreted RequestEmptyCarriage to ro Command
+13:04:05 INFO  - Send ACK01: StSTA0010000000001:000000 to Adapter
+13:04:30 INFO  - Successfully Validated Command with MessageID 0000000000:00
+13:04:30 INFO  - Interpreted RequestEmptyCarriage to la Command
+13:04:30 INFO  - Send ACK01: StSTA0010000000000:000000 to Adapter
+13:04:30 INFO  - Done Requesting Carriage in FastMode
+13:04:30 INFO  - Send ACK02: StSTA0020000000000:00000200 to Adapter
