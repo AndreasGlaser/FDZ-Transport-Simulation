@@ -234,11 +234,13 @@ public class GUIController implements ConnectionObserver, StatusObserver, SaveOb
 	public void loadConfiguration(){
 		configurationPersistor.loadConfiguration(stationsPane, stations, ipAddress, messagePane);
 		showIPAddress();
+		fastModeCheckBox.setSelected(facade.isFastTime());
 	}
 	void loadState(){
 		StatePersistor statePersistor = new StatePersistor();
 		statePersistor.loadState(stationsPane,stations,ipAddress, messagePane);
 		showIPAddress();
+		fastModeCheckBox.setSelected(facade.isFastTime());
 	}
 
 	@FXML

@@ -124,8 +124,6 @@ public class Facade {
 
     public void addToShutdownObservable(ShutdownObserver observer){ShutdownTransport.addObserver(observer);}
 
-    // TODO: 02.07.18 @Andreas, implement saveObserver und hier eintragen um Zustand zu speichern
-    // CongestionList nicht mit abspeichern!
     public void addToSaveObservable(SaveObserver observer){
         SaveObservable.addObserver(observer);
     }
@@ -133,6 +131,9 @@ public class Facade {
     public void setFastTime(boolean activated){
         TimeMode.fastModeActivated = activated;
         System.out.println(activated +" timeMode");
+    }
+    public Boolean isFastTime(){
+        return TimeMode.fastModeActivated;
     }
 
     public void setPathTime(String stationName, String prevName, int time) throws NullPointerException {

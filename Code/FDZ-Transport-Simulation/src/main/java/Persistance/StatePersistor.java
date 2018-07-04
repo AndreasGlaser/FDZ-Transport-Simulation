@@ -21,6 +21,7 @@ import java.util.*;
 public class StatePersistor extends Persistor{
     private static final Path stationsPath = Paths.get("state/stations.txt");
     private static final Path ipPath = Paths.get("state/ip.txt");
+    private static final Path speedModePath = Paths.get("state/speedMode.txt");
     private static final Path commandsPath = Paths.get("state/commands.txt");
     private static final File commandsFile = commandsPath.toFile();
     private static final Path toBeValidatedCommandPath = Paths.get("state/toBeValidatedCommand.txt");
@@ -37,7 +38,7 @@ public class StatePersistor extends Persistor{
     private static Type activatedCommandsType = new TypeToken<LinkedList<String>>(){}.getType();
 
     public StatePersistor() {
-        super(stationsPath, ipPath);
+        super(stationsPath, ipPath, speedModePath);
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Command.class, new CommandSerializer());
         gson = gsonBuilder.create();
@@ -57,6 +58,7 @@ public class StatePersistor extends Persistor{
         stationsFile.delete();
         ipFile.delete();
         sledsFile.delete();
+        speedModePath.toFile().delete();
     }
 
     private void createFilesIfNotExist(){
@@ -137,10 +139,13 @@ public class StatePersistor extends Persistor{
         String toBeValidatedCommandsJson = readJSONFromFile(toBeValidatedCommandPath);
         String activatedCommandsJson = readJSONFromFile(activatedCommandsPath);
 
-        CommandQueue.getInstance().setQueueContent(
-                gson.fromJson(commandsJson, commandsType),
-                gson.fromJson(toBeValidatedCommandsJson, toBeValididatedCommandsType),
-                gson.fromJson(activatedCommandsJson, activatedCommandsType));
+        Thread loadCommandsThread = new Thread(()->{
+            CommandQueue.getInstance().setQueueContent(
+                    gson.fromJson(commandsJson, commandsType),
+                    gson.fromJson(toBeValidatedCommandsJson, toBeValididatedCommandsType),
+                    gson.fromJson(activatedCommandsJson, activatedCommandsType));
+        });
+        loadCommandsThread.start();
 
     }
 

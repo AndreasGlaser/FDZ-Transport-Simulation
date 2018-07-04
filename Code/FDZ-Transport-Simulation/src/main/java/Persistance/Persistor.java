@@ -2,6 +2,7 @@ package Persistance;
 
 import Controller.CrossingController;
 import Controller.StationController;
+import Model.Facade;
 import Model.Logger.LoggerInstance;
 import View.AbstractStation;
 import com.google.gson.Gson;
@@ -23,39 +24,35 @@ public abstract class Persistor {
     private final Path ipPath;
     private final File stationFile;
     private final File ipFile;
+    private final File speedModeFile;
+    private final Path speedModePath;
+    private static Gson gson = new Gson();
 
-    Persistor(Path stationsPath, Path ipPath){
+    Persistor(Path stationsPath, Path ipPath, Path speedModePath){
         this.stationsPath = stationsPath;
         this.ipPath = ipPath;
         this.stationFile = stationsPath.toFile();
         this.ipFile = ipPath.toFile();
+        this.speedModePath = speedModePath;
+        this.speedModeFile = speedModePath.toFile();
     }
 
     public void saveConfiguration(ArrayList<AbstractStation> stations, IPAddress ipAddress){
         String json = toJSON(stations);
         String ipJson = toJSON(ipAddress);
         createFilesIfNotExist();
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(stationFile), "utf-8"))) {
-            writer.write(json);
-        } catch (IOException e) {
-            LoggerInstance.log.error("writing in File: "+ stationsPath +" not possible.");
-        }
-
-        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(ipFile), "utf-8"))) {
-            writer.write(ipJson);
-        } catch (IOException e) {
-            LoggerInstance.log.error("writing in File: "+ ipPath +" not possible.");
-        }
+        writeToFile(stationsPath, json);
+        writeToFile(ipPath, ipJson);
+        writeToFile(speedModePath, gson.toJson(new Facade().isFastTime()));
     }
 
     private Boolean createFilesIfNotExist() {
-        if(!stationFile.exists()||!ipFile.exists()){
+        if(!stationFile.exists()||!ipFile.exists()|| !speedModeFile.exists()){
             try {
                 stationFile.getParentFile().mkdirs();
                 stationFile.createNewFile();
                 ipFile.createNewFile();
+                speedModeFile.createNewFile();
             }catch (IOException e) {
                 LoggerInstance.log.error("Save files could not be created.");
             }
@@ -105,13 +102,22 @@ public abstract class Persistor {
         ipAddress.setAddress(jsonIpAddress.getAddress());
         ipAddress.setPort(jsonIpAddress.getPort());
 
-
+        String speedModeJson = readJSONFromFile(speedModePath);
+        new Facade().setFastTime(gson.fromJson(speedModeJson, Boolean.class));
     }
     public Boolean isConfigurationSaved(ArrayList<AbstractStation> stations, IPAddress ipAddress){
         return readJSONFromFile(stationsPath).equals(toJSON(stations)) &&
                 readJSONFromFile(ipPath).equals(toJSON(ipAddress));
     }
 
+    private void writeToFile(Path file, String content){
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(file.toFile()), "utf-8"))) {
+            writer.write(content);
+        } catch (IOException e) {
+            LoggerInstance.log.error("writing in File: "+ file +" not possible.");
+        }
+    }
     String readJSONFromFile(Path file) {
         StringBuilder json = new StringBuilder();
         try  {
@@ -123,11 +129,9 @@ public abstract class Persistor {
         return json.toString();
     }
     private static String toJSON(IPAddress ipAddress) {
-        Gson gson = new Gson();
         return gson.toJson(ipAddress);
     }
     private static String toJSON(ArrayList<AbstractStation> stations){
-        Gson gson = new Gson();
         ArrayList<StationData> stationsData = new ArrayList<>();
         for(AbstractStation abstractStation : stations){
             stationsData.add(abstractStation.getData());
