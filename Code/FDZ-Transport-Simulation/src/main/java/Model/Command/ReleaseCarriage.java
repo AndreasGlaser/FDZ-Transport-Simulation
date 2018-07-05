@@ -38,5 +38,6 @@ public class ReleaseCarriage extends Command {
             LoggerInstance.log.error("ID not in List", e);
             super.error();
         }
+        CommandQueue.getInstance().save(this);
     }
 }

@@ -41,6 +41,7 @@ public class RequestEmptyCarriage extends Command {
     // TODO: 16.06.18 doc und ack2 
     @Override
     public void execute(){
+        System.err.println("in exec");
         Thread execute = new Thread(() ->{
             Station temp;
             try {
@@ -80,13 +81,8 @@ public class RequestEmptyCarriage extends Command {
                 LoggerInstance.log.error("Illegal Setup Detected in RequestEmptyCarriage", e);
                 super.error();
             }
+            CommandQueue.getInstance().save(this);
         });
         execute.start();
-        try {
-            execute.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
     }
 }
