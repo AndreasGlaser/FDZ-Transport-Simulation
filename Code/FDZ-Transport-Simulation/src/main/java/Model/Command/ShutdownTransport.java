@@ -27,7 +27,7 @@ public class ShutdownTransport extends Command {
         ShutdownTransport.observers.forEach(ShutdownObserver::shutdown);
         LoggerInstance.log.info("Informed all ShutdownObservers");
         super.commandExecuted();
-        CommandQueue.getInstance().save(this);
+        CommandQueue.getInstance().delete(this);
     }
 
     public static void addObserver(ShutdownObserver observer){

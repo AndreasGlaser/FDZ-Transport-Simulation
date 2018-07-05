@@ -14,7 +14,7 @@ public class CommandQueue extends SaveObservable{
     private LinkedList<Command> commandQueue;
     //List for Commands to be validated
     private Command toBeValidated;
-    //List save MessageID that activated not in queue
+    //List delete MessageID that activated not in queue
     private LinkedList<String> activatedList;
 
     //Thread safe Singleton
@@ -100,6 +100,7 @@ public class CommandQueue extends SaveObservable{
                         enqueue(command);
                         break;
                     default:
+                        System.err.println("default");
                         break;
                 }
             }catch(NullPointerException e){
@@ -189,17 +190,23 @@ public class CommandQueue extends SaveObservable{
             LoggerInstance.log.debug("EmptyCommandQueue");
         }
         for (Command command : commandQueue) {
-            if(command.getAck1Success()){
-                activate(command.msgID);
-            }else{
-                NetworkController.getInstance().acknowledge1(command.msgID);
-                activate(command.msgID);
-            }
+            new Thread(()->{
+                if(command.getAck1Success()){
+                    activate(command.msgID);
+                }else{
+                    NetworkController.getInstance().acknowledge1(command.msgID);
+                    activate(command.msgID);
+                }
+            }).start();
         }
     }
 
-    void save(Command command){
+    void delete(Command command){
         commandQueue.remove(command);
+        notifyObservers();
+    }
+
+    void save(){
         notifyObservers();
     }
 

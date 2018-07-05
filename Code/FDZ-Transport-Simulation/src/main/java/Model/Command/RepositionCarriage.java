@@ -66,8 +66,9 @@ public class RepositionCarriage extends Command {
                         lastUsed = station.getName();
                         station.driveOutSled();
                     });
-                    path.getLast().driveInSled(id);
                     lastUsed = path.getLast().getName();
+                    path.getLast().driveInSled(id);
+
                     LoggerInstance.log.info("Done Repositioning in FastMode");
                 }else{
                     path.getFirst().driveOutSled();
@@ -79,13 +80,16 @@ public class RepositionCarriage extends Command {
                     for (int i=1; i<path.size()-1; i++){
                         try{
                             path.get(i).driveInSled(id);
+                            lastUsed = path.get(i).getName();
                             path.get(i).driveOutSled();
                             sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1))*1000);
                         }catch(InterruptedException e){
                             LoggerInstance.log.warn("Interruption in Repositioning in SlowMode");
                         }
                     }
+                    lastUsed = path.getLast().getName();
                     path.getLast().driveInSled(id);
+
                     LoggerInstance.log.info("Done Repositioning in SlowMode");
                 }
                 super.commandExecuted();
@@ -93,7 +97,7 @@ public class RepositionCarriage extends Command {
                 super.error();
                 LoggerInstance.log.error("Illegal Setup detected in Repositioning Carriage");
             }
-            CommandQueue.getInstance().save(this);
+            CommandQueue.getInstance().delete(this);
         });
         execute.start();
 

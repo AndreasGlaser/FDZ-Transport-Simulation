@@ -53,6 +53,7 @@ public class RequestEmptyCarriage extends Command {
                 }else{
                     Station last = StationHandler.getInstance().getStationByName(lastUsed);
                     path = new PathFinder(last, last.getHopsToNewCarriage()).getPath();
+                    System.err.println("redoing command");
                 }
                 this.confirmActivation();
                 if(TimeMode.fastModeActivated) {
@@ -61,11 +62,13 @@ public class RequestEmptyCarriage extends Command {
                         lastUsed = station.getName();
                         station.driveOutSled();
                     });
+                    lastUsed = path.getLast().getName();
                     path.getLast().driveInSled(-1);
                     LoggerInstance.log.info("Done Requesting Carriage in FastMode");
                 }else{
                     for (int i=0; i<path.size()-1; i++){
                         path.get(i).driveInSled(-1);
+                        lastUsed = path.get(i).getName();
                         path.get(i).driveOutSled();
                         try{
                             sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1))*1000);
@@ -73,6 +76,7 @@ public class RequestEmptyCarriage extends Command {
                             // TODO: 16.06.18 debug interruption
                         }
                     }
+                    lastUsed = path.getLast().getName();
                     path.getLast().driveInSled(-1);
                     LoggerInstance.log.info("Done Requesting Carriage in SlowMode");
                 }
@@ -82,7 +86,7 @@ public class RequestEmptyCarriage extends Command {
                 LoggerInstance.log.error("Illegal Setup Detected in RequestEmptyCarriage", e);
                 super.error();
             }
-            CommandQueue.getInstance().save(this);
+            CommandQueue.getInstance().delete(this);
         });
         execute.start();
     }

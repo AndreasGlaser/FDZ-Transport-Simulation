@@ -4,7 +4,6 @@ import Model.Facade;
 import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationHandler;
-import sun.nio.cs.FastCharsetProvider;
 
 /**@author nlehmann*/
 
@@ -38,6 +37,6 @@ public class ReleaseCarriage extends Command {
             LoggerInstance.log.error("ID not in List", e);
             super.error();
         }
-        CommandQueue.getInstance().save(this);
+        CommandQueue.getInstance().delete(this);
     }
 }

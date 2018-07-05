@@ -53,5 +53,8 @@ public abstract class Command {
     /**
      * Sets the activated flag to true
      */
-    void confirmActivation() { activated = true;}
+    void confirmActivation() {
+        activated = true;
+        CommandQueue.getInstance().save();
+        System.err.println("command activated");}
 }
