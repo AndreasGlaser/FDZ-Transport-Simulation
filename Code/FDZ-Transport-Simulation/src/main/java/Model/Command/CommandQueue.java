@@ -45,9 +45,6 @@ public class CommandQueue extends SaveObservable{
         Command command = commandQueue.peekFirst();
         if (command!=null){
             command.execute();
-            commandQueue.pollFirst();
-            System.err.println("command entfernt");
-            notifyObservers();
         }else{
             LoggerInstance.log.warn("No command to execute available");
         }
@@ -154,7 +151,13 @@ public class CommandQueue extends SaveObservable{
                 if (top().compareTo(msgID) == 0) {
                     dequeue();
                 //Message ID is not same as the first message ID in queue
-                } else {
+                }else if(commandQueue.peekFirst().getActivated()){
+                    int cnt=0;
+                    while(cnt < commandQueue.size() && commandQueue.get(cnt++).getActivated());
+                    if (commandQueue.get(cnt-1).msgID.compareTo(msgID)==0){
+                        commandQueue.get(cnt-1).execute();
+                    }
+                }else {
                     findPos(msgID);
                 }
             }
@@ -193,6 +196,11 @@ public class CommandQueue extends SaveObservable{
                 activate(command.msgID);
             }
         }
+    }
+
+    void save(Command command){
+        commandQueue.remove(command);
+        notifyObservers();
     }
 
     // TODO: 02.07.18 @Andreas use setQueueContent und Getter

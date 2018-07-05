@@ -22,7 +22,7 @@ public class CommandSerializer implements JsonSerializer<Command>, JsonDeseriali
 	public JsonElement serialize(Command src, Type typeOfSrc, JsonSerializationContext context) {
 		JsonObject result = new JsonObject();
 		result.add("commandType", new JsonPrimitive(src.getClass().getSimpleName()));
-		result.add("properties", context.serialize(src, src.getClass()));
+		//result.add("properties", context.serialize(src, src.getClass()));
 		return result;
 	}
 }

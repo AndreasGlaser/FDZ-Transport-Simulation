@@ -34,6 +34,7 @@ public class RepositionCarriage extends Command {
     // TODO: 16.06.18 javadoc und ack2
     @Override
     public void execute(){
+        System.err.println("in exec repo");
         Thread execute = new Thread(() ->{
             Station from = null, to = null;
             try {
@@ -92,13 +93,9 @@ public class RepositionCarriage extends Command {
                 super.error();
                 LoggerInstance.log.error("Illegal Setup detected in Repositioning Carriage");
             }
+            CommandQueue.getInstance().save(this);
         });
         execute.start();
-        try {
-            execute.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
     }
 }
