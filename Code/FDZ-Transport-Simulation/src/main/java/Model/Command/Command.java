@@ -8,7 +8,7 @@ import static Model.Network.NetworkController.getInstance;
 public abstract class Command {
 
     String msgID;
-    private boolean ack1Success = false;
+    private boolean ack1Success = false, activated= false;
 
     /**
      * Method to be Overridden in subclasses, executes their Commands
@@ -33,14 +33,25 @@ public abstract class Command {
      * Getter for Ack1Success flag
      * @return true, if Ack1 was successful
      */
-    public boolean getAck1Success(){
+    boolean getAck1Success(){
         return ack1Success;
     }
 
     /**
+     * Getter for Activated flag
+     * @return true if command was activated
+     */
+    boolean getActivated(){ return activated; }
+
+    /**
      * Sets the Ack1 Flag to true
      */
-    public void confirmAck1Success(){
+    void confirmAck1Success(){
         ack1Success=true;
     }
+
+    /**
+     * Sets the activated flag to true
+     */
+    void confirmActivation() { activated = true;}
 }

@@ -23,6 +23,7 @@ public class ShutdownTransport extends Command {
 
     @Override
     public void execute(){
+        confirmActivation();
         ShutdownTransport.observers.forEach(ShutdownObserver::shutdown);
         LoggerInstance.log.info("Informed all ShutdownObservers");
         super.commandExecuted();
