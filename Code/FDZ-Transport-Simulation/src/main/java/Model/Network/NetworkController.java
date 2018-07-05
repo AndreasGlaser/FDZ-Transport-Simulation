@@ -183,7 +183,7 @@ public class NetworkController extends ConnectionObservable implements Connectio
 
 
     private void invokeInterpreter(String command){
-        new CommandInterpreter(command).run();
+        new Thread(new CommandInterpreter(command)).start();
     }
 
     /*---------------------------------------------------------------------------*/
