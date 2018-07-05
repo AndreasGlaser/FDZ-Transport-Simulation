@@ -34,11 +34,10 @@ public class RepositionCarriage extends Command {
     // TODO: 16.06.18 javadoc und ack2
     @Override
     public void execute(){
-
         Thread execute = new Thread(() ->{
             Station from = null, to = null;
             try {
-                if (this.getAck1Success()){
+                if (!this.getActivated()){
                     from = StationHandler.getInstance().getStationBySledID(id);
                     lastUsed = from;
                 }else{
@@ -56,6 +55,7 @@ public class RepositionCarriage extends Command {
                 LoggerInstance.log.error("IndexOutOfBounds, Illegal Setup found", e);
                 super.error();
             }
+            this.confirmActivation();
             try {
                 LinkedList<Station> path = new PathFinder(from, to).getPath();
                 if(TimeMode.fastModeActivated) {

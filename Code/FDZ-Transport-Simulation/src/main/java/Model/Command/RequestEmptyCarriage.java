@@ -41,18 +41,18 @@ public class RequestEmptyCarriage extends Command {
     // TODO: 16.06.18 doc und ack2 
     @Override
     public void execute(){
-        
         Thread execute = new Thread(() ->{
             Station temp;
             try {
                 temp = StationHandler.getInstance().getStationByShortCut(position);
                 lastUsed = temp;
                 LinkedList<Station> path;
-                if(this.getAck1Success()){
+                if(!this.getActivated()){
                     path = new PathFinder(temp, temp.getHopsToNewCarriage()).getPath();
                 }else{
                     path = new PathFinder(lastUsed, lastUsed.getHopsToNewCarriage()).getPath();
                 }
+                this.confirmActivation();
                 if(TimeMode.fastModeActivated) {
                     path.stream().filter(station -> station != path.getLast()).forEachOrdered(station -> {
                         station.driveInSled(-1);
