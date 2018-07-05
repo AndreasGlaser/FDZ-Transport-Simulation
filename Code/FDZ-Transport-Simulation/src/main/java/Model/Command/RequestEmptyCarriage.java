@@ -16,7 +16,7 @@ import static java.lang.Thread.sleep;
 public class RequestEmptyCarriage extends Command {
 
     private final String position;
-    private Station lastUsed;
+    private String lastUsed;
 
     /**
      *
@@ -46,18 +46,19 @@ public class RequestEmptyCarriage extends Command {
             Station temp;
             try {
                 temp = StationHandler.getInstance().getStationByShortCut(position);
-                lastUsed = temp;
+                lastUsed = temp.getName();
                 LinkedList<Station> path;
                 if(!this.getActivated()){
                     path = new PathFinder(temp, temp.getHopsToNewCarriage()).getPath();
                 }else{
-                    path = new PathFinder(lastUsed, lastUsed.getHopsToNewCarriage()).getPath();
+                    Station last = StationHandler.getInstance().getStationByName(lastUsed);
+                    path = new PathFinder(last, last.getHopsToNewCarriage()).getPath();
                 }
                 this.confirmActivation();
                 if(TimeMode.fastModeActivated) {
                     path.stream().filter(station -> station != path.getLast()).forEachOrdered(station -> {
                         station.driveInSled(-1);
-                        lastUsed = station;
+                        lastUsed = station.getName();
                         station.driveOutSled();
                     });
                     path.getLast().driveInSled(-1);

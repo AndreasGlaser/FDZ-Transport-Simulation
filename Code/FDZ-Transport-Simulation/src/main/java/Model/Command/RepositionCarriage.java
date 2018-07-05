@@ -16,7 +16,7 @@ public class RepositionCarriage extends Command {
 
     private final int id;
     private final String position;
-    private Station lastUsed = null;
+    private String lastUsed = null;
 
     /**
      * @param id id of carriage to reposition
@@ -40,10 +40,10 @@ public class RepositionCarriage extends Command {
             try {
                 if (!this.getActivated()){
                     from = StationHandler.getInstance().getStationBySledID(id);
-                    lastUsed = from;
+                    lastUsed = from.getName();
                 }else{
                     try{
-                        from = lastUsed;
+                        from = StationHandler.getInstance().getStationByName(lastUsed);
                     }catch(NullPointerException e){
 
                     }
@@ -63,11 +63,11 @@ public class RepositionCarriage extends Command {
                     path.getFirst().driveOutSled();
                     path.stream().filter(s -> (s != path.getFirst() && s != path.getLast())).forEachOrdered(station -> {
                         station.driveInSled(id);
-                        lastUsed = station;
+                        lastUsed = station.getName();
                         station.driveOutSled();
                     });
                     path.getLast().driveInSled(id);
-                    lastUsed = path.getLast();
+                    lastUsed = path.getLast().getName();
                     LoggerInstance.log.info("Done Repositioning in FastMode");
                 }else{
                     path.getFirst().driveOutSled();
