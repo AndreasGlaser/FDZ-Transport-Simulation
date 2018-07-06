@@ -55,6 +55,7 @@ public class Station{
      * @param id id of the sled
      */
     public void driveInSled(Integer id){
+        if(id == null)return;
         while(true) {
             try {
                 if(!idsInCongestion.contains(id)){
