@@ -88,8 +88,6 @@ public class CommandQueue extends SaveObservable{
         }else {
             try {
                 //compare last command message ID with new Command message ID
-                System.out.println("compare "+commandQueue.peekLast().msgID + "to "+ command.msgID);
-                System.out.println("returns: "+ commandQueue.peekLast().msgID.compareTo(command.msgID));
                 Integer compareResult = commandQueue.peekLast().msgID.compareTo(command.msgID);
                 if(compareResult > 0) {
                     //Last command message ID is greater than new command message ID
@@ -98,8 +96,9 @@ public class CommandQueue extends SaveObservable{
                 }else if(compareResult < 0) {
                     //Last command message ID is smaller than new command message ID
                     enqueue(command);
+
                 }else {
-                    System.err.println("default");
+                    LoggerInstance.log.warn("Command with id: "+ command.msgID + " already received");
                 }
             }catch(NullPointerException e){
                 LoggerInstance.log.warn("COMMAND NOT IN QUEUE ");
@@ -116,7 +115,7 @@ public class CommandQueue extends SaveObservable{
         int msgIDisSmaller = -1;
         for (int i = 0; i<=commandQueue.size(); i++){
             //find index where command message ID in queue smaller than new command message ID
-            if (command.msgID.compareTo(commandQueue.get(i).msgID)==-msgIDisSmaller){
+            if (command.msgID.compareTo(commandQueue.get(i).msgID)<=-msgIDisSmaller){
                 //add new command in queue on index i
                 insert (i, command);
                 break;
