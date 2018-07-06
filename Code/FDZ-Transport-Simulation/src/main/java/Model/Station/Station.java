@@ -55,6 +55,7 @@ public class Station{
      * @param id id of the sled
      */
     public void driveInSled(Integer id){
+        if(id == null)return;
         while(true) {
             try {
                 if(!idsInCongestion.contains(id)){
@@ -80,8 +81,11 @@ public class Station{
      * </p>
      */
     public void driveOutSled(){
-        this.setSledInside(null);
-        semaphore.release();
+        if(semaphore.availablePermits()==0 && sledInside != null) {
+            System.err.println("driving out");
+            this.setSledInside(null);
+            semaphore.release();
+        }
         LoggerInstance.log.debug("No more Sled in Station {}", name);
     }
 
@@ -153,10 +157,10 @@ public class Station{
      */
     public void setSledsInStation(@NotNull List<Integer> list){
         if(list != null && !list.isEmpty()) {
-            setSledInside(list.get(0));
+            this.driveOutSled();
+            this.driveInSled(list.remove(0));
             if(list.size() > 1){
-                list.remove(0);
-                idsInCongestion = new ArrayList<>(list);
+                list.forEach(sledID -> driveInSled(sledID));
             }
             LoggerInstance.log.debug("New State of Station set for {}", name);
         }

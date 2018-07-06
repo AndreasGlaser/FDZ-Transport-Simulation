@@ -2,6 +2,7 @@ package Model.Command;
 
 import Model.Exception.IllegalCommandException;
 import Model.Logger.LoggerInstance;
+import Model.Station.Station;
 import Model.Station.StationHandler;
 
 /**
@@ -132,14 +133,23 @@ class CommandValidator {
 
 
     private void searchID(int id) throws IllegalCommandException{
+        final int EMPTY_CARRIAGE = -1;
         try{
             StationHandler.getInstance().getStationBySledID(id);
-        }catch(NullPointerException e){
+        }catch(NullPointerException e0){
             try{
                 StationHandler.getInstance().getStationByIDInCongestion(id);
-            }catch(NullPointerException ee){
-                LoggerInstance.log.warn("Validator found non existent id");
-                throw new IllegalCommandException("Id not found");
+            }catch(NullPointerException e1){
+                try{
+                    StationHandler.getInstance().getStationBySledID(EMPTY_CARRIAGE);
+                }catch(NullPointerException e2){
+                    try{
+                        StationHandler.getInstance().getStationByIDInCongestion(EMPTY_CARRIAGE);
+                    }catch (NullPointerException e3){
+                        LoggerInstance.log.warn("Validator found non existent id");
+                        throw new IllegalCommandException("Id not found");
+                    }
+                }
             }
         }
     }

@@ -28,7 +28,22 @@ public class CommandInterpreter extends SaveObservable implements Runnable {
      */
     public CommandInterpreter(String command) {
         LoggerInstance.log.debug("Interpreter started");
-        this.command = command;
+        this.command = this.removeWhiteSpaces(command);
+    }
+
+    /**
+     * Removes WhiteSpaces from InputCommand
+      * @param command the command from Network
+     * @return command without WhiteSpaces
+     */
+    private String removeWhiteSpaces(String command) {
+        StringBuilder withOut = new StringBuilder();
+        for (char c : command.toCharArray()) {
+            if(!Character.isWhitespace(c)){
+                withOut.append(c);
+            }
+        }
+        return withOut.toString();
     }
 
     @Override

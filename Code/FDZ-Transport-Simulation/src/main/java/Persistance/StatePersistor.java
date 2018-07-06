@@ -33,7 +33,7 @@ public class StatePersistor extends Persistor{
     private static final Path sledsPath = Paths.get("state/sleds.txt");
     private static final File sledsFile = sledsPath.toFile();
     private static Gson gson;
-    private static Type commandsType = new TypeToken<LinkedList<Command>>(){}.getType();
+    private static Type commandsType = new TypeToken<ArrayList<Command>>(){}.getType();
     private static Type toBeValididatedCommandsType = new TypeToken<Command>(){}.getType();
     private static Type activatedCommandsType = new TypeToken<LinkedList<String>>(){}.getType();
 
@@ -140,8 +140,10 @@ public class StatePersistor extends Persistor{
         String activatedCommandsJson = readJSONFromFile(activatedCommandsPath);
 
         Thread loadCommandsThread = new Thread(()->{
+            //the commands must be convertet back to an LinkedList, because it must be saved as ArrayList
+            LinkedList<Command> commands = new LinkedList<>(gson.fromJson(commandsJson, commandsType));
             CommandQueue.getInstance().setQueueContent(
-                    gson.fromJson(commandsJson, commandsType),
+                    commands,
                     gson.fromJson(toBeValidatedCommandsJson, toBeValididatedCommandsType),
                     gson.fromJson(activatedCommandsJson, activatedCommandsType));
         });
@@ -157,7 +159,9 @@ public class StatePersistor extends Persistor{
     }
 
     private static String commandsToJSON(){
-        return gson.toJson(CommandQueue.getInstance().getCommandQueue(), commandsType);
+        //the LinkedList for the commands must be convertet to a ArrayList because gson cant serialize LinkedLists
+        ArrayList<Command> commands = new ArrayList<>(CommandQueue.getInstance().getCommandQueue());
+        return gson.toJson(commands, commandsType);
     }
     private String toBeValidatedCommandToJSON() {
         return gson.toJson((CommandQueue.getInstance().getToBeValidated()), toBeValididatedCommandsType);

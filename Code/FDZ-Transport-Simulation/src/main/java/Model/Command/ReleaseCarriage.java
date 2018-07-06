@@ -4,7 +4,6 @@ import Model.Facade;
 import Model.Logger.LoggerInstance;
 import Model.Station.Station;
 import Model.Station.StationHandler;
-import sun.nio.cs.FastCharsetProvider;
 
 /**@author nlehmann*/
 
@@ -28,6 +27,7 @@ public class ReleaseCarriage extends Command {
      */
     @Override
     public void execute() {
+        confirmActivation();
         try {
             Station station = StationHandler.getInstance().getStationBySledID(id);
             station.driveOutSled();
@@ -37,5 +37,6 @@ public class ReleaseCarriage extends Command {
             LoggerInstance.log.error("ID not in List", e);
             super.error();
         }
+        CommandQueue.getInstance().delete(this);
     }
 }

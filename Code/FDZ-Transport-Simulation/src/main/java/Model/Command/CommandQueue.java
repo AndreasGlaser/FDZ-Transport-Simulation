@@ -14,7 +14,7 @@ public class CommandQueue extends SaveObservable{
     private LinkedList<Command> commandQueue;
     //List for Commands to be validated
     private Command toBeValidated;
-    //List save MessageID that activated not in queue
+    //List delete MessageID that activated not in queue
     private LinkedList<String> activatedList;
 
     //Thread safe Singleton
@@ -45,9 +45,6 @@ public class CommandQueue extends SaveObservable{
         Command command = commandQueue.peekFirst();
         if (command!=null){
             command.execute();
-            commandQueue.pollFirst();
-            System.err.println("command entfernt");
-            notifyObservers();
         }else{
             LoggerInstance.log.warn("No command to execute available");
         }
@@ -91,19 +88,17 @@ public class CommandQueue extends SaveObservable{
         }else {
             try {
                 //compare last command message ID with new Command message ID
-                switch (commandQueue.peekLast().msgID.compareTo(command.msgID)) {
+                Integer compareResult = commandQueue.peekLast().msgID.compareTo(command.msgID);
+                if(compareResult > 0) {
                     //Last command message ID is greater than new command message ID
-                    case 1:
-                        //find the place in queue where to add the command
-                        findPos(command);
-                        break;
+                    //find the place in queue where to add the command
+                    findPos(command);
+                }else if(compareResult < 0) {
                     //Last command message ID is smaller than new command message ID
-                    case -1:
-                        //Add new Command on the end of queue
-                        enqueue(command);
-                        break;
-                    default:
-                        break;
+                    enqueue(command);
+
+                }else {
+                    LoggerInstance.log.warn("Command with id: "+ command.msgID + " already received");
                 }
             }catch(NullPointerException e){
                 LoggerInstance.log.warn("COMMAND NOT IN QUEUE ");
@@ -120,7 +115,7 @@ public class CommandQueue extends SaveObservable{
         int msgIDisSmaller = -1;
         for (int i = 0; i<=commandQueue.size(); i++){
             //find index where command message ID in queue smaller than new command message ID
-            if (command.msgID.compareTo(commandQueue.get(i).msgID)==-msgIDisSmaller){
+            if (command.msgID.compareTo(commandQueue.get(i).msgID)<=-msgIDisSmaller){
                 //add new command in queue on index i
                 insert (i, command);
                 break;
@@ -154,7 +149,13 @@ public class CommandQueue extends SaveObservable{
                 if (top().compareTo(msgID) == 0) {
                     dequeue();
                 //Message ID is not same as the first message ID in queue
-                } else {
+                }else if(commandQueue.peekFirst().getActivated()){
+                    int cnt=0;
+                    while(cnt < commandQueue.size() && commandQueue.get(cnt++).getActivated());
+                    if (commandQueue.get(cnt-1).msgID.compareTo(msgID)==0){
+                        commandQueue.get(cnt-1).execute();
+                    }
+                }else {
                     findPos(msgID);
                 }
             }
@@ -186,16 +187,26 @@ public class CommandQueue extends SaveObservable{
             LoggerInstance.log.debug("EmptyCommandQueue");
         }
         for (Command command : commandQueue) {
-            if(command.getAck1Success()){
-                activate(command.msgID);
-            }else{
-                NetworkController.getInstance().acknowledge1(command.msgID);
-                activate(command.msgID);
-            }
+            new Thread(()->{
+                if(command.getAck1Success()){
+                    activate(command.msgID);
+                }else{
+                    NetworkController.getInstance().acknowledge1(command.msgID);
+                    activate(command.msgID);
+                }
+            }).start();
         }
     }
 
-    // TODO: 02.07.18 @Andreas use setQueueContent und Getter
+    void delete(Command command){
+        commandQueue.remove(command);
+        notifyObservers();
+    }
+
+    void save(){
+        notifyObservers();
+    }
+
     public LinkedList<Command> getCommandQueue(){return this.commandQueue;}
     public LinkedList<String> getActivatedList(){return activatedList;}
     public Command getToBeValidated(){return toBeValidated;}

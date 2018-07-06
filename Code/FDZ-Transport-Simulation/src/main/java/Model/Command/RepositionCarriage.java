@@ -16,7 +16,7 @@ public class RepositionCarriage extends Command {
 
     private final int id;
     private final String position;
-    private Station lastUsed = null;
+    private String lastUsed = null;
 
     /**
      * @param id id of carriage to reposition
@@ -34,16 +34,16 @@ public class RepositionCarriage extends Command {
     // TODO: 16.06.18 javadoc und ack2
     @Override
     public void execute(){
-
+        System.err.println("in exec repo");
         Thread execute = new Thread(() ->{
             Station from = null, to = null;
             try {
-                if (this.getAck1Success()){
+                if (!this.getActivated()){
                     from = StationHandler.getInstance().getStationBySledID(id);
-                    lastUsed = from;
+                    lastUsed = from.getName();
                 }else{
                     try{
-                        from = lastUsed;
+                        from = StationHandler.getInstance().getStationByName(lastUsed);
                     }catch(NullPointerException e){
 
                     }
@@ -56,17 +56,19 @@ public class RepositionCarriage extends Command {
                 LoggerInstance.log.error("IndexOutOfBounds, Illegal Setup found", e);
                 super.error();
             }
+            this.confirmActivation();
             try {
                 LinkedList<Station> path = new PathFinder(from, to).getPath();
                 if(TimeMode.fastModeActivated) {
                     path.getFirst().driveOutSled();
                     path.stream().filter(s -> (s != path.getFirst() && s != path.getLast())).forEachOrdered(station -> {
                         station.driveInSled(id);
-                        lastUsed = station;
+                        lastUsed = station.getName();
                         station.driveOutSled();
                     });
+                    lastUsed = path.getLast().getName();
                     path.getLast().driveInSled(id);
-                    lastUsed = path.getLast();
+
                     LoggerInstance.log.info("Done Repositioning in FastMode");
                 }else{
                     path.getFirst().driveOutSled();
@@ -78,13 +80,16 @@ public class RepositionCarriage extends Command {
                     for (int i=1; i<path.size()-1; i++){
                         try{
                             path.get(i).driveInSled(id);
+                            lastUsed = path.get(i).getName();
                             path.get(i).driveOutSled();
                             sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1))*1000);
                         }catch(InterruptedException e){
                             LoggerInstance.log.warn("Interruption in Repositioning in SlowMode");
                         }
                     }
+                    lastUsed = path.getLast().getName();
                     path.getLast().driveInSled(id);
+
                     LoggerInstance.log.info("Done Repositioning in SlowMode");
                 }
                 super.commandExecuted();
@@ -92,13 +97,9 @@ public class RepositionCarriage extends Command {
                 super.error();
                 LoggerInstance.log.error("Illegal Setup detected in Repositioning Carriage");
             }
+            CommandQueue.getInstance().delete(this);
         });
         execute.start();
-        try {
-            execute.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 
     }
 }

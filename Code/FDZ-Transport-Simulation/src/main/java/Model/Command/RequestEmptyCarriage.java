@@ -16,7 +16,7 @@ import static java.lang.Thread.sleep;
 public class RequestEmptyCarriage extends Command {
 
     private final String position;
-    private Station lastUsed;
+    private String lastUsed;
 
     /**
      *
@@ -41,29 +41,34 @@ public class RequestEmptyCarriage extends Command {
     // TODO: 16.06.18 doc und ack2 
     @Override
     public void execute(){
-        
+        System.err.println("in exec");
         Thread execute = new Thread(() ->{
             Station temp;
             try {
                 temp = StationHandler.getInstance().getStationByShortCut(position);
-                lastUsed = temp;
+                lastUsed = temp.getName();
                 LinkedList<Station> path;
-                if(this.getAck1Success()){
+                if(!this.getActivated()){
                     path = new PathFinder(temp, temp.getHopsToNewCarriage()).getPath();
                 }else{
-                    path = new PathFinder(lastUsed, lastUsed.getHopsToNewCarriage()).getPath();
+                    Station last = StationHandler.getInstance().getStationByName(lastUsed);
+                    path = new PathFinder(last, last.getHopsToNewCarriage()).getPath();
+                    System.err.println("redoing command");
                 }
+                this.confirmActivation();
                 if(TimeMode.fastModeActivated) {
                     path.stream().filter(station -> station != path.getLast()).forEachOrdered(station -> {
                         station.driveInSled(-1);
-                        lastUsed = station;
+                        lastUsed = station.getName();
                         station.driveOutSled();
                     });
+                    lastUsed = path.getLast().getName();
                     path.getLast().driveInSled(-1);
                     LoggerInstance.log.info("Done Requesting Carriage in FastMode");
                 }else{
                     for (int i=0; i<path.size()-1; i++){
                         path.get(i).driveInSled(-1);
+                        lastUsed = path.get(i).getName();
                         path.get(i).driveOutSled();
                         try{
                             sleep(TimeMode.findTimeForPath(path.get(i), path.get(i+1))*1000);
@@ -71,6 +76,7 @@ public class RequestEmptyCarriage extends Command {
                             // TODO: 16.06.18 debug interruption
                         }
                     }
+                    lastUsed = path.getLast().getName();
                     path.getLast().driveInSled(-1);
                     LoggerInstance.log.info("Done Requesting Carriage in SlowMode");
                 }
@@ -80,13 +86,8 @@ public class RequestEmptyCarriage extends Command {
                 LoggerInstance.log.error("Illegal Setup Detected in RequestEmptyCarriage", e);
                 super.error();
             }
+            CommandQueue.getInstance().delete(this);
         });
         execute.start();
-        try {
-            execute.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
     }
 }

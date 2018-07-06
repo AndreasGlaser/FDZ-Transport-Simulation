@@ -161,6 +161,8 @@ public class NetworkController extends ConnectionObservable implements Connectio
     public void acknowledge2 (String msgID, boolean emptyCarriage){
         final String EMPTY_ID = "00";
         String ACK2_CNRD_END = "0002";
+        //Update GUI Status
+        new Facade().setStatus("Finished");
         String message = ACK2_HEAD+msgID+ ACK2_CNRD_END +EMPTY_ID;
         LoggerInstance.log.info("Send ACK02: {} to Adapter",message);
         clientNetwork.sendMessage(message);
@@ -181,7 +183,7 @@ public class NetworkController extends ConnectionObservable implements Connectio
 
 
     private void invokeInterpreter(String command){
-        new CommandInterpreter(command).run();
+        new Thread(new CommandInterpreter(command)).start();
     }
 
     /*---------------------------------------------------------------------------*/
