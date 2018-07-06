@@ -88,20 +88,18 @@ public class CommandQueue extends SaveObservable{
         }else {
             try {
                 //compare last command message ID with new Command message ID
-                switch (commandQueue.peekLast().msgID.compareTo(command.msgID)) {
+                System.out.println("compare "+commandQueue.peekLast().msgID + "to "+ command.msgID);
+                System.out.println("returns: "+ commandQueue.peekLast().msgID.compareTo(command.msgID));
+                Integer compareResult = commandQueue.peekLast().msgID.compareTo(command.msgID);
+                if(compareResult > 0) {
                     //Last command message ID is greater than new command message ID
-                    case 1:
-                        //find the place in queue where to add the command
-                        findPos(command);
-                        break;
+                    //find the place in queue where to add the command
+                    findPos(command);
+                }else if(compareResult < 0) {
                     //Last command message ID is smaller than new command message ID
-                    case -1:
-                        //Add new Command on the end of queue
-                        enqueue(command);
-                        break;
-                    default:
-                        System.err.println("default");
-                        break;
+                    enqueue(command);
+                }else {
+                    System.err.println("default");
                 }
             }catch(NullPointerException e){
                 LoggerInstance.log.warn("COMMAND NOT IN QUEUE ");
@@ -210,7 +208,6 @@ public class CommandQueue extends SaveObservable{
         notifyObservers();
     }
 
-    // TODO: 02.07.18 @Andreas use setQueueContent und Getter
     public LinkedList<Command> getCommandQueue(){return this.commandQueue;}
     public LinkedList<String> getActivatedList(){return activatedList;}
     public Command getToBeValidated(){return toBeValidated;}
