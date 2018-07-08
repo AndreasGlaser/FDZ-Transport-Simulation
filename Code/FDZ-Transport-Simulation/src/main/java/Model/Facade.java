@@ -8,7 +8,7 @@ import Model.Station.Station;
 import Model.Station.StationHandler;
 import Model.Station.StationObserver;
 import Model.Status.StatusObservable;
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 
 import java.util.ArrayList;

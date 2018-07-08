@@ -2,7 +2,8 @@ package Model.Station;
 
 import Model.Exception.IllegalSetupException;
 import Model.Logger.LoggerInstance;
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
+
 
 import java.util.ArrayList;
 import java.util.HashSet;
