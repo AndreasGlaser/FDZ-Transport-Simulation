@@ -41,7 +41,6 @@ public class RequestEmptyCarriage extends Command {
     // TODO: 16.06.18 doc und ack2 
     @Override
     public void execute(){
-        System.err.println("in exec");
         Thread execute = new Thread(() ->{
             Station temp;
             try {
@@ -53,7 +52,6 @@ public class RequestEmptyCarriage extends Command {
                 }else{
                     Station last = StationHandler.getInstance().getStationByName(lastUsed);
                     path = new PathFinder(last, last.getHopsToNewCarriage()).getPath();
-                    System.err.println("redoing command");
                 }
                 this.confirmActivation();
                 if(TimeMode.fastModeActivated) {
