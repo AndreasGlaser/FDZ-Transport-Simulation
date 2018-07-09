@@ -16,10 +16,9 @@ public class CommandParseTests {
         ArrayList<Station> standardStations = newStandardStations();
         NetworkController listener = NetworkController.getInstance();
         listener.testCommand("STStK00100010002");
-        //TODO: ausgehende Netzwerknachrichten abfangen
     }
 
-    @Test
+    @Test (expected = NullPointerException.class)
     public void repositionCarMissingTargetTest(){
         //leeren Schlitten zum Roboter
         ArrayList<Station> standardStations = newStandardStations();
@@ -28,10 +27,9 @@ public class CommandParseTests {
         Assert.assertEquals(-1,(int)standardStations.get(0).getSledsInStation().get(0));
 
         listener.testCommand("STStK0030002000401");
-        //TODO: ausgehende Netzwerknachrichten abfangen
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void repositionCarMissingIDTest(){
         //leeren Schlitten zum Roboter
         ArrayList<Station> standardStations = newStandardStations();
@@ -40,7 +38,6 @@ public class CommandParseTests {
         Assert.assertEquals(-1,(int)standardStations.get(0).getSledsInStation().get(0));
 
         listener.testCommand("STStK00300020004la");
-        //TODO: ausgehende Netzwerknachrichten abfangen
     }
 
     private ArrayList<Station> newStandardStations() {

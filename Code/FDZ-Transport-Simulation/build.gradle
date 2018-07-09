@@ -1,5 +1,5 @@
 group 'FDZ-Transport-Simulation'
-version '1.0'
+version '42.0_3'
 
 apply plugin: 'java'
 
