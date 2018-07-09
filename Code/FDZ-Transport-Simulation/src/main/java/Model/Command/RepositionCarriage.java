@@ -34,7 +34,6 @@ public class RepositionCarriage extends Command {
     // TODO: 16.06.18 javadoc und ack2
     @Override
     public void execute(){
-        System.err.println("in exec repo");
         Thread execute = new Thread(() ->{
             Station from = null, to = null;
             try {

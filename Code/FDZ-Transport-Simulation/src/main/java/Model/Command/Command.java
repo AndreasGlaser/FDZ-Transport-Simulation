@@ -56,5 +56,5 @@ public abstract class Command {
     void confirmActivation() {
         activated = true;
         CommandQueue.getInstance().save();
-        System.err.println("command activated");}
+    }
 }

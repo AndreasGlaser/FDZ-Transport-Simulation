@@ -11,6 +11,14 @@ import Model.Station.StationObserver;
 
 import java.util.*;
 
+/**
+ * @author nlehmann
+ *
+ * This Class was designed for debugging purposes only. It was never meant to be released,
+ * but the Product owners suggested that we keep it the way it is. The Methods used by the CLI are
+ * by no means MVC-conform, though the print Methods can give an insight on whether the actual View is
+ * displaying the right configuration for the Model
+ */
 public class CommandLineInterface extends Thread implements StationObserver, ConnectionObserver, ShutdownObserver {
 
     private final Scanner sc;
@@ -32,10 +40,7 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
     }
 
     @Override
-    public void update(Station station)
-    {
-        printState();
-    }
+    public void update(Station station) { printState(); }
     @Override
     public void update(){ printStatus(); }
     @Override
@@ -84,7 +89,7 @@ public class CommandLineInterface extends Thread implements StationObserver, Con
     }
 
     private void printState(){
-        List<Station> stationList = StationHandler.getInstance().getStationList();//TODO falscher Zugriff
+        List<Station> stationList = StationHandler.getInstance().getStationList();
         for (Station aStationList : stationList) {
             /*foreach station*/
             System.out.print(

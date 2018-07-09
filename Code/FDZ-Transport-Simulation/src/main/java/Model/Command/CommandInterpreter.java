@@ -50,9 +50,7 @@ public class CommandInterpreter extends SaveObservable implements Runnable {
     public void run() {
         try{
             this.parseValues();
-            System.err.println("parsed");
             new CommandValidator(command, messageID, position, commandNum, paramCount, carriageID);
-            System.err.println("validated");
         }catch(IllegalCommandException e){
             LoggerInstance.log.warn("Interpreter detected Illegal Command Structure!");
             error(messageID);
